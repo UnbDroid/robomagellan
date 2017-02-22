@@ -40,7 +40,7 @@
 #define TRIGGER_14 22
 #define ECHO_14 24
 
-#define SONAR_NUM     9 // Number of sensors.
+#define SONAR_NUM     1 // Number of sensors.
 #define MAX_DISTANCE 500 // Maximum distance (in cm) to ping.
 #define PING_INTERVAL 50 // Milliseconds between sensor pings (29ms is about the min to avoid cross-sensor echo).
 
