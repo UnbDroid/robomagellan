@@ -40,7 +40,7 @@
 #define TRIGGER_14 22
 #define ECHO_14 24
 
-#define SONAR_NUM     1 // Number of sensors.
+#define SONAR_NUM     9 // Number of sensors.
 #define MAX_DISTANCE 500 // Maximum distance (in cm) to ping.
 #define PING_INTERVAL 50 // Milliseconds between sensor pings (29ms is about the min to avoid cross-sensor echo).
 
@@ -49,22 +49,25 @@ unsigned int cm[SONAR_NUM];         // Where the ping distances are stored.
 uint8_t currentSensor = 0;          // Keeps track of which sensor is active.
 
 NewPing sonar[SONAR_NUM] = {     // Sensor object array.
-  NewPing(TRIGGER_1, ECHO_1, MAX_DISTANCE), // Each sensor's trigger pin, echo pin, and max distance to ping.
-//  NewPing(TRIGGER_2, ECHO_2, MAX_DISTANCE),
-//  NewPing(TRIGGER_3, ECHO_3, MAX_DISTANCE),
-//  NewPing(TRIGGER_4, ECHO_4, MAX_DISTANCE),
-//  NewPing(TRIGGER_5, ECHO_5, MAX_DISTANCE),
-//  NewPing(TRIGGER_6, ECHO_6, MAX_DISTANCE), // US1
-//  NewPing(TRIGGER_7, ECHO_7, MAX_DISTANCE),
-//  NewPing(TRIGGER_8, ECHO_8, MAX_DISTANCE),
-//  NewPing(TRIGGER_9, ECHO_9, MAX_DISTANCE),
-//  NewPing(TRIGGER_10, ECHO_10, MAX_DISTANCE),
-//  NewPing(TRIGGER_11, ECHO_11, MAX_DISTANCE)
+  //NewPing(TRIGGER_1, ECHO_1, MAX_DISTANCE) // Each sensor's trigger pin, echo pin, and max distance to ping.
+  NewPing(TRIGGER_2, ECHO_2, MAX_DISTANCE),
+  NewPing(TRIGGER_3, ECHO_3, MAX_DISTANCE),
+  NewPing(TRIGGER_4, ECHO_4, MAX_DISTANCE),
+  NewPing(TRIGGER_5, ECHO_5, MAX_DISTANCE),
+  NewPing(TRIGGER_6, ECHO_6, MAX_DISTANCE), // US1
+  NewPing(TRIGGER_7, ECHO_7, MAX_DISTANCE),
+  NewPing(TRIGGER_8, ECHO_8, MAX_DISTANCE),
+  //NewPing(TRIGGER_9, ECHO_9, MAX_DISTANCE),
+  NewPing(TRIGGER_10, ECHO_10, MAX_DISTANCE),
+  NewPing(TRIGGER_11, ECHO_11, MAX_DISTANCE)
   //NewPing(TRIGGER_12, ECHO_12, MAX_DISTANCE),
   //NewPing(TRIGGER_13, ECHO_13, MAX_DISTANCE),
   //NewPing(50, 51, MAX_DISTANCE),
   //NewPing(52, 53, MAX_DISTANCE)
 };
+
+void oneSensorCycle();
+void echoCheck();
 
 void setup() {
   Serial.begin(115200);
