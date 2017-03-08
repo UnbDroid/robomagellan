@@ -49,8 +49,8 @@ unsigned int cm[SONAR_NUM];         // Where the ping distances are stored.
 uint8_t currentSensor = 0;          // Keeps track of which sensor is active.
 
 NewPing sonar[SONAR_NUM] = {     // Sensor object array.
-  //NewPing(TRIGGER_1, ECHO_1, MAX_DISTANCE) // Each sensor's trigger pin, echo pin, and max distance to ping.
-  NewPing(TRIGGER_2, ECHO_2, MAX_DISTANCE),
+  NewPing(TRIGGER_9, ECHO_9, MAX_DISTANCE) // Each sensor's trigger pin, echo pin, and max distance to ping.
+  /*NewPing(TRIGGER_2, ECHO_2, MAX_DISTANCE),
   NewPing(TRIGGER_3, ECHO_3, MAX_DISTANCE),
   NewPing(TRIGGER_4, ECHO_4, MAX_DISTANCE),
   NewPing(TRIGGER_5, ECHO_5, MAX_DISTANCE),
@@ -63,7 +63,7 @@ NewPing sonar[SONAR_NUM] = {     // Sensor object array.
   //NewPing(TRIGGER_12, ECHO_12, MAX_DISTANCE),
   //NewPing(TRIGGER_13, ECHO_13, MAX_DISTANCE),
   //NewPing(50, 51, MAX_DISTANCE),
-  //NewPing(52, 53, MAX_DISTANCE)
+  //NewPing(52, 53, MAX_DISTANCE)*/
 };
 
 void oneSensorCycle();
