@@ -68,8 +68,8 @@ double voltas_direita = 0, voltas_direita_anterior = 0;
 // Cálculo de velocidade
 float velocidade_esquerda = 0;
 float velocidade_direita = 0;
-double tempo;
-double tempo_aux;
+unsigned long tempo;
+unsigned long tempo_aux;
 
 void doEncoderA();
 void doEncoderB();
@@ -360,7 +360,7 @@ void leituraTinyGps(){
 #define ECHO_13 23
 #define TRIGGER_14 22
 #define ECHO_14 24
-#define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+#define MAX_DISTANCE 100 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 
 #define SONAR_NUM     11 // Number of sensors.
 
@@ -377,45 +377,125 @@ NewPing sonar[SONAR_NUM] = {     // Sensor object array.
   NewPing(TRIGGER_10, ECHO_10, MAX_DISTANCE),
   NewPing(TRIGGER_11, ECHO_11, MAX_DISTANCE)
 };
-int USReadOrder[SONAR_NUM] = {0,11,1,10,2,9,3,8,4,7,5};
 int USReadings[SONAR_NUM];
 
 // Tasks ------------------------------------------------
 
 void taskGPSCallback();
-void taskUSCallback();
+
+void taskUSCallback1();
+void taskUSCallback2();
+void taskUSCallback3();
+void taskUSCallback4();
+void taskUSCallback5();
+void taskUSCallback6();
+void taskShowUSReadingCallback();
+
 void taskROSCallback();
 
+void taskENCODERCallback();
+
+
 Task taskGPS(PERIODO, TASK_FOREVER, &taskGPSCallback);
-Task taskUS(PERIODO, TASK_FOREVER, &taskUSCallback);
+
+Task taskUS1(PERIODO, TASK_FOREVER, &taskUSCallback1);
+Task taskUS2(PERIODO, TASK_FOREVER, &taskUSCallback2);
+Task taskUS3(PERIODO, TASK_FOREVER, &taskUSCallback3);
+Task taskUS4(PERIODO, TASK_FOREVER, &taskUSCallback4);
+Task taskUS5(PERIODO, TASK_FOREVER, &taskUSCallback5);
+Task taskUS6(PERIODO, TASK_FOREVER, &taskUSCallback6);
+Task showUSReadings(PERIODO, TASK_FOREVER, &taskShowUSReadingCallback);
+
 Task taskROS(PERIODO,TASK_FOREVER, &taskROSCallback);
+
+Task taskENCODER (30, TASK_FOREVER, &taskENCODERCallback);
 
 Scheduler runner;
 
 
 void taskGPSCallback(){
-  taskUS.delay(10);
-  taskROS.delay(110);
-  Serial.print("GPS: ");
-  Serial.println(millis());
-  unsigned long t1 = millis();
+  //Serial.print("GPS: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
   leituraTinyGps();
-  unsigned long t2 = millis();
-  Serial.print("Demorei ");
-  Serial.println(t2-t1);
+  //unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1);
 }
 
 void readUS(int us_num){
   USReadings[us_num] = sonar[us_num].ping_cm();
 }
 
-void taskUSCallback(){
-  Serial.print("US: ");
+void taskUSCallback1(){
+  //Serial.print("US 1: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
+  readUS(0);
+  readUS(10);
+  //unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1); 
+}
+
+void taskUSCallback2(){
+  //Serial.print("US 2: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
+  readUS(1);
+  readUS(9);
+  //unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1); 
+}
+
+void taskUSCallback3(){
+  //Serial.print("US 3: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
+  readUS(2);
+  readUS(8);
+  //unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1); 
+}
+
+void taskUSCallback4(){
+  //Serial.print("US 4: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
+  readUS(3);
+  readUS(7);
+  //unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1); 
+}
+
+void taskUSCallback5(){
+  //Serial.print("US 5: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
+  readUS(4);
+  readUS(6);
+  //unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1); 
+}
+
+void taskUSCallback6(){
+  //Serial.print("US 6: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
+  readUS(5);
+  //unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1); 
+}
+
+void taskShowUSReadingCallback(){
+  Serial.print("US Readings: ");
   Serial.println(millis());
   unsigned long t1 = millis();
-  for(unsigned i=0; i<SONAR_NUM;i++){
-    readUS(USReadOrder[i]); 
-  }
   for(unsigned i=0; i<SONAR_NUM;i++){
     Serial.print("US ");
     Serial.print(i+1);
@@ -423,7 +503,6 @@ void taskUSCallback(){
     Serial.print(USReadings[i]);
     Serial.println("cm");
   }
-  
   unsigned long t2 = millis();
   Serial.print("Demorei ");
   Serial.println(t2-t1); 
@@ -448,9 +527,37 @@ void taskROSCallback(){
   
 }
 
+void taskENCODERCallback(){
+  //Serial.print("ENCODER: ");
+  //Serial.println(millis());
+  //unsigned long t1 = millis();
+  
+  tempo_aux = millis() - tempo;
+  tempo = millis();
+  
+  voltas_esquerda = encoder0Pos/1632.67;
+  voltas_direita = encoder1Pos/1632.67;
+ 
+  velocidade_esquerda = 1000*(voltas_esquerda - voltas_esquerda_anterior)/(tempo_aux);
+  velocidade_direita = 1000*(voltas_direita - voltas_direita_anterior)/(tempo_aux);
+  
+  voltas_esquerda_anterior = voltas_esquerda;
+  voltas_direita_anterior = voltas_direita;
+  
+  //Serial.print("tempo: ");                    Serial.println(tempo_aux);
+  //Serial.print("Contador encoder esquerdo: "); Serial.println(encoder0Pos);
+  //Serial.print("Contador encoder direito: ");  Serial.println(encoder1Pos);
+  Serial.print("Velocidade esquerda: ");      Serial.println(velocidade_esquerda);
+  Serial.print("Velocidade direita: ");       Serial.println(velocidade_direita);
+  Serial.println(" ");
+ // unsigned long t2 = millis();
+  //Serial.print("Demorei ");
+  //Serial.println(t2-t1); 
+}
+
 void setup() {
   // put your setup code here, to run once:
-  
+ 
   Serial.begin(115200);
   Serial2.begin(4800);
   //initializeRosCom();
@@ -461,19 +568,34 @@ void setup() {
   
   runner.init();
 
-
+  runner.addTask(taskENCODER);
   runner.addTask(taskGPS);
-  runner.addTask(taskUS);
+  runner.addTask(taskUS1);
+  runner.addTask(taskUS2);
+  runner.addTask(taskUS3);
+  runner.addTask(taskUS4);
+  runner.addTask(taskUS5);
+  runner.addTask(taskUS6);
+  runner.addTask(showUSReadings);
   //runner.addTask(taskROS);
-
+  
   taskGPS.enable();
-  taskUS.enable();
+  taskUS1.enable();
+  taskUS2.enable();
+  taskUS3.enable();
+  taskUS4.enable();
+  taskUS5.enable();
+  taskUS6.enable();
+  showUSReadings.enable();
   //taskROS.enable();
+  taskENCODER.enable();
 }
 
 void loop() {
+
+  
   // put your main code here, to run repeatedly:
-  direita(0,50);
+  esquerda_eixo(50,50);
   runner.execute();
   //nh.spinOnce();
 }
