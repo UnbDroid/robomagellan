@@ -25,6 +25,7 @@ void messageFloat32Cb( const raspberry_msgs::StampedFloat32& r_float32_msg);
 void messageFloat64Cb( const raspberry_msgs::StampedFloat64& r_float64_msg);
 
 // Ids do ROS ------------------*************************
+
 #define US01 555
 #define US02 556
 #define US03 557
@@ -377,7 +378,24 @@ NewPing sonar[SONAR_NUM] = {     // Sensor object array.
   NewPing(TRIGGER_10, ECHO_10, MAX_DISTANCE),
   NewPing(TRIGGER_11, ECHO_11, MAX_DISTANCE)
 };
+
 int USReadings[SONAR_NUM];
+
+// Coisas do controle remoto ----------------------------
+  
+#define CHANEL_1 A0
+#define CHANEL_2 A1
+#define CHANEL_3 A2
+
+int ch1 = 0, ch2 =0, ch3 =0;
+
+void start_RC() {
+  
+  pinMode(CHANEL_1, INPUT);
+  pinMode(CHANEL_2, INPUT);
+  pinMode(CHANEL_3, INPUT);
+
+}
 
 // Tasks ------------------------------------------------
 
@@ -395,6 +413,7 @@ void taskROSCallback();
 
 void taskENCODERCallback();
 
+void taskRCCallback();
 
 Task taskGPS(PERIODO, TASK_FOREVER, &taskGPSCallback);
 
@@ -409,6 +428,8 @@ Task showUSReadings(PERIODO, TASK_FOREVER, &taskShowUSReadingCallback);
 Task taskROS(PERIODO,TASK_FOREVER, &taskROSCallback);
 
 Task taskENCODER (30, TASK_FOREVER, &taskENCODERCallback);
+
+Task taskRC (30, TASK_FOREVER, &taskRCCallback);
 
 Scheduler runner;
 
@@ -555,16 +576,35 @@ void taskENCODERCallback(){
   //Serial.println(t2-t1); 
 }
 
+void taskRCCallback(){
+
+  noInterrupts();
+  ch1 = pulseIn(CHANEL_1, HIGH, 25000); // Read the pulse width of 
+  ch2 = pulseIn(CHANEL_2, HIGH, 25000); // each channel
+  ch3 = pulseIn(CHANEL_3, HIGH, 25000);
+  interrupts();
+  Serial.print("Channel 1: "); // Print the value of 
+  Serial.println(ch1);        // each channel
+  Serial.print("Channel 2: ");
+  Serial.println(ch2);
+  Serial.print("Channel 3: ");
+  Serial.println(ch3);
+  
+}
+
 void setup() {
   // put your setup code here, to run once:
  
   Serial.begin(115200);
   Serial2.begin(4800);
+  
   //initializeRosCom();
 
   start_DRIVER();
 
   start_ENCODER();
+
+  start_RC();
   
   runner.init();
 
@@ -578,6 +618,7 @@ void setup() {
   runner.addTask(taskUS6);
   runner.addTask(showUSReadings);
   //runner.addTask(taskROS);
+  runner.addTask(taskRC);
   
   taskGPS.enable();
   taskUS1.enable();
@@ -589,6 +630,7 @@ void setup() {
   showUSReadings.enable();
   //taskROS.enable();
   taskENCODER.enable();
+  taskRC.enable();
 }
 
 void loop() {

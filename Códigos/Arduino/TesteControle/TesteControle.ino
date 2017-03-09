@@ -15,9 +15,9 @@
 #define DIREITA 4
 
 char* direcoes[] = {"Parar", "Frente","Re","Esquerda","Direita"};
-int ch1; // Here's where we'll keep our channel values
-int ch2;
-int ch3;
+volatile int ch1; // Here's where we'll keep our channel values
+volatile int ch2;
+volatile int ch3;
 int direcao = 0;
 int ch1vel=0;
 int virada = 0;
@@ -103,24 +103,27 @@ void setup() {
   pinMode(IN2_D, OUTPUT);
   pinMode(PWM_E, OUTPUT);
   pinMode(PWM_D, OUTPUT);
-  pinMode(22, INPUT); // Set our input pins as such
-  pinMode(24, INPUT);
-  pinMode(26, INPUT);
+  pinMode(A0, INPUT); // Set our input pins as such
+  pinMode(A1, INPUT);
+  pinMode(A2, INPUT);
   Serial.begin(9600); // Pour a bowl of Serial
 }
 void loop() {
-  ch1 = pulseIn(22, HIGH, 25000); // Read the pulse width of 
-  ch2 = pulseIn(24, HIGH, 25000); // each channel
-  ch3 = pulseIn(26, HIGH, 25000);
+  noInterrupts();
+  ch1 = pulseIn(A0, HIGH, 25000); // Read the pulse width of 
+  ch2 = pulseIn(A1, HIGH, 25000); // each channel
+  ch3 = pulseIn(A2, HIGH, 25000);
+  interrupts();
   Serial.print("Channel 1: "); // Print the value of 
   Serial.println(ch1);        // each channel
   Serial.print("Channel 2: ");
   Serial.println(ch2);
   Serial.print("Channel 3: ");
   Serial.println(ch3);
+  Serial.println("-------------");
 
   // Parte que acelera
-  if(ch1!=0){
+  /*if(ch1!=0){
     if(ch1 < 1400){
       direcao = RE;
       ch1vel = (ch1-1400.0)/(950.0-1400.0)*50.0+100.0;
@@ -131,9 +134,9 @@ void loop() {
       direcao = PARAR;
       ch1vel = 0;
     }
-  }
+  }*/
   // Parte que vira
-  if(ch2!=0){
+  /*if(ch2!=0){
     if(ch2 < 1400){
       virada = ESQUERDA;
       ch2vel = (ch2-1400.0)/(900.0-1400.0)*100.0;
@@ -144,8 +147,8 @@ void loop() {
       virada = FRENTE;
       ch2vel = 0;
     }
-  }
-  Serial.print("Direcao :");
+  }*/
+ /* Serial.print("Direcao :");
   Serial.println(direcoes[direcao]);
   Serial.print("Velocidade ch1 :");
   Serial.println(ch1vel);
@@ -153,9 +156,9 @@ void loop() {
   Serial.println(direcoes[virada]);
   Serial.print("Velocidade ch2 :");
   Serial.println(ch2vel);
-  Serial.println("------------------------------");
-  /*
-  if(direcao == FRENTE){
+  Serial.println("------------------------------");*/
+  
+  /*if(direcao == FRENTE){
     if(virada == FRENTE){
       frente(ch1vel,ch1vel);
     }else if(virada == DIREITA){
