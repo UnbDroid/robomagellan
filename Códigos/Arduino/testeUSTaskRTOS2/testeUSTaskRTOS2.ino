@@ -1,21 +1,49 @@
 #include <PinChangeInt.h>
-//#include <Arduino_FreeRTOS.h>
+#include <Arduino_FreeRTOS.h>
 
 #define TRIGGER_1 A13
 #define TRIGGER_2 A14
 #define ECHO_1 A15
 
-/*TaskHandle_t USTaskHandle;
-
-static void TaskUS(void* pvParameters)
-{        
-    Serial.println(F("Task2, Deleting itself"));
-    vTaskDelete(NULL);     //Delete own task by passing NULL(TaskHandle_2 can also be used)
-}*/
+TaskHandle_t USTaskHandle;
 
 volatile int channel_value1 = 0;
 volatile int prev_time1 = 0;
 uint8_t latest_interrupted_pin1;
+volatile int us1 = 0;
+volatile int us2 = 0;
+
+void TaskSerialWrite( void *pvParameters ){
+  long oldTime = millis();
+    for (;;){
+      Serial.println(millis()-oldTime);
+      oldTime = millis();
+      Serial.print("1 : ");
+      Serial.println(us1);
+      Serial.print("2 : ");
+      Serial.println(us2);
+      vTaskDelay(30/portTICK_PERIOD_MS);
+    }
+}
+
+void trigger(int pin){
+    digitalWrite(pin,LOW);
+    delayMicroseconds(4);
+    digitalWrite(pin,HIGH);
+    delayMicroseconds(10);    
+    digitalWrite(pin,LOW); 
+}
+
+static void TaskUS(void* pvParameters){
+  for (;;){ 
+    trigger(TRIGGER_1);
+    vTaskDelay(50/ portTICK_PERIOD_MS);
+    us1 = channel_value1/29/2;
+    trigger(TRIGGER_2);
+    vTaskDelay(50/ portTICK_PERIOD_MS);
+    us2 = channel_value1/29/2;
+  }
+}
 
 void falling1();
 
@@ -43,29 +71,11 @@ void setup() {
   digitalWrite(TRIGGER_1,LOW);
   digitalWrite(TRIGGER_2,LOW);
   PCintPort::attachInterrupt(ECHO_1, &rising1, RISING);
-  //xTaskCreate(TaskUS, "TaskUS", 100, NULL, 2, &USTaskHandle); 
+  xTaskCreate(TaskUS, "TaskUS", 100, NULL, 1, &USTaskHandle);
+  xTaskCreate(TaskSerialWrite,(const portCHAR *) "SerialWrite", 128,  NULL,2,  NULL ); 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(TRIGGER_2,LOW);
-  digitalWrite(TRIGGER_1,LOW);
-  delayMicroseconds(4);
-  digitalWrite(TRIGGER_1,HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIGGER_1,LOW);
-  delay(50);
-  Serial.print("1 : ");
-  Serial.println(channel_value1/29/2);
-  delay(50);
-  digitalWrite(TRIGGER_1,LOW);
-  digitalWrite(TRIGGER_2,LOW);
-  delayMicroseconds(4);
-  digitalWrite(TRIGGER_2,HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIGGER_2,LOW);
-  delay(50);
-  Serial.print("2 : ");
-  Serial.println(channel_value1/29/2);
   
 }
