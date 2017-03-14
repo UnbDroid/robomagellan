@@ -3,9 +3,9 @@
 
 #include "basicLibraries.h"
 
-#define CHANNEL1 A13 // we could choose any pin
-#define CHANNEL2 A14
-#define CHANNEL3 A15
+#define CHANNEL1 10//A13 // we could choose any pin
+#define CHANNEL2 11//A14
+#define CHANNEL3 12// A15
 
 #define MAX_TIME_RC 2000
  
@@ -23,8 +23,7 @@ void falling1();
 void falling2();
 void falling3();
  
-void rising1()
-{
+void rising1(){
   latest_interrupted_pin1=PCintPort::arduinoPin;
   if(latest_interrupted_pin1 == CHANNEL1){
     PCintPort::attachInterrupt(latest_interrupted_pin1, &falling1, FALLING);
@@ -33,8 +32,7 @@ void rising1()
 
 }
 
-void rising2()
-{
+void rising2(){
   latest_interrupted_pin2=PCintPort::arduinoPin;
   if(latest_interrupted_pin2 == CHANNEL2){
     PCintPort::attachInterrupt(latest_interrupted_pin2, &falling2, FALLING);
@@ -42,8 +40,7 @@ void rising2()
   }
 }
 
-void rising3()
-{
+void rising3(){
   latest_interrupted_pin3=PCintPort::arduinoPin;
   if(latest_interrupted_pin3 == CHANNEL3){
     PCintPort::attachInterrupt(latest_interrupted_pin3, &falling3, FALLING);

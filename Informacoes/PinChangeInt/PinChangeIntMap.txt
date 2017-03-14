@@ -1,0 +1,28 @@
+     Chip
+Name  Pin  Pin on board
+-----------------------
+
+Port B
+
+PB0 - 19 - D53 (SS)
+PB1 - 20 - D52 (SCK)
+PB2 - 21 - D51 (MOSI)
+PB3 - 22 - D50 (MISO)
+PB4 - 23 - D10 
+PB5 - 24 - D11
+PB6 - 25 - D12
+PB7 - 26 - D13
+
+Port E
+
+PE0 - 2 - D0 (RXD0)
+
+Port J
+
+PJ0 - 63 - D15 (RXD3)
+PJ1 - 64 - D14 (TXD3)
+PJ2 to PJ6 - not connected on board
+
+Port K
+
+PK0 - PK7 - (89 - 82)  - A8 - A15
