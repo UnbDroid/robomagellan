@@ -5,7 +5,7 @@
 
 #define CHANNEL1 10//A13 // we could choose any pin
 #define CHANNEL2 11//A14
-#define CHANNEL3 12// A15
+#define CHANNEL3 12//A15
 
 #define MAX_TIME_RC 2000
  

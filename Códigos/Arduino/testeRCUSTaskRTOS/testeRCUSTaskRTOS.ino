@@ -17,7 +17,7 @@ void TaskSerialWrite( void *pvParameters ){
       Serial.println(channel_value2);
       Serial.print("Channel 3: ");
       Serial.println(channel_value3);
-      vTaskDelay(30/portTICK_PERIOD_MS);
+      vTaskDelay(100/portTICK_PERIOD_MS);
     }
 }
 
