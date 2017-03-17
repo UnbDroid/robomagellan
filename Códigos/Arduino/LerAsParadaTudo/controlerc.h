@@ -69,4 +69,37 @@ void start_RC() {
   PCintPort::attachInterrupt(CHANNEL3, &rising3, RISING);
 }
 
+void processarControleRC(float & velDir, float & velEsq){
+  bool controlar = (channel_value1 > 1500);
+  if(controlar){
+    velDir = (channel_value2-1338.0)/2000.0*10.0;
+    velEsq = velDir;
+    float guinada = (((channel_value3-1420.0)/(2000.0*0.24)))*2;
+    if(abs(velDir) < 0.5){
+      velDir = 0;
+    }else if(velDir > 0.5){
+      velDir += 3;
+    }else if(velDir < -0.5){
+      velDir -= 3;
+    }
+    
+    if(abs(velEsq) < 0.5){
+      velEsq = 0;
+    }else if(velEsq > 0.5){
+      velEsq += 3;
+    }else if(velEsq < -0.5){
+      velEsq -= 3;
+    }
+  
+    if(abs(guinada) < 0.10){
+      guinada = 0;
+    }
+    if(guinada > 0){
+      velEsq *= (1-guinada);
+    }else if(guinada < 0){
+      velDir *= (1+guinada);
+    }    
+  }
+}
+
 #endif

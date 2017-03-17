@@ -1,15 +1,13 @@
 #include <TaskScheduler.h>
 
 #include "gps.h"
-#include "driver.h"
-#include "encoder.h"
+#include "comArduino.h"
 #include "roscom.h"
 #include "idsros.h"
 #include "ultrassom.h"
 #include "controlerc.h"
 #include "sensortoque.h"
 #include "tasksdeclarations.h"
-#include "controlador.h"
 
 
 // Aqui chegam as mensagens vindas do ROS -------------------
@@ -72,8 +70,8 @@ void taskShowUSReadingCallback(){
   Serial.println(channel_value1);        // each channel
   Serial.print("Channel 2: ");
   Serial.println(channel_value2);
-  velRef.dir = (channel_value2-1300.0)/2000.0*5;
-  velRef.esq = velRef.dir;
+  Serial.print("Mandei:"); Serial.println(velRef.dir);
+  Serial.print("Mandei:"); Serial.println(velRef.esq);
   Serial.print("Channel 3: ");
   Serial.println(channel_value3);
   Serial.print("Toque: ");      Serial.println(sensorToque);
@@ -107,7 +105,26 @@ void taskROSCallback(){
 void taskBotaoCallback(){
   sensorToque = lerSensorToque();
 }
-void taskENCODERCallback(){
+void taskComArduinoCallback(){
+  /*velRef.dir = (channel_value2-1338.0)/2000.0*10.0;
+  velRef.esq = velRef.dir;
+  if(abs(velRef.dir) < 0.5){
+    velRef.dir = 0;
+  }else if(velRef.dir > 0.5){
+    velRef.dir += 3;
+  }else if(velRef.dir < -0.5){
+    velRef.dir -= 3;
+  }
+  
+  if(abs(velRef.esq) < 0.5){
+    velRef.esq = 0;
+  }else if(velRef.esq > 0.5){
+    velRef.esq += 3;
+  }else if(velRef.esq < -0.5){
+    velRef.esq -= 3;
+  }*/
+  processarControleRC(velRef.dir,velRef.esq);
+  
   velRefRaw.dir = vel2Raw(velRef.dir);
   velRefRaw.esq = vel2Raw(velRef.esq);
   
@@ -126,9 +143,7 @@ void setup() {
   delay(1000);
   //initializeRosCom();
 
-  start_DRIVER();
-
-  start_ENCODER();
+  start_COMARDUINO();
 
   start_RC();
 

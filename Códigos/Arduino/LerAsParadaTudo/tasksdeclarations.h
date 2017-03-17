@@ -20,7 +20,7 @@ void taskShowUSReadingCallback();
 
 void taskROSCallback();
 
-void taskENCODERCallback();
+void taskComArduinoCallback();
 
 Task taskGPS(PERIODO, TASK_FOREVER, &taskGPSCallback);
 
@@ -36,12 +36,12 @@ Task taskBotao(PERIODO, TASK_FOREVER, &taskBotaoCallback);
 
 Task taskROS(PERIODO,TASK_FOREVER, &taskROSCallback);
 
-Task taskENCODER (30, TASK_FOREVER, &taskENCODERCallback);
+Task taskComArduino (30, TASK_FOREVER, &taskComArduinoCallback);
 
 void start_TASKS(){
   runner.init();
 
-  runner.addTask(taskENCODER);
+  runner.addTask(taskComArduino);
   //runner.addTask(taskGPS);
   runner.addTask(taskUS1);
   runner.addTask(taskUS2);
@@ -63,7 +63,7 @@ void start_TASKS(){
   taskUS6.enable();
   showUSReadings.enable();
   //taskROS.enable();
-  taskENCODER.enable();
+  taskComArduino.enable();
   taskBotao.enable();
 }
 
