@@ -518,6 +518,32 @@ std_msgs_generate_messages_py/fast:
 .PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named _raspberry_msgs_generate_messages_check_deps_Acc
+
+# Build rule for target.
+_raspberry_msgs_generate_messages_check_deps_Acc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _raspberry_msgs_generate_messages_check_deps_Acc
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Acc
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_Acc/fast:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Acc/fast
+
+#=============================================================================
+# Target rules for targets named _raspberry_msgs_generate_messages_check_deps_Gyro
+
+# Build rule for target.
+_raspberry_msgs_generate_messages_check_deps_Gyro: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _raspberry_msgs_generate_messages_check_deps_Gyro
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Gyro
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_Gyro/fast:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Gyro/fast
+
+#=============================================================================
 # Target rules for targets named _raspberry_msgs_generate_messages_check_deps_StampedBool
 
 # Build rule for target.
@@ -1143,6 +1169,8 @@ help:
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_py"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_Acc"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_Gyro"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedBool"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedChar"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedFloat32"

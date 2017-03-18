@@ -4,6 +4,8 @@
 (defsystem "raspberry_msgs-msg"
   :depends-on (:roslisp-msg-protocol :roslisp-utils )
   :components ((:file "_package")
+    (:file "Acc" :depends-on ("_package_Acc"))
+    (:file "_package_Acc" :depends-on ("_package"))
     (:file "StampedUint8" :depends-on ("_package_StampedUint8"))
     (:file "_package_StampedUint8" :depends-on ("_package"))
     (:file "StampedUint64" :depends-on ("_package_StampedUint64"))
@@ -18,6 +20,8 @@
     (:file "_package_StampedString" :depends-on ("_package"))
     (:file "StampedFloat64" :depends-on ("_package_StampedFloat64"))
     (:file "_package_StampedFloat64" :depends-on ("_package"))
+    (:file "Gyro" :depends-on ("_package_Gyro"))
+    (:file "_package_Gyro" :depends-on ("_package"))
     (:file "StampedFloat32" :depends-on ("_package_StampedFloat32"))
     (:file "_package_StampedFloat32" :depends-on ("_package"))
     (:file "StampedInt8" :depends-on ("_package_StampedInt8"))

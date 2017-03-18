@@ -10,7 +10,9 @@ file(REMOVE_RECURSE
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedInt16.py"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedInt64.py"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedString.py"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_Gyro.py"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedUint64.py"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_Acc.py"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedBool.py"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/__init__.py"
 )

@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "raspberry_msgs: 12 messages, 0 services")
+message(STATUS "raspberry_msgs: 14 messages, 0 services")
 
 set(MSG_I_FLAGS "-Iraspberry_msgs:/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg;-Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg")
 
@@ -65,14 +65,24 @@ add_custom_target(_raspberry_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "raspberry_msgs" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedString.msg" ""
 )
 
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+add_custom_target(_raspberry_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "raspberry_msgs" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" ""
+)
+
 get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg" NAME_WE)
 add_custom_target(_raspberry_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "raspberry_msgs" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg" ""
 )
 
-get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg" NAME_WE)
 add_custom_target(_raspberry_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "raspberry_msgs" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "raspberry_msgs" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg" ""
+)
+
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg" NAME_WE)
+add_custom_target(_raspberry_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "raspberry_msgs" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg" ""
 )
 
 #
@@ -142,7 +152,19 @@ _generate_msg_cpp(raspberry_msgs
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/raspberry_msgs
 )
 _generate_msg_cpp(raspberry_msgs
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/raspberry_msgs
+)
+_generate_msg_cpp(raspberry_msgs
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/raspberry_msgs
+)
+_generate_msg_cpp(raspberry_msgs
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/raspberry_msgs
@@ -188,9 +210,13 @@ get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspbe
 add_dependencies(raspberry_msgs_generate_messages_cpp _raspberry_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedString.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_cpp _raspberry_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+add_dependencies(raspberry_msgs_generate_messages_cpp _raspberry_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_cpp _raspberry_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg" NAME_WE)
+add_dependencies(raspberry_msgs_generate_messages_cpp _raspberry_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_cpp _raspberry_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -263,7 +289,19 @@ _generate_msg_lisp(raspberry_msgs
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/raspberry_msgs
 )
 _generate_msg_lisp(raspberry_msgs
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/raspberry_msgs
+)
+_generate_msg_lisp(raspberry_msgs
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/raspberry_msgs
+)
+_generate_msg_lisp(raspberry_msgs
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/raspberry_msgs
@@ -309,9 +347,13 @@ get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspbe
 add_dependencies(raspberry_msgs_generate_messages_lisp _raspberry_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedString.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_lisp _raspberry_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+add_dependencies(raspberry_msgs_generate_messages_lisp _raspberry_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_lisp _raspberry_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg" NAME_WE)
+add_dependencies(raspberry_msgs_generate_messages_lisp _raspberry_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_lisp _raspberry_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -384,7 +426,19 @@ _generate_msg_py(raspberry_msgs
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/raspberry_msgs
 )
 _generate_msg_py(raspberry_msgs
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/raspberry_msgs
+)
+_generate_msg_py(raspberry_msgs
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/raspberry_msgs
+)
+_generate_msg_py(raspberry_msgs
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/raspberry_msgs
@@ -430,9 +484,13 @@ get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspbe
 add_dependencies(raspberry_msgs_generate_messages_py _raspberry_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedString.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_py _raspberry_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+add_dependencies(raspberry_msgs_generate_messages_py _raspberry_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedUint64.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_py _raspberry_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg" NAME_WE)
+add_dependencies(raspberry_msgs_generate_messages_py _raspberry_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Gyro.msg" NAME_WE)
 add_dependencies(raspberry_msgs_generate_messages_py _raspberry_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

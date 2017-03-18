@@ -10,7 +10,9 @@ file(REMOVE_RECURSE
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedInt16.h"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedInt64.h"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedString.h"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Gyro.h"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedUint64.h"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Acc.h"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h"
 )
 

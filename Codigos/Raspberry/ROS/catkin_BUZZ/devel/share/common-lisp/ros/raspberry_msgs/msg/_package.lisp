@@ -1,6 +1,8 @@
 (cl:defpackage raspberry_msgs-msg
   (:use )
   (:export
+   "<ACC>"
+   "ACC"
    "<STAMPEDUINT8>"
    "STAMPEDUINT8"
    "<STAMPEDUINT64>"
@@ -15,6 +17,8 @@
    "STAMPEDSTRING"
    "<STAMPEDFLOAT64>"
    "STAMPEDFLOAT64"
+   "<GYRO>"
+   "GYRO"
    "<STAMPEDFLOAT32>"
    "STAMPEDFLOAT32"
    "<STAMPEDINT8>"

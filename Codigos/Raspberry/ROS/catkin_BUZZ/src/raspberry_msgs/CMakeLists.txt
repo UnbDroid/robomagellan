@@ -57,6 +57,8 @@ find_package(catkin REQUIRED COMPONENTS
    StampedBool.msg
    StampedChar.msg
    StampedString.msg
+   Gyro.msg
+   Acc.msg
 
  )
 
