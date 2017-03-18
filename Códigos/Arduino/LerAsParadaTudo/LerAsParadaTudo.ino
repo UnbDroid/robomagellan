@@ -7,7 +7,10 @@
 #include "idsros.h"
 #include "ultrassom.h"
 #include "controlerc.h"
+#include "sensortoque.h"
 #include "tasksdeclarations.h"
+#include "controlador.h"
+
 
 // Aqui chegam as mensagens vindas do ROS -------------------
 
@@ -65,9 +68,21 @@ void taskShowUSReadingCallback(){
     Serial.print(USReadings[i]);
     Serial.println("cm");
   }
+  Serial.print("Channel 1: "); // Print the value of 
+  Serial.println(channel_value1);        // each channel
+  Serial.print("Channel 2: ");
+  Serial.println(channel_value2);
+  velRef.dir = (channel_value2-1300.0)/2000.0*5;
+  velRef.esq = velRef.dir;
+  Serial.print("Channel 3: ");
+  Serial.println(channel_value3);
+  Serial.print("Toque: ");      Serial.println(sensorToque);
+  Serial.print("Vel esq: "); Serial.println(velAtual.esq);
+  Serial.print("Vel dir: "); Serial.println(velAtual.dir);
   unsigned long t2 = millis();
   Serial.print("Demorei ");
-  Serial.println(t2-t1); 
+  Serial.println(t2-t1);
+  Serial.println(" ");    
 }
 
 void taskROSCallback(){
@@ -89,50 +104,26 @@ void taskROSCallback(){
   
 }
 
-void taskENCODERCallback(){
-  //Serial.print("ENCODER: ");
-  //Serial.println(millis());
-  //unsigned long t1 = millis();
-  
-  tempo_aux = millis() - tempo;
-  tempo = millis();
-  
-  voltas_esquerda = encoder0Pos/1632.67;
-  voltas_direita = encoder1Pos/1632.67;
- 
-  velocidade_esquerda = 1000*(voltas_esquerda - voltas_esquerda_anterior)/(tempo_aux);
-  velocidade_direita = 1000*(voltas_direita - voltas_direita_anterior)/(tempo_aux);
-  
-  voltas_esquerda_anterior = voltas_esquerda;
-  voltas_direita_anterior = voltas_direita;
-  
-  //Serial.print("tempo: ");                    Serial.println(tempo_aux);
-  //Serial.print("Contador encoder esquerdo: "); Serial.println(encoder0Pos);
-  //Serial.print("Contador encoder direito: ");  Serial.println(encoder1Pos);
-  Serial.print("Velocidade esquerda: ");      Serial.println(velocidade_esquerda);
-  Serial.print("Velocidade direita: ");       Serial.println(velocidade_direita);
-  Serial.println(" ");
- // unsigned long t2 = millis();
-  //Serial.print("Demorei ");
-  //Serial.println(t2-t1); 
+void taskBotaoCallback(){
+  sensorToque = lerSensorToque();
 }
-
-void taskRCCallback(){
-
-  Serial.print("Channel 1: "); // Print the value of 
-  Serial.println(channel_value1);        // each channel
-  Serial.print("Channel 2: ");
-  Serial.println(channel_value2);
-  Serial.print("Channel 3: ");
-  Serial.println(channel_value3);
+void taskENCODERCallback(){
+  velRefRaw.dir = vel2Raw(velRef.dir);
+  velRefRaw.esq = vel2Raw(velRef.esq);
   
+  ET.sendData();
+  if(ET2.receiveData()){
+    velAtual.dir = velFromRaw(velAtualRaw.dir);
+    velAtual.esq = velFromRaw(velAtualRaw.esq);
+  }
+    
 }
 
 void setup() {
   // put your setup code here, to run once:
  
   Serial.begin(115200);
-  
+  delay(1000);
   //initializeRosCom();
 
   start_DRIVER();
@@ -143,13 +134,15 @@ void setup() {
 
   start_TASKS();
   
+  startSENSORTOQUE();
+  
 }
 
 void loop() {
 
   
   // put your main code here, to run repeatedly:
-  esquerda_eixo(50,50);
+  //esquerda_eixo(50,50);
   runner.execute();
   //nh.spinOnce();
 }

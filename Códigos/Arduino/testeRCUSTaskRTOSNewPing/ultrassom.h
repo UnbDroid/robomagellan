@@ -1,6 +1,14 @@
 #ifndef ULTRASSOM_H
 #define ULTRASSOM_H
 
+#include "basicLibraries.h"
+#include "muxdemux.h"
+
+
+TaskHandle_t USTaskHandle;
+
+static void TaskUS(void* pvParameters);
+
 #include <NewPing.h>
 
 #define TRIGGER_1 39 
@@ -31,7 +39,7 @@
 #define ECHO_13 23
 #define TRIGGER_14 22
 #define ECHO_14 24
-#define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+#define MAX_DISTANCE 500 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 
 #define SONAR_NUM     11 // Number of sensors.
 
@@ -53,6 +61,16 @@ int USReadings[SONAR_NUM];
 
 void readUS(int us_num){
   USReadings[us_num] = sonar[us_num].ping_cm();
+}
+
+static void TaskUS(void* pvParameters){
+  int ordemLeitura[SONAR_NUM] = {0,6,1,7,2,8,3,9,4,10,5};
+  for (;;){ 
+    for(int i=0;i<SONAR_NUM;i++){
+      readUS(i);
+      vTaskDelay(10/ portTICK_PERIOD_MS);
+    }
+  }
 }
 
 #endif

@@ -15,13 +15,12 @@ void taskUSCallback3();
 void taskUSCallback4();
 void taskUSCallback5();
 void taskUSCallback6();
+void taskBotaoCallback();
 void taskShowUSReadingCallback();
 
 void taskROSCallback();
 
 void taskENCODERCallback();
-
-void taskRCCallback();
 
 Task taskGPS(PERIODO, TASK_FOREVER, &taskGPSCallback);
 
@@ -33,17 +32,17 @@ Task taskUS5(PERIODO, TASK_FOREVER, &taskUSCallback5);
 Task taskUS6(PERIODO, TASK_FOREVER, &taskUSCallback6);
 Task showUSReadings(PERIODO, TASK_FOREVER, &taskShowUSReadingCallback);
 
+Task taskBotao(PERIODO, TASK_FOREVER, &taskBotaoCallback);
+
 Task taskROS(PERIODO,TASK_FOREVER, &taskROSCallback);
 
 Task taskENCODER (30, TASK_FOREVER, &taskENCODERCallback);
-
-Task taskRC (30, TASK_FOREVER, &taskRCCallback);
 
 void start_TASKS(){
   runner.init();
 
   runner.addTask(taskENCODER);
-  runner.addTask(taskGPS);
+  //runner.addTask(taskGPS);
   runner.addTask(taskUS1);
   runner.addTask(taskUS2);
   runner.addTask(taskUS3);
@@ -51,10 +50,11 @@ void start_TASKS(){
   runner.addTask(taskUS5);
   runner.addTask(taskUS6);
   runner.addTask(showUSReadings);
-  //runner.addTask(taskROS);
-  runner.addTask(taskRC);
   
-  taskGPS.enable();
+  runner.addTask(taskBotao);
+  //runner.addTask(taskROS);
+  
+  //taskGPS.enable();
   taskUS1.enable();
   taskUS2.enable();
   taskUS3.enable();
@@ -64,7 +64,7 @@ void start_TASKS(){
   showUSReadings.enable();
   //taskROS.enable();
   taskENCODER.enable();
-  taskRC.enable();  
+  taskBotao.enable();
 }
 
 #endif

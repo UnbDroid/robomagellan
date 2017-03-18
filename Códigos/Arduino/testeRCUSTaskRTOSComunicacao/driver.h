@@ -10,6 +10,8 @@
 #define PWM_E 11
 
 // Driver
+float pot_direita = 0;
+float pot_esquerda = 0;
 
 void start_DRIVER (){
 
