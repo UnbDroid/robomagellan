@@ -1,0 +1,2 @@
+arduino_msgs
+-DCATKIN_DEVEL_PREFIX=/home/pi/Documents/robomagellan/catkin_GIT/devel -DCMAKE_INSTALL_PREFIX=/home/pi/Documents/robomagellan/catkin_GIT/install -G Unix Makefiles
