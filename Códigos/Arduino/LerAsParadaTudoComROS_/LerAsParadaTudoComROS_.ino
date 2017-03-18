@@ -96,9 +96,14 @@ void taskROSCallback(){
   sendInt64(US10, USReadings[9]);
   sendInt64(US11, USReadings[10]);
 
-  sendFloat64(GPS_LAT,lat);
-  sendFloat64(GPS_LON,lon);
-  sendFloat64(GPS_ALT,alt);
+  sendInt64(SENSOR_TOQUE, sensorToque);
+
+  sendFloat64(VEL_ATUAL_DIR,velAtual.dir);
+  sendFloat64(VEL_ATUAL_ESQ,velAtual.esq);   
+
+  //sendFloat64(GPS_LAT,lat);
+  //sendFloat64(GPS_LON,lon);
+  //sendFloat64(GPS_ALT,alt);
   
 }
 
@@ -122,9 +127,9 @@ void taskComArduinoCallback(){
 void setup() {
   // put your setup code here, to run once:
  
-  Serial.begin(115200);
+  //Serial.begin(115200);
   delay(1000);
-  //initializeRosCom();
+  initializeRosCom();
 
   start_COMARDUINO();
 
@@ -142,5 +147,5 @@ void loop() {
   // put your main code here, to run repeatedly:
   //esquerda_eixo(50,50);
   runner.execute();
-  //nh.spinOnce();
+  nh.spinOnce();
 }
