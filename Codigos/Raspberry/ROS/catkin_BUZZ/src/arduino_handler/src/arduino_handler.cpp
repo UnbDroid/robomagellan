@@ -1,105 +1,88 @@
 #include "ros/ros.h"
 #include "arduino_msgs/StampedInt64.h"
 #include "sensor_msgs/Range.h"
+#include <string>
+#include <sstream>
+
+#define SENSOR_TOQUE 300
 
 #define US01 555
 #define US02 556
 #define US03 557
 #define US04 558
+#define US05 559
+#define US06 560
+#define US07 561
+#define US08 562
+#define US09 563
+#define US10 564
+#define US11 565
+
+#define NUM_US 11
+
+#define GPS_LAT 666
+#define GPS_LON 667
+#define GPS_ALT 668
+#define GPS_VALID 669
+#define GPS_UPDATED 670
+
+#define VEL_ATUAL_DIR 798
+#define VEL_ATUAL_ESQ 799
+
+#define MAX_DIST 200
+
+// Valores - Ultrassom
+struct Ultrasound{
+  long long int value;
+  ros::Time time;
+};
+
+Ultrasound ultrasound[NUM_US];
+sensor_msgs::Range range_msgs[NUM_US];
 
 
-// Valores - Ultrassom 1
-long long int ultrasound1_value = -1;
-ros::Time ultrasound1_time;
+int verifyIfUS(long int id){
+  int USIds[NUM_US] = {US01,US02,US03,US04,US05,US06,US07,US08,US09,US10,US11};
+  for(int i=0;i<NUM_US;i++){
+    if(USIds[i]==id){
+      return i;
+    }
+  }
+  return -1;
+}
 
-// Valores - Ultrassom 2
-long long int ultrasound2_value = -1;
-ros::Time ultrasound2_time;
+void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
+  int usPos = verifyIfUS(msg->id);
+  if(usPos > -1){
+    ultrasound[usPos].value = msg->data;
+    if(ultrasound[usPos].value == 0){
+      ultrasound[usPos].value = MAX_DIST;
+    }
+    ultrasound[usPos].time = ros::Time::now();
 
-// Valores - Ultrassom 3
-long long int ultrasound3_value = -1;
-ros::Time ultrasound3_time;
-
-// Valores - Ultrassom 4
-long long int ultrasound4_value = -1;
-ros::Time ultrasound4_time;
-
-
-
-void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg)
-{
- // ROS_INFO("Id: [%lld]",msg->id);
- // ROS_INFO("Data: [%lld]", msg->data);
-  if(msg->id == US01){
-    ultrasound1_value = msg->data;
-    ultrasound1_time = ros::Time::now();
-
-  }else if(msg->id == US02){
-    ultrasound2_value = msg->data;
-    ultrasound2_time = ros::Time::now();
-
-  }else if(msg->id == US03){
-    ultrasound3_value = msg->data;
-    ultrasound3_time = ros::Time::now();
-
-  }else if(msg->id == US04){
-    ultrasound4_value = msg->data;
-    ultrasound4_time = ros::Time::now();
-
-  }else if(msg->id == 999){
-    ROS_INFO("Id: [%lld]",msg->id);
-    ROS_INFO("Data: [%lld]", msg->data);
   }
 
 
 }
 
-sensor_msgs::Range createRangeMsg1(){
-  sensor_msgs::Range range_msg;
-  range_msg.radiation_type = sensor_msgs::Range::ULTRASOUND;
-  range_msg.header.frame_id =  "/ultrasound1";
-  range_msg.field_of_view = 0.2618;
-  range_msg.min_range = 0.0;
-  range_msg.max_range = 0.51;
-  range_msg.range = ultrasound1_value/(float)100;
-  range_msg.header.stamp = ultrasound1_time;
-  return range_msg;
+void processRangeMsgs(){
+  for(int i=0;i<NUM_US;i++){
+    range_msgs[i].range = ultrasound[i].value/(float)100;
+    range_msgs[i].header.stamp = ultrasound[i].time;
+  }
 }
 
-sensor_msgs::Range createRangeMsg2(){
-  sensor_msgs::Range range_msg;
-  range_msg.radiation_type = sensor_msgs::Range::ULTRASOUND;
-  range_msg.header.frame_id =  "/ultrasound2";
-  range_msg.field_of_view = 0.2618;
-  range_msg.min_range = 0.0;
-  range_msg.max_range = 0.51;
-  range_msg.range = ultrasound2_value/(float)100;
-  range_msg.header.stamp = ultrasound2_time;
-  return range_msg;
-}
-
-sensor_msgs::Range createRangeMsg3(){
-  sensor_msgs::Range range_msg;
-  range_msg.radiation_type = sensor_msgs::Range::ULTRASOUND;
-  range_msg.header.frame_id =  "/ultrasound3";
-  range_msg.field_of_view = 0.2618;
-  range_msg.min_range = 0.0;
-  range_msg.max_range = 0.51;
-  range_msg.range = ultrasound3_value/(float)100;
-  range_msg.header.stamp = ultrasound3_time;
-  return range_msg;
-}
-
-sensor_msgs::Range createRangeMsg4(){
-  sensor_msgs::Range range_msg;
-  range_msg.radiation_type = sensor_msgs::Range::ULTRASOUND;
-  range_msg.header.frame_id =  "/ultrasound4";
-  range_msg.field_of_view = 0.2618;
-  range_msg.min_range = 0.0;
-  range_msg.max_range = 0.51;
-  range_msg.range = ultrasound4_value/(float)100;
-  range_msg.header.stamp = ultrasound4_time;
-  return range_msg;
+void startRangeMsgs(){
+  std::string USFrame[NUM_US] = {"/ultrasound1","/ultrasound2","/ultrasound3","/ultrasound4","/ultrasound5","/ultrasound6","/ultrasound7","/ultrasound8","/ultrasound9","/ultrasound10","/ultrasound11"};
+  for(int i=0;i<NUM_US;i++){
+    range_msgs[i].radiation_type = sensor_msgs::Range::ULTRASOUND;
+    range_msgs[i].header.frame_id = USFrame[i] ;
+    range_msgs[i].field_of_view = 0.2618;
+    range_msgs[i].min_range = 0.0;
+    range_msgs[i].max_range = 2;
+    range_msgs[i].range = -1;
+    range_msgs[i].header.stamp =  ros::Time::now();    
+  }
 }
 
 int main(int argc, char **argv)
@@ -109,25 +92,29 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   ros::Subscriber sub = n.subscribe("arduino_int64", 1000, stampedInt64Callback);
-  ros::Publisher ultrasound1_pub = n.advertise<sensor_msgs::Range>("ultrasound1", 1000);
-  ros::Publisher ultrasound2_pub = n.advertise<sensor_msgs::Range>("ultrasound2",1000);
-  ros::Publisher ultrasound3_pub = n.advertise<sensor_msgs::Range>("ultrasound3",1000);
-  ros::Publisher ultrasound4_pub = n.advertise<sensor_msgs::Range>("ultrasound4",1000);
+  ros::Publisher ultrasound_pub[NUM_US];
+  for(int i=0;i<NUM_US;i++){
+    std::ostringstream s;
+    s << i+1;
+    std::string name = std::string("ultrasound")+s.str();
+    ultrasound_pub[i] = n.advertise<sensor_msgs::Range>(name, 1000);
+  }
+  //ros::Publisher ultrasound2_pub = n.advertise<sensor_msgs::Range>("ultrasound2",1000);
+   //ros::Publisher ultrasound3_pub = n.advertise<sensor_msgs::Range>("ultrasound3",1000);
+  //ros::Publisher ultrasound4_pub = n.advertise<sensor_msgs::Range>("ultrasound4",1000);
 
-
+  startRangeMsgs();
   ros::Rate loop_rate(10);
 
   while (ros::ok()){
-    sensor_msgs::Range range_msg1 = createRangeMsg1();
-    sensor_msgs::Range range_msg2 = createRangeMsg2();
-    sensor_msgs::Range range_msg3 = createRangeMsg3();
-    sensor_msgs::Range range_msg4 = createRangeMsg4();
+    processRangeMsgs();
 
-
-    ultrasound1_pub.publish(range_msg1);
-    ultrasound2_pub.publish(range_msg2);
-    ultrasound3_pub.publish(range_msg3);
-    ultrasound4_pub.publish(range_msg4);
+    for(int i=0;i<NUM_US;i++){
+      ultrasound_pub[i].publish(range_msgs[i]);
+    }
+    //ultrasound2_pub.publish(range_msgs[1]);
+    //ultrasound3_pub.publish(range_msgs[2]);
+    //ultrasound4_pub.publish(range_msgs[3]);
 
 
     loop_rate.sleep();
