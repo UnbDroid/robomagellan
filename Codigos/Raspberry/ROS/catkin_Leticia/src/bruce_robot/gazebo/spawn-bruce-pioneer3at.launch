@@ -1,0 +1,14 @@
+<launch>
+  <arg name="urdf" default="$(find bruce_robot)/description/urdf/bruce.urdf" />
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0.5" />
+  <arg name="name" default="bruce_robot" />
+  <include file="$(find bruce_robot)/gazebo/spawn.launch">
+	<arg name="urdf" value="$(arg urdf)" />
+	<arg name="x" value="$(arg x)" />
+	<arg name="y" value="$(arg y)" />
+	<arg name="z" value="$(arg z)" />
+  </include>
+</launch>
+

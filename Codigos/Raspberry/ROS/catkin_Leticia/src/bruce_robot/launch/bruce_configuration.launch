@@ -1,0 +1,4 @@
+<launch>
+	<include file="$(find bruce_robot)/gazebo/bruce_world.launch"/>
+	<include file="$(find bruce_robot)/gazebo/spawn-bruce-pioneer3at.launch"/> 
+</launch>
