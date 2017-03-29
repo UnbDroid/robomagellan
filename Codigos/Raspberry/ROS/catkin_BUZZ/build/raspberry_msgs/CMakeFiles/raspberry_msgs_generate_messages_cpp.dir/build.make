@@ -58,6 +58,7 @@ raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp: /home/pi/Documen
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Gyro.h
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedUint64.h
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Acc.h
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h
 
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedInt32.h: /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py
@@ -151,10 +152,17 @@ raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp: /home/pi/Documen
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from raspberry_msgs/Acc.msg"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/Acc.msg -Iraspberry_msgs:/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p raspberry_msgs -o /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs -e /opt/ros/indigo/share/gencpp/cmake/..
 
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h: /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/GPS.msg
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h: /opt/ros/indigo/share/gencpp/cmake/../msg.h.template
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles $(CMAKE_PROGRESS_14)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from raspberry_msgs/GPS.msg"
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/GPS.msg -Iraspberry_msgs:/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p raspberry_msgs -o /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs -e /opt/ros/indigo/share/gencpp/cmake/..
+
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h: /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h: /opt/ros/indigo/share/gencpp/cmake/../msg.h.template
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles $(CMAKE_PROGRESS_14)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from raspberry_msgs/StampedBool.msg"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg/StampedBool.msg -Iraspberry_msgs:/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/raspberry_msgs/msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p raspberry_msgs -o /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs -e /opt/ros/indigo/share/gencpp/cmake/..
 
@@ -172,6 +180,7 @@ raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Ra
 raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Gyro.h
 raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedUint64.h
 raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Acc.h
+raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h
 raspberry_msgs_generate_messages_cpp: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h
 raspberry_msgs_generate_messages_cpp: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make
 .PHONY : raspberry_msgs_generate_messages_cpp

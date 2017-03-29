@@ -19,6 +19,8 @@
    "STAMPEDFLOAT64"
    "<GYRO>"
    "GYRO"
+   "<GPS>"
+   "GPS"
    "<STAMPEDFLOAT32>"
    "STAMPEDFLOAT32"
    "<STAMPEDINT8>"

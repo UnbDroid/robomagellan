@@ -531,6 +531,19 @@ _raspberry_msgs_generate_messages_check_deps_Acc/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_Acc/fast
 
 #=============================================================================
+# Target rules for targets named _raspberry_msgs_generate_messages_check_deps_GPS
+
+# Build rule for target.
+_raspberry_msgs_generate_messages_check_deps_GPS: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _raspberry_msgs_generate_messages_check_deps_GPS
+.PHONY : _raspberry_msgs_generate_messages_check_deps_GPS
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_GPS/fast:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_GPS/fast
+
+#=============================================================================
 # Target rules for targets named _raspberry_msgs_generate_messages_check_deps_Gyro
 
 # Build rule for target.
@@ -1170,6 +1183,7 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_Acc"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_GPS"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_Gyro"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedBool"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedChar"

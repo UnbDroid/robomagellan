@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/gps/include/gps/gps.h
+stdint.h
+-
+
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/gps/src/gps.cpp
+gps/gps.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/gps/src/gps/gps.h
+string.h
+-
+ctype.h
+-
+stdlib.h
+-
+iostream
+-
+

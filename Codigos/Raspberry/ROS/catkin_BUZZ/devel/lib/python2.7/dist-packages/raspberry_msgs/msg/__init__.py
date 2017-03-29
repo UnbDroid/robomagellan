@@ -1,4 +1,5 @@
 from ._Acc import *
+from ._GPS import *
 from ._Gyro import *
 from ._StampedBool import *
 from ._StampedChar import *

@@ -49,9 +49,9 @@ def gyroTalker():
     
     while not rospy.is_shutdown():
 
-        gyro_x = read_word_2c(0x29,0x28)
-        gyro_y = read_word_2c(0x2B,0x2A)
-        gyro_z = read_word_2c(0x2D,0x2C)
+        gyro_x = read_word_2c(0x29,0x28)*0.07
+        gyro_y = read_word_2c(0x2B,0x2A)*0.07
+        gyro_z = read_word_2c(0x2D,0x2C)*0.07
 
         msg.g_x = gyro_x
         msg.g_y = gyro_y

@@ -256,6 +256,30 @@ catkin_DIR:PATH=/opt/ros/indigo/share/catkin/cmake
 cpp_common_DIR:PATH=/opt/ros/indigo/share/cpp_common/cmake
 
 //Value Computed by CMake
+filtro_BINARY_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/filtro
+
+//Value Computed by CMake
+filtro_SOURCE_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/filtro
+
+//The directory containing a CMake configuration file for gencpp.
+gencpp_DIR:PATH=/opt/ros/indigo/share/gencpp/cmake
+
+//The directory containing a CMake configuration file for genlisp.
+genlisp_DIR:PATH=/opt/ros/indigo/share/genlisp/cmake
+
+//The directory containing a CMake configuration file for genmsg.
+genmsg_DIR:PATH=/opt/ros/indigo/share/genmsg/cmake
+
+//The directory containing a CMake configuration file for genpy.
+genpy_DIR:PATH=/opt/ros/indigo/share/genpy/cmake
+
+//Value Computed by CMake
+gps_BINARY_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/gps
+
+//Value Computed by CMake
+gps_SOURCE_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/gps
+
+//Value Computed by CMake
 gtest_BINARY_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/gtest
 
 //Dependencies for the target
@@ -286,11 +310,32 @@ imu_BINARY_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catk
 //Value Computed by CMake
 imu_SOURCE_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu
 
+//Dependencies for the target
+imu_node_LIB_DEPENDS:STATIC=general;/opt/ros/indigo/lib/libroscpp.so;general;/usr/lib/arm-linux-gnueabihf/libboost_signals.so;general;/usr/lib/arm-linux-gnueabihf/libboost_filesystem.so;general;/opt/ros/indigo/lib/librosconsole.so;general;/opt/ros/indigo/lib/librosconsole_log4cxx.so;general;/opt/ros/indigo/lib/librosconsole_backend_interface.so;general;/usr/lib/arm-linux-gnueabihf/liblog4cxx.so;general;/usr/lib/arm-linux-gnueabihf/libboost_regex.so;general;/opt/ros/indigo/lib/libxmlrpcpp.so;general;/opt/ros/indigo/lib/libroscpp_serialization.so;general;/opt/ros/indigo/lib/librostime.so;general;/usr/lib/arm-linux-gnueabihf/libboost_date_time.so;general;/opt/ros/indigo/lib/libcpp_common.so;general;/usr/lib/arm-linux-gnueabihf/libboost_system.so;general;/usr/lib/arm-linux-gnueabihf/libboost_thread.so;general;/usr/lib/arm-linux-gnueabihf/libpthread.so;general;/usr/lib/arm-linux-gnueabihf/libconsole_bridge.so;general;libwiringPi;
+
 //Path to a library.
-lib:FILEPATH=/opt/ros/indigo/lib/libxmlrpcpp.so
+lib:FILEPATH=/opt/ros/indigo/lib/libtopic_tools.so
+
+//Dependencies for target
+libWiringPi_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+libwiringPi_LIB_DEPENDS:STATIC=
+
+//The directory containing a CMake configuration file for message_generation.
+message_generation_DIR:PATH=/opt/ros/indigo/share/message_generation/cmake
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/indigo/share/message_runtime/cmake
+
+//The directory containing a CMake configuration file for raspberry_msgs.
+raspberry_msgs_DIR:PATH=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/raspberry_msgs/cmake
+
+//The directory containing a CMake configuration file for rosbag.
+rosbag_DIR:PATH=/opt/ros/indigo/share/rosbag/cmake
+
+//The directory containing a CMake configuration file for rosbag_storage.
+rosbag_storage_DIR:PATH=/opt/ros/indigo/share/rosbag_storage/cmake
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/indigo/share/rosconsole/cmake
@@ -307,6 +352,9 @@ roscpp_traits_DIR:PATH=/opt/ros/indigo/share/roscpp_traits/cmake
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/indigo/share/rosgraph_msgs/cmake
 
+//The directory containing a CMake configuration file for roslz4.
+roslz4_DIR:PATH=/opt/ros/indigo/share/roslz4/cmake
+
 //The directory containing a CMake configuration file for rospy.
 rospy_DIR:PATH=/opt/ros/indigo/share/rospy/cmake
 
@@ -315,6 +363,9 @@ rostime_DIR:PATH=/opt/ros/indigo/share/rostime/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/indigo/share/std_msgs/cmake
+
+//The directory containing a CMake configuration file for topic_tools.
+topic_tools_DIR:PATH=/opt/ros/indigo/share/topic_tools/cmake
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/indigo/share/xmlrpcpp/cmake
@@ -417,7 +468,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=3
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

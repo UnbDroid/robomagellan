@@ -11,6 +11,7 @@ beaeb8ed5ccd8e4a3a976dfe8348c60d /home/pi/Documents/robomagellan/Codigos/Raspber
 e4a66be68c8d5998e4955fe3c6396947 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedUint64.h
 3e8d7d05e0fe4645b7cda7b20b8c9208 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedUint8.h
 69a3d23c1beb0d171ab757725ac4eb27 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Acc.h
+1c6894258c3e65890d67799b377ad94d /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h
 61dc3222f9d7c0086768ea6f532bbe6c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Gyro.h
 6b4387e813f35f82e472bba4b3aaa36e /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h
 6032eea59b23ce088756d35e26dbaa70 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedChar.h
@@ -37,6 +38,7 @@ cbd2a6fdbc66375777eae0bc902be9db /home/pi/Documents/robomagellan/Codigos/Raspber
 718cd6d24348b3759c628c2c0ee52b29 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/arduino_msgs/msg/_StampedUint8.py
 0dd5a88b26300df2e30591eb235ba2c9 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/arduino_msgs/msg/__init__.py
 d900b820735be72846b01a39d8016074 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_Acc.py
+975a76122e7255a09eac17ce370faeb3 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_GPS.py
 5da89a4b9d1948e71ff17c6513a239fa /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_Gyro.py
 ee70aeedefd3f1e3060b341c625caf72 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedBool.py
 27531b5333c4543cf00e0615aac1332e /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedChar.py
@@ -63,6 +65,7 @@ ff087a21e7876b4c17df79473316c03f /home/pi/Documents/robomagellan/Codigos/Raspber
 cf57fc6062a8692494b8e0d9c14f8282 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/arduino_msgs/msg/StampedUint64.lisp
 3f044e2cb466972a0c7d40406b7377b0 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/arduino_msgs/msg/StampedUint8.lisp
 f7f3014a7ffba733b3b6aff9f40a010c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/Acc.lisp
+5328c874506e1c83efadd121db093db1 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/GPS.lisp
 9b9835673f66f1207043ec22346ab278 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/Gyro.lisp
 d38416cb166bcfae4c35ee442321a24a /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/StampedBool.lisp
 517bf0bee7a0806be6fae8c393257802 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/StampedChar.lisp
@@ -127,6 +130,7 @@ c0cc848cccf29334c465fcfccb6a15c1 arduino_msgs/CMakeFiles/std_msgs_generate_messa
 c0cc848cccf29334c465fcfccb6a15c1 arduino_msgs/CMakeFiles/std_msgs_generate_messages_lisp
 c0cc848cccf29334c465fcfccb6a15c1 arduino_msgs/CMakeFiles/std_msgs_generate_messages_py
 48ffb58a61ce6e8d8d60f8ac7d87141e raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc
+b997df493243b197c688630004772535 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS
 20536127282dd1bad913c6099b815354 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro
 afe85a64e829f1d1cc8fb0c96df3cbad raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedBool
 bc2ca66da65a91a2ffbac1bb3f5052a4 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar
