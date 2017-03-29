@@ -696,8 +696,8 @@ clean: arduino_msgs/CMakeFiles/arduino_msgs_gencpp.dir/clean
 # Target rules for target arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir
 
 # All Build rule for target.
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/all: arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/all: arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/all: arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/all: arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/depend
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/build
@@ -733,17 +733,17 @@ clean: arduino_msgs/CMakeFiles/arduino_msgs_generate_messages.dir/clean
 # Target rules for target arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt32.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint8.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedChar.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedFloat32.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint64.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedChar.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedString.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedBool.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt64.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint32.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedString.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt64.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedFloat64.dir/all
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/depend
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/build
@@ -775,17 +775,17 @@ clean: arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_cpp.dir/clean
 # Target rules for target arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt32.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint8.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedChar.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedFloat32.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint64.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedChar.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedString.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedBool.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt64.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint32.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedString.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt64.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedFloat64.dir/all
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/build
@@ -818,16 +818,16 @@ clean: arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_lisp.dir/clean
 
 # All Build rule for target.
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt32.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint8.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedChar.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_py.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedFloat32.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint64.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedChar.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedString.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedBool.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt64.dir/all
-arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt8.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedUint32.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedString.dir/all
+arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedInt64.dir/all
 arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/_arduino_msgs_generate_messages_check_deps_StampedFloat64.dir/all
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/depend
 	$(MAKE) -f arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/build.make arduino_msgs/CMakeFiles/arduino_msgs_generate_messages_py.dir/build
@@ -1019,6 +1019,7 @@ raspberry_msgs/all: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.d
 
 # Convenience name for "clean" pass in the directory.
 raspberry_msgs/clean: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/clean
+raspberry_msgs/clean: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/clean
 raspberry_msgs/clean: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/clean
 raspberry_msgs/clean: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedBool.dir/clean
 raspberry_msgs/clean: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir/clean
@@ -1074,6 +1075,37 @@ raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/c
 
 # clean rule for target.
 clean: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir
+
+# All Build rule for target.
+raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/all:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/depend
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 
+	@echo "Built target _raspberry_msgs_generate_messages_check_deps_GPS"
+.PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/all
+
+# Build rule for subdir invocation for target.
+raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+.PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/rule
+
+# Convenience name for target.
+_raspberry_msgs_generate_messages_check_deps_GPS: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/rule
+.PHONY : _raspberry_msgs_generate_messages_check_deps_GPS
+
+# clean rule for target.
+raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/clean:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/clean
+.PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/clean
+
+# clean rule for target.
+clean: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -1492,7 +1524,7 @@ raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/all: raspberry_msgs/CMakeFil
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
@@ -1514,9 +1546,9 @@ clean: raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/clean
 # Target rules for target raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir
 
 # All Build rule for target.
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/depend
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 
@@ -1529,7 +1561,7 @@ all: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 43
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 46
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/rule
@@ -1553,28 +1585,29 @@ clean: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/clean
 # All Build rule for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt16.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt64.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedString.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint32.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt32.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt8.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat32.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat64.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt8.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedString.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedBool.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt32.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt64.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint64.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/all
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/depend
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles  39 40 41 42 43 44 45 46 47 48 49 50 51 52
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles  39 40 41 42 43 44 45 46 47 48 49 50 51 52 53
 	@echo "Built target raspberry_msgs_generate_messages_cpp"
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
@@ -1598,28 +1631,29 @@ clean: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/clean
 # All Build rule for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt16.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt64.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedString.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint32.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt32.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt8.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat32.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat64.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt8.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedString.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedBool.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt32.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt64.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint64.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/all
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles  53 54 55 56 57 58 59 60 61 62 63 64 65 66
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles  54 55 56 57 58 59 60 61 62 63 64 65 66 67 68
 	@echo "Built target raspberry_msgs_generate_messages_lisp"
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
@@ -1643,28 +1677,29 @@ clean: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/clean
 # All Build rule for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: arduino_msgs/CMakeFiles/std_msgs_generate_messages_py.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt16.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt64.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedString.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint32.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt32.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt8.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat32.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat64.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt8.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedString.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedBool.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt32.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/all
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedInt64.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint64.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc.dir/all
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/all
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/all
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/depend
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles  67 68 69 70 71 72 73 74 75 76 77 78 79 80 81
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles  69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84
 	@echo "Built target raspberry_msgs_generate_messages_py"
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
@@ -1695,7 +1730,7 @@ raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/all: raspberry_msgs/CMakeFi
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/rule
@@ -1726,7 +1761,7 @@ raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir/all: raspberry_msgs/CMakeFile
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir/rule

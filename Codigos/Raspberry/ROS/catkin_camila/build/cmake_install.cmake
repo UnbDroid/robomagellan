@@ -117,6 +117,8 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/gtest/cmake_install.cmake")
+  include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/filtro/cmake_install.cmake")
+  include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/gps/cmake_install.cmake")
   include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/imu/cmake_install.cmake")
 
 endif()

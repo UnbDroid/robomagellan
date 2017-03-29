@@ -168,6 +168,20 @@ _raspberry_msgs_generate_messages_check_deps_Acc/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_Acc/fast
 
 # Convenience name for target.
+raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/rule
+.PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/rule
+
+# Convenience name for target.
+_raspberry_msgs_generate_messages_check_deps_GPS: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/rule
+.PHONY : _raspberry_msgs_generate_messages_check_deps_GPS
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_GPS/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_GPS/fast
+
+# Convenience name for target.
 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/rule
 .PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir/rule
@@ -454,6 +468,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_Acc"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_GPS"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_Gyro"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedBool"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedChar"

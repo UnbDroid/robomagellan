@@ -59,6 +59,7 @@ find_package(catkin REQUIRED COMPONENTS
    StampedString.msg
    Gyro.msg
    Acc.msg
+   GPS.msg
 
  )
 

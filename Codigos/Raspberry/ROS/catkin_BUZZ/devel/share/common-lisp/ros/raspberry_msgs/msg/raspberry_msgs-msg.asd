@@ -22,6 +22,8 @@
     (:file "_package_StampedFloat64" :depends-on ("_package"))
     (:file "Gyro" :depends-on ("_package_Gyro"))
     (:file "_package_Gyro" :depends-on ("_package"))
+    (:file "GPS" :depends-on ("_package_GPS"))
+    (:file "_package_GPS" :depends-on ("_package"))
     (:file "StampedFloat32" :depends-on ("_package_StampedFloat32"))
     (:file "_package_StampedFloat32" :depends-on ("_package"))
     (:file "StampedInt8" :depends-on ("_package_StampedInt8"))

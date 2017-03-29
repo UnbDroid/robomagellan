@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   raspberry_msgs
+  rosbag
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,7 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES imu
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs rosbag
 #  DEPENDS system_lib
 )
 
@@ -115,9 +116,9 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
+#include_directories(
+#  ${catkin_INCLUDE_DIRS}
+#)
 
 ## Declare a C++ library
 # add_library(imu
@@ -189,8 +190,12 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(include ${catkin_INCLUDE_DIRS} /usr/local/lib)
 
-add_executable(gyroListener src/gyroListener.cpp)
-target_link_libraries(gyroListener ${catkin_LIBRARIES})
-add_dependencies(gyroListener imu_generate_messages_cpp)
+add_executable(gyroTalker src/gyroTalker.cpp)
+target_link_libraries(gyroTalker ${catkin_LIBRARIES} libwiringPi.so)
+add_dependencies(gyroTalker imu_generate_messages_cpp)
+
+add_executable(accTalker src/accTalker.cpp)
+target_link_libraries(accTalker ${catkin_LIBRARIES} libwiringPi.so)
+add_dependencies(accTalker imu_generate_messages_cpp)

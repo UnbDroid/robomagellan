@@ -154,130 +154,80 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+imu/CMakeFiles/accTalker.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/accTalker.dir/rule
+.PHONY : imu/CMakeFiles/accTalker.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_cpp: imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : roscpp_generate_messages_cpp
+accTalker: imu/CMakeFiles/accTalker.dir/rule
+.PHONY : accTalker
 
 # fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
+accTalker/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/build
+.PHONY : accTalker/fast
 
 # Convenience name for target.
-imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+imu/CMakeFiles/gyroTalker.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroTalker.dir/rule
+.PHONY : imu/CMakeFiles/gyroTalker.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_lisp: imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : roscpp_generate_messages_lisp
+gyroTalker: imu/CMakeFiles/gyroTalker.dir/rule
+.PHONY : gyroTalker
 
 # fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
+gyroTalker/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
+.PHONY : gyroTalker/fast
 
-# Convenience name for target.
-imu/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : imu/CMakeFiles/roscpp_generate_messages_py.dir/rule
+src/accTalker.o: src/accTalker.cpp.o
+.PHONY : src/accTalker.o
 
-# Convenience name for target.
-roscpp_generate_messages_py: imu/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : roscpp_generate_messages_py
+# target to build an object file
+src/accTalker.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/src/accTalker.cpp.o
+.PHONY : src/accTalker.cpp.o
 
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_py.dir/build.make imu/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
+src/accTalker.i: src/accTalker.cpp.i
+.PHONY : src/accTalker.i
 
-# Convenience name for target.
-imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+# target to preprocess a source file
+src/accTalker.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/src/accTalker.cpp.i
+.PHONY : src/accTalker.cpp.i
 
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_cpp
+src/accTalker.s: src/accTalker.cpp.s
+.PHONY : src/accTalker.s
 
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+# target to generate assembly for a file
+src/accTalker.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/src/accTalker.cpp.s
+.PHONY : src/accTalker.cpp.s
 
-# Convenience name for target.
-imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+src/gyroTalker.o: src/gyroTalker.cpp.o
+.PHONY : src/gyroTalker.o
 
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_lisp
+# target to build an object file
+src/gyroTalker.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o
+.PHONY : src/gyroTalker.cpp.o
 
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+src/gyroTalker.i: src/gyroTalker.cpp.i
+.PHONY : src/gyroTalker.i
 
-# Convenience name for target.
-imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+# target to preprocess a source file
+src/gyroTalker.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.i
+.PHONY : src/gyroTalker.cpp.i
 
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_py
+src/gyroTalker.s: src/gyroTalker.cpp.s
+.PHONY : src/gyroTalker.s
 
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
+# target to generate assembly for a file
+src/gyroTalker.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.s
+.PHONY : src/gyroTalker.cpp.s
 
 # Help Target
 help:
@@ -285,22 +235,21 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... accTalker"
 	@echo "... edit_cache"
+	@echo "... gyroTalker"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_py"
 	@echo "... test"
+	@echo "... src/accTalker.o"
+	@echo "... src/accTalker.i"
+	@echo "... src/accTalker.s"
+	@echo "... src/gyroTalker.o"
+	@echo "... src/gyroTalker.i"
+	@echo "... src/gyroTalker.s"
 .PHONY : help
 
 
