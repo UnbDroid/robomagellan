@@ -19,8 +19,8 @@
 #define ECHO_7 29 
 #define TRIGGER_8 35 
 #define ECHO_8 37 
-#define TRIGGER_9 42
-#define ECHO_9 44
+#define TRIGGER_9 47
+#define ECHO_9 49
 #define TRIGGER_10 24 
 #define ECHO_10 22 
 #define TRIGGER_11 23 
@@ -50,6 +50,7 @@ NewPing sonar[SONAR_NUM] = {     // Sensor object array.
 };
 
 int USReadings[SONAR_NUM];
+double USIterator[SONAR_NUM];
 
 void readUS(int us_num){
   USReadings[us_num] = sonar[us_num].ping_cm();

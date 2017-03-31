@@ -3,6 +3,9 @@
 
 // IDS do ROS-----------------------------------
 
+#define VEL_REF_DIR 10
+#define VEL_REF_ESQ 11
+
 #define SENSOR_TOQUE 300
 
 #define US01 555

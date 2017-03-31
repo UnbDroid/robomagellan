@@ -33,7 +33,8 @@
 
 // Valores - Ultrassom
 struct Ultrasound{
-  long long int value;
+  float value;
+  float times_read;
   ros::Time time;
 };
 
@@ -54,10 +55,15 @@ int verifyIfUS(long int id){
 void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
   int usPos = verifyIfUS(msg->id);
   if(usPos > -1){
-    ultrasound[usPos].value = msg->data;
-    if(ultrasound[usPos].value == 0){
-      ultrasound[usPos].value = MAX_DIST;
+    ultrasound[usPos].times_read += 1;
+    long long int value = msg->data;
+//    ultrasound[usPos].value = msg->data;
+//    if(ultrasound[usPos].value == 0){
+    if(value == 0){  
+      value = MAX_DIST;
     }
+    float k = 1;
+    ultrasound[usPos].value = ((float)value/100.0)*k + ultrasound[usPos].value*(1-k);
     ultrasound[usPos].time = ros::Time::now();
 
   }
@@ -67,7 +73,7 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
 
 void processRangeMsgs(){
   for(int i=0;i<NUM_US;i++){
-    range_msgs[i].range = ultrasound[i].value/(float)100;
+    range_msgs[i].range = ultrasound[i].value;
     range_msgs[i].header.stamp = ultrasound[i].time;
   }
 }
@@ -99,9 +105,6 @@ int main(int argc, char **argv)
     std::string name = std::string("ultrasound")+s.str();
     ultrasound_pub[i] = n.advertise<sensor_msgs::Range>(name, 1000);
   }
-  //ros::Publisher ultrasound2_pub = n.advertise<sensor_msgs::Range>("ultrasound2",1000);
-   //ros::Publisher ultrasound3_pub = n.advertise<sensor_msgs::Range>("ultrasound3",1000);
-  //ros::Publisher ultrasound4_pub = n.advertise<sensor_msgs::Range>("ultrasound4",1000);
 
   startRangeMsgs();
   ros::Rate loop_rate(10);
@@ -112,10 +115,6 @@ int main(int argc, char **argv)
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);
     }
-    //ultrasound2_pub.publish(range_msgs[1]);
-    //ultrasound3_pub.publish(range_msgs[2]);
-    //ultrasound4_pub.publish(range_msgs[3]);
-
 
     loop_rate.sleep();
     ros::spinOnce();

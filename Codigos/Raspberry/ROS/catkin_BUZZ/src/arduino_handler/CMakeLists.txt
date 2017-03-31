@@ -192,6 +192,3 @@ include_directories(
 add_executable(arduino_handler src/arduino_handler)
 target_link_libraries(arduino_handler ${catkin_LIBRARIES})
 
-add_executable(bruce_tf src/bruce_tf)
-target_link_libraries(bruce_tf ${catkin_LIBRARIES})
-

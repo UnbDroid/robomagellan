@@ -17,6 +17,13 @@ void messageInt64Cb( const raspberry_msgs::StampedInt64& r_int64_msg){
 }
 
 void messageFloat32Cb( const raspberry_msgs::StampedFloat32& r_float32_msg){
+
+  if(r_float32_msg.id == VEL_REF_DIR){
+    velRef.dir = r_float32_msg.data;
+  }else if(r_float32_msg.id == VEL_REF_ESQ){
+    velRef.esq = r_float32_msg.data;
+  }
+
 }
 
 void messageFloat64Cb( const raspberry_msgs::StampedFloat64& r_float64_msg){
