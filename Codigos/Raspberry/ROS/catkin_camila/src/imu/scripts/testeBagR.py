@@ -3,8 +3,8 @@
 import rosbag
 import rospy
 
-bag = rosbag.Bag('gps.bag')
-for topic, msg, t in bag.read_messages('gps_data'):
+bag = rosbag.Bag('parametrosAcc.bag')
+for topic, msg, t in bag.read_messages('param_acc'):
 ##    print "valid: ", msg.valid
 ##    print "lat: ", msg.lat
 ##    print "lng: ", msg.lng
@@ -13,5 +13,6 @@ for topic, msg, t in bag.read_messages('gps_data'):
 ##    print "hdop: ", msg.hdop
 ##    print "vdop: ", msg.vdop
 ##    print "pdop: ", msg.pdop
-    print msg.time
+    print msg.bx
+    print msg.by
 bag.close();

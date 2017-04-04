@@ -167,90 +167,6 @@ gpsTalker/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/build
 .PHONY : gpsTalker/fast
 
-# Convenience name for target.
-gps/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 gps/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
-.PHONY : gps/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-raspberry_msgs_generate_messages_cpp: gps/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
-.PHONY : raspberry_msgs_generate_messages_cpp
-
-# fast build rule for target.
-raspberry_msgs_generate_messages_cpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make gps/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
-.PHONY : raspberry_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-gps/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 gps/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
-.PHONY : gps/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-raspberry_msgs_generate_messages_lisp: gps/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
-.PHONY : raspberry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-raspberry_msgs_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make gps/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
-.PHONY : raspberry_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-gps/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 gps/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
-.PHONY : gps/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-raspberry_msgs_generate_messages_py: gps/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
-.PHONY : raspberry_msgs_generate_messages_py
-
-# fast build rule for target.
-raspberry_msgs_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make gps/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build
-.PHONY : raspberry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-gps/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 gps/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-.PHONY : gps/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-topic_tools_generate_messages_cpp: gps/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-.PHONY : topic_tools_generate_messages_cpp
-
-# fast build rule for target.
-topic_tools_generate_messages_cpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make gps/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
-.PHONY : topic_tools_generate_messages_cpp/fast
-
-# Convenience name for target.
-gps/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 gps/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
-.PHONY : gps/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-topic_tools_generate_messages_lisp: gps/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
-.PHONY : topic_tools_generate_messages_lisp
-
-# fast build rule for target.
-topic_tools_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make gps/CMakeFiles/topic_tools_generate_messages_lisp.dir/build
-.PHONY : topic_tools_generate_messages_lisp/fast
-
-# Convenience name for target.
-gps/CMakeFiles/topic_tools_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 gps/CMakeFiles/topic_tools_generate_messages_py.dir/rule
-.PHONY : gps/CMakeFiles/topic_tools_generate_messages_py.dir/rule
-
-# Convenience name for target.
-topic_tools_generate_messages_py: gps/CMakeFiles/topic_tools_generate_messages_py.dir/rule
-.PHONY : topic_tools_generate_messages_py
-
-# fast build rule for target.
-topic_tools_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/topic_tools_generate_messages_py.dir/build.make gps/CMakeFiles/topic_tools_generate_messages_py.dir/build
-.PHONY : topic_tools_generate_messages_py/fast
-
 src/gps.o: src/gps.cpp.o
 .PHONY : src/gps.o
 
@@ -311,14 +227,8 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... raspberry_msgs_generate_messages_cpp"
-	@echo "... raspberry_msgs_generate_messages_lisp"
-	@echo "... raspberry_msgs_generate_messages_py"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... topic_tools_generate_messages_cpp"
-	@echo "... topic_tools_generate_messages_lisp"
-	@echo "... topic_tools_generate_messages_py"
 	@echo "... src/gps.o"
 	@echo "... src/gps.i"
 	@echo "... src/gps.s"

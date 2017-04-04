@@ -167,6 +167,20 @@ filtro/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/build
 .PHONY : filtro/fast
 
+# Convenience name for target.
+filtro/CMakeFiles/filtroAtitude.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/filtroAtitude.dir/rule
+.PHONY : filtro/CMakeFiles/filtroAtitude.dir/rule
+
+# Convenience name for target.
+filtroAtitude: filtro/CMakeFiles/filtroAtitude.dir/rule
+.PHONY : filtroAtitude
+
+# fast build rule for target.
+filtroAtitude/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/build
+.PHONY : filtroAtitude/fast
+
 src/filtro.o: src/filtro.cpp.o
 .PHONY : src/filtro.o
 
@@ -191,6 +205,30 @@ src/filtro.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/src/filtro.cpp.s
 .PHONY : src/filtro.cpp.s
 
+src/filtroAtitude.o: src/filtroAtitude.cpp.o
+.PHONY : src/filtroAtitude.o
+
+# target to build an object file
+src/filtroAtitude.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/src/filtroAtitude.cpp.o
+.PHONY : src/filtroAtitude.cpp.o
+
+src/filtroAtitude.i: src/filtroAtitude.cpp.i
+.PHONY : src/filtroAtitude.i
+
+# target to preprocess a source file
+src/filtroAtitude.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/src/filtroAtitude.cpp.i
+.PHONY : src/filtroAtitude.cpp.i
+
+src/filtroAtitude.s: src/filtroAtitude.cpp.s
+.PHONY : src/filtroAtitude.s
+
+# target to generate assembly for a file
+src/filtroAtitude.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/src/filtroAtitude.cpp.s
+.PHONY : src/filtroAtitude.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -199,6 +237,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... filtro"
+	@echo "... filtroAtitude"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
@@ -208,6 +247,9 @@ help:
 	@echo "... src/filtro.o"
 	@echo "... src/filtro.i"
 	@echo "... src/filtro.s"
+	@echo "... src/filtroAtitude.o"
+	@echo "... src/filtroAtitude.i"
+	@echo "... src/filtroAtitude.s"
 .PHONY : help
 
 

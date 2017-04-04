@@ -119,7 +119,10 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/gtest/cmake_install.cmake")
   include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/arduino_msgs/cmake_install.cmake")
   include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/cmake_install.cmake")
+  include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main/cmake_install.cmake")
+  include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/conversor_mapa/cmake_install.cmake")
   include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/arduino_handler/cmake_install.cmake")
+  include("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_path_planner/cmake_install.cmake")
 
 endif()
 

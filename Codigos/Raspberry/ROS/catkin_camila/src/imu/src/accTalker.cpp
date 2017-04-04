@@ -1,20 +1,25 @@
 #include <wiringPiI2C.h>
 #include "ros/ros.h"
 #include "raspberry_msgs/Acc.h"
+#include "raspberry_msgs/ParamAcc.h"
 #include <time.h>
 #include "rosbag/bag.h"
+#include <rosbag/view.h>
+#include <boost/foreach.hpp>
+
+#define foreach BOOST_FOREACH
 
 #define SCALE 0.0039
 
 #define g 9.80665
 
  //bias e fator dse escala de cada eixo do sensor
-#define BX -0.0618718
-#define BY -0.0261594
-#define BZ -0.571556
-#define SX 1.02559
-#define SY 0.987607
-#define SZ 0.97193
+//#define BX -0.0618718
+//#define BY -0.0261594
+//#define BZ -0.571556
+//#define SX 1.02559
+//#define SY 0.987607 #define foreach BOOST_FOREACH
+//#define SZ 0.97193
 
 rosbag::Bag bag;
 ros::Time tempo;
@@ -31,6 +36,8 @@ int read_word(int fd, int adr_h,int adr_l){
 
 
 int main(int argc, char **argv){
+
+	float bx,by,bz,sx,sy,sz;
 
 	int Register_2D = 0x2D;
    	int Register_XL = 0x32;
@@ -53,6 +60,32 @@ int main(int argc, char **argv){
 	ros::Publisher chatter_pub = n.advertise<raspberry_msgs::Acc>("accInfo", 1000);
 	ros::Rate loop_rate(25);
 
+// Leitura parametros
+//------------------------------------------------------------------
+	rosbag::Bag bagParam;
+        bagParam.open("parametrosAcc.bag", rosbag::bagmode::Read);
+
+ 	std::vector<std::string> topics;
+    	topics.push_back(std::string("param_acc"));
+   
+    	rosbag::View view(bagParam, rosbag::TopicQuery(topics));
+
+	foreach(rosbag::MessageInstance const m, view){
+		raspberry_msgs::ParamAcc::ConstPtr s = m.instantiate<raspberry_msgs::ParamAcc>();
+		if (s != NULL){
+			bx = s->bx;
+			by = s->by;
+			bz = s->bz;
+			sx = s->sx;
+			sy = s->sy;
+			sz = s->sz;
+		
+		}
+	}
+
+	bagParam.close();
+//-------------------------------------------------------------------
+
 	bag.open("acc.bag", rosbag::bagmode::Write);
 	
 	raspberry_msgs::Acc msg;
@@ -65,9 +98,9 @@ int main(int argc, char **argv){
 		acc_y = read_word(fd,Register_YH,Register_YL);
 		acc_z = read_word(fd,Register_ZH,Register_ZL);
 		
-		msg.a_x = (acc_x*SCALE*g - BX)/SX;
-        	msg.a_y = (acc_y*SCALE*g - BY)/SY;
-        	msg.a_z = (acc_z*SCALE*g - BZ)/SZ;
+		msg.a_x = (acc_x*SCALE*g - bx)/sx;
+        	msg.a_y = (acc_y*SCALE*g - by)/sy;
+        	msg.a_z = (acc_z*SCALE*g - bz)/sz;
 		tempo = ros::Time::now();
 		msg.time = tempo.toNSec() * 1e-6;
 

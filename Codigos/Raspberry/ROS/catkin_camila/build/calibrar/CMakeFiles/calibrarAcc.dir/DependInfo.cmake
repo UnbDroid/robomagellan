@@ -21,6 +21,7 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include"
   "/opt/ros/indigo/include"
   "/home/pi/Documents"
   "/usr/local/lib"

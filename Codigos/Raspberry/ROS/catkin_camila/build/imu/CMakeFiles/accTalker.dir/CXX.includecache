@@ -22,6 +22,22 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/ParamAcc.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/src/accTalker.cpp
 wiringPiI2C.h
 -
@@ -29,10 +45,16 @@ ros/ros.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/src/ros/ros.h
 raspberry_msgs/Acc.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/src/raspberry_msgs/Acc.h
+raspberry_msgs/ParamAcc.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/src/raspberry_msgs/ParamAcc.h
 time.h
 -
 rosbag/bag.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/src/rosbag/bag.h
+rosbag/view.h
+-
+boost/foreach.hpp
+-
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h
@@ -782,6 +804,22 @@ rosbag/macros.h
 rosbag/bag.h
 /opt/ros/indigo/include/rosbag/rosbag/bag.h
 
+/opt/ros/indigo/include/rosbag/query.h
+ros/time.h
+/opt/ros/indigo/include/rosbag/ros/time.h
+vector
+-
+map
+-
+set
+-
+boost/function.hpp
+-
+rosbag/macros.h
+/opt/ros/indigo/include/rosbag/rosbag/macros.h
+rosbag/structures.h
+/opt/ros/indigo/include/rosbag/rosbag/structures.h
+
 /opt/ros/indigo/include/rosbag/stream.h
 ios
 -
@@ -811,6 +849,20 @@ ros/datatypes.h
 /opt/ros/indigo/include/rosbag/ros/datatypes.h
 macros.h
 /opt/ros/indigo/include/rosbag/macros.h
+
+/opt/ros/indigo/include/rosbag/view.h
+boost/function.hpp
+-
+boost/iterator/iterator_facade.hpp
+-
+rosbag/message_instance.h
+/opt/ros/indigo/include/rosbag/rosbag/message_instance.h
+rosbag/query.h
+/opt/ros/indigo/include/rosbag/rosbag/query.h
+rosbag/macros.h
+/opt/ros/indigo/include/rosbag/rosbag/macros.h
+rosbag/structures.h
+/opt/ros/indigo/include/rosbag/rosbag/structures.h
 
 /opt/ros/indigo/include/rosconsole/macros_generated.h
 

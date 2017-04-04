@@ -1,6 +1,7 @@
 #include <wiringPiI2C.h>
 #include "ros/ros.h"
-#include "raspberry_msgs/Gyro.h"
+#include "rosbag/bag.h"
+#include "raspberry_msgs/ParamGyro.h"
 #include <time.h>
 
 ros::Time tempo;
@@ -55,6 +56,11 @@ int main(int argc, char **argv){
 	ros::NodeHandle n;
 	ros::Rate loop_rate(100);
 
+	rosbag::Bag bag;
+	bag.open("parametrosGyro.bag", rosbag::bagmode::Write);
+
+	raspberry_msgs::ParamGyro msg;
+
 	int count = 0;
 
 	ros::Time tInicial = ros::Time::now();
@@ -82,15 +88,19 @@ int main(int argc, char **argv){
 	    	++count;
 	}
 	
-	offset_x = offset_x/count;
-	offset_y = offset_y/count;
-	offset_z = offset_z/count;
+	msg.offset_x = offset_x/count;
+	msg.offset_y = offset_y/count;
+	msg.offset_z = offset_z/count;
+
+	bag.write("param_gyro",ros::Time::now(),msg);
 	
 	ROS_INFO("\n\n");
 
 	ROS_INFO("x: %f", offset_x);
 	ROS_INFO("y: %f", offset_y);
 	ROS_INFO("z: %f", offset_z);
+
+	bag.close();
 
  return 0;
 }

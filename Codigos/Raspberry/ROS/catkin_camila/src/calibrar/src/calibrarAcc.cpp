@@ -1,8 +1,23 @@
+/* Calibracao do acelerômetro:
+
+Estimação dos parâmetros (bias e fator de escala) do acelerômetro pelo 
+método de Gauss-Newton
+
+Colocar o acelerômetro em pelo menos 7 posições estáricas diferentes 
+e apertar q
+
+*/
+
+
+
+
 #include "ros/ros.h"
 #include <wiringPiI2C.h>
 #include <iostream>
 #include <Eigen/Dense>
 #include "math.h"
+#include "rosbag/bag.h"
+#include "raspberry_msgs/ParamAcc.h"
 
 #define SCALE 0.0039
 #define g 9.80665
@@ -62,7 +77,7 @@ MatrixXf jacobiana(MatrixXf medidas, VectorXf param){
 
 }
 
-int main(){
+int main(int argc, char **argv){
 
 int Register_2D = 0x2D;
 int Register_XL = 0x32;
@@ -83,13 +98,21 @@ float a_z = 0;
 int fd = wiringPiI2CSetup(0x53);
 wiringPiI2CWriteReg8 (fd, Register_2D, 8);
 
+rosbag::Bag bag;
+bag.open("parametrosAcc.bag", rosbag::bagmode::Write);
+
+raspberry_msgs::ParamAcc msg;
+
+ros::init(argc, argv, "acc");
+ros::NodeHandle n;
 //----------------------------------------------------------------
 
-MatrixXf theta;
-MatrixXf G;
-MatrixXf fMedido(nMedidas,3);
-MatrixXf J(nMedidas,6);
+MatrixXf theta; // Parâmetros [bx by bz sx sy sz]
+MatrixXf G; // Aceleracao da gravidade
+MatrixXf fMedido(nMedidas,3); //Medidas do sensor em diferentes posiçõeçs [x y z]
+MatrixXf J(nMedidas,6); //Jacobiana do erro
 
+//Aquisiçaão de dados
 //----------------------------------------------------------------
 
 char c = 'a';
@@ -129,9 +152,8 @@ for(int n = 0;n < nMedidas; n++){
 
 }
 
+//Métdo de Gauss-Newton
 //----------------------------------------------------------------
-
-//Parametros [bx by bz sx sy sz]
 theta.setZero(6, iTotal);
 theta.col(0) << 0.0,
 		0.0,
@@ -140,32 +162,33 @@ theta.col(0) << 0.0,
 		1.0,
 		1.0; 
 
-//Aceleracao da gravidade
 G.setOnes(nMedidas,1);
 G = G*g;
 
-//Medidas do sensor em diferentes posiçõeçs [x y z]
-//fMedido << 0.038236, -0.114738, 8.949549,
-//      -9.905697, -0.114738, 0.535443,
-//      0.03824, -9.829206, -0.803165,
-//      0.0, 9.67622, -0.573689,
-//      0.22947, -0.076492, -10.135173,
-//      -0.038246, 7.113744, 5.813382,
-//     -5.392677, -0.114738, 7.266727;
-
 J = jacobiana(fMedido, theta.col(0));
 
-for(int i = 1;i < iTotal;i++){
+int i = 0;
+
+for(i = 1;i < iTotal;i++){
 
 	J = jacobiana(fMedido, theta.col(i - 1));
 	theta.col(i) = theta.col(i-1) - (J.transpose()*J).inverse()*J.transpose()*(G - F);
 
 }
 
+msg.bx = theta(0, i - 1);
+msg.by = theta(1, i - 1);
+msg.bz = theta(2, i - 1);
+msg.sx = theta(3, i - 1);
+msg.sy = theta(4, i - 1);
+msg.sz = theta(5, i - 1);
 
+bag.write("param_acc",ros::Time::now(),msg);
 
+std::cout << "Parâmetros: " << std::endl;
 std::cout << theta << std::endl;
 
+bag.close();
 
 return 0;
 
