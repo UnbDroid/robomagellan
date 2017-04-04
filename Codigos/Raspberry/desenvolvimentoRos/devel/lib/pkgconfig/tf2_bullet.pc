@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/devel
+
+Name: tf2_bullet
+Description: Description of tf2_bullet
+Version: 0.5.13
+Cflags: -I/home/pi/Documents/desenvolvimentoRos/src/geometry2/tf2_bullet/include
+Libs: -L/home/pi/Documents/desenvolvimentoRos/devel/lib 
+Requires: 

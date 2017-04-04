@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/install
+
+Name: actionlib
+Description: Description of actionlib
+Version: 1.11.7
+Cflags: -I/home/pi/Documents/desenvolvimentoRos/install/include -I/usr/include
+Libs: -L/home/pi/Documents/desenvolvimentoRos/install/lib -lactionlib -l:/usr/lib/arm-linux-gnueabihf/libboost_thread.so -l:/usr/lib/arm-linux-gnueabihf/libpthread.so
+Requires: actionlib_msgs message_runtime roscpp std_msgs

@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/devel
+
+Name: rosserial_xbee
+Description: Description of rosserial_xbee
+Version: 0.7.4
+Cflags: 
+Libs: -L/home/pi/Documents/desenvolvimentoRos/devel/lib 
+Requires: 
