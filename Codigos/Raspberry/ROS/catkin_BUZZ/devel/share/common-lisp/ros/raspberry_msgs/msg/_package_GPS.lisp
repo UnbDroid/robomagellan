@@ -15,4 +15,6 @@
           VDOP
           PDOP-VAL
           PDOP
+          TIME-VAL
+          TIME
 ))

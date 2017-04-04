@@ -245,17 +245,17 @@ gtest_main/fast:
 .PHONY : gtest_main/fast
 
 #=============================================================================
-# Target rules for targets named filtro
+# Target rules for targets named calibrarAcc
 
 # Build rule for target.
-filtro: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 filtro
-.PHONY : filtro
+calibrarAcc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 calibrarAcc
+.PHONY : calibrarAcc
 
 # fast build rule for target.
-filtro/fast:
-	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/build
-.PHONY : filtro/fast
+calibrarAcc/fast:
+	$(MAKE) -f calibrar/CMakeFiles/calibrarAcc.dir/build.make calibrar/CMakeFiles/calibrarAcc.dir/build
+.PHONY : calibrarAcc/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
@@ -267,7 +267,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -280,7 +280,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -293,7 +293,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_py.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_py.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -306,7 +306,7 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -319,7 +319,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -332,7 +332,7 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -345,7 +345,7 @@ std_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -358,7 +358,7 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -371,8 +371,21 @@ std_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_py/fast:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named filtro
+
+# Build rule for target.
+filtro: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 filtro
+.PHONY : filtro
+
+# fast build rule for target.
+filtro/fast:
+	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/build
+.PHONY : filtro/fast
 
 #=============================================================================
 # Target rules for targets named gpsTalker
@@ -479,6 +492,19 @@ accTalker/fast:
 .PHONY : accTalker/fast
 
 #=============================================================================
+# Target rules for targets named gyroOffset
+
+# Build rule for target.
+gyroOffset: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gyroOffset
+.PHONY : gyroOffset
+
+# fast build rule for target.
+gyroOffset/fast:
+	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/build
+.PHONY : gyroOffset/fast
+
+#=============================================================================
 # Target rules for targets named gyroTalker
 
 # Build rule for target.
@@ -511,7 +537,7 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
-	@echo "... filtro"
+	@echo "... calibrarAcc"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
@@ -521,6 +547,7 @@ help:
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_py"
+	@echo "... filtro"
 	@echo "... gpsTalker"
 	@echo "... raspberry_msgs_generate_messages_cpp"
 	@echo "... raspberry_msgs_generate_messages_lisp"
@@ -529,6 +556,7 @@ help:
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_py"
 	@echo "... accTalker"
+	@echo "... gyroOffset"
 	@echo "... gyroTalker"
 .PHONY : help
 

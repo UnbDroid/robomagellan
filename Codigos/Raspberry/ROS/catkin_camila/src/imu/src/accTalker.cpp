@@ -1,12 +1,29 @@
 #include <wiringPiI2C.h>
 #include "ros/ros.h"
 #include "raspberry_msgs/Acc.h"
+#include <time.h>
+#include "rosbag/bag.h"
+
+#define SCALE 0.0039
+
+#define g 9.80665
+
+ //bias e fator dse escala de cada eixo do sensor
+#define BX -0.0618718
+#define BY -0.0261594
+#define BZ -0.571556
+#define SX 1.02559
+#define SY 0.987607
+#define SZ 0.97193
+
+rosbag::Bag bag;
+ros::Time tempo;
 
 int read_word(int fd, int adr_h,int adr_l){
 
 	short high = wiringPiI2CReadReg8 (fd,adr_h);
 	int low = wiringPiI2CReadReg8 (fd,adr_l);
-	int val = ((high << 8) + low);
+	int val = ((high << 8) + low);http://stackoverflow.com/questions/35647941/inverse-of-a-matrix-using-eigen
 
 	return val;
 
@@ -22,7 +39,6 @@ int main(int argc, char **argv){
    	int Register_YH = 0x35;
    	int Register_ZL = 0x36;
    	int Register_ZH = 0x37;
- 
 
 	short acc_x = 0;
 	short acc_y = 0;
@@ -35,24 +51,31 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "acc");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<raspberry_msgs::Acc>("accInfo", 1000);
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(25);
+
+	bag.open("acc.bag", rosbag::bagmode::Write);
 	
 	raspberry_msgs::Acc msg;
 
 	int count = 0;
 	while (ros::ok()){
 
+		//leituras raw
 		acc_x = read_word(fd,Register_XH,Register_XL);
 		acc_y = read_word(fd,Register_YH,Register_YL);
 		acc_z = read_word(fd,Register_ZH,Register_ZL);
+		
+		msg.a_x = (acc_x*SCALE*g - BX)/SX;
+        	msg.a_y = (acc_y*SCALE*g - BY)/SY;
+        	msg.a_z = (acc_z*SCALE*g - BZ)/SZ;
+		tempo = ros::Time::now();
+		msg.time = tempo.toNSec() * 1e-6;
 
-		msg.a_x = acc_x;
-        	msg.a_y = acc_y;
-        	msg.a_z = acc_z;
+		ROS_INFO("x: %f", msg.a_x);
+		ROS_INFO("y: %f", msg.a_y);
+		ROS_INFO("z: %f", msg.a_z);
 
-		ROS_INFO("%d", msg.a_x);
-		ROS_INFO("%d", msg.a_y);
-		ROS_INFO("%d", msg.a_z);
+		bag.write("acc_data",ros::Time::now(),msg);
 
 		chatter_pub.publish(msg);
 	    
@@ -61,7 +84,8 @@ int main(int argc, char **argv){
 	    	loop_rate.sleep();
 	    	++count;
 	}
-	
+
+	bag.close();	
 	
  return 0;
 }

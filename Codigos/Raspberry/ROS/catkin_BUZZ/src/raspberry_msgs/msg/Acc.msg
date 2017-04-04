@@ -1,3 +1,4 @@
-int16 a_x
-int16 a_y
-int16 a_z
+float32 a_x
+float32 a_y
+float32 a_z
+int64 time

@@ -31,7 +31,8 @@ struct GPS_
     , speed(0.0)
     , hdop(0.0)
     , vdop(0.0)
-    , pdop(0.0)  {
+    , pdop(0.0)
+    , time(0)  {
     }
   GPS_(const ContainerAllocator& _alloc)
     : valid(false)
@@ -41,7 +42,8 @@ struct GPS_
     , speed(0.0)
     , hdop(0.0)
     , vdop(0.0)
-    , pdop(0.0)  {
+    , pdop(0.0)
+    , time(0)  {
   (void)_alloc;
     }
 
@@ -70,6 +72,9 @@ struct GPS_
 
    typedef float _pdop_type;
   _pdop_type pdop;
+
+   typedef int64_t _time_type;
+  _time_type time;
 
 
 
@@ -148,12 +153,12 @@ struct MD5Sum< ::raspberry_msgs::GPS_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "eb3a7471d9a50e828ab96794f4a00013";
+    return "5d82aab34ae4b4ded06df8be5cebce30";
   }
 
   static const char* value(const ::raspberry_msgs::GPS_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xeb3a7471d9a50e82ULL;
-  static const uint64_t static_value2 = 0x8ab96794f4a00013ULL;
+  static const uint64_t static_value1 = 0x5d82aab34ae4b4deULL;
+  static const uint64_t static_value2 = 0xd06df8be5cebce30ULL;
 };
 
 template<class ContainerAllocator>
@@ -180,6 +185,7 @@ float64 speed\n\
 float32 hdop\n\
 float32 vdop\n\
 float32 pdop\n\
+int64 time\n\
 ";
   }
 
@@ -206,6 +212,7 @@ namespace serialization
       stream.next(m.hdop);
       stream.next(m.vdop);
       stream.next(m.pdop);
+      stream.next(m.time);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -240,6 +247,8 @@ struct Printer< ::raspberry_msgs::GPS_<ContainerAllocator> >
     Printer<float>::stream(s, indent + "  ", v.vdop);
     s << indent << "pdop: ";
     Printer<float>::stream(s, indent + "  ", v.pdop);
+    s << indent << "time: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.time);
   }
 };
 

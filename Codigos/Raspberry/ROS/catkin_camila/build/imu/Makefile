@@ -168,6 +168,20 @@ accTalker/fast:
 .PHONY : accTalker/fast
 
 # Convenience name for target.
+imu/CMakeFiles/gyroOffset.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroOffset.dir/rule
+.PHONY : imu/CMakeFiles/gyroOffset.dir/rule
+
+# Convenience name for target.
+gyroOffset: imu/CMakeFiles/gyroOffset.dir/rule
+.PHONY : gyroOffset
+
+# fast build rule for target.
+gyroOffset/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/build
+.PHONY : gyroOffset/fast
+
+# Convenience name for target.
 imu/CMakeFiles/gyroTalker.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroTalker.dir/rule
 .PHONY : imu/CMakeFiles/gyroTalker.dir/rule
@@ -205,6 +219,30 @@ src/accTalker.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/src/accTalker.cpp.s
 .PHONY : src/accTalker.cpp.s
 
+src/gyroOffset.o: src/gyroOffset.cpp.o
+.PHONY : src/gyroOffset.o
+
+# target to build an object file
+src/gyroOffset.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/src/gyroOffset.cpp.o
+.PHONY : src/gyroOffset.cpp.o
+
+src/gyroOffset.i: src/gyroOffset.cpp.i
+.PHONY : src/gyroOffset.i
+
+# target to preprocess a source file
+src/gyroOffset.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/src/gyroOffset.cpp.i
+.PHONY : src/gyroOffset.cpp.i
+
+src/gyroOffset.s: src/gyroOffset.cpp.s
+.PHONY : src/gyroOffset.s
+
+# target to generate assembly for a file
+src/gyroOffset.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/src/gyroOffset.cpp.s
+.PHONY : src/gyroOffset.cpp.s
+
 src/gyroTalker.o: src/gyroTalker.cpp.o
 .PHONY : src/gyroTalker.o
 
@@ -237,6 +275,7 @@ help:
 	@echo "... depend"
 	@echo "... accTalker"
 	@echo "... edit_cache"
+	@echo "... gyroOffset"
 	@echo "... gyroTalker"
 	@echo "... install"
 	@echo "... install/local"
@@ -247,6 +286,9 @@ help:
 	@echo "... src/accTalker.o"
 	@echo "... src/accTalker.i"
 	@echo "... src/accTalker.s"
+	@echo "... src/gyroOffset.o"
+	@echo "... src/gyroOffset.i"
+	@echo "... src/gyroOffset.s"
 	@echo "... src/gyroTalker.o"
 	@echo "... src/gyroTalker.i"
 	@echo "... src/gyroTalker.s"

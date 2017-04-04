@@ -7,7 +7,7 @@ import struct
 
 
 class GPS(genpy.Message):
-  _md5sum = "eb3a7471d9a50e828ab96794f4a00013"
+  _md5sum = "5d82aab34ae4b4ded06df8be5cebce30"
   _type = "raspberry_msgs/GPS"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """bool valid
@@ -17,9 +17,10 @@ float64 alt
 float64 speed
 float32 hdop
 float32 vdop
-float32 pdop"""
-  __slots__ = ['valid','lat','lng','alt','speed','hdop','vdop','pdop']
-  _slot_types = ['bool','float64','float64','float64','float64','float32','float32','float32']
+float32 pdop
+int64 time"""
+  __slots__ = ['valid','lat','lng','alt','speed','hdop','vdop','pdop','time']
+  _slot_types = ['bool','float64','float64','float64','float64','float32','float32','float32','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -29,7 +30,7 @@ float32 pdop"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       valid,lat,lng,alt,speed,hdop,vdop,pdop
+       valid,lat,lng,alt,speed,hdop,vdop,pdop,time
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -54,6 +55,8 @@ float32 pdop"""
         self.vdop = 0.
       if self.pdop is None:
         self.pdop = 0.
+      if self.time is None:
+        self.time = 0
     else:
       self.valid = False
       self.lat = 0.
@@ -63,6 +66,7 @@ float32 pdop"""
       self.hdop = 0.
       self.vdop = 0.
       self.pdop = 0.
+      self.time = 0
 
   def _get_types(self):
     """
@@ -77,7 +81,7 @@ float32 pdop"""
     """
     try:
       _x = self
-      buff.write(_struct_B4d3f.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop))
+      buff.write(_struct_B4d3fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -90,8 +94,8 @@ float32 pdop"""
       end = 0
       _x = self
       start = end
-      end += 45
-      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop,) = _struct_B4d3f.unpack(str[start:end])
+      end += 53
+      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop, _x.time,) = _struct_B4d3fq.unpack(str[start:end])
       self.valid = bool(self.valid)
       return self
     except struct.error as e:
@@ -106,7 +110,7 @@ float32 pdop"""
     """
     try:
       _x = self
-      buff.write(_struct_B4d3f.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop))
+      buff.write(_struct_B4d3fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -120,12 +124,12 @@ float32 pdop"""
       end = 0
       _x = self
       start = end
-      end += 45
-      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop,) = _struct_B4d3f.unpack(str[start:end])
+      end += 53
+      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.hdop, _x.vdop, _x.pdop, _x.time,) = _struct_B4d3fq.unpack(str[start:end])
       self.valid = bool(self.valid)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_B4d3f = struct.Struct("<B4d3f")
+_struct_B4d3fq = struct.Struct("<B4d3fq")

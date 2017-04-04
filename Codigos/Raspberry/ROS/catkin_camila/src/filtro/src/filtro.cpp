@@ -3,6 +3,8 @@
 #include "raspberry_msgs/Gyro.h"
 #include "raspberry_msgs/Acc.h"
 #include "math.h"
+#include <Eigen/Dense>
+#include <iostream>
 
 #define PI 3.14159265
 
@@ -156,6 +158,7 @@ void accCallback(const raspberry_msgs::Acc::ConstPtr& msg){
 
 }
 
+using Eigen::MatrixXd;
 
 int main(int argc, char **argv)
 {

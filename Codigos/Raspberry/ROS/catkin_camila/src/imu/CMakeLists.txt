@@ -199,3 +199,7 @@ add_dependencies(gyroTalker imu_generate_messages_cpp)
 add_executable(accTalker src/accTalker.cpp)
 target_link_libraries(accTalker ${catkin_LIBRARIES} libwiringPi.so)
 add_dependencies(accTalker imu_generate_messages_cpp)
+
+add_executable(gyroOffset src/gyroOffset.cpp)
+target_link_libraries(gyroOffset ${catkin_LIBRARIES} libwiringPi.so)
+add_dependencies(gyroOffset imu_generate_messages_cpp)

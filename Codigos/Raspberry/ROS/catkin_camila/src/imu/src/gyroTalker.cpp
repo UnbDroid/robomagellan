@@ -1,6 +1,19 @@
 #include <wiringPiI2C.h>
 #include "ros/ros.h"
 #include "raspberry_msgs/Gyro.h"
+#include "rosbag/bag.h"
+#include <time.h>
+
+#define SCALE 0.07
+#define OFFSET_X 1.261986
+#define OFFSET_Y 1.803434
+#define OFFSET_Z 0.494226
+
+#define PI 3.14159265359
+
+
+rosbag::Bag bag;
+ros::Time tempo;
 
 int read_word(int fd, int adr_h,int adr_l){
 
@@ -12,6 +25,11 @@ int read_word(int fd, int adr_h,int adr_l){
 
 }
 
+float parseRadians(float degree){
+
+	return degree*PI/180;
+
+}
 
 int main(int argc, char **argv){
  
@@ -44,8 +62,10 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "gyroTalker");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<raspberry_msgs::Gyro>("gyroInfo", 1000);
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(100);
 	
+	bag.open("gyro.bag", rosbag::bagmode::Write);
+
 	raspberry_msgs::Gyro msg;
 
 	int count = 0;
@@ -55,13 +75,18 @@ int main(int argc, char **argv){
 		gyro_y = read_word(fd,reg_y_h,reg_y_l);
 		gyro_z = read_word(fd,reg_z_h,reg_z_l);
 
-		msg.g_x = gyro_x;
-        	msg.g_y = gyro_y;
-        	msg.g_z = gyro_z;
+		msg.g_x = parseRadians(gyro_x*SCALE + OFFSET_X);
+        	msg.g_y = parseRadians(gyro_y*SCALE + OFFSET_Y);
+        	msg.g_z = parseRadians(gyro_z*SCALE + OFFSET_Z);
 
-		ROS_INFO("%d", msg.g_x);
-		ROS_INFO("%d", msg.g_y);
-		ROS_INFO("%d", msg.g_z);
+		tempo = ros::Time::now();
+		msg.time = tempo.toNSec() * 1e-6;
+
+		ROS_INFO("%f", msg.g_x);
+		ROS_INFO("%f", msg.g_y);
+		ROS_INFO("%f", msg.g_z);
+
+		bag.write("gyro_data",ros::Time::now(),msg);
 
 		chatter_pub.publish(msg);
 	    
@@ -71,6 +96,7 @@ int main(int argc, char **argv){
 	    	++count;
 	}
 	
+	bag.close();
 	
  return 0;
 }

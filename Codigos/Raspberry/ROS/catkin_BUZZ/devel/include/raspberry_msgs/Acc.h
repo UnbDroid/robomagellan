@@ -24,27 +24,32 @@ struct Acc_
   typedef Acc_<ContainerAllocator> Type;
 
   Acc_()
-    : a_x(0)
-    , a_y(0)
-    , a_z(0)  {
+    : a_x(0.0)
+    , a_y(0.0)
+    , a_z(0.0)
+    , time(0)  {
     }
   Acc_(const ContainerAllocator& _alloc)
-    : a_x(0)
-    , a_y(0)
-    , a_z(0)  {
+    : a_x(0.0)
+    , a_y(0.0)
+    , a_z(0.0)
+    , time(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef int16_t _a_x_type;
+   typedef float _a_x_type;
   _a_x_type a_x;
 
-   typedef int16_t _a_y_type;
+   typedef float _a_y_type;
   _a_y_type a_y;
 
-   typedef int16_t _a_z_type;
+   typedef float _a_z_type;
   _a_z_type a_z;
+
+   typedef int64_t _time_type;
+  _time_type time;
 
 
 
@@ -123,12 +128,12 @@ struct MD5Sum< ::raspberry_msgs::Acc_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "5e828625e6cd4bb051f091c5afb51743";
+    return "79dbd4567e140183ab42121735f0a17c";
   }
 
   static const char* value(const ::raspberry_msgs::Acc_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x5e828625e6cd4bb0ULL;
-  static const uint64_t static_value2 = 0x51f091c5afb51743ULL;
+  static const uint64_t static_value1 = 0x79dbd4567e140183ULL;
+  static const uint64_t static_value2 = 0xab42121735f0a17cULL;
 };
 
 template<class ContainerAllocator>
@@ -147,9 +152,10 @@ struct Definition< ::raspberry_msgs::Acc_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int16 a_x\n\
-int16 a_y\n\
-int16 a_z\n\
+    return "float32 a_x\n\
+float32 a_y\n\
+float32 a_z\n\
+int64 time\n\
 ";
   }
 
@@ -171,6 +177,7 @@ namespace serialization
       stream.next(m.a_x);
       stream.next(m.a_y);
       stream.next(m.a_z);
+      stream.next(m.time);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -190,11 +197,13 @@ struct Printer< ::raspberry_msgs::Acc_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::raspberry_msgs::Acc_<ContainerAllocator>& v)
   {
     s << indent << "a_x: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.a_x);
+    Printer<float>::stream(s, indent + "  ", v.a_x);
     s << indent << "a_y: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.a_y);
+    Printer<float>::stream(s, indent + "  ", v.a_y);
     s << indent << "a_z: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.a_z);
+    Printer<float>::stream(s, indent + "  ", v.a_z);
+    s << indent << "time: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.time);
   }
 };
 

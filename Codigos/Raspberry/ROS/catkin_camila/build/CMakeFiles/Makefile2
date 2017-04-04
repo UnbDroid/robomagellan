@@ -230,7 +230,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  6
 	@echo "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
@@ -261,7 +261,7 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  6
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  7
 	@echo "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 
@@ -286,6 +286,344 @@ clean: gtest/CMakeFiles/gtest_main.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory calibrar
+
+# Convenience name for "all" pass in the directory.
+calibrar/all: calibrar/CMakeFiles/calibrarAcc.dir/all
+.PHONY : calibrar/all
+
+# Convenience name for "clean" pass in the directory.
+calibrar/clean: calibrar/CMakeFiles/calibrarAcc.dir/clean
+calibrar/clean: calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+calibrar/clean: calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+calibrar/clean: calibrar/CMakeFiles/roscpp_generate_messages_py.dir/clean
+calibrar/clean: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+calibrar/clean: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+calibrar/clean: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+calibrar/clean: calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+calibrar/clean: calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+calibrar/clean: calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : calibrar/clean
+
+# Convenience name for "preinstall" pass in the directory.
+calibrar/preinstall:
+.PHONY : calibrar/preinstall
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/calibrarAcc.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/calibrarAcc.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/calibrarAcc.dir/build.make calibrar/CMakeFiles/calibrarAcc.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/calibrarAcc.dir/build.make calibrar/CMakeFiles/calibrarAcc.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  2
+	@echo "Built target calibrarAcc"
+.PHONY : calibrar/CMakeFiles/calibrarAcc.dir/all
+
+# Include target in all.
+all: calibrar/CMakeFiles/calibrarAcc.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/calibrarAcc.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/calibrarAcc.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/calibrarAcc.dir/rule
+
+# Convenience name for target.
+calibrarAcc: calibrar/CMakeFiles/calibrarAcc.dir/rule
+.PHONY : calibrarAcc
+
+# clean rule for target.
+calibrar/CMakeFiles/calibrarAcc.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/calibrarAcc.dir/build.make calibrar/CMakeFiles/calibrarAcc.dir/clean
+.PHONY : calibrar/CMakeFiles/calibrarAcc.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/calibrarAcc.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target roscpp_generate_messages_cpp"
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : roscpp_generate_messages_cpp
+
+# clean rule for target.
+calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target roscpp_generate_messages_lisp"
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : roscpp_generate_messages_lisp
+
+# clean rule for target.
+calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/roscpp_generate_messages_py.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_py.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_py.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target roscpp_generate_messages_py"
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: calibrar/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : roscpp_generate_messages_py
+
+# clean rule for target.
+calibrar/CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/roscpp_generate_messages_py.dir/build.make calibrar/CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : calibrar/CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target rosgraph_msgs_generate_messages_cpp"
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# clean rule for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target rosgraph_msgs_generate_messages_lisp"
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# clean rule for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target rosgraph_msgs_generate_messages_py"
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# clean rule for target.
+calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target std_msgs_generate_messages_cpp"
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : std_msgs_generate_messages_cpp
+
+# clean rule for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target std_msgs_generate_messages_lisp"
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : std_msgs_generate_messages_lisp
+
+# clean rule for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/std_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
+	@echo "Built target std_msgs_generate_messages_py"
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : std_msgs_generate_messages_py
+
+# clean rule for target.
+calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/build.make calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Directory level rules for directory filtro
 
 # Convenience name for "all" pass in the directory.
@@ -294,15 +632,6 @@ filtro/all: filtro/CMakeFiles/filtro.dir/all
 
 # Convenience name for "clean" pass in the directory.
 filtro/clean: filtro/CMakeFiles/filtro.dir/clean
-filtro/clean: filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-filtro/clean: filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-filtro/clean: filtro/CMakeFiles/roscpp_generate_messages_py.dir/clean
-filtro/clean: filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-filtro/clean: filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-filtro/clean: filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-filtro/clean: filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-filtro/clean: filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-filtro/clean: filtro/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 .PHONY : filtro/clean
 
 # Convenience name for "preinstall" pass in the directory.
@@ -316,7 +645,7 @@ filtro/preinstall:
 filtro/CMakeFiles/filtro.dir/all:
 	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/depend
 	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  3
 	@echo "Built target filtro"
 .PHONY : filtro/CMakeFiles/filtro.dir/all
 
@@ -342,285 +671,6 @@ filtro/CMakeFiles/filtro.dir/clean:
 
 # clean rule for target.
 clean: filtro/CMakeFiles/filtro.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/roscpp_generate_messages_cpp.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target roscpp_generate_messages_cpp"
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : roscpp_generate_messages_cpp
-
-# clean rule for target.
-filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/roscpp_generate_messages_lisp.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target roscpp_generate_messages_lisp"
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : roscpp_generate_messages_lisp
-
-# clean rule for target.
-filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/roscpp_generate_messages_py.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/roscpp_generate_messages_py.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_py.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_py.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_py.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_py.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target roscpp_generate_messages_py"
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/roscpp_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: filtro/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : roscpp_generate_messages_py
-
-# clean rule for target.
-filtro/CMakeFiles/roscpp_generate_messages_py.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/roscpp_generate_messages_py.dir/build.make filtro/CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : filtro/CMakeFiles/roscpp_generate_messages_py.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target rosgraph_msgs_generate_messages_cpp"
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# clean rule for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target rosgraph_msgs_generate_messages_lisp"
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# clean rule for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target rosgraph_msgs_generate_messages_py"
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# clean rule for target.
-filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target std_msgs_generate_messages_cpp"
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : std_msgs_generate_messages_cpp
-
-# clean rule for target.
-filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target std_msgs_generate_messages_lisp"
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : std_msgs_generate_messages_lisp
-
-# clean rule for target.
-filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target filtro/CMakeFiles/std_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-filtro/CMakeFiles/std_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_py.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 
-	@echo "Built target std_msgs_generate_messages_py"
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-filtro/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/std_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: filtro/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : std_msgs_generate_messages_py
-
-# clean rule for target.
-filtro/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f filtro/CMakeFiles/std_msgs_generate_messages_py.dir/build.make filtro/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-.PHONY : filtro/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-
-# clean rule for target.
-clean: filtro/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -651,7 +701,7 @@ gps/preinstall:
 gps/CMakeFiles/gpsTalker.dir/all:
 	$(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/depend
 	$(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  3 4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  4 5
 	@echo "Built target gpsTalker"
 .PHONY : gps/CMakeFiles/gpsTalker.dir/all
 
@@ -870,11 +920,13 @@ clean: gps/CMakeFiles/topic_tools_generate_messages_py.dir/clean
 
 # Convenience name for "all" pass in the directory.
 imu/all: imu/CMakeFiles/accTalker.dir/all
+imu/all: imu/CMakeFiles/gyroOffset.dir/all
 imu/all: imu/CMakeFiles/gyroTalker.dir/all
 .PHONY : imu/all
 
 # Convenience name for "clean" pass in the directory.
 imu/clean: imu/CMakeFiles/accTalker.dir/clean
+imu/clean: imu/CMakeFiles/gyroOffset.dir/clean
 imu/clean: imu/CMakeFiles/gyroTalker.dir/clean
 .PHONY : imu/clean
 
@@ -918,13 +970,48 @@ clean: imu/CMakeFiles/accTalker.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target imu/CMakeFiles/gyroOffset.dir
+
+# All Build rule for target.
+imu/CMakeFiles/gyroOffset.dir/all:
+	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/depend
+	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  8
+	@echo "Built target gyroOffset"
+.PHONY : imu/CMakeFiles/gyroOffset.dir/all
+
+# Include target in all.
+all: imu/CMakeFiles/gyroOffset.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+imu/CMakeFiles/gyroOffset.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroOffset.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : imu/CMakeFiles/gyroOffset.dir/rule
+
+# Convenience name for target.
+gyroOffset: imu/CMakeFiles/gyroOffset.dir/rule
+.PHONY : gyroOffset
+
+# clean rule for target.
+imu/CMakeFiles/gyroOffset.dir/clean:
+	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/clean
+.PHONY : imu/CMakeFiles/gyroOffset.dir/clean
+
+# clean rule for target.
+clean: imu/CMakeFiles/gyroOffset.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target imu/CMakeFiles/gyroTalker.dir
 
 # All Build rule for target.
 imu/CMakeFiles/gyroTalker.dir/all:
 	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/depend
 	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  7
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles  9
 	@echo "Built target gyroTalker"
 .PHONY : imu/CMakeFiles/gyroTalker.dir/all
 

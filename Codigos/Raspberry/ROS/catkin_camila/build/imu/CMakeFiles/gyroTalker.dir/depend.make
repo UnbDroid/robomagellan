@@ -12,11 +12,13 @@ imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/common.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/console.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/console_backend.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/cpp_common_decl.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/datatypes.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/duration.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/exception.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/exceptions.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/forwards.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/header.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/init.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/macros.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/master.h
@@ -58,5 +60,15 @@ imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/types.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/wall_timer.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/ros/wall_timer_options.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/bag.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/buffer.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/chunked_file.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/constants.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/exceptions.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/macros.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/message_instance.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/stream.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosbag/structures.h
 imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/rosconsole/macros_generated.h
+imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.o: /opt/ros/indigo/include/roslz4/lz4s.h
 

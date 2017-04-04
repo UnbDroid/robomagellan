@@ -7,14 +7,15 @@ import struct
 
 
 class Gyro(genpy.Message):
-  _md5sum = "a226b3476bda898c80dcdb0ff0b085e7"
+  _md5sum = "fdbe35c96cc4518a9444f2526afab160"
   _type = "raspberry_msgs/Gyro"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """int16 g_x
-int16 g_y
-int16 g_z"""
-  __slots__ = ['g_x','g_y','g_z']
-  _slot_types = ['int16','int16','int16']
+  _full_text = """float32 g_x
+float32 g_y
+float32 g_z
+int64 time"""
+  __slots__ = ['g_x','g_y','g_z','time']
+  _slot_types = ['float32','float32','float32','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -24,7 +25,7 @@ int16 g_z"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       g_x,g_y,g_z
+       g_x,g_y,g_z,time
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -34,15 +35,18 @@ int16 g_z"""
       super(Gyro, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
       if self.g_x is None:
-        self.g_x = 0
+        self.g_x = 0.
       if self.g_y is None:
-        self.g_y = 0
+        self.g_y = 0.
       if self.g_z is None:
-        self.g_z = 0
+        self.g_z = 0.
+      if self.time is None:
+        self.time = 0
     else:
-      self.g_x = 0
-      self.g_y = 0
-      self.g_z = 0
+      self.g_x = 0.
+      self.g_y = 0.
+      self.g_z = 0.
+      self.time = 0
 
   def _get_types(self):
     """
@@ -57,7 +61,7 @@ int16 g_z"""
     """
     try:
       _x = self
-      buff.write(_struct_3h.pack(_x.g_x, _x.g_y, _x.g_z))
+      buff.write(_struct_3fq.pack(_x.g_x, _x.g_y, _x.g_z, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -70,8 +74,8 @@ int16 g_z"""
       end = 0
       _x = self
       start = end
-      end += 6
-      (_x.g_x, _x.g_y, _x.g_z,) = _struct_3h.unpack(str[start:end])
+      end += 20
+      (_x.g_x, _x.g_y, _x.g_z, _x.time,) = _struct_3fq.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -85,7 +89,7 @@ int16 g_z"""
     """
     try:
       _x = self
-      buff.write(_struct_3h.pack(_x.g_x, _x.g_y, _x.g_z))
+      buff.write(_struct_3fq.pack(_x.g_x, _x.g_y, _x.g_z, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -99,11 +103,11 @@ int16 g_z"""
       end = 0
       _x = self
       start = end
-      end += 6
-      (_x.g_x, _x.g_y, _x.g_z,) = _struct_3h.unpack(str[start:end])
+      end += 20
+      (_x.g_x, _x.g_y, _x.g_z, _x.time,) = _struct_3fq.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_3h = struct.Struct("<3h")
+_struct_3fq = struct.Struct("<3fq")
