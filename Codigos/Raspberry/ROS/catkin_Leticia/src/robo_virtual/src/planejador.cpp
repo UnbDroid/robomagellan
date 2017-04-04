@@ -5,6 +5,8 @@
 #include "geometry_msgs/Vector3.h"
 #include "geometry_msgs/Quaternion.h"
 #include "std_msgs/Bool.h"
+#include "std_msgs/Int16.h"
+
 #include <sstream>
 #include <vector>
 
@@ -17,7 +19,7 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   ros::Publisher trajetoriaPub = n.advertise<nav_msgs::Path>("path_planned", 1000);
-  ros::Publisher pubEnable = n.advertise<std_msgs::Bool>("enable_follow_path", 1000);
+  ros::Publisher pubEnable = n.advertise<std_msgs::Int16>("enable_follow_path", 1000);
 
   sleep(1);
 
@@ -142,16 +144,16 @@ int main(int argc, char **argv)
   auxPosition.pose.position.z = 0;
   trajeto.poses.push_back(auxPosition);
   
-  std_msgs::Bool enable;
+  std_msgs::Int16 enable;
 
-  enable.data  = true;
+  enable.data  = 1;
 
   pubEnable.publish(enable);
   trajetoriaPub.publish(trajeto);
   
   while (ros::ok())
   {
-    static int count = 0;
+    /*static int count = 0;
 
     if (count == 10){
       trajeto.poses.clear();
@@ -161,11 +163,11 @@ int main(int argc, char **argv)
       auxPosition.pose.position.z = 0;
       trajeto.poses.push_back(auxPosition);
       trajetoriaPub.publish(trajeto);
-      /*enable.data = false;
-      pubEnable.publish(enable);*/
+      //enable.data = false;
+      //pubEnable.publish(enable);
       ROS_INFO("NOVO TRAJETO");
     }
-    count ++;
+    count ++;*/
     ROS_INFO("Enviando trajeto ");
     
     ros::spinOnce();
