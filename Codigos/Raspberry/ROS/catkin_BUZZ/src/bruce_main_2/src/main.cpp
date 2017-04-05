@@ -1,8 +1,6 @@
 #include "ros/ros.h"
 #include "fsm.h"
-#include "fsmparser.h"
-#include "states.h"
-#include "bruce_main/vitals.h"
+#include "parser/fsmparser.h"
 
 robot_information info;
 
@@ -10,10 +8,12 @@ void OdomCallback(const nav_msgs::Odometry::ConstPtr& msg);
 void OdomOkCallback(const std_msgs::Bool::ConstPtr& msg);
 void RouteOkCallback(const std_msgs::Bool::ConstPtr& msg);
 void ConeEncontradoCallback(const std_msgs::Bool::ConstPtr& msg);
-void startInfo(robot_information & info);
 void OriginCallback(const geometry_msgs::Point32::ConstPtr& msg);
 void PathCallback(const nav_msgs::Path::ConstPtr& msg);
 void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg);
+void CameraPositionCallback(const geometry_msgs::Point32::ConstPtr& msg);
+
+void startInfo(robot_information & info);
 
 bool route_received = false;
 
@@ -28,18 +28,17 @@ int main(int argc, char **argv){
     ROS_ERROR("Missing description file argument");
     return -1;
   }
-  std::vector<fsm_parser_state> fsm_states;
-  startStates(fsm_states);
-  startInfo(info);
-  struct fsm_object fsm;
+  Fsm fsm;
   fsm_init(&fsm);
+  startInfo(info);
   fsm.info = &info;
 
   try{
-      parseFile(filename,fsm_states,fsm);
+      parseFile(filename,fsm);
       
       ros::NodeHandle n;
 
+      /* Subscribers */
       ros::Subscriber subOdom = n.subscribe("odom", 1000, OdomCallback);
       ros::Subscriber subOdomOk = n.subscribe("odom_ok", 1000, OdomOkCallback); 
       ros::Subscriber subRouteOk = n.subscribe("route_ok", 1000, RouteOkCallback);
@@ -57,14 +56,17 @@ int main(int argc, char **argv){
       ros::Subscriber subUS9 = n.subscribe("ultrasound9",1000,UltrassomCallback);
       ros::Subscriber subUS10 = n.subscribe("ultrasound10",1000,UltrassomCallback);
       ros::Subscriber subUS11 = n.subscribe("ultrasound11",1000,UltrassomCallback);
-      tf::TransformListener tfListener;
+      ros::Subscriber subCamera = n.subscribe("cone_position",1000,CameraPositionCallback);
+      tf::TransformListener tfListener;      
 
+
+      /* Publishers */
       ros::Publisher pathPub = n.advertise<nav_msgs::Path>("path_planned",1000);
-      ros::Publisher pubEnableFollowPath = n.advertise<std_msgs::Bool>("enable_follow_path",1000);
+      ros::Publisher pubEnableFollowPath = n.advertise<std_msgs::Int16>("enable_follow_path",1000);
       ros::Publisher pubRequestPath = n.advertise<geometry_msgs::Point32>("path_request",1000); 
       ros::Publisher pubMapBLCoordinate = n.advertise<geometry_msgs::Point32>("map_bl_coord",1000); 
       ros::Publisher pubObstacles = n.advertise<geometry_msgs::PoseArray>("new_obstacles",1000);
-      
+
       info.n = &n;
       info.pubRequestPath = & pubRequestPath;
       info.pubMapBLCoordinate = & pubMapBLCoordinate;
@@ -86,7 +88,7 @@ int main(int argc, char **argv){
           break;
         }
         ros::spinOnce();
-      }      
+      }  
     }catch(char const * aux){
       ROS_ERROR("%s",aux);
     }
@@ -100,6 +102,7 @@ void OdomCallback(const nav_msgs::Odometry::ConstPtr& msg){
 
 void OdomOkCallback(const std_msgs::Bool::ConstPtr& msg){
   info.position_is_valid = msg->data;
+  //ROS_INFO("Odometry is OK");
 }
 
 void RouteOkCallback(const std_msgs::Bool::ConstPtr& msg){
@@ -116,6 +119,7 @@ void startInfo(robot_information & info){
   info.position_is_valid = false;
   info.route_calculated = false;
   info.cone_encontrado = false;
+  info.calculating_route = false;
   info.pose = geometry_msgs::Pose();
   info.origin.lat = 0;
   info.origin.lng = 0;
@@ -129,29 +133,33 @@ void OriginCallback(const geometry_msgs::Point32::ConstPtr& msg){
 }
 
 void PathCallback(const nav_msgs::Path::ConstPtr& msg){
-  nav_msgs::Path pathMsg;
+  static int seq  = -999;
+  if(msg->header.seq != seq){
+    seq = msg->header.seq;
+    nav_msgs::Path pathMsg;
 
-  pathMsg.header.seq = 0;
-  pathMsg.header.stamp = ros::Time::now();
-  pathMsg.header.frame_id = "odom";  
+    pathMsg.header.seq = seq;
+    pathMsg.header.stamp = ros::Time::now();
+    pathMsg.header.frame_id = "odom";  
 
-  NEDCoord origin = GPS2NED(info.origin,info.bottomLeft);
-  info.path.clear();
-  for(int i =0;i<msg->poses.size();i++){
-    geometry_msgs::PoseStamped aux;
-    double map_x = msg->poses[i].pose.position.y;
-    double map_y = msg->poses[i].pose.position.x;
-    aux.pose.position.x = map_x-origin.x;
-    aux.pose.position.y = map_y-origin.y;
-    NEDCoord nedAux = {aux.pose.position.x,aux.pose.position.y}; 
-    info.path.push_back(nedAux);
-    pathMsg.poses.push_back(aux);
-  }
-  if(route_received){
-      info.pubPath->publish(pathMsg);
-      info.route_calculated = true;
-      ROS_INFO("RECEBI rota");
-      route_received = false; 
+    NEDCoord origin = GPS2NED(info.origin,info.bottomLeft);
+    info.path.clear();
+    for(int i =0;i<msg->poses.size();i++){
+      geometry_msgs::PoseStamped aux;
+      double map_x = msg->poses[i].pose.position.y;
+      double map_y = msg->poses[i].pose.position.x;
+      aux.pose.position.x = map_x-origin.x;
+      aux.pose.position.y = map_y-origin.y;
+      NEDCoord nedAux = {aux.pose.position.x,aux.pose.position.y}; 
+      info.path.push_back(nedAux);
+      pathMsg.poses.push_back(aux);
+    }
+    if(route_received){
+        info.pubPath->publish(pathMsg);
+        info.route_calculated = true;
+        ROS_INFO("RECEBI rota");
+        route_received = false; 
+    }
   }
 }
 
@@ -166,50 +174,39 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
   }
 }
 
-double toRadian(double degree){
-  return (degree*PI/180.0);
+void CameraPositionCallback(const geometry_msgs::Point32::ConstPtr& msg){
+  info.cameraReadDistance = msg->x;
+  info.cameraReadOrientation = msg->y;
 }
 
-
-ECEFCoord GPS2ECEF(GPSCoord gpoint){
-  float a = 6378137;
-  float b = 6356752.31424518;
-  float f = (a-b)/a;
-  float e = std::sqrt(f*(2.0-f));
-  float sinLat = std::sin(toRadian(gpoint.lat));
-  float cosLat = std::cos(toRadian(gpoint.lat));
-  float sinLng = std::sin(toRadian(gpoint.lng));
-  float cosLng = std::cos(toRadian(gpoint.lng));
-  float N = a/(std::sqrt(1-(e*e*sinLat*sinLat))); 
-
-  ECEFCoord ecefPoint;
-
-  ecefPoint.x = (N+gpoint.alt)*cosLat*cosLng;
-  ecefPoint.y = (N+gpoint.alt)*cosLat*sinLng;
-  ecefPoint.z = (N*(1-e*e)+gpoint.alt)*sinLat; 
-  return ecefPoint;
-}
-
-NEDCoord GPS2NED(GPSCoord gpoint ,GPSCoord ref){
-  
-  
-  ECEFCoord ecefPoint = GPS2ECEF(gpoint);
-  ECEFCoord refEcefPoint = GPS2ECEF(ref);
-  
-  NEDCoord nedPoint,aux;
-  
-  double sLaR = std::sin(toRadian(ref.lat));
-  double cLaR = std::cos(toRadian(ref.lat));
-  double sLoR = std::sin(toRadian(ref.lng));
-  double cLoR = std::cos(toRadian(ref.lng));
-
-  aux.x = ecefPoint.x-refEcefPoint.x;
-  aux.y = ecefPoint.y-refEcefPoint.y;
-  aux.z = ecefPoint.z-refEcefPoint.z;
-
-  nedPoint.x = -sLaR*cLoR*aux.x  - sLaR*sLoR*aux.y + cLaR*aux.z;
-  nedPoint.y = -sLoR*aux.x          + cLoR*aux.y;
-  nedPoint.z = -cLaR*cLoR*aux.x  - cLaR*sLoR*aux.y - sLaR*aux.z;
-
-  return nedPoint;
+double distanceFromSegmentToPoint(NEDCoord P1 ,NEDCoord P2,NEDCoord P0){
+  double deltaXa = P2.x-P1.x;
+  double deltaYa = P2.y-P1.y;
+  double deltaXb = P0.x-P1.x;
+  double deltaYb = P0.y-P1.y;
+  double t1 = deltaXa*deltaXb;
+  double t2 = deltaYa*deltaYb;
+  double b1 = deltaXa*deltaXa;
+  double b2 = deltaYa*deltaYa;
+  double t = t1+t2;
+  double b = b1+b2;
+  double gama = t/b;
+  if(0.0 <= gama && gama <= 1){
+    double at1 = deltaYa*P0.x;
+    double at2 = deltaXa*P0.y;
+    double at3 = P2.x*P1.y;
+    double at4 = P2.y*P1.x;
+    double at = std::abs(at1-at2+at3-at4);
+    double ab = std::sqrt(b);
+    return at/ab;
+  }
+  double dist1 = std::sqrt(deltaXb*deltaXb+deltaYb*deltaYb);
+  double ad1 = P2.x-P0.x;
+  double ad2 = P2.y-P0.y;
+  double dist2 = std::sqrt(ad1*ad1+ad2*ad2);
+  if(dist1>dist2){
+    return dist2;
+  }else{
+    return dist1;
+  }
 }

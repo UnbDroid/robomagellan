@@ -45,6 +45,7 @@ void aproximar_cruzeiro(struct fsm_object *obj, int val,void **arg){
 		obj->info->pubEnableFollowPath->publish(msg);
 		new_iteration = false;
 	}
+	
 	ROS_INFO("%f %f ",obstacle_range,max_dist_from_route);
 	double min_dist = 9999999;
 	for(int i=1;i < obj->info->path.size();i++){
@@ -55,24 +56,25 @@ void aproximar_cruzeiro(struct fsm_object *obj, int val,void **arg){
 		}
 	}
 	ROS_INFO("Min dist: %f",min_dist);
-
-	std::time_t now;
-	std::time(&now);
-	ROS_INFO("%f, %f",wait_recalculate_time,std::difftime(now,lastPathPlanned));
-	for (int i = 3; i < 8; ++i){
-		if(std::difftime(now,lastPathPlanned) > wait_recalculate_time && obj->info->US[i] < obstacle_range){
-			ROS_INFO("OBSTACULO NO CAMINHO");
-			fsm_to_state(obj,avoid_obstacle_state);
-			std::time(&lastPathPlanned);
-			break;
-		}
-		ROS_INFO("US[%d] = %f",i+1,obj->info->US[i]);
-	}
 	if(min_dist > max_dist_from_route){
 		ROS_INFO("RECALCULAR ROTA");
 		fsm_to_state(obj,recalculate_state);
 		new_iteration = true;	
-	}
+	}	
+
+	std::time_t now;
+	std::time(&now);
+	ROS_INFO("%f, %f",wait_recalculate_time,std::difftime(now,lastPathPlanned));
+	/*for (int i = 3; i < 8; ++i){
+		if(std::difftime(now,lastPathPlanned) > wait_recalculate_time && obj->info->US[i] < obstacle_range){
+			ROS_INFO("OBSTACULO NO CAMINHO");
+			//fsm_to_state(obj,avoid_obstacle_state);
+			std::time(&lastPathPlanned);
+			break;
+		}
+		ROS_INFO("US[%d] = %f",i+1,obj->info->US[i]);
+	}*/
+
 	if(obj->info->cone_encontrado){
 		static int run_iterator = 0;
 		obj->info->cone_encontrado = false;

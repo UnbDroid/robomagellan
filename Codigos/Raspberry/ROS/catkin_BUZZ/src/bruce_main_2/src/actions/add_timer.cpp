@@ -1,0 +1,10 @@
+#include "actions/actions.h"
+#include "ros/ros.h"
+#include "fsm.h"
+#include "parser/base_functions.h"
+
+void add_timer(Fsm *fsm, std::vector<std::string> args){
+	trim(args[0]);
+	BasicTimer timer = {args[0],std::chrono::high_resolution_clock::now()};
+	fsm->info->timers.push_back(timer);
+}

@@ -48,6 +48,7 @@ int main(int argc, char **argv){
   pathMsg.header.seq = 0;
   pathMsg.header.stamp = ros::Time::now();
   pathMsg.header.frame_id = "map";
+  int seq = -1;
 
   ros::Rate loop_rate(10);
 
@@ -100,11 +101,11 @@ int main(int argc, char **argv){
       doIt = false;
       _stateSpace->obstacles().clear();
       ROS_INFO("STOP");
+      seq++;
+      pathMsg.header.seq = seq;
+      pathMsg.header.stamp = ros::Time::now();
+      pathPub.publish(pathMsg);    
     }
-    
-    pathMsg.header.seq = 0;
-    pathMsg.header.stamp = ros::Time::now();
-    pathPub.publish(pathMsg);
 
     ros::spinOnce();
   }

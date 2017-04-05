@@ -31,10 +31,59 @@
 
 #define MAX_DIST 200
 
+/*
+Quicksort
+*/
+
+#define MEDIAN_SIZE 5
+#define MEDIAN_VALUE 2
+
+template<typename ItemType>
+unsigned Partition(ItemType* array, unsigned f, unsigned l, ItemType pivot)
+{
+    unsigned i = f-1, j = l+1;
+    while(true)
+    {
+        while(pivot < array[--j]);
+        while(array[++i] < pivot);
+        if(i<j)
+        {
+            ItemType tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
+        }
+        else
+            return j;
+    }
+}
+
+template<typename ItemType>
+void QuickSortImpl(ItemType* array, unsigned f, unsigned l)
+{
+    while(f < l)
+    {
+        unsigned m = Partition(array, f, l, array[f]);
+        QuickSortImpl(array, f, m);
+        f = m+1;
+    }
+}
+
+template<typename ItemType>
+void QuickSort(ItemType* array, unsigned size)
+{
+    QuickSortImpl(array, 0, size-1);
+}
+
+/*
+Quicksort
+*/
+
+
 // Valores - Ultrassom
 struct Ultrasound{
   float value;
-  float times_read;
+  float values[MEDIAN_SIZE];
+  long long int times_read;
   ros::Time time;
 };
 
@@ -55,17 +104,24 @@ int verifyIfUS(long int id){
 void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
   int usPos = verifyIfUS(msg->id);
   if(usPos > -1){
-    ultrasound[usPos].times_read += 1;
     long long int value = msg->data;
-//    ultrasound[usPos].value = msg->data;
-//    if(ultrasound[usPos].value == 0){
     if(value == 0){  
       value = MAX_DIST;
     }
-    float k = 1;
-    ultrasound[usPos].value = ((float)value/100.0)*k + ultrasound[usPos].value*(1-k);
+    float k = 0.8;
+    float fValue = ((float)value/100.0);
+    long long int iterator = ultrasound[usPos].times_read;
+    ultrasound[usPos].values[iterator % MEDIAN_SIZE] = fValue;
+    float values[MEDIAN_SIZE];
+    for(unsigned i = 0; i < MEDIAN_SIZE; ++i) {
+      values[i] = ultrasound[usPos].values[i];
+    }
+    QuickSort(values,MEDIAN_SIZE);
+    //ultrasound[usPos].value = values[MEDIAN_VALUE];
+    fValue = values[MEDIAN_VALUE];
+    ultrasound[usPos].value = fValue*k + ultrasound[usPos].value*(1-k);
     ultrasound[usPos].time = ros::Time::now();
-
+    ultrasound[usPos].times_read++;
   }
 
 

@@ -43,6 +43,8 @@ int main(int argc, char** argv){
   ros::Time time;
   ros::NodeHandle node;
 
+  currentPose.pose.pose.orientation.w = 1;
+
   /*Criando o subscriber da posicao atual do robo-----------------------------------------------*/
   ros::Subscriber subOdom = node.subscribe("odom", 1000, odomCallback);
   ros::Subscriber subOrigin = node.subscribe("origin", 1000, OriginCallback);
@@ -51,6 +53,8 @@ int main(int argc, char** argv){
 
 
   tf::TransformBroadcaster br;
+
+  tf::Transform transformCamera(tf::Quaternion(0,0,0,1),tf::Vector3(0.2,0,0.2));
 
   tf::Transform transformUS1(tf::Quaternion(0,0,-0.707,0.707),tf::Vector3(0,-0.19,0.2));
 
@@ -91,7 +95,8 @@ int main(int argc, char** argv){
     br.sendTransform(tf::StampedTransform(transformUS8, time, "base_link", "ultrasound8"));
     br.sendTransform(tf::StampedTransform(transformUS9, time, "base_link", "ultrasound9"));
     br.sendTransform(tf::StampedTransform(transformUS10, time, "base_link", "ultrasound10"));
-    br.sendTransform(tf::StampedTransform(transformUS11, time, "base_link", "ultrasound11"));        
+    br.sendTransform(tf::StampedTransform(transformUS11, time, "base_link", "ultrasound11"));
+    br.sendTransform(tf::StampedTransform(transformCamera, time, "base_link", "camera"));
     loop_rate.sleep();
     ros::spinOnce();
   }
