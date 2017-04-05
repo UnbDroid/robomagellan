@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "arduino_msgs/StampedInt64.h"
+#include "raspberry_msgs/StampedFloat32.h"
 #include "sensor_msgs/Range.h"
 #include <string>
 #include <sstream>
@@ -90,6 +91,7 @@ struct Ultrasound{
 Ultrasound ultrasound[NUM_US];
 sensor_msgs::Range range_msgs[NUM_US];
 
+raspberry_msgs::StampedFloat32 velocidadeArduino;
 
 int verifyIfUS(long int id){
   int USIds[NUM_US] = {US01,US02,US03,US04,US05,US06,US07,US08,US09,US10,US11};
@@ -127,6 +129,11 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
 
 }
 
+void arduinoVelocityCallback(const raspberry_msgs::StampedFloat32::ConstPtr& msg){
+  velocidadeArduino.id = msg->id;
+  velocidadeArduino.data = msg->data;
+}
+
 void processRangeMsgs(){
   for(int i=0;i<NUM_US;i++){
     range_msgs[i].range = ultrasound[i].value;
@@ -154,7 +161,12 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   ros::Subscriber sub = n.subscribe("arduino_int64", 1000, stampedInt64Callback);
+  ros::Subscriber arduino_velocity = n.subscribe("arduino_velocity", 1000, arduinoVelocityCallback);
+
   ros::Publisher ultrasound_pub[NUM_US];
+
+  ros::Publisher velocity_pub = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000);
+
   for(int i=0;i<NUM_US;i++){
     std::ostringstream s;
     s << i+1;
@@ -171,6 +183,8 @@ int main(int argc, char **argv)
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);
     }
+
+    velocity_pub.publish(velocidadeArduino);
 
     loop_rate.sleep();
     ros::spinOnce();
