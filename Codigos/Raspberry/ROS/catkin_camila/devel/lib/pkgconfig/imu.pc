@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel
+
+Name: imu
+Description: Description of imu
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel/lib 
+Requires: roscpp rospy std_msgs rosbag

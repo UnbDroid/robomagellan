@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/install
+
+Name: filtro
+Description: Description of filtro
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/install/lib 
+Requires: 

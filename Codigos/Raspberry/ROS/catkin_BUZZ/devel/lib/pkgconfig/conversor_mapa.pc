@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel
+
+Name: conversor_mapa
+Description: Description of conversor_mapa
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib 
+Requires: 

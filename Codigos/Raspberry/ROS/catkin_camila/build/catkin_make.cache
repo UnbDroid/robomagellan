@@ -1,0 +1,2 @@
+calibrar:filtro:gps:imu
+-DCATKIN_DEVEL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel -DCMAKE_INSTALL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/install -G Unix Makefiles

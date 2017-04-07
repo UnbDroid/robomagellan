@@ -1,0 +1,86 @@
+@Actions
++ change : change_state
++ publicar_origem_mapa: publish_map_bottom_left_corner
++ print: print
++ calcular_rota: request_route_calculation
++ habilitar_seguir_rota: send_enable_path_follow
++ calculando_rota: set_calculating_route
++ definir_alvo_gps: set_map_path_goal_gps
++ adicionar_timer: add_timer
++ resetar_timer: reset_timer
++ inserir_obstaculos_moveis: insert_us_obstacles_in_map
++ adicionar_posicao_cone: insert_camera_readings_in_map
++ adicionar_contador: add_counter
++ incrementar_contador: increment_counter
++ resetar_contador: reset_counter
++ requisitar_origem: request_set_origin
+
+@Conditions
++ bigger: is_bigger
++ odom_ok: odom_ok
++ rota_calculada: route_calculated
++ distante_da_rota: distant_from_route
++ cone_encontrado: cone_found
++ distancia_us_menor: us_reading_smaller 
++ verificar_timer: check_timer
++ encostou_algo: check_touch_sensor
++ contador_maior: check_counter_bigger
++ contador_menor: check_counter_smaller
++ botao_verde: check_green_button
++ botao_preto: check_black_button
++ origem_recebida: check_origin_received
+
+@States
++ esperar_botao
++ esperar_definicao_origem
++ setup
++ calcular_rota_primeiro_cone
++ calcular_rota_segundo_cone
++ aproximar_cruzeiro
++ recalcular_rota
++ calcular_desvio_obstaculo_movel
++ aproximar_fino
+
+@FSM
++ esperar_botao
+	adicionar_contador(name: requisitar_origem)
+	botao_verde() >> change(next_state: setup)
+	botao_preto() >> change(next_state: esperar_definicao_origem)
++ esperar_definicao_origem
+	contador_menor(name: requisitar_origem, value: 1) >> print(message: requisitando) & incrementar_contador(name: requisitar_origem) & requisitar_origem()
+	origem_recebida() >> print(message: recebi origem) & change(next_state: esperar_botao) & resetar_contador(name: requisitar_origem)
++ setup
+	publicar_origem_mapa(latitude: -15.762866, longitude: -47.858645)
+	adicionar_timer(name: us_timer)
+	adicionar_timer(name: aproximar_fino_timer)
+	odom_ok() >> change(next_state: calcular_rota_primeiro_cone)
++ calcular_rota_primeiro_cone
+	definir_alvo_gps(latitude: -15.762601, longitude: -47.857045)
+	calcular_rota()
+	calculando_rota(value: true)
+	rota_calculada() >> calculando_rota(value: false) & change(next_state: aproximar_cruzeiro)
++ aproximar_cruzeiro
+	habilitar_seguir_rota(value: 1)
+	distante_da_rota(distance: 2) >> change(next_state: recalcular_rota)
+	distancia_us_menor(us_number: 3, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
+	distancia_us_menor(us_number: 4, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
+	distancia_us_menor(us_number: 5, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
+	distancia_us_menor(us_number: 6, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
+	distancia_us_menor(us_number: 7, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
+	cone_encontrado() >> habilitar_seguir_rota(value: 0) & change(next_state: aproximar_fino)
++ recalcular_rota
+	calcular_rota()
+	calculando_rota(value: true)
+	rota_calculada() >> calculando_rota(value: false) & change(next_state: last_state)
++ calcular_desvio_obstaculo_movel
+	inserir_obstaculos_moveis(obstacle_inflation: 1)
+	calcular_rota()
+	calculando_rota(value: true)
+	rota_calculada() >> calculando_rota(value: false) & change(next_state: last_state)
++ aproximar_fino
+	habilitar_seguir_rota(value: 2)
+	print(message: aproximando fino)
+	adicionar_posicao_cone()
+	verificar_timer(name: aproximar_fino_timer, time: 5) >>resetar_timer(name: aproximar_fino_timer) & calcular_rota() & calculando_rota(value: true)
+	rota_calculada() >> calculando_rota(value: false)
+	encostou_algo(min_times: 3) >> print(message: eu enconstei em algo)

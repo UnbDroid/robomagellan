@@ -1,0 +1,27 @@
+1) Passo
+Para usar o ROS Remotamente basta iniciar o roscore no Rasp
+
+Digite:
+
+roscore
+
+2) Passo
+Depois disso adicione no computador que nao eh o rasp (o computador que vai receber) no arquivo /etc/hosts a seguinte linha
+(ip do rasp) raspberrypi
+Ex:
+192.168.10.10 raspberrypi
+
+Recapitulando(Faca no seu pc(NAO NO RASP))
+sudo nano /etc/hosts (ou o gedit) 
+
+e escreva a linha 
+192.168.10.10 raspberrypi
+
+3) Passo
+ Escreva no seu computador(NAO NO RASP)
+
+export ROS_MASTER_URI=http://raspberrypi:11311/
+
+ou o ROS_MASTER_URI que aparecer quando voce rodar o roscore no rasp
+
+PRONTO!

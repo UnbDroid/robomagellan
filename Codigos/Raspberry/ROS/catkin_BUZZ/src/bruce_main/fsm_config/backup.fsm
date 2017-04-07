@@ -1,0 +1,15 @@
+@Declarations
++ default
+	function_name: setup
++ calcular_rota
+	function_name: calcular_rota
+@FSM
++ default
+	map_bottom_left_lat: -15.762866
+	map_bottom_left_lng: -47.858645
+	next_state: calcular_rota
++ calcular_rota
+	x_coordinate: -15.762601, -15.761507, -15.762273
+	y_coordinate: -47.857045, -47.857377, -47.858549
+	next_state: calcular_rota,calcular_rota,terminate
+
