@@ -46,7 +46,21 @@ void startActionsParser(std::vector<ActionParser> & actions){
 	/* insert_us_obstacles_in_map action */
 	ActionParser insert_camera_readings_in_map_action = {"","insert_camera_readings_in_map",insert_camera_readings_in_map};
 	actions.push_back(insert_camera_readings_in_map_action);
-
+	/* add_counter action */
+	ActionParser add_counter_action = {"","add_counter",add_counter};
+	add_counter_action.action_param_names.push_back("name");
+	actions.push_back(add_counter_action);
+	/* increment_counter action */
+	ActionParser increment_counter_action = {"","increment_counter",increment_counter};
+	increment_counter_action.action_param_names.push_back("name");
+	actions.push_back(increment_counter_action);
+	/* reset_counter action */
+	ActionParser reset_counter_action = {"","reset_counter",reset_counter};
+	reset_counter_action.action_param_names.push_back("name");
+	actions.push_back(reset_counter_action);
+	/* request_set_origin action */
+	ActionParser request_set_origin_action = {"","request_set_origin",request_set_origin};
+	actions.push_back(request_set_origin_action);
 }
 
 bool getActionByFunctionName(ActionParser & action, std::string funcName, std::vector<ActionParser> & actions){

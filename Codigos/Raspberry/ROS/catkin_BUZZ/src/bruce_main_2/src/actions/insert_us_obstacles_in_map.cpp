@@ -23,15 +23,23 @@ void insert_us_obstacles_in_map(Fsm *fsm, std::vector<std::string> args){
 					ros::Time(0), transform);
 					tf::Vector3 us(fsm->info->US[i]+obstacle_inflation,0,0);
 					tf::Vector3 usT = transform.inverse()(us);
-					ROS_INFO("%f,%f,%f",usT.x(),usT.y(),usT.z());
+					
+					#ifdef PRINT_ENABLED
+						ROS_INFO("%f,%f,%f",usT.x(),usT.y(),usT.z());
+					#endif					
+					
 					poseMsg.position.x = usT.x();
 					poseMsg.position.y = usT.y();
 					poseMsg.position.z = obstacle_inflation;
 					arrayMsg.poses.push_back(poseMsg);
 				}catch (tf::TransformException & ex){
-				      ROS_ERROR("%s",ex.what());
+					#ifdef PRINT_ENABLED
+						ROS_ERROR("%s",ex.what());
+					#endif					
 				}
-				ROS_INFO("US[%d] = %f",i+1,fsm->info->US[i]);
+				#ifdef PRINT_ENABLED
+					ROS_INFO("US[%d] = %f",i+1,fsm->info->US[i]);
+				#endif						
 			}
 		}	
 		fsm->info->pubObstacles->publish(arrayMsg);

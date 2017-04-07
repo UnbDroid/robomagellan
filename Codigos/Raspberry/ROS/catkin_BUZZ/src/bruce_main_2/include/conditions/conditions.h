@@ -40,3 +40,15 @@ bool cone_found(Fsm *obj, std::vector<std::string>);
 bool us_reading_smaller(Fsm *obj, std::vector<std::string>);
 
 bool check_timer(Fsm *obj, std::vector<std::string>);
+
+bool check_touch_sensor(Fsm *obj, std::vector<std::string>);
+
+bool check_counter_bigger(Fsm *obj, std::vector<std::string>);
+
+bool check_counter_smaller(Fsm *obj, std::vector<std::string>);
+
+bool check_green_button(Fsm *obj, std::vector<std::string>);
+
+bool check_black_button(Fsm *obj, std::vector<std::string>);
+
+bool check_origin_received(Fsm *obj, std::vector<std::string>);

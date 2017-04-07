@@ -5,8 +5,10 @@
 
 bool distant_from_route(Fsm *fsm, std::vector<std::string>args){
 	float distance = std::atof(args[0].c_str());
-
-	ROS_INFO("%f",distance);
+	
+	#ifdef PRINT_ENABLED
+		ROS_INFO("%f",distance);
+	#endif	
 	double min_dist = 9999999;
 	NEDCoord P0 = {fsm->info->pose.position.x,fsm->info->pose.position.y};
 	for(int i=1;i < fsm->info->path.size();i++){
@@ -15,8 +17,10 @@ bool distant_from_route(Fsm *fsm, std::vector<std::string>args){
 			min_dist = projection;
 		}
 	}
-	ROS_INFO("Pos atual: %f,%f",P0.x,P0.y);
-	ROS_INFO("Min dist: %f",min_dist);
+	#ifdef PRINT_ENABLED
+		ROS_INFO("Pos atual: %f,%f",P0.x,P0.y);
+		ROS_INFO("Min dist: %f",min_dist);
+	#endif
 	if(min_dist > distance){
 		return true;
 	}	

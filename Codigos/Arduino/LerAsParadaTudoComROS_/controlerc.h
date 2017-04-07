@@ -74,7 +74,7 @@ void processarControleRC(float & velDir, float & velEsq){
   if(controlar){
     velDir = (channel_value2-1338.0)/2000.0*10.0;
     velEsq = velDir;
-    float guinada = (((channel_value3-1420.0)/(2000.0*0.24)))*2;
+    float guinada = (((channel_value3-1440.0)/(2000.0*0.24)))*2;
     if(abs(velDir) < 0.5){
       velDir = 0;
     }else if(velDir > 0.5){

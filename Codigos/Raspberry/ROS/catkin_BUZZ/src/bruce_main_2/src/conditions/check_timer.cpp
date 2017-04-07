@@ -21,6 +21,5 @@ bool check_timer(Fsm *fsm, std::vector<std::string>args){
 
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
-	//ROS_INFO("%f",time_span.count());
 	return time_span.count() > time;
 }

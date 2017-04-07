@@ -14,6 +14,7 @@
 #define PI 3.14159265
 #define NUM_US 11
 #define MAX_RANGE 2.0f
+#define PRINT_ENABLED
 
 class Coordinates{
 public:
@@ -40,6 +41,11 @@ struct BasicTimer{
 	std::chrono::high_resolution_clock::time_point t;
 };
 
+struct BasicCounter{
+	std::string name;
+	int counter;
+};
+
 struct NEDCoord{
   double x,y,z;
 };
@@ -62,6 +68,10 @@ struct robot_information{
 	bool route_calculated;
 	bool calculating_route;
 	bool cone_encontrado;
+	bool sensor_toque;
+	bool botao_verde;
+	bool botao_preto;
+	bool origin_received;
 	geometry_msgs::Pose pose;
 	NEDCoord currentMapGoal;
 	NEDCoord originInMap;
@@ -69,6 +79,7 @@ struct robot_information{
 	float cameraReadDistance;
 	float cameraReadOrientation;
 	std::vector<BasicTimer> timers;
+	std::vector<BasicCounter> counters;
 	// ROS stuff
 	ros::NodeHandle * n;
 	ros::Publisher * pubRequestPath;
@@ -76,6 +87,7 @@ struct robot_information{
 	ros::Publisher * pubPath;
 	ros::Publisher * pubEnableFollowPath;
 	ros::Publisher * pubObstacles;	
+	ros::Publisher * pubOriginRequest;	
 	tf::TransformListener * tfListener;
 	GPSCoord origin;
 	GPSCoord bottomLeft;

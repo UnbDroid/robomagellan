@@ -77,7 +77,7 @@ int fsm_to_state(Fsm *fsm, std::string state)
     if(state == "terminate"){
         fsm_terminate(fsm);
     }else if(state == "last_state"){
-        std::cout << fsm->last_state->name << std::endl;
+        //std::cout << fsm->last_state->name << std::endl;
         fsm->cur_state_name = fsm->last_state->name;
     }else{
         fsm->cur_state_name = state;

@@ -7,6 +7,7 @@
 #include "ultrassom.h"
 #include "controlerc.h"
 #include "sensortoque.h"
+#include "botaoStart.h"
 #include "tasksdeclarations.h"
 
 
@@ -84,6 +85,8 @@ void taskShowUSReadingCallback(){
   Serial.print("Toque: ");      Serial.println(sensorToque);
   Serial.print("Vel esq: "); Serial.println(velAtual.esq);
   Serial.print("Vel dir: "); Serial.println(velAtual.dir);
+  Serial.print("Botao Verde: ");Serial.println(botaoVerde);
+  Serial.print("Botao Preto: ");Serial.println(botaoPreto);
   unsigned long t2 = millis();
   Serial.print("Demorei ");
   Serial.println(t2-t1);
@@ -104,6 +107,8 @@ void taskROSCallback(){
   sendInt64(US11, USReadings[10]);
 
   sendInt64(SENSOR_TOQUE, sensorToque);
+  sendInt64(BOTAO_PRETO, botaoPreto);
+  sendInt64(BOTAO_VERDE, botaoVerde);
 
   sendFloat64(VEL_ATUAL_DIR,velAtual.dir);
   sendFloat64(VEL_ATUAL_ESQ,velAtual.esq);   
@@ -116,6 +121,8 @@ void taskROSCallback(){
 
 void taskBotaoCallback(){
   sensorToque = lerSensorToque();
+  botaoPreto = lerBotaoPreto();
+  botaoVerde = lerBotaoVerde();
 }
 void taskComArduinoCallback(){
   processarControleRC(velRef.dir,velRef.esq);
@@ -145,6 +152,8 @@ void setup() {
   start_TASKS();
   
   startSENSORTOQUE();
+
+  startBotoes();
   
 }
 

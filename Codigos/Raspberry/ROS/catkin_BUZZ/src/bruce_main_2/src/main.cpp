@@ -12,6 +12,9 @@ void OriginCallback(const geometry_msgs::Point32::ConstPtr& msg);
 void PathCallback(const nav_msgs::Path::ConstPtr& msg);
 void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg);
 void CameraPositionCallback(const geometry_msgs::Point32::ConstPtr& msg);
+void SensorToqueCallback(const std_msgs::Bool::ConstPtr& msg);
+void BotaoPretoCallback(const std_msgs::Bool::ConstPtr& msg);
+void BotaoVerdeCallback(const std_msgs::Bool::ConstPtr& msg);
 
 void startInfo(robot_information & info);
 
@@ -57,15 +60,19 @@ int main(int argc, char **argv){
       ros::Subscriber subUS10 = n.subscribe("ultrasound10",1000,UltrassomCallback);
       ros::Subscriber subUS11 = n.subscribe("ultrasound11",1000,UltrassomCallback);
       ros::Subscriber subCamera = n.subscribe("cone_position",1000,CameraPositionCallback);
+      ros::Subscriber subSensorToque = n.subscribe("sensor_toque", 1000, SensorToqueCallback);
+      ros::Subscriber subBotaoPreto = n.subscribe("botao_preto", 1000, BotaoPretoCallback);
+      ros::Subscriber subBotaoVerde = n.subscribe("botao_verde", 1000, BotaoVerdeCallback);
       tf::TransformListener tfListener;      
 
 
       /* Publishers */
-      ros::Publisher pathPub = n.advertise<nav_msgs::Path>("path_planned",1000);
-      ros::Publisher pubEnableFollowPath = n.advertise<std_msgs::Int16>("enable_follow_path",1000);
-      ros::Publisher pubRequestPath = n.advertise<geometry_msgs::Point32>("path_request",1000); 
-      ros::Publisher pubMapBLCoordinate = n.advertise<geometry_msgs::Point32>("map_bl_coord",1000); 
+      ros::Publisher pathPub = n.advertise<nav_msgs::Path>("path_planned",1000,true);
+      ros::Publisher pubEnableFollowPath = n.advertise<std_msgs::Int16>("enable_follow_path",1000,true);
+      ros::Publisher pubRequestPath = n.advertise<geometry_msgs::Point32>("path_request",1000,true); 
+      ros::Publisher pubMapBLCoordinate = n.advertise<geometry_msgs::Point32>("map_bl_coord",1000,true); 
       ros::Publisher pubObstacles = n.advertise<geometry_msgs::PoseArray>("new_obstacles",1000);
+      ros::Publisher pubOriginRequest = n.advertise<std_msgs::Bool>("request_origin",1000);
 
       info.n = &n;
       info.pubRequestPath = & pubRequestPath;
@@ -73,6 +80,7 @@ int main(int argc, char **argv){
       info.pubPath = & pathPub;
       info.pubEnableFollowPath = & pubEnableFollowPath;
       info.pubObstacles = & pubObstacles;
+      info.pubOriginRequest = & pubOriginRequest;
       info.tfListener = & tfListener;
       
       ros::Rate loop_rate(30);
@@ -107,12 +115,16 @@ void OdomOkCallback(const std_msgs::Bool::ConstPtr& msg){
 
 void RouteOkCallback(const std_msgs::Bool::ConstPtr& msg){
   route_received = msg->data;
-  ROS_INFO("RECEBI %d", msg->data);
+  #ifdef PRINT_ENABLED
+    ROS_INFO("RECEBI %d", msg->data);
+  #endif
 }
 
 void ConeEncontradoCallback(const std_msgs::Bool::ConstPtr& msg){
   info.cone_encontrado = msg->data;
-  ROS_INFO("O cone foi encontrado %d", msg->data);  
+  #ifdef PRINT_ENABLED
+    ROS_INFO("O cone foi encontrado %d", msg->data);  
+  #endif
 }
 
 void startInfo(robot_information & info){
@@ -120,6 +132,8 @@ void startInfo(robot_information & info){
   info.route_calculated = false;
   info.cone_encontrado = false;
   info.calculating_route = false;
+  info.sensor_toque = false;
+  info.origin_received = false;
   info.pose = geometry_msgs::Pose();
   info.origin.lat = 0;
   info.origin.lng = 0;
@@ -128,6 +142,7 @@ void startInfo(robot_information & info){
 }
 
 void OriginCallback(const geometry_msgs::Point32::ConstPtr& msg){
+  info.origin_received = true;
   info.origin.lat = msg->x;
   info.origin.lng = msg->y; 
 }
@@ -157,7 +172,9 @@ void PathCallback(const nav_msgs::Path::ConstPtr& msg){
     if(route_received){
         info.pubPath->publish(pathMsg);
         info.route_calculated = true;
-        ROS_INFO("RECEBI rota");
+        #ifdef PRINT_ENABLED
+          ROS_INFO("RECEBI rota");
+        #endif
         route_received = false; 
     }
   }
@@ -209,4 +226,15 @@ double distanceFromSegmentToPoint(NEDCoord P1 ,NEDCoord P2,NEDCoord P0){
   }else{
     return dist1;
   }
+}
+
+void SensorToqueCallback(const std_msgs::Bool::ConstPtr& msg){
+  info.sensor_toque = msg->data;
+}
+
+void BotaoPretoCallback(const std_msgs::Bool::ConstPtr& msg){
+  info.botao_preto = msg->data;
+}
+void BotaoVerdeCallback(const std_msgs::Bool::ConstPtr& msg){
+  info.botao_verde = msg->data;
 }

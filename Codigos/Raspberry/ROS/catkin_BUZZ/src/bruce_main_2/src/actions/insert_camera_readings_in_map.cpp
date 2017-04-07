@@ -14,11 +14,15 @@ void insert_camera_readings_in_map	(Fsm *fsm, std::vector<std::string> args){
 			fsm->info->tfListener->lookupTransform("/camera", "/map",  
 					ros::Time(0), transform);
 			tf::Vector3 coneInMap = transform.inverse()(cone);
-			ROS_INFO("%f,%f,%f",coneInMap.x(),coneInMap.y(),coneInMap.z());
+			#ifdef PRINT_ENABLED
+				ROS_INFO("%f,%f,%f",coneInMap.x(),coneInMap.y(),coneInMap.z());
+			#endif
 			fsm->info->currentMapGoal.x = coneInMap.x();
 			fsm->info->currentMapGoal.y = coneInMap.y();
 		}catch (tf::TransformException & ex){
-				      ROS_ERROR("%s",ex.what());
+			#ifdef PRINT_ENABLED
+				ROS_ERROR("%s",ex.what());
+			#endif
 		}
 	}
 }

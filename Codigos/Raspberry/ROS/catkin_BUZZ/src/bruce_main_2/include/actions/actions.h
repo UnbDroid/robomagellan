@@ -33,3 +33,7 @@ void insert_us_obstacles_in_map(struct Fsm *obj, std::vector<std::string>);
 void add_timer(struct Fsm *obj, std::vector<std::string>);
 void reset_timer(struct Fsm *obj, std::vector<std::string>);
 void insert_camera_readings_in_map(struct Fsm *obj, std::vector<std::string>);
+void add_counter(struct Fsm *obj, std::vector<std::string>);
+void increment_counter(struct Fsm *obj, std::vector<std::string>);
+void reset_counter(struct Fsm *obj, std::vector<std::string>);
+void request_set_origin(struct Fsm *obj, std::vector<std::string>);

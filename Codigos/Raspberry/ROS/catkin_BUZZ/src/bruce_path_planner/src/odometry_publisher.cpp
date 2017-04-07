@@ -3,6 +3,7 @@
 #include <geometry_msgs/Point32.h>
 #include <std_msgs/Bool.h>
 #include <cstdlib>
+//#define PRINT_ENABLED
 
 int main(int argc, char** argv){
   ros::init(argc, argv, "odometry_publisher");
@@ -17,7 +18,11 @@ int main(int argc, char** argv){
   double lng = 0.0;
 
   for(int i=0; i<argc;i++){
-    ROS_INFO("%d, %s",i,argv[i]);
+    
+    #ifdef PRINT_ENABLED
+      ROS_INFO("%d, %s",i,argv[i]);
+    #endif
+
     if(i==1){
       x = std::atof(argv[i]);
     }else if(i==2){
@@ -84,7 +89,9 @@ int main(int argc, char** argv){
     odom.twist.twist.linear.x = vx;
     odom.twist.twist.linear.y = vy;
     odom.twist.twist.angular.z = vth;
-    ROS_INFO("%f, %f",x,y);
+    #ifdef PRINT_ENABLED
+      ROS_INFO("%f, %f",x,y);
+    #endif
     //publish the message
     odom_pub.publish(odom);
     origin_pub.publish(origin);

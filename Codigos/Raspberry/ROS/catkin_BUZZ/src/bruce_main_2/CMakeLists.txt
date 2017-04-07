@@ -204,8 +204,12 @@ set(${PROJECT_NAME}_ACTIONS
       src/actions/reset_timer
       src/actions/insert_us_obstacles_in_map
       src/actions/insert_camera_readings_in_map
+      src/actions/add_counter
+      src/actions/increment_counter
+      src/actions/reset_counter
+      src/actions/request_set_origin
 	src/actions/print)
-
+  
 set(${PROJECT_NAME}_CONDITIONS
 	src/conditions/conditions 
 	src/conditions/is_bigger 
@@ -214,7 +218,15 @@ set(${PROJECT_NAME}_CONDITIONS
 	src/conditions/distant_from_route
       src/conditions/cone_found
       src/conditions/check_timer
-      src/conditions/us_reading_smaller)
+      src/conditions/us_reading_smaller
+      src/conditions/check_touch_sensor
+      src/conditions/check_counter_smaller
+      src/conditions/check_counter_bigger
+      src/conditions/check_green_button
+      src/conditions/check_black_button
+      src/conditions/check_origin_received)
+
+
 
 set(${PROJECT_NAME}_STATES
   src/states/states)

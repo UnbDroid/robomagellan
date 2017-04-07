@@ -10,6 +10,8 @@ void request_route_calculation(Fsm *fsm, std::vector<std::string> args){
 		msg.x = map_x;
 		msg.y = map_y;
 		fsm->info->pubRequestPath->publish(msg);
-		ROS_INFO("Requesting (%f,%f) ",map_x,map_y);	
+		#ifdef PRINT_ENABLED
+			ROS_INFO("Requesting (%f,%f) ",map_x,map_y);
+		#endif					
 	}
 }

@@ -7,6 +7,8 @@
 #define VEL_REF_ESQ 11
 
 #define SENSOR_TOQUE 300
+#define BOTAO_VERDE 301
+#define BOTAO_PRETO 302
 
 #define US01 555
 #define US02 556

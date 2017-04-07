@@ -10,6 +10,10 @@
 + resetar_timer: reset_timer
 + inserir_obstaculos_moveis: insert_us_obstacles_in_map
 + adicionar_posicao_cone: insert_camera_readings_in_map
++ adicionar_contador: add_counter
++ incrementar_contador: increment_counter
++ resetar_contador: reset_counter
++ requisitar_origem: request_set_origin
 
 @Conditions
 + bigger: is_bigger
@@ -19,8 +23,16 @@
 + cone_encontrado: cone_found
 + distancia_us_menor: us_reading_smaller 
 + verificar_timer: check_timer
++ encostou_algo: check_touch_sensor
++ contador_maior: check_counter_bigger
++ contador_menor: check_counter_smaller
++ botao_verde: check_green_button
++ botao_preto: check_black_button
++ origem_recebida: check_origin_received
 
 @States
++ esperar_botao
++ esperar_definicao_origem
 + setup
 + calcular_rota_primeiro_cone
 + calcular_rota_segundo_cone
@@ -28,10 +40,15 @@
 + recalcular_rota
 + calcular_desvio_obstaculo_movel
 + aproximar_fino
-+ primeiro
-+ segundo
 
 @FSM
++ esperar_botao
+	adicionar_contador(name: requisitar_origem)
+	botao_verde() >> change(next_state: setup)
+	botao_preto() >> change(next_state: esperar_definicao_origem)
++ esperar_definicao_origem
+	contador_menor(name: requisitar_origem, value: 1) >> print(message: requisitando) & incrementar_contador(name: requisitar_origem) & requisitar_origem()
+	origem_recebida() >> print(message: recebi origem) & change(next_state: esperar_botao) & resetar_contador(name: requisitar_origem)
 + setup
 	publicar_origem_mapa(latitude: -15.762866, longitude: -47.858645)
 	adicionar_timer(name: us_timer)
@@ -62,12 +79,8 @@
 	rota_calculada() >> calculando_rota(value: false) & change(next_state: last_state)
 + aproximar_fino
 	habilitar_seguir_rota(value: 2)
+	print(message: aproximando fino)
 	adicionar_posicao_cone()
-	verificar_timer(name: aproximar_fino_timer, time: 5) >>resetar_timer(name: aproximar_fino_timer) & change(next_state: recalcular_rota) 
-+ primeiro
-	verificar_timer(name: us_timer, time: 1.5) >> print(message: ola) & resetar_timer(name:us_timer)
-	print(message: ola)
-	print(message: nao)
-+segundo
-	print(message: testudo)
-	bigger(first: 5.0, second: 1.5) & bigger(first: 2.5, second: 2) >> print(message: saindo do segundo) & change(next_state: primeiro)
+	verificar_timer(name: aproximar_fino_timer, time: 5) >>resetar_timer(name: aproximar_fino_timer) & calcular_rota() & calculando_rota(value: true)
+	rota_calculada() >> calculando_rota(value: false)
+	encostou_algo(min_times: 3) >> print(message: eu enconstei em algo)

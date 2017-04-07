@@ -10,6 +10,7 @@
 #include "Path.hpp"
 #include <string>
 #include <sstream>
+//#define PRINT_ENABLED
 
 OccupancyMap occMap;
 std::shared_ptr<OccupancyMap> _stateSpace;
@@ -56,7 +57,9 @@ int main(int argc, char **argv){
     loop_rate.sleep();
     if(doIt){
       double maxCost = 99999999;
-      ROS_INFO("START");
+      #ifdef PRINT_ENABLED
+        ROS_INFO("START");
+      #endif
       for(unsigned i = 0; i < 3; ++i) {
         RRT::BiRRT<Coordinates> biRRT(_stateSpace);
         biRRT.setStartState(start);
@@ -66,15 +69,19 @@ int main(int argc, char **argv){
         biRRT.setMaxIterations(10000);
 
         bool success = biRRT.run();
-        ROS_INFO("Succes: %d",success);
+        #ifdef PRINT_ENABLED
+          ROS_INFO("Succes: %d",success);
+        #endif
         std::vector<Coordinates> path = biRRT.getPath();
 
         RRT::SmoothPath<Coordinates>(path, *_stateSpace);
 
         RRT::SmoothEdges2(path, *_stateSpace);
  
-        ROS_INFO("Path size: %lu",path.size());
-        
+        #ifdef PRINT_ENABLED
+          ROS_INFO("Path size: %lu",path.size());
+        #endif
+
         double cost = 0;
         for(unsigned long i = 1;i<path.size();i++){
           Coordinates aux = path[i]-path[i-1];
@@ -100,7 +107,9 @@ int main(int argc, char **argv){
       routeOkPub.publish(okMsg);
       doIt = false;
       _stateSpace->obstacles().clear();
-      ROS_INFO("STOP");
+      #ifdef PRINT_ENABLED
+        ROS_INFO("STOP");
+      #endif
       seq++;
       pathMsg.header.seq = seq;
       pathMsg.header.stamp = ros::Time::now();
@@ -114,17 +123,21 @@ int main(int argc, char **argv){
 }
 
 void MapCallback(const nav_msgs::OccupancyGrid::ConstPtr& msg){
-  ROS_INFO("Map received");
-
+  #ifdef PRINT_ENABLED
+    ROS_INFO("Map received");
+  #endif
    _stateSpace = std::make_shared<OccupancyMap>(msg);
-
-  ROS_INFO("Map received\n");
+  #ifdef PRINT_ENABLED
+    ROS_INFO("Map received\n");
+  #endif
 }
 
 void TFCallback(const tf2_msgs::TFMessage::ConstPtr& msg){
   for(int i=0; i<msg->transforms.size();i++){
     if(msg->transforms[i].header.frame_id == "map"){
+      #ifdef PRINT_ENABLED
         ROS_INFO("x : %f, y: %f",msg->transforms[i].transform.translation.x,msg->transforms[i].transform.translation.y);
+      #endif
         start.x = msg->transforms[i].transform.translation.x;
         start.y = msg->transforms[i].transform.translation.y;
     }
@@ -138,7 +151,9 @@ void ClickedCallback(const geometry_msgs::PointStamped::ConstPtr& msg){
 }
 
 void PathRequestCallback(const geometry_msgs::Point32::ConstPtr& msg){
-  ROS_INFO("RECEIVED REQUEST");
+  #ifdef PRINT_ENABLED
+    ROS_INFO("RECEIVED REQUEST");
+  #endif
   goal.x = msg->x;
   goal.y = msg->y;
   doIt = true;
@@ -150,7 +165,9 @@ void NewObstaclesCallback(const geometry_msgs::PoseArray::ConstPtr& msg){
   }
   for (int i = 0; i < msg->poses.size(); ++i){
     Coordinates aux = {(float)msg->poses[i].position.x,(float)msg->poses[i].position.y};
-    ROS_INFO("Point: (%f,%f)",aux.x,aux.y);
+    #ifdef PRINT_ENABLED
+      ROS_INFO("Point: (%f,%f)",aux.x,aux.y);
+    #endif
     _stateSpace->obstacles().push_back(aux);
   }
 }

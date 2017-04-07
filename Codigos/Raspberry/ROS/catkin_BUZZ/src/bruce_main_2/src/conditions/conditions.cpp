@@ -29,7 +29,30 @@ void startConditionsParser(std::vector<ConditionParser> & conditions){
 	ConditionParser check_timer_condition = {"","check_timer",check_timer};
 	check_timer_condition.condition_param_names.push_back("name");
 	check_timer_condition.condition_param_names.push_back("time");
-	conditions.push_back(check_timer_condition);		
+	conditions.push_back(check_timer_condition);
+	/* check_touch_sensor condition */
+	ConditionParser check_touch_sensor_condition = {"","check_touch_sensor",check_touch_sensor};
+	check_touch_sensor_condition.condition_param_names.push_back("min_times");
+	conditions.push_back(check_touch_sensor_condition);
+	/* check_counter_bigger condition */
+	ConditionParser check_counter_bigger_condition = {"","check_counter_bigger",check_counter_bigger};
+	check_counter_bigger_condition.condition_param_names.push_back("name");
+	check_counter_bigger_condition.condition_param_names.push_back("value");
+	conditions.push_back(check_counter_bigger_condition);
+	/* check_counter_smaller_condition condition */
+	ConditionParser check_counter_smaller_condition = {"","check_counter_smaller",check_counter_smaller};
+	check_counter_smaller_condition.condition_param_names.push_back("name");
+	check_counter_smaller_condition.condition_param_names.push_back("value");
+	conditions.push_back(check_counter_smaller_condition);
+	/* check_green_button condition */
+	ConditionParser check_green_button_condition = {"","check_green_button",check_green_button};
+	conditions.push_back(check_green_button_condition);
+	/* check_black_button condition */
+	ConditionParser check_black_button_condition = {"","check_black_button",check_black_button};
+	conditions.push_back(check_black_button_condition);
+	/* check_origin_received condition */
+	ConditionParser check_origin_received_condition = {"","check_origin_received",check_origin_received};
+	conditions.push_back(check_origin_received_condition);
 }
 
 bool getConditionByFunctionName(ConditionParser & condition, std::string funcName, std::vector<ConditionParser> & conditions){

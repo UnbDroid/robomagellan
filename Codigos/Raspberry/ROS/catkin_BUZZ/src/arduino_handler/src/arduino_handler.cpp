@@ -2,10 +2,13 @@
 #include "arduino_msgs/StampedInt64.h"
 #include "raspberry_msgs/StampedFloat32.h"
 #include "sensor_msgs/Range.h"
+#include "std_msgs/Bool.h"
 #include <string>
 #include <sstream>
 
 #define SENSOR_TOQUE 300
+#define BOTAO_VERDE 301
+#define BOTAO_PRETO 302
 
 #define US01 555
 #define US02 556
@@ -38,6 +41,8 @@ Quicksort
 
 #define MEDIAN_SIZE 5
 #define MEDIAN_VALUE 2
+
+ros::Publisher velocity_pub;
 
 template<typename ItemType>
 unsigned Partition(ItemType* array, unsigned f, unsigned l, ItemType pivot)
@@ -91,6 +96,10 @@ struct Ultrasound{
 Ultrasound ultrasound[NUM_US];
 sensor_msgs::Range range_msgs[NUM_US];
 
+static bool sensor_toque = false;
+static bool botao_verde = false;
+static bool botao_preto = false;
+
 raspberry_msgs::StampedFloat32 velocidadeArduino;
 
 int verifyIfUS(long int id){
@@ -124,6 +133,12 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
     ultrasound[usPos].value = fValue*k + ultrasound[usPos].value*(1-k);
     ultrasound[usPos].time = ros::Time::now();
     ultrasound[usPos].times_read++;
+  }else if(msg->id == SENSOR_TOQUE){
+    sensor_toque = msg->data;
+  }else if(msg->id == BOTAO_PRETO){
+    botao_preto = msg->data;
+  }else if(msg->id == BOTAO_VERDE){
+    botao_verde = msg->data;
   }
 
 
@@ -132,6 +147,7 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
 void arduinoVelocityCallback(const raspberry_msgs::StampedFloat32::ConstPtr& msg){
   velocidadeArduino.id = msg->id;
   velocidadeArduino.data = msg->data;
+  velocity_pub.publish(velocidadeArduino);
 }
 
 void processRangeMsgs(){
@@ -165,7 +181,11 @@ int main(int argc, char **argv)
 
   ros::Publisher ultrasound_pub[NUM_US];
 
-  ros::Publisher velocity_pub = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000);
+  ros::Publisher sensor_toque_pub = n.advertise<std_msgs::Bool>("sensor_toque",1000);
+  ros::Publisher botao_verde_pub = n.advertise<std_msgs::Bool>("botao_verde",1000);
+  ros::Publisher botao_preto_pub = n.advertise<std_msgs::Bool>("botao_preto",1000);
+
+  velocity_pub = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000);
 
   for(int i=0;i<NUM_US;i++){
     std::ostringstream s;
@@ -177,14 +197,22 @@ int main(int argc, char **argv)
   startRangeMsgs();
   ros::Rate loop_rate(10);
 
+  std_msgs::Bool sensor_toque_msg;
+  std_msgs::Bool botao_preto_msg;
+  std_msgs::Bool botao_verde_msg;
+
   while (ros::ok()){
     processRangeMsgs();
+    sensor_toque_msg.data = sensor_toque;
+    botao_verde_msg.data = botao_verde;
+    botao_preto_msg.data = botao_preto;
 
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);
     }
-
-    velocity_pub.publish(velocidadeArduino);
+    sensor_toque_pub.publish(sensor_toque_msg);
+    botao_verde_pub.publish(botao_verde_msg);
+    botao_preto_pub.publish(botao_preto_msg);
 
     loop_rate.sleep();
     ros::spinOnce();
