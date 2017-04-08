@@ -208,6 +208,7 @@ set(${PROJECT_NAME}_ACTIONS
       src/actions/increment_counter
       src/actions/reset_counter
       src/actions/request_set_origin
+      src/actions/set_velocity
 	src/actions/print)
   
 set(${PROJECT_NAME}_CONDITIONS

@@ -14,6 +14,7 @@
 + incrementar_contador: increment_counter
 + resetar_contador: reset_counter
 + requisitar_origem: request_set_origin
++ definir_velocidade: set_velocity
 
 @Conditions
 + bigger: is_bigger
@@ -44,6 +45,7 @@
 @FSM
 + esperar_botao
 	adicionar_contador(name: requisitar_origem)
+	definir_velocidade(linear: 2, angular: 0)
 	botao_verde() >> change(next_state: setup)
 	botao_preto() >> change(next_state: esperar_definicao_origem)
 + esperar_definicao_origem

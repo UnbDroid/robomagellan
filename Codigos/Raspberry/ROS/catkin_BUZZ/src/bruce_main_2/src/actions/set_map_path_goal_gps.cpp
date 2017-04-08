@@ -5,7 +5,6 @@
 
 void set_map_path_goal_gps(Fsm *fsm, std::vector<std::string> args){
 	if(!fsm->info->calculating_route){
-		geometry_msgs::Point32 msg;
 		GPSCoord gpsGoal ={std::atof(args[0].c_str()), std::atof(args[1].c_str())};
 		NEDCoord nedGoal = GPS2NED(gpsGoal,fsm->info->bottomLeft);
 		NEDCoord originInMap = GPS2NED(fsm->info->origin,fsm->info->bottomLeft);

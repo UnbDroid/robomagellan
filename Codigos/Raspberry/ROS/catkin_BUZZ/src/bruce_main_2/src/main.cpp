@@ -73,6 +73,7 @@ int main(int argc, char **argv){
       ros::Publisher pubMapBLCoordinate = n.advertise<geometry_msgs::Point32>("map_bl_coord",1000,true); 
       ros::Publisher pubObstacles = n.advertise<geometry_msgs::PoseArray>("new_obstacles",1000);
       ros::Publisher pubOriginRequest = n.advertise<std_msgs::Bool>("request_origin",1000);
+      ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity",1000,true);
 
       info.n = &n;
       info.pubRequestPath = & pubRequestPath;
@@ -81,6 +82,7 @@ int main(int argc, char **argv){
       info.pubEnableFollowPath = & pubEnableFollowPath;
       info.pubObstacles = & pubObstacles;
       info.pubOriginRequest = & pubOriginRequest;
+      info.pubVelocity = & pubVelocity;
       info.tfListener = & tfListener;
       
       ros::Rate loop_rate(30);

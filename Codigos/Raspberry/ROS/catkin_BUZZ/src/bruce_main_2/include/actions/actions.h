@@ -37,3 +37,4 @@ void add_counter(struct Fsm *obj, std::vector<std::string>);
 void increment_counter(struct Fsm *obj, std::vector<std::string>);
 void reset_counter(struct Fsm *obj, std::vector<std::string>);
 void request_set_origin(struct Fsm *obj, std::vector<std::string>);
+void set_velocity(struct Fsm *obj, std::vector<std::string>);

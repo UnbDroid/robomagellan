@@ -61,6 +61,11 @@ void startActionsParser(std::vector<ActionParser> & actions){
 	/* request_set_origin action */
 	ActionParser request_set_origin_action = {"","request_set_origin",request_set_origin};
 	actions.push_back(request_set_origin_action);
+	/* set_velocity action */
+	ActionParser set_velocity_action = {"","set_velocity",set_velocity};
+	set_velocity_action.action_param_names.push_back("linear");
+	set_velocity_action.action_param_names.push_back("angular");
+	actions.push_back(set_velocity_action);
 }
 
 bool getActionByFunctionName(ActionParser & action, std::string funcName, std::vector<ActionParser> & actions){

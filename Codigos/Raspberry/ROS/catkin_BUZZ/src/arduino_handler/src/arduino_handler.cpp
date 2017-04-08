@@ -1,7 +1,9 @@
 #include "ros/ros.h"
 #include "arduino_msgs/StampedInt64.h"
+#include "arduino_msgs/StampedFloat64.h"
 #include "raspberry_msgs/StampedFloat32.h"
 #include "sensor_msgs/Range.h"
+#include "geometry_msgs/Point32.h"
 #include "std_msgs/Bool.h"
 #include <string>
 #include <sstream>
@@ -100,6 +102,9 @@ static bool sensor_toque = false;
 static bool botao_verde = false;
 static bool botao_preto = false;
 
+static float velocidadeAtualEsq = 0.0;
+static float velocidadeAtualDir = 0.0;
+
 raspberry_msgs::StampedFloat32 velocidadeArduino;
 
 int verifyIfUS(long int id){
@@ -140,8 +145,14 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
   }else if(msg->id == BOTAO_VERDE){
     botao_verde = msg->data;
   }
+}
 
-
+void stampedFloat64Callback(const arduino_msgs::StampedFloat64::ConstPtr& msg){
+  if(msg->id == VEL_ATUAL_DIR){
+    velocidadeAtualDir = msg->data;
+  }else if(msg->id == VEL_ATUAL_ESQ){
+    velocidadeAtualEsq = msg->data;
+  }
 }
 
 void arduinoVelocityCallback(const raspberry_msgs::StampedFloat32::ConstPtr& msg){
@@ -176,7 +187,8 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
-  ros::Subscriber sub = n.subscribe("arduino_int64", 1000, stampedInt64Callback);
+  ros::Subscriber subInt = n.subscribe("arduino_int64", 1000, stampedInt64Callback);
+  ros::Subscriber subFloat = n.subscribe("arduino_float64", 1000, stampedFloat64Callback);  
   ros::Subscriber arduino_velocity = n.subscribe("arduino_velocity", 1000, arduinoVelocityCallback);
 
   ros::Publisher ultrasound_pub[NUM_US];
@@ -185,7 +197,9 @@ int main(int argc, char **argv)
   ros::Publisher botao_verde_pub = n.advertise<std_msgs::Bool>("botao_verde",1000);
   ros::Publisher botao_preto_pub = n.advertise<std_msgs::Bool>("botao_preto",1000);
 
-  velocity_pub = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000);
+  ros::Publisher velocidade_atual_pub = n.advertise<geometry_msgs::Point32>("velocidade_atual",1000);
+
+  velocity_pub = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000,true);
 
   for(int i=0;i<NUM_US;i++){
     std::ostringstream s;
@@ -200,12 +214,15 @@ int main(int argc, char **argv)
   std_msgs::Bool sensor_toque_msg;
   std_msgs::Bool botao_preto_msg;
   std_msgs::Bool botao_verde_msg;
+  geometry_msgs::Point32 velocidade_atualMsg;
 
   while (ros::ok()){
     processRangeMsgs();
     sensor_toque_msg.data = sensor_toque;
     botao_verde_msg.data = botao_verde;
     botao_preto_msg.data = botao_preto;
+    velocidade_atualMsg.x = velocidadeAtualDir;
+    velocidade_atualMsg.y = velocidadeAtualEsq;
 
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);
@@ -213,6 +230,7 @@ int main(int argc, char **argv)
     sensor_toque_pub.publish(sensor_toque_msg);
     botao_verde_pub.publish(botao_verde_msg);
     botao_preto_pub.publish(botao_preto_msg);
+    velocidade_atual_pub.publish(velocidade_atualMsg);
 
     loop_rate.sleep();
     ros::spinOnce();
