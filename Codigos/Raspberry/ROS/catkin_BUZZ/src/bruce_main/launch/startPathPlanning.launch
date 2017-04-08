@@ -2,6 +2,6 @@
 	<node name="bruce_tf" type="bruce_tf" pkg="bruce_path_planner"/>
 	<node name="arduino_handler" type="arduino_handler" pkg="arduino_handler"/>
 	<node name="map_server" pkg="map_server" type="map_server" args=" $(find bruce_path_planner)/map/map.yaml" />
-	<node name="bruce_main" pkg="bruce_main" type="bruce_main" args=" $(find bruce_main)/fsm_config/teste.fsm" />
+	<node name="bruce_main2" pkg="bruce_main_2" type="bruce_main2" args=" $(find bruce_main_2)/fsm_config/teste.fsm" />
 	<node name="bruce_path_planner" type="bruce_path_planner" pkg="bruce_path_planner"/>
 </launch>

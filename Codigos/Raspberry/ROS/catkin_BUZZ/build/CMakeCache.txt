@@ -271,6 +271,12 @@ arduino_msgs_DIR:PATH=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catk
 arduino_msgs_SOURCE_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_msgs
 
 //Value Computed by CMake
+bruce_main_2_BINARY_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2
+
+//Value Computed by CMake
+bruce_main_2_SOURCE_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2
+
+//Value Computed by CMake
 bruce_main_BINARY_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main
 
 //Value Computed by CMake
@@ -338,7 +344,7 @@ gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 lib:FILEPATH=/home/pi/Documents/desenvolvimentoRos/devel/lib/libtf2.so
 
 //The directory containing a CMake configuration file for message_filters.
-message_filters_DIR:PATH=/opt/ros/indigo/share/message_filters/cmake
+message_filters_DIR:PATH=/home/pi/Documents/desenvolvimentoRos/devel/share/message_filters/cmake
 
 //The directory containing a CMake configuration file for message_generation.
 message_generation_DIR:PATH=/opt/ros/indigo/share/message_generation/cmake
@@ -418,7 +424,7 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/pi/Documents/robomagellan/Codigos/Raspberry/R
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=0
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=6
 //Patch version of cmake used to create the current loaded cache
 CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
@@ -469,6 +475,8 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of generator.
 CMAKE_GENERATOR:INTERNAL=Unix Makefiles
+//Name of generator platform.
+CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Have symbol pthread_create
@@ -502,6 +510,8 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
 CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=8
+//number of local generators
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -509,7 +519,7 @@ CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RANLIB
 CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.0
+CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.6
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG

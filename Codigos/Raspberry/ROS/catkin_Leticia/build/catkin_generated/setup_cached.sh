@@ -7,4 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/leticia/catkin_Leticia/build"
+export CMAKE_PREFIX_PATH="/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib:$LD_LIBRARY_PATH"
+export PWD="/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build"
+export ROS_PACKAGE_PATH="/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/src:$ROS_PACKAGE_PATH"

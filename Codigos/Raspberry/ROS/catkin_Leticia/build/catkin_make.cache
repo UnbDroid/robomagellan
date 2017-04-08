@@ -1,2 +1,2 @@
-bruce_robot:robo_virtual
--DCATKIN_DEVEL_PREFIX=/home/leticia/catkin_Leticia/devel -DCMAKE_INSTALL_PREFIX=/home/leticia/catkin_Leticia/install -G Unix Makefiles
+robo_virtual
+-DCATKIN_DEVEL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel -DCMAKE_INSTALL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/install -G Unix Makefiles

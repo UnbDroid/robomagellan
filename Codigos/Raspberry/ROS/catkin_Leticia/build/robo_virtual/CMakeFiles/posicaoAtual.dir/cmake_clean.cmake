@@ -1,10 +1,10 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o"
-  "/home/leticia/catkin_Leticia/devel/lib/robo_virtual/posicaoAtual.pdb"
-  "/home/leticia/catkin_Leticia/devel/lib/robo_virtual/posicaoAtual"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/posicaoAtual.pdb"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/posicaoAtual"
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang CXX)
-  INCLUDE(CMakeFiles/posicaoAtual.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang CXX)
+  include(CMakeFiles/posicaoAtual.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

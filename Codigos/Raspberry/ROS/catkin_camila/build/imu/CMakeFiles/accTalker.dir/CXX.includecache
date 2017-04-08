@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+/home/pi/Documents/desenvolvimentoRos/devel/include/ros/common.h
+stdint.h
+-
+assert.h
+-
+stddef.h
+-
+string
+-
+ros/assert.h
+/home/pi/Documents/desenvolvimentoRos/devel/include/ros/ros/assert.h
+ros/forwards.h
+/home/pi/Documents/desenvolvimentoRos/devel/include/ros/ros/forwards.h
+ros/serialized_message.h
+/home/pi/Documents/desenvolvimentoRos/devel/include/ros/ros/serialized_message.h
+boost/shared_array.hpp
+-
+ros/macros.h
+-
+
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Acc.h
 string
 -
