@@ -12,7 +12,7 @@ try:
     from catkin.environment_cache import generate_environment_script
 except ImportError:
     # search for catkin package in all workspaces and prepend to path
-    for workspace in "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel;/home/pi/Documents/desenvolvimentoRos/devel;/opt/ros/indigo".split(';'):
+    for workspace in "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel;/home/pi/Documents/desenvolvimentoRos/devel;/opt/ros/indigo".split(';'):
         python_path = os.path.join(workspace, 'lib/python2.7/dist-packages')
         if os.path.isdir(os.path.join(python_path, 'catkin')):
             sys.path.insert(0, python_path)

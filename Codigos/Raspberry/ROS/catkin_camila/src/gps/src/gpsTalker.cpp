@@ -5,6 +5,8 @@
 #include "gps/gps.h"
 #include <time.h>
 
+#define DEBUG
+
 GPS gps;
 raspberry_msgs::GPS msg;
 rosbag::Bag bag;
@@ -33,7 +35,8 @@ void leituras(){
 			}
 			tempo = ros::Time::now();
 			msg.time = tempo.toNSec() * 1e-6;
-		
+
+			#ifdef DEBUG		
 			ROS_INFO("lat: %f", msg.lat);
 			ROS_INFO("lng: %f", msg.lng);
 			ROS_INFO("alt: %f", msg.alt);
@@ -41,6 +44,7 @@ void leituras(){
 			ROS_INFO("hdop: %f", msg.hdop);
 			ROS_INFO("vdop: %f", msg.vdop);
 			ROS_INFO("pdop: %f", msg.pdop);
+			#endif
 			
 	
 			bag.write("gps_data",ros::Time::now(),msg);

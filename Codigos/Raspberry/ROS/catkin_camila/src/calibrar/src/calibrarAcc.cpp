@@ -8,9 +8,6 @@ e apertar q
 
 */
 
-
-
-
 #include "ros/ros.h"
 #include <wiringPiI2C.h>
 #include <iostream>

@@ -10,6 +10,8 @@
 #include <unsupported/Eigen/MatrixFunctions>
 #include <iostream>
 
+#define DEBUG
+
 #define PI 3.14159265
 #define tAmostragem 0.01
 #define g -9.7808439
@@ -477,30 +479,32 @@ int main(int argc, char **argv){
 		std::cout << "oi" << std::endl;	
 		P_posteriori = (I10 - KG*H)*P_priori;
 	
+		#ifdef DEBUG
 		std::cout << x_estPosteriori << std::endl;
+		#endif
 
 		std::cout << "\n";
 
 		current_time = ros::Time::now();  
-    	odom.header.stamp = current_time;
-    	odom.header.frame_id = "odom";
+    		odom.header.stamp = current_time;
+    		odom.header.frame_id = "odom";
 
 		//set the position
-    	odom.pose.pose.position.x = x_estPosteriori(7,0);
-    	odom.pose.pose.position.y = x_estPosteriori(8,0);
-    	odom.pose.pose.position.z = x_estPosteriori(9,0);
+    		odom.pose.pose.position.x = x_estPosteriori(7,0);
+    		odom.pose.pose.position.y = x_estPosteriori(8,0);
+    		odom.pose.pose.position.z = x_estPosteriori(9,0);
 
-    	odom.pose.pose.orientation.x = x_estPosteriori(1,0);
-    	odom.pose.pose.orientation.y = x_estPosteriori(2,0);
-    	odom.pose.pose.orientation.z = x_estPosteriori(3,0);    
-    	odom.pose.pose.orientation.w = x_estPosteriori(0,0);	
+    		odom.pose.pose.orientation.x = x_estPosteriori(1,0);
+    		odom.pose.pose.orientation.y = x_estPosteriori(2,0);
+    		odom.pose.pose.orientation.z = x_estPosteriori(3,0);    
+    		odom.pose.pose.orientation.w = x_estPosteriori(0,0);	
 
 		odom_pub.publish(odom);
-    	origin_pub.publish(origin);
-    	odom_ok.publish(odomOK);	
+    		origin_pub.publish(origin);
+    		odom_ok.publish(odomOK);	
 
 		loop_rate.sleep();
-       	ros::spinOnce();
+       		ros::spinOnce();
 
 	}
 

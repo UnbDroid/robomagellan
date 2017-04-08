@@ -7,6 +7,8 @@
 #include <rosbag/view.h>
 #include <boost/foreach.hpp>
 
+#define DEBUG
+
 #define foreach BOOST_FOREACH
 
 #define SCALE 0.07
@@ -108,9 +110,11 @@ int main(int argc, char **argv){
 		tempo = ros::Time::now();
 		msg.time = tempo.toNSec() * 1e-6;
 
+		#ifdef DEBUG
 		ROS_INFO("%f", msg.g_x);
 		ROS_INFO("%f", msg.g_y);
-		ROS_INFO("%f", msg.g_z);
+		ROS_INFO("%f", msg.g_z);	
+		#endif
 
 		bag.write("gyro_data",ros::Time::now(),msg);
 

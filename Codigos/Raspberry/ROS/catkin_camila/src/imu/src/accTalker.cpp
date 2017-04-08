@@ -7,6 +7,8 @@
 #include <rosbag/view.h>
 #include <boost/foreach.hpp>
 
+#define DEBUG
+
 #define foreach BOOST_FOREACH
 
 #define SCALE 0.0039
@@ -103,10 +105,12 @@ int main(int argc, char **argv){
         	msg.a_z = (acc_z*SCALE*g - bz)/sz;
 		tempo = ros::Time::now();
 		msg.time = tempo.toNSec() * 1e-6;
-
+		
+		#ifdef DEBUG
 		ROS_INFO("x: %f", msg.a_x);
 		ROS_INFO("y: %f", msg.a_y);
 		ROS_INFO("z: %f", msg.a_z);
+		#endif
 
 		bag.write("acc_data",ros::Time::now(),msg);
 

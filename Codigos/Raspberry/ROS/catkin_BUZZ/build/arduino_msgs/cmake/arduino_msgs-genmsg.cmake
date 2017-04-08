@@ -422,9 +422,7 @@ if(gencpp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/ar
     DESTINATION ${gencpp_INSTALL_DIR}
   )
 endif()
-if(TARGET std_msgs_generate_messages_cpp)
-  add_dependencies(arduino_msgs_generate_messages_cpp std_msgs_generate_messages_cpp)
-endif()
+add_dependencies(arduino_msgs_generate_messages_cpp std_msgs_generate_messages_cpp)
 
 if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arduino_msgs)
   # install generated code
@@ -433,9 +431,7 @@ if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/
     DESTINATION ${genlisp_INSTALL_DIR}
   )
 endif()
-if(TARGET std_msgs_generate_messages_lisp)
-  add_dependencies(arduino_msgs_generate_messages_lisp std_msgs_generate_messages_lisp)
-endif()
+add_dependencies(arduino_msgs_generate_messages_lisp std_msgs_generate_messages_lisp)
 
 if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arduino_msgs)
   install(CODE "execute_process(COMMAND \"/usr/bin/python\" -m compileall \"${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arduino_msgs\")")
@@ -445,6 +441,4 @@ if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/ardu
     DESTINATION ${genpy_INSTALL_DIR}
   )
 endif()
-if(TARGET std_msgs_generate_messages_py)
-  add_dependencies(arduino_msgs_generate_messages_py std_msgs_generate_messages_py)
-endif()
+add_dependencies(arduino_msgs_generate_messages_py std_msgs_generate_messages_py)
