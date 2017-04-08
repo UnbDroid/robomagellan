@@ -419,9 +419,13 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   static float velocidadeEsquerda = 0, velocidadeDireita = 0; 
   static float funcaoAuxiliar = 0;
 
-  vf = VelocidadeRecebida.x;
-  wf = VelocidadeRecebida.z;
-
+  erro1 = cos(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + sin(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
+  erro2 = -sin(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + cos(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
+  erro3 = roboReferencia.theta - roboAtual.theta;
+ 
+  vf = (velocidadeLinear * cos(erro3)) + (k1 *erro1);
+  wf = velocidadeAngular + (velocidadeLinear * k2 * erro2) + (k3 * sin(erro3));
+  
   if (a2 > lambda){
     funcaoAuxiliar = 0; 
   }
