@@ -58,6 +58,7 @@ void startSD () {
 #define Ki_direita 0.05f
 #define Kd_direita 0.1f
 
+#define VELOCIDADE_MAXIMA 5.5f
 
 // Variáveis -----------------------------------------------------------------------------------------------
 
@@ -264,13 +265,13 @@ void doEncoder1B() {
 // Funcoes Controle de Velocidade -----------------------------------------------------------------------------------------
 void desacelerar (){
 
-  aceleracao_Esquerda = (-potencia_aux_esquerda)/0.5; 
-  aceleracao_Direita = (-potencia_aux_direita)/0.5;
+  aceleracao_Esquerda = (-potencia_aux_esquerda)/0.2; 
+  aceleracao_Direita = (-potencia_aux_direita)/0.2;
   
   pot_esquerda = potencia_aux_esquerda + (aceleracao_Esquerda*millis()/1000);
   pot_direita = potencia_aux_direita + (aceleracao_Direita*millis()/1000); 
   
-  if (abs(pot_esquerda < POT_MIN_ESQUERDA)){
+  if ((potencia_aux_esquerda > 0 && pot_esquerda < 0) || (potencia_aux_esquerda < 0 && pot_esquerda > 0) || (abs(pot_esquerda) < POT_MIN_ESQUERDA)){
     parar();
     pot_esquerda = 0;
     pot_direita = 0;  
@@ -295,6 +296,7 @@ void controleAdaptativoVelocidade() {
     theta2_direita = 0.15;
     yTv_direita = 0.07;
 
+    //parar();
     desacelerar();
     return;
   }
@@ -397,13 +399,29 @@ void loop() {
   }
   
   if(ETin.receiveData()){
-    if (abs((float)velocidade_recebida.dir/100.0) < 8){
+    if (abs((float)velocidade_recebida.dir/100.0) < VELOCIDADE_MAXIMA){
       velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
       velocidade_ReferenciaDireita = (float)velocidade_recebida.dir/100.0;
     }
-    if (abs((float)velocidade_recebida.esq/100.0) < 8){
+    else if (((float)velocidade_recebida.dir/100) < 0){
+      velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+      velocidade_ReferenciaDireita = -VELOCIDADE_MAXIMA;      
+    }
+    else if (((float)velocidade_recebida.dir/100) > 0){
+      velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+      velocidade_ReferenciaDireita = VELOCIDADE_MAXIMA;      
+    }
+    if (abs((float)velocidade_recebida.esq/100.0) < VELOCIDADE_MAXIMA){
       velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;      
       velocidade_ReferenciaEsquerda = (float)velocidade_recebida.esq/100.0;
+    }
+    else if (((float)velocidade_recebida.esq/100) < 0){
+      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+      velocidade_ReferenciaEsquerda = -VELOCIDADE_MAXIMA;      
+    }
+    else if (((float)velocidade_recebida.dir/100) > 0){
+      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+      velocidade_ReferenciaEsquerda = VELOCIDADE_MAXIMA;      
     }
    
     Serial.print("Esquerda: "); Serial.println((float)velocidade_recebida.esq/100.0);

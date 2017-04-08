@@ -78,17 +78,17 @@ void processarControleRC(float & velDir, float & velEsq){
     if(abs(velDir) < 0.5){
       velDir = 0;
     }else if(velDir > 0.5){
-      velDir += 3;
+      velDir += 2;
     }else if(velDir < -0.5){
-      velDir -= 3;
+      velDir -= 2;
     }
     
     if(abs(velEsq) < 0.5){
       velEsq = 0;
     }else if(velEsq > 0.5){
-      velEsq += 3;
+      velEsq += 2;
     }else if(velEsq < -0.5){
-      velEsq -= 3;
+      velEsq -= 2;
     }
   
     if(abs(guinada) < 0.10){
