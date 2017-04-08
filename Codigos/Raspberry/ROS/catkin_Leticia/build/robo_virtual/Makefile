@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,39 +66,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -122,6 +78,27 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -132,6 +109,29 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,124 +166,79 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+actionlib_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : std_msgs_generate_messages_lisp
+.PHONY : actionlib_msgs_generate_messages_cpp
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+actionlib_msgs_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
+.PHONY : actionlib_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/planejador.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/rule
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
+robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
 # Convenience name for target.
-planejador: robo_virtual/CMakeFiles/planejador.dir/rule
+actionlib_generate_messages_py: robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
-.PHONY : planejador
+.PHONY : actionlib_generate_messages_py
 
 # fast build rule for target.
-planejador/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
-.PHONY : planejador/fast
+actionlib_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build
+.PHONY : actionlib_generate_messages_py/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_py: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+sensor_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : std_msgs_generate_messages_py
+.PHONY : sensor_msgs_generate_messages_cpp
 
 # fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
+sensor_msgs_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+tf_generate_messages_py: robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_cpp
+.PHONY : tf_generate_messages_py
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+tf_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build
+.PHONY : tf_generate_messages_py/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-robo_virtual_generate_messages_py: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
+actionlib_msgs_generate_messages_py: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
 
-.PHONY : robo_virtual_generate_messages_py
+.PHONY : actionlib_msgs_generate_messages_py
 
 # fast build rule for target.
-robo_virtual_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build
-.PHONY : robo_virtual_generate_messages_py/fast
-
-# Convenience name for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
+actionlib_msgs_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
+.PHONY : actionlib_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 robo_virtual/CMakeFiles/robo_virtual.dir/rule:
@@ -301,6 +256,66 @@ robo_virtual/fast:
 .PHONY : robo_virtual/fast
 
 # Convenience name for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+# Convenience name for target.
 robo_virtual/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 .PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
@@ -316,49 +331,79 @@ roscpp_generate_messages_cpp/fast:
 .PHONY : roscpp_generate_messages_cpp/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+robo_virtual_generate_messages_py: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
 
-.PHONY : std_msgs_generate_messages_cpp
+.PHONY : robo_virtual_generate_messages_py
 
 # fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
+robo_virtual_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build
+.PHONY : robo_virtual_generate_messages_py/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
-.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-_robo_virtual_generate_messages_check_deps_Posicao: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+rosgraph_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : _robo_virtual_generate_messages_check_deps_Posicao
+.PHONY : rosgraph_msgs_generate_messages_cpp
 
 # fast build rule for target.
-_robo_virtual_generate_messages_check_deps_Posicao/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build
-.PHONY : _robo_virtual_generate_messages_check_deps_Posicao/fast
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-robo_virtual_genlisp: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+actionlib_generate_messages_cpp: robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
 
-.PHONY : robo_virtual_genlisp
+.PHONY : actionlib_generate_messages_cpp
 
 # fast build rule for target.
-robo_virtual_genlisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
-.PHONY : robo_virtual_genlisp/fast
+actionlib_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build
+.PHONY : actionlib_generate_messages_cpp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 robo_virtual/CMakeFiles/robo_virtual_generate_messages_cpp.dir/rule:
@@ -376,19 +421,124 @@ robo_virtual_generate_messages_cpp/fast:
 .PHONY : robo_virtual_generate_messages_cpp/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-robo_virtual_gencpp: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
+rosgraph_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : robo_virtual_gencpp
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # fast build rule for target.
-robo_virtual_gencpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build
-.PHONY : robo_virtual_gencpp/fast
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/planejador.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/rule
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
+
+# Convenience name for target.
+planejador: robo_virtual/CMakeFiles/planejador.dir/rule
+
+.PHONY : planejador
+
+# fast build rule for target.
+planejador/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
+.PHONY : planejador/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/posicaoAtual.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+
+# Convenience name for target.
+posicaoAtual: robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+
+.PHONY : posicaoAtual
+
+# fast build rule for target.
+posicaoAtual/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
+.PHONY : posicaoAtual/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_py: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_py
+
+# fast build rule for target.
+tf2_msgs_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
+.PHONY : tf2_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : raspberry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
+.PHONY : raspberry_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+
+# Convenience name for target.
+_robo_virtual_generate_messages_check_deps_Posicao: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+
+.PHONY : _robo_virtual_generate_messages_check_deps_Posicao
+
+# fast build rule for target.
+_robo_virtual_generate_messages_check_deps_Posicao/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build
+.PHONY : _robo_virtual_generate_messages_check_deps_Posicao/fast
 
 # Convenience name for target.
 robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/rule:
@@ -406,6 +556,126 @@ robo_virtual_generate_messages_lisp/fast:
 .PHONY : robo_virtual_generate_messages_lisp/fast
 
 # Convenience name for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+actionlib_generate_messages_lisp: robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+
+.PHONY : actionlib_generate_messages_lisp
+
+# fast build rule for target.
+actionlib_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build
+.PHONY : actionlib_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_cpp: robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/rule
+
+.PHONY : tf_generate_messages_cpp
+
+# fast build rule for target.
+tf_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build
+.PHONY : tf_generate_messages_cpp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+actionlib_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : actionlib_msgs_generate_messages_lisp
+
+# fast build rule for target.
+actionlib_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
+.PHONY : actionlib_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_cpp
+
+# fast build rule for target.
+tf2_msgs_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
+.PHONY : tf2_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_lisp
+
+# fast build rule for target.
+tf2_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
+.PHONY : tf2_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : raspberry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
+.PHONY : raspberry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_generate_messages_py: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
+
+.PHONY : raspberry_msgs_generate_messages_py
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build
+.PHONY : raspberry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
 robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/rule
 .PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/rule
@@ -419,6 +689,21 @@ robo_virtual_generate_messages: robo_virtual/CMakeFiles/robo_virtual_generate_me
 robo_virtual_generate_messages/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/build
 .PHONY : robo_virtual_generate_messages/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 robo_virtual/CMakeFiles/robo_virtual_genpy.dir/rule:
@@ -436,34 +721,64 @@ robo_virtual_genpy/fast:
 .PHONY : robo_virtual_genpy/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+sensor_msgs_generate_messages_py: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_lisp
+.PHONY : sensor_msgs_generate_messages_py
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+sensor_msgs_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/posicaoAtual.dir/rule
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
 
 # Convenience name for target.
-posicaoAtual: robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+robo_virtual_gencpp: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
 
-.PHONY : posicaoAtual
+.PHONY : robo_virtual_gencpp
 
 # fast build rule for target.
-posicaoAtual/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
-.PHONY : posicaoAtual/fast
+robo_virtual_gencpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build
+.PHONY : robo_virtual_gencpp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_lisp: robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+.PHONY : tf_generate_messages_lisp
+
+# fast build rule for target.
+tf_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build
+.PHONY : tf_generate_messages_lisp/fast
+
+# Convenience name for target.
+robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+
+# Convenience name for target.
+robo_virtual_genlisp: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+
+.PHONY : robo_virtual_genlisp
+
+# fast build rule for target.
+robo_virtual_genlisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
+.PHONY : robo_virtual_genlisp/fast
 
 src/planejador.o: src/planejador.cpp.o
 
@@ -552,33 +867,54 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... test"
 	@echo "... edit_cache"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... install"
-	@echo "... planejador"
-	@echo "... list_install_components"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... install/local"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... robo_virtual_generate_messages_py"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... install/strip"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... roscpp_generate_messages_py"
+	@echo "... actionlib_msgs_generate_messages_cpp"
+	@echo "... actionlib_generate_messages_py"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... tf_generate_messages_py"
+	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... robo_virtual"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... install/strip"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... _robo_virtual_generate_messages_check_deps_Posicao"
-	@echo "... robo_virtual_genlisp"
+	@echo "... robo_virtual_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... actionlib_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... list_install_components"
+	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... robo_virtual_generate_messages_cpp"
-	@echo "... robo_virtual_gencpp"
-	@echo "... robo_virtual_generate_messages_lisp"
-	@echo "... rebuild_cache"
-	@echo "... robo_virtual_generate_messages"
-	@echo "... robo_virtual_genpy"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... planejador"
 	@echo "... posicaoAtual"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... tf2_msgs_generate_messages_py"
+	@echo "... raspberry_msgs_generate_messages_cpp"
+	@echo "... _robo_virtual_generate_messages_check_deps_Posicao"
+	@echo "... robo_virtual_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... actionlib_generate_messages_lisp"
+	@echo "... tf_generate_messages_cpp"
+	@echo "... test"
+	@echo "... actionlib_msgs_generate_messages_lisp"
+	@echo "... tf2_msgs_generate_messages_cpp"
+	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... raspberry_msgs_generate_messages_lisp"
+	@echo "... raspberry_msgs_generate_messages_py"
+	@echo "... robo_virtual_generate_messages"
+	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... robo_virtual_genpy"
+	@echo "... sensor_msgs_generate_messages_py"
+	@echo "... rebuild_cache"
+	@echo "... robo_virtual_gencpp"
+	@echo "... tf_generate_messages_lisp"
+	@echo "... robo_virtual_genlisp"
+	@echo "... install/local"
+	@echo "... install"
 	@echo "... src/planejador.o"
 	@echo "... src/planejador.i"
 	@echo "... src/planejador.s"

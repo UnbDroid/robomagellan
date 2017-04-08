@@ -257,108 +257,69 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_lisp
+# Target rules for targets named actionlib_msgs_generate_messages_cpp
 
 # Build rule for target.
-std_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
-.PHONY : std_msgs_generate_messages_lisp
+actionlib_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 actionlib_msgs_generate_messages_cpp
+.PHONY : actionlib_msgs_generate_messages_cpp
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+actionlib_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
+.PHONY : actionlib_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named planejador
+# Target rules for targets named actionlib_generate_messages_py
 
 # Build rule for target.
-planejador: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 planejador
-.PHONY : planejador
+actionlib_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 actionlib_generate_messages_py
+.PHONY : actionlib_generate_messages_py
 
 # fast build rule for target.
-planejador/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
-.PHONY : planejador/fast
+actionlib_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build
+.PHONY : actionlib_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_py
+# Target rules for targets named sensor_msgs_generate_messages_cpp
 
 # Build rule for target.
-std_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_py
-.PHONY : std_msgs_generate_messages_py
+sensor_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_cpp
+.PHONY : sensor_msgs_generate_messages_cpp
 
 # fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
+sensor_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_cpp
+# Target rules for targets named tf_generate_messages_py
 
 # Build rule for target.
-rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
-.PHONY : rosgraph_msgs_generate_messages_cpp
+tf_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_py
+.PHONY : tf_generate_messages_py
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+tf_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build
+.PHONY : tf_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named robo_virtual_generate_messages_py
+# Target rules for targets named actionlib_msgs_generate_messages_py
 
 # Build rule for target.
-robo_virtual_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual_generate_messages_py
-.PHONY : robo_virtual_generate_messages_py
+actionlib_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 actionlib_msgs_generate_messages_py
+.PHONY : actionlib_msgs_generate_messages_py
 
 # fast build rule for target.
-robo_virtual_generate_messages_py/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build
-.PHONY : robo_virtual_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named roscpp_generate_messages_lisp
-
-# Build rule for target.
-roscpp_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_lisp
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_py
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_py
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named roscpp_generate_messages_py
-
-# Build rule for target.
-roscpp_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_py
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
+actionlib_msgs_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
+.PHONY : actionlib_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named robo_virtual
@@ -374,6 +335,58 @@ robo_virtual/fast:
 .PHONY : robo_virtual/fast
 
 #=============================================================================
+# Target rules for targets named roscpp_generate_messages_py
+
+# Build rule for target.
+roscpp_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_py
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_py
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_py
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_lisp
+
+# Build rule for target.
+sensor_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_lisp
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_lisp
+
+# Build rule for target.
+roscpp_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_lisp
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
 
 # Build rule for target.
@@ -387,43 +400,69 @@ roscpp_generate_messages_cpp/fast:
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_cpp
+# Target rules for targets named robo_virtual_generate_messages_py
 
 # Build rule for target.
-std_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
-.PHONY : std_msgs_generate_messages_cpp
+robo_virtual_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual_generate_messages_py
+.PHONY : robo_virtual_generate_messages_py
 
 # fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
+robo_virtual_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build
+.PHONY : robo_virtual_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named _robo_virtual_generate_messages_check_deps_Posicao
+# Target rules for targets named rosgraph_msgs_generate_messages_cpp
 
 # Build rule for target.
-_robo_virtual_generate_messages_check_deps_Posicao: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _robo_virtual_generate_messages_check_deps_Posicao
-.PHONY : _robo_virtual_generate_messages_check_deps_Posicao
+rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
+.PHONY : rosgraph_msgs_generate_messages_cpp
 
 # fast build rule for target.
-_robo_virtual_generate_messages_check_deps_Posicao/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build
-.PHONY : _robo_virtual_generate_messages_check_deps_Posicao/fast
+rosgraph_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named robo_virtual_genlisp
+# Target rules for targets named actionlib_generate_messages_cpp
 
 # Build rule for target.
-robo_virtual_genlisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual_genlisp
-.PHONY : robo_virtual_genlisp
+actionlib_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 actionlib_generate_messages_cpp
+.PHONY : actionlib_generate_messages_cpp
 
 # fast build rule for target.
-robo_virtual_genlisp/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
-.PHONY : robo_virtual_genlisp/fast
+actionlib_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build
+.PHONY : actionlib_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_py
+
+# Build rule for target.
+std_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_py
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_py
+
+# Build rule for target.
+geometry_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_py
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named robo_virtual_generate_messages_cpp
@@ -439,17 +478,108 @@ robo_virtual_generate_messages_cpp/fast:
 .PHONY : robo_virtual_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named robo_virtual_gencpp
+# Target rules for targets named rosgraph_msgs_generate_messages_lisp
 
 # Build rule for target.
-robo_virtual_gencpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual_gencpp
-.PHONY : robo_virtual_gencpp
+rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # fast build rule for target.
-robo_virtual_gencpp/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build
-.PHONY : robo_virtual_gencpp/fast
+rosgraph_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named planejador
+
+# Build rule for target.
+planejador: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 planejador
+.PHONY : planejador
+
+# fast build rule for target.
+planejador/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
+.PHONY : planejador/fast
+
+#=============================================================================
+# Target rules for targets named posicaoAtual
+
+# Build rule for target.
+posicaoAtual: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 posicaoAtual
+.PHONY : posicaoAtual
+
+# fast build rule for target.
+posicaoAtual/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
+.PHONY : posicaoAtual/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_lisp
+
+# Build rule for target.
+geometry_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_lisp
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_cpp
+
+# Build rule for target.
+std_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named tf2_msgs_generate_messages_py
+
+# Build rule for target.
+tf2_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_py
+.PHONY : tf2_msgs_generate_messages_py
+
+# fast build rule for target.
+tf2_msgs_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
+.PHONY : tf2_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named raspberry_msgs_generate_messages_cpp
+
+# Build rule for target.
+raspberry_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs_generate_messages_cpp
+.PHONY : raspberry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
+.PHONY : raspberry_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named _robo_virtual_generate_messages_check_deps_Posicao
+
+# Build rule for target.
+_robo_virtual_generate_messages_check_deps_Posicao: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _robo_virtual_generate_messages_check_deps_Posicao
+.PHONY : _robo_virtual_generate_messages_check_deps_Posicao
+
+# fast build rule for target.
+_robo_virtual_generate_messages_check_deps_Posicao/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build
+.PHONY : _robo_virtual_generate_messages_check_deps_Posicao/fast
 
 #=============================================================================
 # Target rules for targets named robo_virtual_generate_messages_lisp
@@ -465,6 +595,110 @@ robo_virtual_generate_messages_lisp/fast:
 .PHONY : robo_virtual_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named std_msgs_generate_messages_lisp
+
+# Build rule for target.
+std_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named actionlib_generate_messages_lisp
+
+# Build rule for target.
+actionlib_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 actionlib_generate_messages_lisp
+.PHONY : actionlib_generate_messages_lisp
+
+# fast build rule for target.
+actionlib_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build
+.PHONY : actionlib_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named tf_generate_messages_cpp
+
+# Build rule for target.
+tf_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_cpp
+.PHONY : tf_generate_messages_cpp
+
+# fast build rule for target.
+tf_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build
+.PHONY : tf_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named actionlib_msgs_generate_messages_lisp
+
+# Build rule for target.
+actionlib_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 actionlib_msgs_generate_messages_lisp
+.PHONY : actionlib_msgs_generate_messages_lisp
+
+# fast build rule for target.
+actionlib_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
+.PHONY : actionlib_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named tf2_msgs_generate_messages_cpp
+
+# Build rule for target.
+tf2_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_cpp
+.PHONY : tf2_msgs_generate_messages_cpp
+
+# fast build rule for target.
+tf2_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
+.PHONY : tf2_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named tf2_msgs_generate_messages_lisp
+
+# Build rule for target.
+tf2_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_lisp
+.PHONY : tf2_msgs_generate_messages_lisp
+
+# fast build rule for target.
+tf2_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
+.PHONY : tf2_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named raspberry_msgs_generate_messages_lisp
+
+# Build rule for target.
+raspberry_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs_generate_messages_lisp
+.PHONY : raspberry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
+.PHONY : raspberry_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named raspberry_msgs_generate_messages_py
+
+# Build rule for target.
+raspberry_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs_generate_messages_py
+.PHONY : raspberry_msgs_generate_messages_py
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build
+.PHONY : raspberry_msgs_generate_messages_py/fast
+
+#=============================================================================
 # Target rules for targets named robo_virtual_generate_messages
 
 # Build rule for target.
@@ -476,6 +710,19 @@ robo_virtual_generate_messages: cmake_check_build_system
 robo_virtual_generate_messages/fast:
 	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/build
 .PHONY : robo_virtual_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_cpp
+
+# Build rule for target.
+geometry_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_cpp
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named robo_virtual_genpy
@@ -491,30 +738,56 @@ robo_virtual_genpy/fast:
 .PHONY : robo_virtual_genpy/fast
 
 #=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_lisp
+# Target rules for targets named sensor_msgs_generate_messages_py
 
 # Build rule for target.
-rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
-.PHONY : rosgraph_msgs_generate_messages_lisp
+sensor_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_py
+.PHONY : sensor_msgs_generate_messages_py
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+sensor_msgs_generate_messages_py/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named posicaoAtual
+# Target rules for targets named robo_virtual_gencpp
 
 # Build rule for target.
-posicaoAtual: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 posicaoAtual
-.PHONY : posicaoAtual
+robo_virtual_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual_gencpp
+.PHONY : robo_virtual_gencpp
 
 # fast build rule for target.
-posicaoAtual/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
-.PHONY : posicaoAtual/fast
+robo_virtual_gencpp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build
+.PHONY : robo_virtual_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named tf_generate_messages_lisp
+
+# Build rule for target.
+tf_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_lisp
+.PHONY : tf_generate_messages_lisp
+
+# fast build rule for target.
+tf_generate_messages_lisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build
+.PHONY : tf_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named robo_virtual_genlisp
+
+# Build rule for target.
+robo_virtual_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual_genlisp
+.PHONY : robo_virtual_genlisp
+
+# fast build rule for target.
+robo_virtual_genlisp/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
+.PHONY : robo_virtual_genlisp/fast
 
 # Help Target
 help:
@@ -536,26 +809,47 @@ help:
 	@echo "... install/strip"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... planejador"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... robo_virtual_generate_messages_py"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... roscpp_generate_messages_py"
+	@echo "... actionlib_msgs_generate_messages_cpp"
+	@echo "... actionlib_generate_messages_py"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... tf_generate_messages_py"
+	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... robo_virtual"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... _robo_virtual_generate_messages_check_deps_Posicao"
-	@echo "... robo_virtual_genlisp"
+	@echo "... robo_virtual_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... actionlib_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... robo_virtual_generate_messages_cpp"
-	@echo "... robo_virtual_gencpp"
-	@echo "... robo_virtual_generate_messages_lisp"
-	@echo "... robo_virtual_generate_messages"
-	@echo "... robo_virtual_genpy"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... planejador"
 	@echo "... posicaoAtual"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... tf2_msgs_generate_messages_py"
+	@echo "... raspberry_msgs_generate_messages_cpp"
+	@echo "... _robo_virtual_generate_messages_check_deps_Posicao"
+	@echo "... robo_virtual_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... actionlib_generate_messages_lisp"
+	@echo "... tf_generate_messages_cpp"
+	@echo "... actionlib_msgs_generate_messages_lisp"
+	@echo "... tf2_msgs_generate_messages_cpp"
+	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... raspberry_msgs_generate_messages_lisp"
+	@echo "... raspberry_msgs_generate_messages_py"
+	@echo "... robo_virtual_generate_messages"
+	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... robo_virtual_genpy"
+	@echo "... sensor_msgs_generate_messages_py"
+	@echo "... robo_virtual_gencpp"
+	@echo "... tf_generate_messages_lisp"
+	@echo "... robo_virtual_genlisp"
 .PHONY : help
 
 

@@ -468,6 +468,22 @@ vector
 time.h
 -
 
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/include/robo_virtual/Posicao.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/src/robo_virtual/src/posicaoAtual.cpp
 ros/ros.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/src/robo_virtual/src/ros/ros.h

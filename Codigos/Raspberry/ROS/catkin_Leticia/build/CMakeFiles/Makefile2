@@ -306,34 +306,55 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 # Directory level rules for directory robo_virtual
 
 # Convenience name for "all" pass in the directory.
-robo_virtual/all: robo_virtual/CMakeFiles/planejador.dir/all
 robo_virtual/all: robo_virtual/CMakeFiles/robo_virtual.dir/all
-robo_virtual/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/all
+robo_virtual/all: robo_virtual/CMakeFiles/planejador.dir/all
 robo_virtual/all: robo_virtual/CMakeFiles/posicaoAtual.dir/all
+robo_virtual/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/all
 
 .PHONY : robo_virtual/all
 
 # Convenience name for "clean" pass in the directory.
-robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/planejador.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/tf_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_cpp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_genpy.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/planejador.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/posicaoAtual.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_genpy.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
 
 .PHONY : robo_virtual/clean
 
@@ -343,264 +364,162 @@ robo_virtual/preinstall:
 .PHONY : robo_virtual/preinstall
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir
+# Target rules for target robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target actionlib_msgs_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+actionlib_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : std_msgs_generate_messages_lisp
-
-# clean rule for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : actionlib_msgs_generate_messages_cpp
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/planejador.dir
+# Target rules for target robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/planejador.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=5,6 "Built target planejador"
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/all
-
-# Include target in all.
-all: robo_virtual/CMakeFiles/planejador.dir/all
-
-.PHONY : all
+robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target actionlib_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/planejador.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/all
+robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
 # Convenience name for target.
-planejador: robo_virtual/CMakeFiles/planejador.dir/rule
+actionlib_generate_messages_py: robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
-.PHONY : planejador
-
-# clean rule for target.
-robo_virtual/CMakeFiles/planejador.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/clean
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/clean
+.PHONY : actionlib_generate_messages_py
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/planejador.dir/clean
+robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir
+# Target rules for target robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_py: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+sensor_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : std_msgs_generate_messages_py
-
-# clean rule for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : sensor_msgs_generate_messages_cpp
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
+# Target rules for target robo_virtual/CMakeFiles/tf_generate_messages_py.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+robo_virtual/CMakeFiles/tf_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target tf_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+tf_generate_messages_py: robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# clean rule for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : tf_generate_messages_py
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+robo_virtual/CMakeFiles/tf_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/tf_generate_messages_py.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir
+# Target rules for target robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all
-robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=13,14 "Built target robo_virtual_generate_messages_py"
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target actionlib_msgs_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-robo_virtual_generate_messages_py: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
+actionlib_msgs_generate_messages_py: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
 
-.PHONY : robo_virtual_generate_messages_py
-
-# clean rule for target.
-robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
+.PHONY : actionlib_msgs_generate_messages_py
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir
-
-# All Build rule for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
 
 # clean rule for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-
-# clean rule for target.
-clean: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# clean rule for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-
-# clean rule for target.
-clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir
-
-# All Build rule for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# clean rule for target.
-robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
-
-# clean rule for target.
-clean: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
+clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
 
 .PHONY : clean
 
@@ -642,6 +561,134 @@ clean: robo_virtual/CMakeFiles/robo_virtual.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# clean rule for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# clean rule for target.
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target robo_virtual/CMakeFiles/roscpp_generate_messages_cpp.dir
 
 # All Build rule for target.
@@ -674,98 +721,163 @@ clean: robo_virtual/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir
+# Target rules for target robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all
+robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=13,14 "Built target robo_virtual_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+robo_virtual_generate_messages_py: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/rule
 
-.PHONY : std_msgs_generate_messages_cpp
-
-# clean rule for target.
-robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual_generate_messages_py
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_py.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir
+# Target rules for target robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target _robo_virtual_generate_messages_check_deps_Posicao"
-.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule: cmake_check_build_system
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-_robo_virtual_generate_messages_check_deps_Posicao: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+rosgraph_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : _robo_virtual_generate_messages_check_deps_Posicao
-
-# clean rule for target.
-robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
-.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
+.PHONY : rosgraph_msgs_generate_messages_cpp
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/robo_virtual_genlisp.dir
+# Target rules for target robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/all
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target robo_virtual_genlisp"
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/all
+robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target actionlib_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/all
+robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-robo_virtual_genlisp: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+actionlib_generate_messages_cpp: robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
 
-.PHONY : robo_virtual_genlisp
-
-# clean rule for target.
-robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
+.PHONY : actionlib_generate_messages_cpp
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
+robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/actionlib_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# clean rule for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# clean rule for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
 
 .PHONY : clean
 
@@ -803,34 +915,268 @@ clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_cpp.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/robo_virtual_gencpp.dir
+# Target rules for target robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages_cpp.dir/all
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target robo_virtual_gencpp"
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/all
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/all
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-robo_virtual_gencpp: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
+rosgraph_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : robo_virtual_gencpp
-
-# clean rule for target.
-robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
-.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
+robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/planejador.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/planejador.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=5,6 "Built target planejador"
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/all
+
+# Include target in all.
+all: robo_virtual/CMakeFiles/planejador.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/planejador.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
+
+# Convenience name for target.
+planejador: robo_virtual/CMakeFiles/planejador.dir/rule
+
+.PHONY : planejador
+
+# clean rule for target.
+robo_virtual/CMakeFiles/planejador.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/clean
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/planejador.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/posicaoAtual.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/posicaoAtual.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=7,8 "Built target posicaoAtual"
+.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/all
+
+# Include target in all.
+all: robo_virtual/CMakeFiles/posicaoAtual.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/posicaoAtual.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/posicaoAtual.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+
+# Convenience name for target.
+posicaoAtual: robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+
+.PHONY : posicaoAtual
+
+# clean rule for target.
+robo_virtual/CMakeFiles/posicaoAtual.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/clean
+.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/posicaoAtual.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target tf2_msgs_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_py: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_py
+
+# clean rule for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target raspberry_msgs_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : raspberry_msgs_generate_messages_cpp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target _robo_virtual_generate_messages_check_deps_Posicao"
+.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+
+# Convenience name for target.
+_robo_virtual_generate_messages_check_deps_Posicao: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/rule
+
+.PHONY : _robo_virtual_generate_messages_check_deps_Posicao
+
+# clean rule for target.
+robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/build.make robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
+.PHONY : robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/clean
 
 .PHONY : clean
 
@@ -838,8 +1184,8 @@ clean: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
 # Target rules for target robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/all: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/all: robo_virtual/CMakeFiles/_robo_virtual_generate_messages_check_deps_Posicao.dir/all
+robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/all: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/depend
 	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=12 "Built target robo_virtual_generate_messages_lisp"
@@ -864,6 +1210,262 @@ robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/clean:
 
 # clean rule for target.
 clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target actionlib_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+actionlib_generate_messages_lisp: robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
+
+.PHONY : actionlib_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/actionlib_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target tf_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_cpp: robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/rule
+
+.PHONY : tf_generate_messages_cpp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/tf_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target actionlib_msgs_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+actionlib_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : actionlib_msgs_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target tf2_msgs_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_cpp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target tf2_msgs_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+tf2_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : tf2_msgs_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target raspberry_msgs_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : raspberry_msgs_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target raspberry_msgs_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_generate_messages_py: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/rule
+
+.PHONY : raspberry_msgs_generate_messages_py
+
+# clean rule for target.
+robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/raspberry_msgs_generate_messages_py.dir/clean
 
 .PHONY : clean
 
@@ -907,6 +1509,38 @@ clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_cpp"
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_cpp: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target robo_virtual/CMakeFiles/robo_virtual_genpy.dir
 
 # All Build rule for target.
@@ -939,71 +1573,130 @@ clean: robo_virtual/CMakeFiles/robo_virtual_genpy.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+# Target rules for target robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_py"
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+sensor_msgs_generate_messages_py: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# clean rule for target.
-robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : sensor_msgs_generate_messages_py
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+.PHONY : robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/posicaoAtual.dir
+# Target rules for target robo_virtual/CMakeFiles/robo_virtual_gencpp.dir
 
 # All Build rule for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=7,8 "Built target posicaoAtual"
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/all
-
-# Include target in all.
-all: robo_virtual/CMakeFiles/posicaoAtual.dir/all
-
-.PHONY : all
+robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages_cpp.dir/all
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target robo_virtual_gencpp"
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/all
 
 # Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/posicaoAtual.dir/all
+robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
 
 # Convenience name for target.
-posicaoAtual: robo_virtual/CMakeFiles/posicaoAtual.dir/rule
+robo_virtual_gencpp: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/rule
 
-.PHONY : posicaoAtual
-
-# clean rule for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/clean
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/clean
+.PHONY : robo_virtual_gencpp
 
 # clean rule for target.
-clean: robo_virtual/CMakeFiles/posicaoAtual.dir/clean
+robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target tf_generate_messages_lisp"
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_lisp: robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+.PHONY : tf_generate_messages_lisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/robo_virtual_genlisp.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages_lisp.dir/all
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num= "Built target robo_virtual_genlisp"
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+
+# Convenience name for target.
+robo_virtual_genlisp: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/rule
+
+.PHONY : robo_virtual_genlisp
+
+# clean rule for target.
+robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
+.PHONY : robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
 
 .PHONY : clean
 

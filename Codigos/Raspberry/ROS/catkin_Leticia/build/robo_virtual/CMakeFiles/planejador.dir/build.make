@@ -90,15 +90,20 @@ planejador_EXTERNAL_OBJECTS =
 
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: robo_virtual/CMakeFiles/planejador.dir/src/planejador.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: robo_virtual/CMakeFiles/planejador.dir/build.make
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libtf.so
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libtf2_ros.so
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libactionlib.so
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libmessage_filters.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libroscpp.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /usr/lib/arm-linux-gnueabihf/libboost_signals.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /usr/lib/arm-linux-gnueabihf/libboost_filesystem.so
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libxmlrpcpp.so
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libtf2.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/librosconsole.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/librosconsole_log4cxx.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/librosconsole_backend_interface.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /usr/lib/arm-linux-gnueabihf/liblog4cxx.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /usr/lib/arm-linux-gnueabihf/libboost_regex.so
-/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /home/pi/Documents/desenvolvimentoRos/devel/lib/libxmlrpcpp.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /opt/ros/indigo/lib/libroscpp_serialization.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /opt/ros/indigo/lib/librostime.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib/robo_virtual/planejador: /opt/ros/indigo/lib/libcpp_common.so

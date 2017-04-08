@@ -39,6 +39,7 @@ robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /home/pi/Docume
 robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/wall_timer_options.h
 robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcDecl.h
 robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcValue.h
+robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/include/robo_virtual/Posicao.h
 robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/src/robo_virtual/src/posicaoAtual.cpp
 robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /opt/ros/indigo/include/ros/builtin_message_traits.h
 robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o: /opt/ros/indigo/include/ros/datatypes.h

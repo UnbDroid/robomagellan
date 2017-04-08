@@ -45,7 +45,9 @@
 @FSM
 + esperar_botao
 	adicionar_contador(name: requisitar_origem)
-	definir_velocidade(linear: 2, angular: 0)
+	adicionar_contador(name: teste)
+	definir_velocidade(linear: 0.5, angular: 0)
+	contador_menor(name: teste, value: 1) >> incrementar_contador(name: teste) & habilitar_seguir_rota(value: 3)
 	botao_verde() >> change(next_state: setup)
 	botao_preto() >> change(next_state: esperar_definicao_origem)
 + esperar_definicao_origem

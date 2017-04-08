@@ -16,7 +16,7 @@
 
 #define PI 3.14159265f
 
-#define DEBUG 1
+//#define DEBUG 1
 //#define GAZEBO 1
 #define ARDUINO 1
 
@@ -448,6 +448,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 
   if (!parar || obstaculo) {
 
+#if defined(GAZEBO)
     if (vf > vel_max){
       vf = vel_max;
     }
@@ -460,6 +461,24 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
     else if (wf < -vel_max){
       wf = -vel_max;
     }
+
+#endif
+
+#if defined(ARDUINO)
+    if (velocidadeEsquerda > vel_max){
+      velocidadeEsquerda = vel_max;
+    }
+    else if (velocidadeEsquerda < -vel_max){
+      velocidadeEsquerda = -vel_max;
+    }
+    if (velocidadeDireita > vel_max){
+      velocidadeDireita = vel_max;
+    }
+    else if (velocidadeDireita < -vel_max){
+      velocidadeDireita = -vel_max;
+    }
+
+#endif
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
