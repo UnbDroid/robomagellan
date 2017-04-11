@@ -2,6 +2,7 @@
 #include "arduino_msgs/StampedInt64.h"
 #include "arduino_msgs/StampedFloat64.h"
 #include "raspberry_msgs/StampedFloat32.h"
+#include "raspberry_msgs/GPS.h"
 #include "sensor_msgs/Range.h"
 #include "geometry_msgs/Point32.h"
 #include "std_msgs/Bool.h"
@@ -95,8 +96,24 @@ struct Ultrasound{
   ros::Time time;
 };
 
+struct GPSData{
+
+	bool valid;
+	double lat;
+	double lng;
+	double alt;
+	double speed;
+	double course;
+	float hdop;
+	float vdop;
+	float pdop;
+	
+
+};
+
 Ultrasound ultrasound[NUM_US];
 sensor_msgs::Range range_msgs[NUM_US];
+GPSData gpsData;
 
 static bool sensor_toque = false;
 static bool botao_verde = false;
@@ -144,6 +161,8 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
     botao_preto = msg->data;
   }else if(msg->id == BOTAO_VERDE){
     botao_verde = msg->data;
+  }else if(msg->id == GPS_VALID){
+ 	gpsData.valid = msg->data;	  	
   }
 }
 
@@ -152,6 +171,10 @@ void stampedFloat64Callback(const arduino_msgs::StampedFloat64::ConstPtr& msg){
     velocidadeAtualDir = msg->data;
   }else if(msg->id == VEL_ATUAL_ESQ){
     velocidadeAtualEsq = msg->data;
+  }else if(msg->id == GPS_LAT){
+ 	gpsData.lat = msg->data;	  	
+  }else if(msg->id == GPS_LON){
+ 	gpsData.lng = msg->data;	  	
   }
 }
 
@@ -198,6 +221,7 @@ int main(int argc, char **argv)
   ros::Publisher botao_preto_pub = n.advertise<std_msgs::Bool>("botao_preto",1000);
 
   ros::Publisher velocidade_atual_pub = n.advertise<geometry_msgs::Point32>("velocidade_atual",1000);
+  ros::Publisher gps_pub = n.advertise<raspberry_msgs::GPS>("gpsInfo",1000);
 
   velocity_pub = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000,true);
 
@@ -215,6 +239,7 @@ int main(int argc, char **argv)
   std_msgs::Bool botao_preto_msg;
   std_msgs::Bool botao_verde_msg;
   geometry_msgs::Point32 velocidade_atualMsg;
+  raspberry_msgs::GPS gps_msg;
 
   while (ros::ok()){
     processRangeMsgs();
@@ -223,6 +248,9 @@ int main(int argc, char **argv)
     botao_preto_msg.data = botao_preto;
     velocidade_atualMsg.x = velocidadeAtualDir;
     velocidade_atualMsg.y = velocidadeAtualEsq;
+    gps_msg.valid = gpsData.valid;
+    gps_msg.lat = gpsData.lat;
+    gps_msg.lng = gpsData.lng;
 
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);
@@ -231,6 +259,7 @@ int main(int argc, char **argv)
     botao_verde_pub.publish(botao_verde_msg);
     botao_preto_pub.publish(botao_preto_msg);
     velocidade_atual_pub.publish(velocidade_atualMsg);
+    gps_pub.publish(gps_msg);
 
     loop_rate.sleep();
     ros::spinOnce();

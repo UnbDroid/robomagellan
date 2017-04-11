@@ -6,6 +6,7 @@ arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/devel/include/sensor_msgs/Range.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedFloat64.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedInt64.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedFloat32.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/arduino_handler.cpp
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/XmlRpcDecl.h

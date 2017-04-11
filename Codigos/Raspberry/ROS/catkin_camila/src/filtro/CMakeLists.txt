@@ -187,6 +187,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
+add_definitions(-std=c++11)
 
 add_executable(filtro src/filtro.cpp)
 target_link_libraries(filtro ${catkin_LIBRARIES})

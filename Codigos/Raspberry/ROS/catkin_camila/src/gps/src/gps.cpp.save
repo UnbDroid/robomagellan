@@ -32,7 +32,6 @@ GPS::GPS()
 
 bool GPS::encode(char c)
 {
-	//std::cout << c << std::endl;
   ++encodedCharCount;
 
   switch(c)
@@ -182,7 +181,7 @@ bool GPS::endOfTermHandler()
 
     else
     {
-	std::cout << "fail" << std::endl;
+	std::cout << "fail "
       ++failedChecksumCount;
     }
 

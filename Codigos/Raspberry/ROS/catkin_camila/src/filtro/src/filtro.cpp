@@ -9,6 +9,7 @@
 #include <Eigen/Dense>
 #include <unsupported/Eigen/MatrixFunctions>
 #include <iostream>
+#include <chrono>
 
 #define DEBUG
 
@@ -81,12 +82,12 @@ void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
 		gpsData.valid = msg->valid;
 		gpsData.lat = msg->lat;
 		gpsData.lng = msg->lng;
-		gpsData.alt = msg->alt;
-		gpsData.speed = msg->speed;
-		gpsData.course = msg->course;
-		gpsData.hdop = msg->hdop;
-		gpsData.vdop = msg->vdop;
-		gpsData.pdop = msg->pdop;
+		//gpsData.alt = msg->alt;
+		//gpsData.speed = msg->speed;
+		//gpsData.course = msg->course;
+		//gpsData.hdop = msg->hdop;
+		//gpsData.vdop = msg->vdop;
+		//gpsData.pdop = msg->pdop;
 
 		//ROS_INFO("valid: %d",gpsData.valid);
 		//ROS_INFO("lat: %f", gpsData.lat);
@@ -220,14 +221,24 @@ MatrixXf medicao(GPSCoord ref){
 	pointGPS.lng = gpsData.lng;
 	pointGPS.alt = 0;
 
-	std::cout << "ref: " << ref.lat << " " << ref.lng << std::endl;
-	std::cout << "coord: " << pointGPS.lat << " " << pointGPS.lng  << std::endl;
+	static std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+	std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t-t1);
+	ROS_INFO("tempo: %f", time_span.count());
+	ROS_INFO("lat m: %f",pointGPS.lat );
+	ROS_INFO("lng m: %f", pointGPS.lng);
+	
+//	std::cout << "ref: " << ref.lat << " " << ref.lng << std::endl;
+//	std::cout << "coord: " << pointGPS.lat << " " << pointGPS.lng  << std::endl;
 
 	pointNed = GPS2NED(pointGPS, ref);
 
+//	ROS_INFO("NED x: %f", pointNed.x);
+//	ROS_INFO("NED y: %f", pointNed.y);
+
 	pos << pointNed.x, pointNed.y, pointNed.z;
 
-	std::cout << pos << std::endl;
+	//std::cout << pos << std::endl;
 	float speed, course;
 
 	speed = gpsData.speed;
@@ -426,7 +437,7 @@ int main(int argc, char **argv){
 
 	ros::Time current_time;
 	
-	ros::Rate loop_rate(100);
+	ros::Rate loop_rate(20);
 
 	geometry_msgs::Point32 origin;
   	std_msgs::Bool odomOK;
@@ -471,7 +482,7 @@ int main(int argc, char **argv){
 			ref.lat += gpsData.lat;
 			ref.lng += gpsData.lng;
 			ref.alt += gpsData.alt;
-			ROS_INFO("lat: %f", gpsData.lat);
+		//	ROS_INFO("lat: %f", gpsData.lat);
 			count++;
 		}else{
                 	odomOK.data = false;
@@ -484,9 +495,9 @@ int main(int argc, char **argv){
                		 ref.lng = ref.lng/count;
                		 ref.alt = 0;
 
-                std::cout << "lat: " << ref.lat << std ::endl;
-                std::cout <<" lng: " << ref.lng << std::endl;
-                std::cout << "count : "<< count << std::endl;
+               // std::cout << "lat: " << ref.lat << std ::endl;
+               // std::cout <<" lng: " << ref.lng << std::endl;
+               // std::cout << "count : "<< count << std::endl;
                 origin.x = ref.lat;
                 origin.y = ref.lng;
 
@@ -516,10 +527,10 @@ int main(int argc, char **argv){
 	//	P_posteriori = (I10 - KG*H)*P_priori;
 	
 		#ifdef DEBUG
-		std::cout << x_estPosteriori << std::endl;
+	//	std::cout << x_estPosteriori << std::endl;
 		#endif
 
-		std::cout << "\n";
+	//	std::cout << "\n";
 
 		current_time = ros::Time::now();  
     		odom.header.stamp = current_time;

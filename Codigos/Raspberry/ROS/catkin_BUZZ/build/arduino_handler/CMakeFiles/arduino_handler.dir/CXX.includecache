@@ -92,6 +92,22 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedFloat32.h
 string
 -
@@ -117,6 +133,8 @@ arduino_msgs/StampedFloat64.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/arduino_msgs/StampedFloat64.h
 raspberry_msgs/StampedFloat32.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/raspberry_msgs/StampedFloat32.h
+raspberry_msgs/GPS.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/raspberry_msgs/GPS.h
 sensor_msgs/Range.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/sensor_msgs/Range.h
 geometry_msgs/Point32.h

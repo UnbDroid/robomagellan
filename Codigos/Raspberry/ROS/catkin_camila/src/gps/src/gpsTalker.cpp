@@ -4,8 +4,9 @@
 #include "raspberry_msgs/GPS.h"
 #include "gps/gps.h"
 #include <time.h>
+#include <iostream>
 
-#define DEBUG
+//#define DEBUG
 
 GPS gps;
 raspberry_msgs::GPS msg;
@@ -87,11 +88,15 @@ int main(int argc, char **argv){
 
 	while (ros::ok()){
 
-		if(gps.encode(serialGetchar(fd))){
-
+		c = serialGetchar(fd);
+		//std::cout << c;		
+		//std::cout << "while" << std::endl;
+		if(gps.encode(c)){
+			
 			leituras();
-		}
-		
+
+	
+	}	
 		chatter_pub.publish(msg);
 
 	    	
