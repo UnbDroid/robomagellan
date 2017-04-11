@@ -20,6 +20,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/bruce_main2.dir/src/actions/reset_counter.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/actions/request_set_origin.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/actions/set_velocity.cpp.o"
+  "CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o"

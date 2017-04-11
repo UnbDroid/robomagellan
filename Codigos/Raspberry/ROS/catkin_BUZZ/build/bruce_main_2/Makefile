@@ -591,6 +591,33 @@ src/actions/reset_timer.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/reset_timer.cpp.s
 .PHONY : src/actions/reset_timer.cpp.s
 
+src/actions/send_enable_follow_camera.o: src/actions/send_enable_follow_camera.cpp.o
+
+.PHONY : src/actions/send_enable_follow_camera.o
+
+# target to build an object file
+src/actions/send_enable_follow_camera.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o
+.PHONY : src/actions/send_enable_follow_camera.cpp.o
+
+src/actions/send_enable_follow_camera.i: src/actions/send_enable_follow_camera.cpp.i
+
+.PHONY : src/actions/send_enable_follow_camera.i
+
+# target to preprocess a source file
+src/actions/send_enable_follow_camera.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.i
+.PHONY : src/actions/send_enable_follow_camera.cpp.i
+
+src/actions/send_enable_follow_camera.s: src/actions/send_enable_follow_camera.cpp.s
+
+.PHONY : src/actions/send_enable_follow_camera.s
+
+# target to generate assembly for a file
+src/actions/send_enable_follow_camera.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.s
+.PHONY : src/actions/send_enable_follow_camera.cpp.s
+
 src/actions/send_enable_path_follow.o: src/actions/send_enable_path_follow.cpp.o
 
 .PHONY : src/actions/send_enable_path_follow.o
@@ -1269,6 +1296,9 @@ help:
 	@echo "... src/actions/reset_timer.o"
 	@echo "... src/actions/reset_timer.i"
 	@echo "... src/actions/reset_timer.s"
+	@echo "... src/actions/send_enable_follow_camera.o"
+	@echo "... src/actions/send_enable_follow_camera.i"
+	@echo "... src/actions/send_enable_follow_camera.s"
 	@echo "... src/actions/send_enable_path_follow.o"
 	@echo "... src/actions/send_enable_path_follow.i"
 	@echo "... src/actions/send_enable_path_follow.s"

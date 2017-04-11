@@ -984,6 +984,16 @@ fsm.h
 parser/base_functions.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/parser/base_functions.h
 
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/send_enable_follow_camera.cpp
+actions/actions.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/actions/actions.h
+ros/ros.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/ros/ros.h
+fsm.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/fsm.h
+parser/base_functions.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/parser/base_functions.h
+
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/send_enable_path_follow.cpp
 actions/actions.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/actions/actions.h

@@ -15,6 +15,7 @@
 + resetar_contador: reset_counter
 + requisitar_origem: request_set_origin
 + definir_velocidade: set_velocity
++ habilitar_seguir_camera: send_enable_follow_camera
 
 @Conditions
 + bigger: is_bigger
@@ -47,6 +48,7 @@
 	adicionar_contador(name: requisitar_origem)
 	adicionar_contador(name: teste)
 	definir_velocidade(linear: 0, angular: 0)
+	habilitar_seguir_camera(value: true)
 	contador_menor(name: teste, value: 1) >> incrementar_contador(name: teste) & habilitar_seguir_rota(value: 3)
 	botao_verde() >> change(next_state: setup)
 	botao_preto() >> change(next_state: esperar_definicao_origem)

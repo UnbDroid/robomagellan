@@ -1,10 +1,10 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/bruce_vision_generate_messages_lisp"
-  "/home/ricardo/catkin_ws/devel/share/common-lisp/ros/bruce_vision/msg/Num.lisp"
-  "/home/ricardo/catkin_ws/devel/share/common-lisp/ros/bruce_vision/srv/AddTwoInts.lisp"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel/share/common-lisp/ros/bruce_vision/msg/Num.lisp"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel/share/common-lisp/ros/bruce_vision/srv/AddTwoInts.lisp"
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang)
-  INCLUDE(CMakeFiles/bruce_vision_generate_messages_lisp.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang )
+  include(CMakeFiles/bruce_vision_generate_messages_lisp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

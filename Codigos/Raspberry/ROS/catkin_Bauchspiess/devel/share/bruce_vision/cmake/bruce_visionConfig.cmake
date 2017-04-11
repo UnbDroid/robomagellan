@@ -67,14 +67,14 @@ set(bruce_vision_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(bruce_vision_SOURCE_PREFIX /home/ricardo/catkin_ws/src/bruce_vision)
-  set(bruce_vision_DEVEL_PREFIX /home/ricardo/catkin_ws/devel)
+  set(bruce_vision_SOURCE_PREFIX /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision)
+  set(bruce_vision_DEVEL_PREFIX /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel)
   set(bruce_vision_INSTALL_PREFIX "")
   set(bruce_vision_PREFIX ${bruce_vision_DEVEL_PREFIX})
 else()
   set(bruce_vision_SOURCE_PREFIX "")
   set(bruce_vision_DEVEL_PREFIX "")
-  set(bruce_vision_INSTALL_PREFIX /home/ricardo/catkin_ws/install)
+  set(bruce_vision_INSTALL_PREFIX /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/install)
   set(bruce_vision_PREFIX ${bruce_vision_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(bruce_vision_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/ricardo/catkin_ws/devel/include;/home/ricardo/catkin_ws/src/bruce_vision/include " STREQUAL " ")
+if(NOT "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel/include " STREQUAL " ")
   set(bruce_vision_INCLUDE_DIRS "")
-  set(_include_dirs "/home/ricardo/catkin_ws/devel/include;/home/ricardo/catkin_ws/src/bruce_vision/include")
+  set(_include_dirs "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel/include")
   foreach(idir ${_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})
@@ -103,7 +103,7 @@ if(NOT "/home/ricardo/catkin_ws/devel/include;/home/ricardo/catkin_ws/src/bruce_
         message(FATAL_ERROR "Project 'bruce_vision' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  Ask the maintainer 'ricardo <ricardobauchspiess@gmail.com>' to fix it.")
       endif()
     else()
-      message(FATAL_ERROR "Project 'bruce_vision' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/ricardo/catkin_ws/src/bruce_vision/${idir}'.  Ask the maintainer 'ricardo <ricardobauchspiess@gmail.com>' to fix it.")
+      message(FATAL_ERROR "Project 'bruce_vision' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/${idir}'.  Ask the maintainer 'ricardo <ricardobauchspiess@gmail.com>' to fix it.")
     endif()
     _list_append_unique(bruce_vision_INCLUDE_DIRS ${include})
   endforeach()
@@ -122,7 +122,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/ricardo/catkin_ws/devel/lib;/home/ricardo/catkin_ws/devel/lib;/opt/ros/indigo/lib)
+    foreach(path /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib;/home/pi/Documents/catkin_rosserial/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib;/home/pi/Documents/desenvolvimentoRos/devel/lib;/opt/ros/indigo/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -153,7 +153,7 @@ foreach(t ${bruce_vision_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "message_runtime")
+set(depends "roscpp;rospy;std_msgs;message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls

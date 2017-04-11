@@ -2,7 +2,7 @@
 
 message(STATUS "bruce_vision: 1 messages, 1 services")
 
-set(MSG_I_FLAGS "-Ibruce_vision:/home/ricardo/catkin_ws/src/bruce_vision/msg;-Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Ibruce_vision:/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg;-Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -15,14 +15,14 @@ add_custom_target(bruce_vision_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg" NAME_WE)
 add_custom_target(_bruce_vision_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "bruce_vision" "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "bruce_vision" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg" ""
 )
 
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
 add_custom_target(_bruce_vision_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "bruce_vision" "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "bruce_vision" "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv" ""
 )
 
 #
@@ -32,7 +32,7 @@ add_custom_target(_bruce_vision_generate_messages_check_deps_${_filename}
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(bruce_vision
-  "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/bruce_vision
@@ -40,7 +40,7 @@ _generate_msg_cpp(bruce_vision
 
 ### Generating Services
 _generate_srv_cpp(bruce_vision
-  "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/bruce_vision
@@ -58,9 +58,9 @@ add_custom_target(bruce_vision_generate_messages_cpp
 add_dependencies(bruce_vision_generate_messages bruce_vision_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg" NAME_WE)
 add_dependencies(bruce_vision_generate_messages_cpp _bruce_vision_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
 add_dependencies(bruce_vision_generate_messages_cpp _bruce_vision_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -73,7 +73,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS bruce_vision_generate_messages_cpp)
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(bruce_vision
-  "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/bruce_vision
@@ -81,7 +81,7 @@ _generate_msg_lisp(bruce_vision
 
 ### Generating Services
 _generate_srv_lisp(bruce_vision
-  "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/bruce_vision
@@ -99,9 +99,9 @@ add_custom_target(bruce_vision_generate_messages_lisp
 add_dependencies(bruce_vision_generate_messages bruce_vision_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg" NAME_WE)
 add_dependencies(bruce_vision_generate_messages_lisp _bruce_vision_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
 add_dependencies(bruce_vision_generate_messages_lisp _bruce_vision_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -114,7 +114,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS bruce_vision_generate_messages_lisp
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(bruce_vision
-  "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/bruce_vision
@@ -122,7 +122,7 @@ _generate_msg_py(bruce_vision
 
 ### Generating Services
 _generate_srv_py(bruce_vision
-  "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/bruce_vision
@@ -140,9 +140,9 @@ add_custom_target(bruce_vision_generate_messages_py
 add_dependencies(bruce_vision_generate_messages bruce_vision_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/msg/Num.msg" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/msg/Num.msg" NAME_WE)
 add_dependencies(bruce_vision_generate_messages_py _bruce_vision_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/ricardo/catkin_ws/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
+get_filename_component(_filename "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/srv/AddTwoInts.srv" NAME_WE)
 add_dependencies(bruce_vision_generate_messages_py _bruce_vision_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
