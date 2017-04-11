@@ -72,7 +72,7 @@ int main(int argc, char **argv){
 //Leitura parametros
 //-------------------------------------------------------------------
 	rosbag::Bag bagParam;
-	bagParam.open("parametrosGyro.bag", rosbag::bagmode::Read);
+	bagParam.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/parametrosGyro.bag", rosbag::bagmode::Read);
 
  	std::vector<std::string> topics;
     	topics.push_back(std::string("param_gyro"));
@@ -114,9 +114,9 @@ int main(int argc, char **argv){
 		ROS_INFO("%f", msg.g_x);
 		ROS_INFO("%f", msg.g_y);
 		ROS_INFO("%f", msg.g_z);	
-		#endif
 
 		bag.write("gyro_data",ros::Time::now(),msg);
+		#endif
 
 		chatter_pub.publish(msg);
 	    

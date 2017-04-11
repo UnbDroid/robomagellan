@@ -9,23 +9,26 @@ set(CMAKE_DEPENDS_CHECK_CXX
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS
+set(CMAKE_TARGET_DEFINITIONS_CXX
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
   "ROS_PACKAGE_NAME=\"imu\""
+  )
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/include"
+  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include"
+  "/home/pi/Documents/desenvolvimentoRos/devel/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/topic_tools/include"
+  "/opt/ros/indigo/include"
+  "/usr/local/lib"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   )
 
-# The include file search paths:
-set(CMAKE_C_TARGET_INCLUDE_PATH
-  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/include"
-  "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include"
-  "/opt/ros/indigo/include"
-  "/usr/local/lib"
-  )
-set(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-set(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-set(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

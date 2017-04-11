@@ -36,31 +36,31 @@ struct GPSData{
 
 struct GyroData{
 
-	int x;
-	int y;
-	int z;
+	float x;
+	float y;
+	float z;
 	ros::Time time;
 
 };
 
 struct AccData{
 
-	int x;
-	int y;
-	int z;
+	float x;
+	float y;
+	float z;
 	ros::Time time;
 };
 
 struct NEDCoord{
-  float x,y,z;
+  double x,y,z;
 };
 
 struct ECEFCoord{
-  float x,y,z;
+  double x,y,z;
 };
 
 struct GPSCoord{
-  float lat,lng,alt;
+  double lat,lng,alt;
 };
 
 
@@ -70,6 +70,61 @@ AccData accData;
 MatrixXf G(3,1);
 MatrixXf R(10,10);
 MatrixXf I10(10,10);
+
+void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
+
+	if(!msg->valid){
+		gpsData.valid = msg->valid;
+		ROS_INFO("GPS sem sinal");	
+	}
+	else{
+		gpsData.valid = msg->valid;
+		gpsData.lat = msg->lat;
+		gpsData.lng = msg->lng;
+		gpsData.alt = msg->alt;
+		gpsData.speed = msg->speed;
+		gpsData.course = msg->course;
+		gpsData.hdop = msg->hdop;
+		gpsData.vdop = msg->vdop;
+		gpsData.pdop = msg->pdop;
+
+		//ROS_INFO("valid: %d",gpsData.valid);
+		//ROS_INFO("lat: %f", gpsData.lat);
+		//ROS_INFO("lng: %f", gpsData.lng);
+		//ROS_INFO("alt: %f", gpsData.alt);
+		//ROS_INFO("speed: %f", gpsData.speed);
+		//ROS_INFO("hdop: %f", gpsData.hdop);
+		//ROS_INFO("vdop: %f", gpsData.vdop);
+		//ROS_INFO("pdop: %f", gpsData.pdop);
+	
+	}
+
+
+}
+
+void gyroCallback(const raspberry_msgs::Gyro::ConstPtr& msg){
+
+
+	gyroData.x = msg->g_x;
+	gyroData.y = msg->g_y;
+	gyroData.z = msg->g_z;
+
+	//ROS_INFO("g_x: %d", gyroData.x) ;
+	//ROS_INFO("g_y: %d", gyroData.y);
+	//ROS_INFO("g_z: %d", gyroData.z);
+}
+
+void accCallback(const raspberry_msgs::Acc::ConstPtr& msg){
+
+	accData.x = msg->a_x;
+	accData.y = msg->a_y;
+	accData.z = msg->a_z;
+
+	//ROS_INFO("a_x: %f", accData.x);
+	//ROS_INFO("a_y: %f", accData.y);
+	//ROS_INFO("a_z: %f", accData.z);
+
+}
 
 float toRadian(float degree){
   return (degree*PI/180.0);
@@ -163,21 +218,26 @@ MatrixXf medicao(GPSCoord ref){
 
 	pointGPS.lat = gpsData.lat;
 	pointGPS.lng = gpsData.lng;
-	pointGPS.alt = gpsData.alt;
+	pointGPS.alt = 0;
+
+	std::cout << "ref: " << ref.lat << " " << ref.lng << std::endl;
+	std::cout << "coord: " << pointGPS.lat << " " << pointGPS.lng  << std::endl;
 
 	pointNed = GPS2NED(pointGPS, ref);
 
 	pos << pointNed.x, pointNed.y, pointNed.z;
 
+	std::cout << pos << std::endl;
 	float speed, course;
 
 	speed = gpsData.speed;
 	course = gpsData.course;
-
+	
 	vel << speed*sin(course), speed*cos(course), 0;
-
+//	std::cout<< vel << std::endl;
+//	std::cout<< ""<< std::endl;
 	orient << cos(course/2), 0, 0, sin(course/2);
-
+//	std::cout<< orient << std::endl;
 	MatrixXf med(10,1);
 	
 	med << orient, vel, pos;
@@ -325,60 +385,6 @@ MatrixXf jacobianaMedida(){
 
 }
 
-void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
-
-	if(!msg->valid){
-		gpsData.valid = msg->valid;
-		ROS_INFO("GPS sem sinal");	
-	}
-	else{
-		gpsData.valid = msg->valid;
-		gpsData.lat = msg->lat;
-		gpsData.lng = msg->lng;
-		gpsData.alt = msg->alt;
-		gpsData.speed = msg->speed;
-		gpsData.course = msg->course;
-		gpsData.hdop = msg->hdop;
-		gpsData.vdop = msg->vdop;
-		gpsData.pdop = msg->pdop;
-
-		//ROS_INFO("lat: %f", gpsData.lat);
-		//ROS_INFO("lng: %f", gpsData.lng);
-		//ROS_INFO("alt: %f", gpsData.alt);
-		//ROS_INFO("speed: %f", gpsData.speed);
-		//ROS_INFO("hdop: %f", gpsData.hdop);
-		//ROS_INFO("vdop: %f", gpsData.vdop);
-		//ROS_INFO("pdop: %f", gpsData.pdop);
-	
-	}
-
-
-}
-
-void gyroCallback(const raspberry_msgs::Gyro::ConstPtr& msg){
-
-
-	gyroData.x = msg->g_x;
-	gyroData.y = msg->g_y;
-	gyroData.z = msg->g_z;
-
-	//ROS_INFO("g_x: %d", gyroData.x) ;
-	//ROS_INFO("g_y: %d", gyroData.y);
-	//ROS_INFO("g_z: %d", gyroData.z);
-}
-
-void accCallback(const raspberry_msgs::Acc::ConstPtr& msg){
-
-	accData.x = msg->a_x;
-	accData.y = msg->a_y;
-	accData.z = msg->a_z;
-
-	//ROS_INFO("a_x: %d", accData.x);
-	//ROS_INFO("a_y: %d", accData.y);
-	//ROS_INFO("a_z: %d", accData.z);
-
-}
-
 GPSCoord setup(){
 
 	GPSCoord ref;
@@ -386,14 +392,15 @@ GPSCoord setup(){
 	ref.lng = 0;
 	ref.alt = 0;
 
-	int count = 0;
+	int count = 0;	
 
 	ros::Time tInicial = ros::Time::now();
-	while (ros::Time::now().toSec() - tInicial.toSec() < tSetup){
+	while (count < 100000){
 		
 		ref.lat += gpsData.lat;
 		ref.lng += gpsData.lng;
 		ref.alt += gpsData.alt;
+		ROS_INFO("lat: %f", gpsData.lat);
 		count++;
 	}
 
@@ -406,6 +413,7 @@ GPSCoord setup(){
 }
 
 int main(int argc, char **argv){	
+
   	ros::init(argc, argv, "filtro");
 	ros::NodeHandle n;
 	ros::Subscriber subGPS = n.subscribe("gpsInfo", 1000, GPSCallback);
@@ -418,25 +426,17 @@ int main(int argc, char **argv){
 
 	ros::Time current_time;
 	
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(100);
 
 	geometry_msgs::Point32 origin;
   	std_msgs::Bool odomOK;
 	nav_msgs::Odometry odom;
 
 	GPSCoord ref;
-	
-	if(gpsData.valid){
-		odomOK.data = true;
-		ref = setup();
-	}
-	else{
-		odomOK.data = false;
-		ref.lat = 0; ref.lng = 0; ref.alt = 0; 
-	}
 
-	origin.x = ref.lat;
-  	origin.y = ref.lng;
+	ref.lat = 0;
+	ref.lng = 0;
+	ref.alt = 0;
 
 	MatrixXf x_estPriori(10,1); // [q0 q1 q2 q3 vx vy vz rx ry rz] 
 	MatrixXf x_estPosteriori(10,1); 
@@ -455,29 +455,65 @@ int main(int argc, char **argv){
 	P_posteriori = I10*0.1;
 	Q = I10*0.1;
 	R = I10*0.001;
-
+	
+	int flagSetup = 1;
+	ros::Time tInicial = ros::Time::now();
+	int count = 0;	
+	
 	while (ros::ok()){
 
+	if (flagSetup){	
+       
+		if(gpsData.valid){
+                	std::cout << "setup" << std::endl;
+                	odomOK.data = true;
+
+			ref.lat += gpsData.lat;
+			ref.lng += gpsData.lng;
+			ref.alt += gpsData.alt;
+			ROS_INFO("lat: %f", gpsData.lat);
+			count++;
+		}else{
+                	odomOK.data = false;
+         	       ref.lat = 0; ref.lng = 0; ref.alt = 0;
+		}
+
+		if(ros::Time::now().toSec() - tInicial.toSec() > 30){
+			flagSetup = 0;
+			ref.lat = ref.lat/count;
+               		 ref.lng = ref.lng/count;
+               		 ref.alt = 0;
+
+                std::cout << "lat: " << ref.lat << std ::endl;
+                std::cout <<" lng: " << ref.lng << std::endl;
+                std::cout << "count : "<< count << std::endl;
+                origin.x = ref.lat;
+                origin.y = ref.lng;
+
+		}
+	}else{
+
+
 		// Estimação
-		x_estPriori = predicao(x_estPosteriori);
-		F = jacobianaModelo(x_estPosteriori);
-		P_priori = F + P_posteriori*F.transpose() + Q;
+	//	x_estPriori = predicao(x_estPosteriori);
+	//	F = jacobianaModelo(x_estPosteriori);
+	//	P_priori = F + P_posteriori*F.transpose() + Q;
 
 		// Correção
-		if(gpsData.valid){
-			KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
+	//	if(gpsData.valid){
+	//		KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
 			M = medicao(ref);
 			odomOK.data = true;
-		}
-		else{
-			KG.setZero();
-			M.setZero();
-			odomOK.data = false;
-		}
-		
-		x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
-		std::cout << "oi" << std::endl;	
-		P_posteriori = (I10 - KG*H)*P_priori;
+	//	}
+	//	else{
+	///		KG.setZero();
+	//		M.setZero();
+	//		odomOK.data = false;
+	//	}
+		x_estPosteriori = M;	
+	//	x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+	//	std::cout << "oi" << std::endl;	
+	//	P_posteriori = (I10 - KG*H)*P_priori;
 	
 		#ifdef DEBUG
 		std::cout << x_estPosteriori << std::endl;
@@ -502,6 +538,7 @@ int main(int argc, char **argv){
 		odom_pub.publish(odom);
     		origin_pub.publish(origin);
     		odom_ok.publish(odomOK);	
+	}
 
 		loop_rate.sleep();
        		ros::spinOnce();

@@ -65,7 +65,7 @@ int main(int argc, char **argv){
 // Leitura parametros
 //------------------------------------------------------------------
 	rosbag::Bag bagParam;
-        bagParam.open("parametrosAcc.bag", rosbag::bagmode::Read);
+        bagParam.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/parametrosAcc.bag", rosbag::bagmode::Read);
 
  	std::vector<std::string> topics;
     	topics.push_back(std::string("param_acc"));
@@ -110,9 +110,9 @@ int main(int argc, char **argv){
 		ROS_INFO("x: %f", msg.a_x);
 		ROS_INFO("y: %f", msg.a_y);
 		ROS_INFO("z: %f", msg.a_z);
-		#endif
 
 		bag.write("acc_data",ros::Time::now(),msg);
+		#endif
 
 		chatter_pub.publish(msg);
 	    

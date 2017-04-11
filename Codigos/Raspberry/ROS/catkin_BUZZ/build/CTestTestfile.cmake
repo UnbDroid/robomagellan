@@ -7,8 +7,6 @@
 subdirs(gtest)
 subdirs(arduino_msgs)
 subdirs(raspberry_msgs)
-subdirs(bruce_main)
-subdirs(conversor_mapa)
 subdirs(arduino_handler)
 subdirs(bruce_main_2)
 subdirs(bruce_path_planner)

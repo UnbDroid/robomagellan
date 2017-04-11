@@ -19,7 +19,7 @@ void leituras(){
 
 	if(msg.valid){
 
-		//if(gps.location.isUpdated() || gps.speed.isUpdated() || gps.pdop.isUpdated()){
+		if(gps.location.isUpdated() || gps.speed.isUpdated() || gps.pdop.isUpdated()){
 			
 			if(gps.location.isUpdated()){
 				msg.lat = gps.location.lat();
@@ -44,21 +44,24 @@ void leituras(){
 			ROS_INFO("hdop: %f", msg.hdop);
 			ROS_INFO("vdop: %f", msg.vdop);
 			ROS_INFO("pdop: %f", msg.pdop);
-			#endif
 			
-	
 			bag.write("gps_data",ros::Time::now(),msg);
+			#endif
 
-		//}
-		//else{
-			//ROS_INFO("NOT UPDATED");
-		//}
+		}
+		else{
+			#ifdef DEBUG
+			ROS_INFO("NOT UPDATED");
+			#endif
+		}
 	
 	}
 	else{
 		utcTime = gps.time.getTime();
-		ROS_INFO("%d", utcTime); 
+
+		#ifdef DEBUG
 		ROS_INFO("INVALID");
+		#endif
 	}
 
 }

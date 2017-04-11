@@ -323,7 +323,7 @@ imu_SOURCE_DIR:STATIC=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catk
 imu_node_LIB_DEPENDS:STATIC=general;/opt/ros/indigo/lib/libroscpp.so;general;/usr/lib/arm-linux-gnueabihf/libboost_signals.so;general;/usr/lib/arm-linux-gnueabihf/libboost_filesystem.so;general;/opt/ros/indigo/lib/librosconsole.so;general;/opt/ros/indigo/lib/librosconsole_log4cxx.so;general;/opt/ros/indigo/lib/librosconsole_backend_interface.so;general;/usr/lib/arm-linux-gnueabihf/liblog4cxx.so;general;/usr/lib/arm-linux-gnueabihf/libboost_regex.so;general;/opt/ros/indigo/lib/libxmlrpcpp.so;general;/opt/ros/indigo/lib/libroscpp_serialization.so;general;/opt/ros/indigo/lib/librostime.so;general;/usr/lib/arm-linux-gnueabihf/libboost_date_time.so;general;/opt/ros/indigo/lib/libcpp_common.so;general;/usr/lib/arm-linux-gnueabihf/libboost_system.so;general;/usr/lib/arm-linux-gnueabihf/libboost_thread.so;general;/usr/lib/arm-linux-gnueabihf/libpthread.so;general;/usr/lib/arm-linux-gnueabihf/libconsole_bridge.so;general;libwiringPi;
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/indigo/lib/libtopic_tools.so
+lib:FILEPATH=/home/pi/Documents/desenvolvimentoRos/devel/lib/libtopic_tools.so
 
 //Dependencies for target
 libWiringPi_LIB_DEPENDS:STATIC=
@@ -341,7 +341,7 @@ message_runtime_DIR:PATH=/opt/ros/indigo/share/message_runtime/cmake
 raspberry_msgs_DIR:PATH=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/raspberry_msgs/cmake
 
 //The directory containing a CMake configuration file for rosbag.
-rosbag_DIR:PATH=/opt/ros/indigo/share/rosbag/cmake
+rosbag_DIR:PATH=/home/pi/Documents/desenvolvimentoRos/devel/share/rosbag/cmake
 
 //The directory containing a CMake configuration file for rosbag_storage.
 rosbag_storage_DIR:PATH=/opt/ros/indigo/share/rosbag_storage/cmake
@@ -377,7 +377,7 @@ std_msgs_DIR:PATH=/opt/ros/indigo/share/std_msgs/cmake
 std_srvs_DIR:PATH=/opt/ros/indigo/share/std_srvs/cmake
 
 //The directory containing a CMake configuration file for topic_tools.
-topic_tools_DIR:PATH=/opt/ros/indigo/share/topic_tools/cmake
+topic_tools_DIR:PATH=/home/pi/Documents/desenvolvimentoRos/devel/share/topic_tools/cmake
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/indigo/share/xmlrpcpp/cmake
@@ -397,7 +397,7 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/pi/Documents/robomagellan/Codigos/Raspberry/R
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=0
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=6
 //Patch version of cmake used to create the current loaded cache
 CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
@@ -492,7 +492,7 @@ CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RANLIB
 CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.0
+CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.6
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG

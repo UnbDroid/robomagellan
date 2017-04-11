@@ -46,7 +46,7 @@
 + esperar_botao
 	adicionar_contador(name: requisitar_origem)
 	adicionar_contador(name: teste)
-	definir_velocidade(linear: 0.5, angular: 0)
+	definir_velocidade(linear: 1, angular: 0)
 	contador_menor(name: teste, value: 1) >> incrementar_contador(name: teste) & habilitar_seguir_rota(value: 3)
 	botao_verde() >> change(next_state: setup)
 	botao_preto() >> change(next_state: esperar_definicao_origem)
@@ -54,10 +54,9 @@
 	contador_menor(name: requisitar_origem, value: 1) >> print(message: requisitando) & incrementar_contador(name: requisitar_origem) & requisitar_origem()
 	origem_recebida() >> print(message: recebi origem) & change(next_state: esperar_botao) & resetar_contador(name: requisitar_origem)
 + setup
-	publicar_origem_mapa(latitude: -15.762866, longitude: -47.858645)
+	publicar_origem_mapa(latitude: -15.765437, longitude: -47.872648)
 	adicionar_timer(name: us_timer)
 	adicionar_timer(name: aproximar_fino_timer)
-	odom_ok() >> change(next_state: calcular_rota_primeiro_cone)
 + calcular_rota_primeiro_cone
 	definir_alvo_gps(latitude: -15.762601, longitude: -47.857045)
 	calcular_rota()

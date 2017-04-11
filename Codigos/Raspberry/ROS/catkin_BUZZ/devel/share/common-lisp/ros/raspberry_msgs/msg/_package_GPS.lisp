@@ -9,6 +9,8 @@
           ALT
           SPEED-VAL
           SPEED
+          COURSE-VAL
+          COURSE
           HDOP-VAL
           HDOP
           VDOP-VAL
