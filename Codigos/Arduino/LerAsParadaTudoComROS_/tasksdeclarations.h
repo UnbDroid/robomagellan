@@ -2,7 +2,7 @@
 #define TASKDECLARATIONS_H
 
 // Tasks ------------------------------------------------
-
+#define ROS
 #define PERIODO 200
 
 Scheduler runner;
@@ -42,28 +42,33 @@ void start_TASKS(){
   runner.init();
 
   runner.addTask(taskComArduino);
-  //runner.addTask(taskGPS);
+  runner.addTask(taskGPS);
   runner.addTask(taskUS1);
   runner.addTask(taskUS2);
   runner.addTask(taskUS3);
   runner.addTask(taskUS4);
   runner.addTask(taskUS5);
   runner.addTask(taskUS6);
-  //runner.addTask(showUSReadings); // NUNCA ADICIONAR ELA JUNTO COM A TASKROS
+  #ifdef ROS
+   runner.addTask(taskROS); // NUNCA ADICIONAR ELA JUNTO COM A showUSReadings
+  #else
+   runner.addTask(showUSReadings); // NUNCA ADICIONAR ELA JUNTO COM A TASKROS
+  #endif
   
   runner.addTask(taskBotao);
   
-  runner.addTask(taskROS); // NUNCA ADICIONAR ELA JUNTO COM A showUSReadings
-  
-  //taskGPS.enable();
+  taskGPS.enable();
   taskUS1.enable();
   taskUS2.enable();
   taskUS3.enable();
   taskUS4.enable();
   taskUS5.enable();
-  taskUS6.enable(); 
-  //showUSReadings.enable(); // NUNCA HABILITAR ELA JUNTO COM A TASKROS
-  taskROS.enable(); // NUNCA HABILITAR ELA JUNTO COM A showUSReadings
+  taskUS6.enable();
+  #ifdef ROS
+    taskROS.enable(); // NUNCA HABILITAR ELA JUNTO COM A showUSReadings
+  #else
+    showUSReadings.enable(); // NUNCA HABILITAR ELA JUNTO COM A TASKROS   
+  #endif 
   taskComArduino.enable();
   taskBotao.enable();
 }
