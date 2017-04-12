@@ -27,6 +27,7 @@ void print(struct Fsm *obj, std::vector<std::string>);
 void publish_map_bottom_left_corner(struct Fsm *obj, std::vector<std::string>);
 void request_route_calculation(struct Fsm *obj, std::vector<std::string>);
 void send_enable_path_follow(struct Fsm *obj, std::vector<std::string>);
+void send_enable_follow_camera(struct Fsm *obj, std::vector<std::string>);
 void set_calculating_route(struct Fsm *obj, std::vector<std::string>);
 void set_map_path_goal_gps(struct Fsm *obj, std::vector<std::string>);
 void insert_us_obstacles_in_map(struct Fsm *obj, std::vector<std::string>);

@@ -209,6 +209,7 @@ set(${PROJECT_NAME}_ACTIONS
       src/actions/reset_counter
       src/actions/request_set_origin
       src/actions/set_velocity
+      src/actions/send_enable_follow_camera
 	src/actions/print)
   
 set(${PROJECT_NAME}_CONDITIONS

@@ -74,6 +74,7 @@ int main(int argc, char **argv){
       ros::Publisher pubObstacles = n.advertise<geometry_msgs::PoseArray>("new_obstacles",1000);
       ros::Publisher pubOriginRequest = n.advertise<std_msgs::Bool>("request_origin",1000);
       ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity",1000,true);
+      ros::Publisher pubFollowCamera = n.advertise<std_msgs::Bool>("follow_camera",1000);
 
       info.n = &n;
       info.pubRequestPath = & pubRequestPath;
@@ -83,6 +84,7 @@ int main(int argc, char **argv){
       info.pubObstacles = & pubObstacles;
       info.pubOriginRequest = & pubOriginRequest;
       info.pubVelocity = & pubVelocity;
+      info.pubFollowCamera = & pubFollowCamera;
       info.tfListener = & tfListener;
       
       ros::Rate loop_rate(30);
