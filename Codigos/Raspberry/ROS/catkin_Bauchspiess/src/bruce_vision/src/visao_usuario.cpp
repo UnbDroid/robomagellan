@@ -270,38 +270,8 @@ void sonda(Mat img){
 	imshow("SOURCE", temp);
 }
 
-int preenche_imagens(vector<Mat>* imagens){
-	int num_imagens = 0;
-	Mat img = imread("cone1.jpg");
-	//resize(img, img, Size(400,400));
-	imagens->push_back(img);
-	num_imagens++;
-	return num_imagens;
-}
 
 
-int preenche_videos(vector<string>* videos){
-	int num_videos = 0;
-	string video;
-	video = "grava1.avi";
-	videos->push_back(video);
-	num_videos++;
-	video = "grava2.avi";
-	videos->push_back(video);
-	num_videos++;
-	video = "grava3.avi";
-	videos->push_back(video);
-	num_videos++;
-	video = "distancia.avi";
-	videos->push_back(video);
-	num_videos++;
-
-
-
-
-
-	return num_videos;
-}
 
 //variaveis dos paineis
 bool p1 = false;
@@ -423,18 +393,16 @@ void Painel4(){
 	  
 }
 
-bool Comando(Mat source, VideoCapture* cap, bool aberta, vector<string>* videos, int* origem, int* num, int* vnum, int num_imagens, int num_videos){
+bool Comando(Mat source, VideoCapture* cap, bool aberta){
 
 	comando = waitKey(1);
 		switch(comando){
 			case('p'):
 				if(cone.atualiza){
 					cone.atualiza = false;
-					cone2.atualiza = false;
 				}	
 				else{
 					cone.atualiza = true;
-					cone2.atualiza = true;
 				}	
 				break;
 			case('s'):	
@@ -489,7 +457,6 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta, vector<string>* videos,
 					p3 = true;
 				}
 				break;
-				break;	
 			case(52):
 				if(p4){
 					p4 = false;
@@ -498,96 +465,6 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta, vector<string>* videos,
 				else{
 					Painel4();
 					p4 = true;
-				}
-				break;
-				break;			    
-			case('n'):
-				cone.anterior = false;
-				switch(*origem){
-					case(0):
-						(*num)--;
-						if ((*num) < 0){
-							(*num) = num_imagens-1;
-						}
-						break;
-					case(1):
-						(*vnum)--;
-						if ((*vnum) < 0){
-							(*vnum) = num_videos-1;
-						}
-						(*cap).release();
-						(*cap).open((*videos)[(*vnum)]);
-						break;
-					default:
-						break;		
-				}	
-				break;
-			case('m'):
-				cone.anterior = false;
-				switch(*origem){
-					case(0):
-						(*num)++;
-						if ((*num) > num_imagens - 1){
-							(*num) = 0;
-						}
-						break;
-					case(1):
-						(*vnum)++;
-						if ((*vnum) > num_videos - 1){
-							(*vnum) = 0;
-						}
-						(*cap).release();
-						(*cap).open((*videos)[(*vnum)]);
-						break;
-					default:
-						break;		
-				}	
-				break;
-			case(65364):
-				(*origem)--;
-				if((*origem) < 0 )
-					(*origem) = 2;
-				(*cap).release();
-				switch(*origem){
-					case(0):
-						break;
-					case(1):
-						(*cap).open((*videos)[(*vnum)]);
-						break;
-					case(2):
-						(*cap).open(0);
-						break;
-					default:
-						break;			
-				}
-				break;
-			case(65362):
-				(*origem)++;
-				if((*origem) > 2 )
-					(*origem) = 0;
-				(*cap).release();
-				switch(*origem){
-					case(0):
-						break;
-					case(1):
-						cout<<"aqui4"<<endl;
-						(*cap).open((*videos)[(*vnum)]);
-						cout<<"aqui5"<<endl;
-						//gettimeofday(&tempo1, NULL);
-						break;
-					case(2):
-						(*cap).open(0);
-						break;
-					default:
-						break;			
-				}		
-				break;
-			case('c'):
-				if(cone.calibra){
-					cone.calibra = false;
-				}
-				else{
-					cone.calibra = true;
 				}
 				break;		
 			case( 27 ):  //Sair
@@ -607,79 +484,29 @@ int main(int argc, char **argv){
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<geometry_msgs::Point32>("cone_position", 1000);
 	ros::Rate loop_rate(1000);
-
-	quadro = 349; 
-
 	struct timeval novo, velho;
-	int tempo, tempo_med = 0, cont = 0;
-	int max_tempo = 0;
-	int valor;
-	int ve_tempo = 1;
-	int valor2;
 
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
 	bool aberta;
-	if(!cap.open(0))
+	if(!cap.open(1))
         aberta = false;
     else 
     	aberta = true;
 
 
-    vector<Mat> imagens;
-    int num_imagens = preenche_imagens(&imagens);
-	int num = num_imagens -1;
 
-	vector<string> videos;
-    int num_videos = preenche_videos(&videos);
-	int vnum = num_videos -1;
-	bool video = false;
-	int origem = 2;
-
-	//Mat painel;
-	//cap>>painel;
-	//painel = Scalar(0);
-	//resize(painel, painel, Size(250,1));
-
-	//imshow("ajuda", imagens[0]);
-	Mat temp(400,400, CV_8UC1);
-	temp = Scalar(127);
-	imshow("SOURCE", temp);
-
-	int count = 0;
 	while(aberta == true){
-
-		//std_msgs::String msg;
 
 		geometry_msgs::Point32 msg;
 
-    	std::stringstream ss;
 
-    	++count;
 
-		//loop com vídeos
-		//gettimeofday(&velho, NULL);
-		if(origem > 0){
-			gettimeofday(&tempo1, NULL);
+			//gettimeofday(&tempo1, NULL);
 			if(cone.atualiza)
 				cap >> img;
 			if( img.empty() ){
-				if(video){
-					if(vnum == (num_videos -1))
-						aberta = false;
-					else{
-						cap.release();
-						cap.open(0);
-						vnum = num_videos -1;
-						cap>>img;
-
-						if(img.empty()){
-							aberta = false;
-						}
-					}
-				}
-				else
-					aberta = false;
+				aberta = false;
 				break;
 			}
 			else
@@ -687,33 +514,31 @@ int main(int argc, char **argv){
 			if(aberta == false)
 				break;
 			
+			/*
 			gettimeofday(&tempo2, NULL);
 			tempo = (int) (1000000 * (tempo2.tv_sec - tempo1.tv_sec) + (tempo2.tv_usec - tempo1.tv_usec));
 			if(cone.atualiza){
 				cout<<"camera: "<<tempo;
 			}
+			*/
 			
 
-			gettimeofday(&velho, NULL);
+			//gettimeofday(&velho, NULL);
 					
 			//imshow("SOURCE", img);
 			cone.rastreia(img);
 
 			if(cone.encontrou_cone){
-				ss<<"CONE ENCONTRADO:  "<<cone.pub_angulo<<" graus  "<<cone.pub_distancia<<" metros";
-				//msg.data = ss.str();
 				msg.x = cone.pub_angulo;
 				msg.y = cone.pub_distancia;
 
 	    		chatter_pub.publish(msg);
 			}
-			else{}
-
-	    	//ros::spinOnce();
 
 
 
-								
+
+				/*				
 				gettimeofday(&novo, NULL);
 				tempo = (int) (1000000 * (novo.tv_sec - velho.tv_sec) + (novo.tv_usec - velho.tv_usec));
 				if(cone.atualiza){
@@ -723,48 +548,10 @@ int main(int argc, char **argv){
 				if(cone.atualiza){
 					cout<<"   total: "<<tempo<<endl;
 				}
-									
+				*/					
 	
-				//valor = vnum;
-				//valor2 = origem;
-				aberta = Comando(img, &cap, aberta, &videos, &origem, &num, &vnum, num_imagens, num_videos);
-				/*			
-				if( vnum != valor || origem != valor2 ){
-					tempo_med = 0;
-					cont = 0;
-					max_tempo = 0;
-					ve_tempo = -20;
-				}
-				*/
-			//}	
-		}
-			
-		//Loop com as fotos	
-		else{
-			//imagem original
-			//imshow("SOURCE", imagens[num] );
-			//cone.rastreia(imagens[num]);
-			//cone.detecta_cones(imagens[num]);
-			aberta = Comando(imagens[num], &cap, aberta, &videos, &origem, &num, &vnum, num_imagens, num_videos);
+				aberta = Comando(img, &cap, aberta);
 
-		}
-
-		//Trecho para verificar eficiencia do algoritmo
-		/*
-		gettimeofday(&novo, NULL);
-		
-		if(ve_tempo >= 0){
-			tempo = (int) (1000 * (novo.tv_sec - velho.tv_sec) + (novo.tv_usec - velho.tv_usec) / 1000);
-			cont++;
-			tempo_med += tempo;
-			if (tempo > max_tempo)
-				max_tempo = tempo;
-			cout<<"ultimo tempo: "<<tempo<<"  Tempo medio: "<<tempo_med/cont<<" Tempo maximo:  "<<max_tempo<<endl;
-		}	
-		else{
-			ve_tempo++;
-		}
-		*/
 
 
 		loop_rate.sleep();

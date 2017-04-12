@@ -206,11 +206,11 @@ RastreiaCone5::RastreiaCone5(){
 
 
 	min_H1i = 0;
-	max_H1i = 11;
+	max_H1i = 15;
 	min_S1i = 150;
-	max_S1i = 215;
-	min_V1i = 40;
-	max_V1i = 255;
+	max_S1i = 255;
+	min_V1i = 80;
+	max_V1i = 200;
 	min_H2i = 160;
 	max_H2i = 180;
 	min_S2i = 150;
@@ -221,9 +221,9 @@ RastreiaCone5::RastreiaCone5(){
 
 	min_H1z = 0;
 	max_H1z = 15;
-	min_S1z = 140;
-	max_S1z = 215;
-	min_V1z = 80;
+	min_S1z = 100;
+	max_S1z = 255;
+	min_V1z = 70;
 	max_V1z = 255;
 	min_H2z = 160;
 	max_H2z = 180;
@@ -781,6 +781,7 @@ bool RastreiaCone5::dados_mancha(Mat mancha, int partes){
 
 	bool continuidade = false;
 	float cont_verdadeiros = 0;
+	float cont_quase = 0;
 
 	for(k = 0; k< partes; k++){
 		avg_inicio = 0;
@@ -796,25 +797,39 @@ bool RastreiaCone5::dados_mancha(Mat mancha, int partes){
 				 	fim = j;
 				 }
 			}
+			avg_fim+=fim+1;
+			//avg_fim += (mancha.cols - 1 - fim);
+			avg_inicio += ( (fim+1) - inicio);
 
-			avg_fim += (mancha.cols - 1 - fim);
-			avg_inicio += inicio;
 		}
 		dados.push_back(avg_inicio/(float)tamanho);
-		dados.push_back(avg_fim/(float)tamanho);
+		//dados.push_back(avg_fim/(float)tamanho);
 		//cout<<dados[k*2]<<"   "<<dados[k*2 +1]<<"   ";
 
 	}
 	//cout<<endl;
 
 
+	for(i = 1; i<partes-2; i++){
+		if(atualiza)
+			cout<<dados[i-1]<<"   "<<dados[i]<<"   "<<endl;
+		if(dados[i-1]<=dados[i]){
+			cont_verdadeiros++;
+			if(dados[i-1]<dados[i]){
+				cont_quase++;
+			}
+		}
+	}
+	cont_verdadeiros = cont_verdadeiros/(float)(partes-2-1);
+	cont_quase = cont_quase/(float)(partes-2-1);
 
+	/*
 	for(i = 1; i<partes; i++){
 		if(atualiza)
 			cout<<dados[2*(i-1)]<<"   "<<dados[2*i]<<"   ";
 		if(dados[2*(i-1)]>=dados[2*i]){
 			cont_verdadeiros++;
-			if(dados[2*(i-1)]>=dados[2*i]){
+			if(dados[2*(i-1)]>dados[2*i]){
 				cont_quase++;
 			}
 		}
@@ -822,16 +837,22 @@ bool RastreiaCone5::dados_mancha(Mat mancha, int partes){
 			cout<<dados[2*(i-1)+1]<<"   "<<dados[2*i+1]<<endl;
 		if(dados[2*(i-1)+1]>=dados[2*i+1]){
 			cont_verdadeiros++;
-			if(dados[2*(i-1)+1]>=dados[2*i+1]){
+			if(dados[2*(i-1)+1]>dados[2*i+1]){
 				cont_quase++;
 			}
 		}
 	}
+	
+
 	cont_verdadeiros = cont_verdadeiros/(float)(2*(partes-1));
 	cont_quase = cont_quase/(float)(2*(partes-1));
+	*/
+
+
+
 	if(atualiza)
 		cout<<" "<<cont_verdadeiros<<"   "<<cont_quase<<endl<<endl;
-	if( (cont_quase > 0.7)&&(cont_verdadeiros> 0.8)&&( (float)mancha.rows > (float)mancha.cols) ){
+	if( (cont_quase > 0.7)&&(cont_verdadeiros> 0.7)&&( (float)mancha.rows > (float)mancha.cols) ){
 		continuidade = true;
 	}
 
@@ -882,7 +903,7 @@ bool RastreiaCone5::identifica(Mat* source, int num_area, Mat* temp){
 	for(int i = 0; i<posicoes.size(); i++){
 		//dados.clear();
 
-		if(dados_mancha(manchas[i],4)){
+		if(dados_mancha(manchas[i],8)){
 			limites.push_back(posicoes[i]);
 			//line( (*source), Point(posicoes[i][0],posicoes[i][1]), Point(posicoes[i][2],posicoes[i][1]), Scalar(0,0,255), 1, 8);
 			//line( (*source), Point(posicoes[i][2],posicoes[i][1]), Point(posicoes[i][2],posicoes[i][3]), Scalar(0,0,255), 1, 8);
@@ -1146,8 +1167,8 @@ void RastreiaCone5::rastreia(Mat source){
 	pub_distancia = -1;
 	encontrou_cone = false;
 
-	if(proximo){
-	//if(false){
+	//if(proximo){
+	if(false){
 		achaPerto(&temp2, &temp);
 		for(int i = 0; i< pos_angulo.size(); i++){
 			angulo(&temp, i);
