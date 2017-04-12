@@ -245,7 +245,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=14,15 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=16,17 "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -277,7 +277,7 @@ clean: gtest/CMakeFiles/gtest_main.dir/clean
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=12,13 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=14,15 "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -306,11 +306,13 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 # Directory level rules for directory calibrar
 
 # Convenience name for "all" pass in the directory.
+calibrar/all: calibrar/CMakeFiles/calibrarMag.dir/all
 calibrar/all: calibrar/CMakeFiles/calibrarAcc.dir/all
 
 .PHONY : calibrar/all
 
 # Convenience name for "clean" pass in the directory.
+calibrar/clean: calibrar/CMakeFiles/calibrarMag.dir/clean
 calibrar/clean: calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 calibrar/clean: calibrar/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/clean
 calibrar/clean: calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
@@ -334,6 +336,43 @@ calibrar/clean: calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 calibrar/preinstall:
 
 .PHONY : calibrar/preinstall
+
+#=============================================================================
+# Target rules for target calibrar/CMakeFiles/calibrarMag.dir
+
+# All Build rule for target.
+calibrar/CMakeFiles/calibrarMag.dir/all:
+	$(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/depend
+	$(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=5,6 "Built target calibrarMag"
+.PHONY : calibrar/CMakeFiles/calibrarMag.dir/all
+
+# Include target in all.
+all: calibrar/CMakeFiles/calibrarMag.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+calibrar/CMakeFiles/calibrarMag.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/calibrarMag.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : calibrar/CMakeFiles/calibrarMag.dir/rule
+
+# Convenience name for target.
+calibrarMag: calibrar/CMakeFiles/calibrarMag.dir/rule
+
+.PHONY : calibrarMag
+
+# clean rule for target.
+calibrar/CMakeFiles/calibrarMag.dir/clean:
+	$(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/clean
+.PHONY : calibrar/CMakeFiles/calibrarMag.dir/clean
+
+# clean rule for target.
+clean: calibrar/CMakeFiles/calibrarMag.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Target rules for target calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir
@@ -879,7 +918,7 @@ filtro/preinstall:
 filtro/CMakeFiles/filtroAtitude.dir/all:
 	$(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/depend
 	$(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=7,8 "Built target filtroAtitude"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=9,10 "Built target filtroAtitude"
 .PHONY : filtro/CMakeFiles/filtroAtitude.dir/all
 
 # Include target in all.
@@ -916,7 +955,7 @@ clean: filtro/CMakeFiles/filtroAtitude.dir/clean
 filtro/CMakeFiles/filtro.dir/all:
 	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/depend
 	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=5,6 "Built target filtro"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=7,8 "Built target filtro"
 .PHONY : filtro/CMakeFiles/filtro.dir/all
 
 # Include target in all.
@@ -971,7 +1010,7 @@ gps/preinstall:
 gps/CMakeFiles/gpsTalker.dir/all:
 	$(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/depend
 	$(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=9,10,11 "Built target gpsTalker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=11,12,13 "Built target gpsTalker"
 .PHONY : gps/CMakeFiles/gpsTalker.dir/all
 
 # Include target in all.
@@ -1005,16 +1044,18 @@ clean: gps/CMakeFiles/gpsTalker.dir/clean
 # Directory level rules for directory imu
 
 # Convenience name for "all" pass in the directory.
-imu/all: imu/CMakeFiles/accTalker.dir/all
-imu/all: imu/CMakeFiles/gyroOffset.dir/all
 imu/all: imu/CMakeFiles/gyroTalker.dir/all
+imu/all: imu/CMakeFiles/gyroOffset.dir/all
+imu/all: imu/CMakeFiles/accTalker.dir/all
+imu/all: imu/CMakeFiles/magTalker.dir/all
 
 .PHONY : imu/all
 
 # Convenience name for "clean" pass in the directory.
-imu/clean: imu/CMakeFiles/accTalker.dir/clean
-imu/clean: imu/CMakeFiles/gyroOffset.dir/clean
 imu/clean: imu/CMakeFiles/gyroTalker.dir/clean
+imu/clean: imu/CMakeFiles/gyroOffset.dir/clean
+imu/clean: imu/CMakeFiles/accTalker.dir/clean
+imu/clean: imu/CMakeFiles/magTalker.dir/clean
 
 .PHONY : imu/clean
 
@@ -1022,6 +1063,80 @@ imu/clean: imu/CMakeFiles/gyroTalker.dir/clean
 imu/preinstall:
 
 .PHONY : imu/preinstall
+
+#=============================================================================
+# Target rules for target imu/CMakeFiles/gyroTalker.dir
+
+# All Build rule for target.
+imu/CMakeFiles/gyroTalker.dir/all:
+	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/depend
+	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=20,21 "Built target gyroTalker"
+.PHONY : imu/CMakeFiles/gyroTalker.dir/all
+
+# Include target in all.
+all: imu/CMakeFiles/gyroTalker.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+imu/CMakeFiles/gyroTalker.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroTalker.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : imu/CMakeFiles/gyroTalker.dir/rule
+
+# Convenience name for target.
+gyroTalker: imu/CMakeFiles/gyroTalker.dir/rule
+
+.PHONY : gyroTalker
+
+# clean rule for target.
+imu/CMakeFiles/gyroTalker.dir/clean:
+	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/clean
+.PHONY : imu/CMakeFiles/gyroTalker.dir/clean
+
+# clean rule for target.
+clean: imu/CMakeFiles/gyroTalker.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target imu/CMakeFiles/gyroOffset.dir
+
+# All Build rule for target.
+imu/CMakeFiles/gyroOffset.dir/all:
+	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/depend
+	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=18,19 "Built target gyroOffset"
+.PHONY : imu/CMakeFiles/gyroOffset.dir/all
+
+# Include target in all.
+all: imu/CMakeFiles/gyroOffset.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+imu/CMakeFiles/gyroOffset.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroOffset.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : imu/CMakeFiles/gyroOffset.dir/rule
+
+# Convenience name for target.
+gyroOffset: imu/CMakeFiles/gyroOffset.dir/rule
+
+.PHONY : gyroOffset
+
+# clean rule for target.
+imu/CMakeFiles/gyroOffset.dir/clean:
+	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/clean
+.PHONY : imu/CMakeFiles/gyroOffset.dir/clean
+
+# clean rule for target.
+clean: imu/CMakeFiles/gyroOffset.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Target rules for target imu/CMakeFiles/accTalker.dir
@@ -1061,76 +1176,39 @@ clean: imu/CMakeFiles/accTalker.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target imu/CMakeFiles/gyroOffset.dir
+# Target rules for target imu/CMakeFiles/magTalker.dir
 
 # All Build rule for target.
-imu/CMakeFiles/gyroOffset.dir/all:
-	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/depend
-	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=16,17 "Built target gyroOffset"
-.PHONY : imu/CMakeFiles/gyroOffset.dir/all
+imu/CMakeFiles/magTalker.dir/all:
+	$(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/depend
+	$(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=22,23 "Built target magTalker"
+.PHONY : imu/CMakeFiles/magTalker.dir/all
 
 # Include target in all.
-all: imu/CMakeFiles/gyroOffset.dir/all
+all: imu/CMakeFiles/magTalker.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-imu/CMakeFiles/gyroOffset.dir/rule: cmake_check_build_system
+imu/CMakeFiles/magTalker.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroOffset.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/magTalker.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : imu/CMakeFiles/gyroOffset.dir/rule
+.PHONY : imu/CMakeFiles/magTalker.dir/rule
 
 # Convenience name for target.
-gyroOffset: imu/CMakeFiles/gyroOffset.dir/rule
+magTalker: imu/CMakeFiles/magTalker.dir/rule
 
-.PHONY : gyroOffset
-
-# clean rule for target.
-imu/CMakeFiles/gyroOffset.dir/clean:
-	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/clean
-.PHONY : imu/CMakeFiles/gyroOffset.dir/clean
+.PHONY : magTalker
 
 # clean rule for target.
-clean: imu/CMakeFiles/gyroOffset.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target imu/CMakeFiles/gyroTalker.dir
-
-# All Build rule for target.
-imu/CMakeFiles/gyroTalker.dir/all:
-	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/depend
-	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=18,19 "Built target gyroTalker"
-.PHONY : imu/CMakeFiles/gyroTalker.dir/all
-
-# Include target in all.
-all: imu/CMakeFiles/gyroTalker.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-imu/CMakeFiles/gyroTalker.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroTalker.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
-.PHONY : imu/CMakeFiles/gyroTalker.dir/rule
-
-# Convenience name for target.
-gyroTalker: imu/CMakeFiles/gyroTalker.dir/rule
-
-.PHONY : gyroTalker
+imu/CMakeFiles/magTalker.dir/clean:
+	$(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/clean
+.PHONY : imu/CMakeFiles/magTalker.dir/clean
 
 # clean rule for target.
-imu/CMakeFiles/gyroTalker.dir/clean:
-	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/clean
-.PHONY : imu/CMakeFiles/gyroTalker.dir/clean
-
-# clean rule for target.
-clean: imu/CMakeFiles/gyroTalker.dir/clean
+clean: imu/CMakeFiles/magTalker.dir/clean
 
 .PHONY : clean
 

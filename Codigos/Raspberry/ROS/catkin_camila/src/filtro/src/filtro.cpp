@@ -15,7 +15,7 @@
 
 #define PI 3.14159265
 #define tAmostragem 0.01
-#define g -9.7808439
+#define g 9.7808439
 #define tSetup 30
 
 using namespace Eigen;
@@ -207,6 +207,8 @@ MatrixXf predicao(MatrixXf anterior){
 	MatrixXf est(10,1);
 
 	est << orient, vel, pos;
+	
+	//std::cout << W << std::endl;
 
 	return est;
 }
@@ -467,7 +469,7 @@ int main(int argc, char **argv){
 	Q = I10*0.1;
 	R = I10*0.001;
 	
-	int flagSetup = 1;
+	int flagSetup = 0;
 	ros::Time tInicial = ros::Time::now();
 	int count = 0;	
 	
@@ -506,31 +508,31 @@ int main(int argc, char **argv){
 
 
 		// Estimação
-	//	x_estPriori = predicao(x_estPosteriori);
+		x_estPriori = predicao(x_estPosteriori);
 	//	F = jacobianaModelo(x_estPosteriori);
 	//	P_priori = F + P_posteriori*F.transpose() + Q;
 
 		// Correção
 	//	if(gpsData.valid){
 	//		KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
-			M = medicao(ref);
-			odomOK.data = true;
+	//		M = medicao(ref);
+	//		odomOK.data = true;
 	//	}
 	//	else{
-	///		KG.setZero();
-	//		M.setZero();
+	    	KG.setZero();
+			M.setZero();
 	//		odomOK.data = false;
 	//	}
-		x_estPosteriori = M;	
-	//	x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+	//	x_estPosteriori = M;	
+		x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 	//	std::cout << "oi" << std::endl;	
 	//	P_posteriori = (I10 - KG*H)*P_priori;
 	
 		#ifdef DEBUG
-	//	std::cout << x_estPosteriori << std::endl;
+		std::cout << x_estPosteriori << std::endl;
 		#endif
 
-	//	std::cout << "\n";
+	std::cout << "\n";
 
 		current_time = ros::Time::now();  
     		odom.header.stamp = current_time;

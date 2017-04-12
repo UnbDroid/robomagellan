@@ -296,6 +296,19 @@ sensor_msgs_generate_messages_cpp/fast:
 .PHONY : sensor_msgs_generate_messages_cpp/fast
 
 #=============================================================================
+# Target rules for targets named planejador
+
+# Build rule for target.
+planejador: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 planejador
+.PHONY : planejador
+
+# fast build rule for target.
+planejador/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
+.PHONY : planejador/fast
+
+#=============================================================================
 # Target rules for targets named tf_generate_messages_py
 
 # Build rule for target.
@@ -489,32 +502,6 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 rosgraph_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named planejador
-
-# Build rule for target.
-planejador: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 planejador
-.PHONY : planejador
-
-# fast build rule for target.
-planejador/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
-.PHONY : planejador/fast
-
-#=============================================================================
-# Target rules for targets named posicaoAtual
-
-# Build rule for target.
-posicaoAtual: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 posicaoAtual
-.PHONY : posicaoAtual
-
-# fast build rule for target.
-posicaoAtual/fast:
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
-.PHONY : posicaoAtual/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_lisp
@@ -789,6 +776,19 @@ robo_virtual_genlisp/fast:
 	$(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
 .PHONY : robo_virtual_genlisp/fast
 
+#=============================================================================
+# Target rules for targets named controle_camera
+
+# Build rule for target.
+controle_camera: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 controle_camera
+.PHONY : controle_camera
+
+# fast build rule for target.
+controle_camera/fast:
+	$(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/build
+.PHONY : controle_camera/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -812,6 +812,7 @@ help:
 	@echo "... actionlib_msgs_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... planejador"
 	@echo "... tf_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... robo_virtual"
@@ -827,8 +828,6 @@ help:
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... robo_virtual_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... planejador"
-	@echo "... posicaoAtual"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_py"
@@ -850,6 +849,7 @@ help:
 	@echo "... robo_virtual_gencpp"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... robo_virtual_genlisp"
+	@echo "... controle_camera"
 .PHONY : help
 
 

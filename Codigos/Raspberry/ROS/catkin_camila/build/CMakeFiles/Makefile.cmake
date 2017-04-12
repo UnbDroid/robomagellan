@@ -201,6 +201,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/clean_test_results.dir/DependInfo.cmake"
   "gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   "gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "calibrar/CMakeFiles/calibrarMag.dir/DependInfo.cmake"
   "calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "calibrar/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/DependInfo.cmake"
   "calibrar/CMakeFiles/std_msgs_generate_messages_cpp.dir/DependInfo.cmake"
@@ -220,7 +221,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "filtro/CMakeFiles/filtroAtitude.dir/DependInfo.cmake"
   "filtro/CMakeFiles/filtro.dir/DependInfo.cmake"
   "gps/CMakeFiles/gpsTalker.dir/DependInfo.cmake"
-  "imu/CMakeFiles/accTalker.dir/DependInfo.cmake"
-  "imu/CMakeFiles/gyroOffset.dir/DependInfo.cmake"
   "imu/CMakeFiles/gyroTalker.dir/DependInfo.cmake"
+  "imu/CMakeFiles/gyroOffset.dir/DependInfo.cmake"
+  "imu/CMakeFiles/accTalker.dir/DependInfo.cmake"
+  "imu/CMakeFiles/magTalker.dir/DependInfo.cmake"
   )

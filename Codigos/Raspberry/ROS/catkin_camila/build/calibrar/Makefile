@@ -67,6 +67,17 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -89,17 +100,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -164,6 +164,21 @@ preinstall/fast:
 depend:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+calibrar/CMakeFiles/calibrarMag.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 calibrar/CMakeFiles/calibrarMag.dir/rule
+.PHONY : calibrar/CMakeFiles/calibrarMag.dir/rule
+
+# Convenience name for target.
+calibrarMag: calibrar/CMakeFiles/calibrarMag.dir/rule
+
+.PHONY : calibrarMag
+
+# fast build rule for target.
+calibrarMag/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/build
+.PHONY : calibrarMag/fast
 
 # Convenience name for target.
 calibrar/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
@@ -432,6 +447,33 @@ src/calibrarAcc.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f calibrar/CMakeFiles/calibrarAcc.dir/build.make calibrar/CMakeFiles/calibrarAcc.dir/src/calibrarAcc.cpp.s
 .PHONY : src/calibrarAcc.cpp.s
 
+src/calibrarMag.o: src/calibrarMag.cpp.o
+
+.PHONY : src/calibrarMag.o
+
+# target to build an object file
+src/calibrarMag.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/src/calibrarMag.cpp.o
+.PHONY : src/calibrarMag.cpp.o
+
+src/calibrarMag.i: src/calibrarMag.cpp.i
+
+.PHONY : src/calibrarMag.i
+
+# target to preprocess a source file
+src/calibrarMag.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/src/calibrarMag.cpp.i
+.PHONY : src/calibrarMag.cpp.i
+
+src/calibrarMag.s: src/calibrarMag.cpp.s
+
+.PHONY : src/calibrarMag.s
+
+# target to generate assembly for a file
+src/calibrarMag.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/src/calibrarMag.cpp.s
+.PHONY : src/calibrarMag.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -439,13 +481,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... test"
+	@echo "... edit_cache"
+	@echo "... calibrarMag"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... install"
 	@echo "... raspberry_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rebuild_cache"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... edit_cache"
 	@echo "... install/local"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_cpp"
@@ -464,6 +507,9 @@ help:
 	@echo "... src/calibrarAcc.o"
 	@echo "... src/calibrarAcc.i"
 	@echo "... src/calibrarAcc.s"
+	@echo "... src/calibrarMag.o"
+	@echo "... src/calibrarMag.i"
+	@echo "... src/calibrarMag.s"
 .PHONY : help
 
 

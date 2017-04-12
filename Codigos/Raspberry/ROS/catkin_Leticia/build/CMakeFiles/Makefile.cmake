@@ -219,6 +219,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/DependInfo.cmake"
+  "robo_virtual/CMakeFiles/planejador.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/tf_generate_messages_py.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/robo_virtual.dir/DependInfo.cmake"
@@ -234,8 +235,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/robo_virtual_generate_messages_cpp.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/DependInfo.cmake"
-  "robo_virtual/CMakeFiles/planejador.dir/DependInfo.cmake"
-  "robo_virtual/CMakeFiles/posicaoAtual.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/DependInfo.cmake"
@@ -257,4 +256,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/DependInfo.cmake"
   "robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/DependInfo.cmake"
+  "robo_virtual/CMakeFiles/controle_camera.dir/DependInfo.cmake"
   )

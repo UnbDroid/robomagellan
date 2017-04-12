@@ -211,6 +211,21 @@ sensor_msgs_generate_messages_cpp/fast:
 .PHONY : sensor_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
+robo_virtual/CMakeFiles/planejador.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/rule
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
+
+# Convenience name for target.
+planejador: robo_virtual/CMakeFiles/planejador.dir/rule
+
+.PHONY : planejador
+
+# fast build rule for target.
+planejador/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
+.PHONY : planejador/fast
+
+# Convenience name for target.
 robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule
 .PHONY : robo_virtual/CMakeFiles/tf_generate_messages_py.dir/rule
@@ -434,36 +449,6 @@ rosgraph_msgs_generate_messages_lisp: robo_virtual/CMakeFiles/rosgraph_msgs_gene
 rosgraph_msgs_generate_messages_lisp/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-robo_virtual/CMakeFiles/planejador.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/rule
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
-
-# Convenience name for target.
-planejador: robo_virtual/CMakeFiles/planejador.dir/rule
-
-.PHONY : planejador
-
-# fast build rule for target.
-planejador/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
-.PHONY : planejador/fast
-
-# Convenience name for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/posicaoAtual.dir/rule
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/rule
-
-# Convenience name for target.
-posicaoAtual: robo_virtual/CMakeFiles/posicaoAtual.dir/rule
-
-.PHONY : posicaoAtual
-
-# fast build rule for target.
-posicaoAtual/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
-.PHONY : posicaoAtual/fast
 
 # Convenience name for target.
 robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
@@ -780,6 +765,48 @@ robo_virtual_genlisp/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build.make robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/build
 .PHONY : robo_virtual_genlisp/fast
 
+# Convenience name for target.
+robo_virtual/CMakeFiles/controle_camera.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/controle_camera.dir/rule
+.PHONY : robo_virtual/CMakeFiles/controle_camera.dir/rule
+
+# Convenience name for target.
+controle_camera: robo_virtual/CMakeFiles/controle_camera.dir/rule
+
+.PHONY : controle_camera
+
+# fast build rule for target.
+controle_camera/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/build
+.PHONY : controle_camera/fast
+
+src/controle_camera.o: src/controle_camera.cpp.o
+
+.PHONY : src/controle_camera.o
+
+# target to build an object file
+src/controle_camera.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/src/controle_camera.cpp.o
+.PHONY : src/controle_camera.cpp.o
+
+src/controle_camera.i: src/controle_camera.cpp.i
+
+.PHONY : src/controle_camera.i
+
+# target to preprocess a source file
+src/controle_camera.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/src/controle_camera.cpp.i
+.PHONY : src/controle_camera.cpp.i
+
+src/controle_camera.s: src/controle_camera.cpp.s
+
+.PHONY : src/controle_camera.s
+
+# target to generate assembly for a file
+src/controle_camera.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/src/controle_camera.cpp.s
+.PHONY : src/controle_camera.cpp.s
+
 src/planejador.o: src/planejador.cpp.o
 
 .PHONY : src/planejador.o
@@ -806,33 +833,6 @@ src/planejador.s: src/planejador.cpp.s
 src/planejador.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/src/planejador.cpp.s
 .PHONY : src/planejador.cpp.s
-
-src/posicaoAtual.o: src/posicaoAtual.cpp.o
-
-.PHONY : src/posicaoAtual.o
-
-# target to build an object file
-src/posicaoAtual.cpp.o:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.o
-.PHONY : src/posicaoAtual.cpp.o
-
-src/posicaoAtual.i: src/posicaoAtual.cpp.i
-
-.PHONY : src/posicaoAtual.i
-
-# target to preprocess a source file
-src/posicaoAtual.cpp.i:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.i
-.PHONY : src/posicaoAtual.cpp.i
-
-src/posicaoAtual.s: src/posicaoAtual.cpp.s
-
-.PHONY : src/posicaoAtual.s
-
-# target to generate assembly for a file
-src/posicaoAtual.cpp.s:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build && $(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/src/posicaoAtual.cpp.s
-.PHONY : src/posicaoAtual.cpp.s
 
 src/robo_virtual.o: src/robo_virtual.cpp.o
 
@@ -871,6 +871,7 @@ help:
 	@echo "... actionlib_msgs_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... planejador"
 	@echo "... tf_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... robo_virtual"
@@ -888,8 +889,6 @@ help:
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... robo_virtual_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... planejador"
-	@echo "... posicaoAtual"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_py"
@@ -913,14 +912,15 @@ help:
 	@echo "... robo_virtual_gencpp"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... robo_virtual_genlisp"
+	@echo "... controle_camera"
 	@echo "... install/local"
 	@echo "... install"
+	@echo "... src/controle_camera.o"
+	@echo "... src/controle_camera.i"
+	@echo "... src/controle_camera.s"
 	@echo "... src/planejador.o"
 	@echo "... src/planejador.i"
 	@echo "... src/planejador.s"
-	@echo "... src/posicaoAtual.o"
-	@echo "... src/posicaoAtual.i"
-	@echo "... src/posicaoAtual.s"
 	@echo "... src/robo_virtual.o"
 	@echo "... src/robo_virtual.i"
 	@echo "... src/robo_virtual.s"

@@ -17,7 +17,7 @@
 #define PI 3.14159265f
 
 #define DEBUG 1
-#define GAZEBO 1
+//#define GAZEBO 1
 #define ARDUINO 1
 
 // Modos de operacao
@@ -37,13 +37,13 @@
 #define VEL_VIRTUAL 2.0f
 #endif
 
-/*#if defined(ARDUINO)
+#if defined(ARDUINO)
 #define VELOCIDADE_MAXIMA 5.5f
-#define VELOCIDADE_MAXIMA_APROX 3.5f
-#define VELOCIDADE_MINIMA 2.0f
-#define VELOCIDADE_MINIMA_ANGULAR 2.0f
+#define VELOCIDADE_MAXIMA_APROX 3.0f
+#define VELOCIDADE_MINIMA 1.0f
+#define VELOCIDADE_MINIMA_ANGULAR 0.2f
 #define VEL_VIRTUAL 2.0f
-#endif*/
+#endif
 
 #define DISTANCIA_MAXIMA 1.0f
 #define DISTANCIA_MINIMA 0.002f
@@ -102,7 +102,7 @@ static bool inicio = false;
 /*Flag que permite receber nova trajetoria, novas velocidades a serem seguidas*/
 static int16_t enable = 0;
 
-static float vel_max = 0, vel_max_arduino = 0;
+static float vel_max = 0, vel_max_arduino = 0, vel_min_arduino = 2.0;
 
 float DIST_MAX[NUM_US] = {0.5,0.5,0.5,1,1,1,1,1,0.5,0.5,0.5};
 
@@ -121,7 +121,7 @@ sin(-34.8*PI/180)*DIST_MAX[7],sin(-52.5*PI/180)*DIST_MAX[8],sin(-69.6*PI/180)*DI
 
 #if defined(DEBUG)
   #warning Atencao! DEBUG esta definido
-  FILE *arq, *arq2;
+  //FILE *arq, *arq2;
 #endif
 
 //Funcoes ---------------------------------------------------------------------------------------------------------------
@@ -170,7 +170,7 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
   }
   else if((enable == APROXIMAR_CONE) || (enable == SEGUIR_VELOCIDADE)){
     vel_max = VELOCIDADE_MAXIMA_APROX;
-    vel_max_arduino = 3.5;
+    vel_max_arduino = 3.0;
   }
   else if (enable == PARA){
     parar = true;
@@ -277,7 +277,7 @@ void calculaSegmento (void) {
 
 #if defined(DEBUG)
       ROS_INFO("Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.x,auxPose.pose.position.y);
-      fprintf(arq,"Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.x,auxPose.pose.position.y);
+      //fprintf(arq,"Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.x,auxPose.pose.position.y);
 #endif
 
     }
@@ -358,9 +358,9 @@ void RoboReferencia(const ros::TimerEvent&){
 
 #if defined(DEBUG)
     ROS_INFO("periodo: %f amostras: %f t = %f", periodo, amostras, t);
-    fprintf(arq,"x: %f y: %f t = %f \n", x, y, theta);
-    fprintf(arq,"periodo: %f amostras: %f incremento = %f\n", periodo, amostras, incremento);
-    fprintf(arq,"velocidades: x: %f y :%f theta: %f \n", vx, vy, w);
+    //fprintf(arq,"x: %f y: %f t = %f \n", x, y, theta);
+    //fprintf(arq,"periodo: %f amostras: %f incremento = %f\n", periodo, amostras, incremento);
+    //fprintf(arq,"velocidades: x: %f y :%f theta: %f \n", vx, vy, w);
 #endif
 
   }
@@ -484,18 +484,97 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 #endif
 
 #if defined(ARDUINO)
-  /*if (velocidadeEsquerda > vel_max_arduino){
-    velocidadeEsquerda = vel_max_arduino;
-  }
-  else if (velocidadeEsquerda < -vel_max_arduino){
-    velocidadeEsquerda = -vel_max_arduino;
-  }
-  if (velocidadeDireita > vel_max_arduino){
-    velocidadeDireita = vel_max_arduino;
-  }
-  else if (velocidadeDireita < -vel_max_arduino){
-    velocidadeDireita = -vel_max_arduino;
-  }*/
+	float abs_esq = abs(velocidadeEsquerda), abs_dir = abs(velocidadeDireita);
+
+	if ((abs_esq > vel_max_arduino) || (abs_dir > vel_max_arduino)){
+		if (abs_esq > abs_dir ) {
+			if (velocidadeDireita >= 0) {
+				velocidadeDireita = (abs_dir/abs_esq)*vel_max_arduino;
+			}
+			else {
+				velocidadeDireita = -(abs_dir/abs_esq)*vel_max_arduino;
+			}
+			if (velocidadeEsquerda > 0) {
+				velocidadeEsquerda = vel_max_arduino;
+			}
+			else {
+				velocidadeEsquerda = -vel_max_arduino;
+			}
+		}
+		if (abs_dir > abs_esq ) {
+			if (velocidadeEsquerda >= 0) {
+				velocidadeEsquerda = (abs_esq/abs_dir)*vel_max_arduino;
+			}
+			else {
+				velocidadeEsquerda = -(abs_esq/abs_dir)*vel_max_arduino;
+			}
+			if (velocidadeDireita > 0) {
+				velocidadeDireita = vel_max_arduino;
+			}
+			else {
+				velocidadeDireita = -vel_max_arduino;
+			}
+		}	
+		else {
+			if (velocidadeEsquerda > 0) {
+				velocidadeEsquerda = vel_max_arduino;
+			}
+			else {
+				velocidadeEsquerda = -vel_max_arduino;
+			}
+			if (velocidadeDireita > 0) {
+				velocidadeDireita = vel_max_arduino;
+			}
+			else {
+				velocidadeDireita = -vel_max_arduino;
+			}
+		}	
+	}
+	
+	if ((abs_esq < vel_min_arduino) || (abs_dir < vel_min_arduino)){
+		if (abs_esq < abs_dir ) {
+			if (velocidadeDireita >= 0) {
+				velocidadeDireita = (abs_dir/abs_esq)*vel_min_arduino;
+			}
+			else {
+				velocidadeDireita = -(abs_dir/abs_esq)*vel_min_arduino;
+			}
+			if (velocidadeEsquerda > 0) {
+				velocidadeEsquerda = vel_min_arduino;
+			}
+			else {
+				velocidadeEsquerda = -vel_min_arduino;
+			}
+		}
+		if (abs_dir < abs_esq ) {
+			if (velocidadeEsquerda >= 0) {
+				velocidadeEsquerda = (abs_esq/abs_dir)*vel_min_arduino;
+			}
+			else {
+				velocidadeEsquerda = -(abs_esq/abs_dir)*vel_min_arduino;
+			}
+			if (velocidadeDireita > 0) {
+				velocidadeDireita = vel_min_arduino;
+			}
+			else {
+				velocidadeDireita = -vel_min_arduino;
+			}
+		}	
+		else {
+			if (velocidadeEsquerda > 0) {
+				velocidadeEsquerda = vel_min_arduino;
+			}
+			else {
+				velocidadeEsquerda = -vel_min_arduino;
+			}
+			if (velocidadeDireita > 0) {
+				velocidadeDireita = vel_min_arduino;
+			}
+			else {
+				velocidadeDireita = -vel_min_arduino;
+			}
+		}	
+	}
 
 #endif
 
@@ -548,7 +627,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   }
 
 #if defined(DEBUG)
-  fprintf(arq2, "%f  %f %f %f \n", vf,wf, velocidadeEsquerda, velocidadeDireita);
+  //fprintf(arq2, "%f  %f %f %f \n", vf,wf, velocidadeEsquerda, velocidadeDireita);
 #endif
 
 }
@@ -563,19 +642,52 @@ void controladorVelocidade(void){
   //ROS_INFO("Velocidades para o robo real: vd:%f ve:%f",velocidadeDireita, velocidadeEsquerda);
 
   if (!parar) {
-
-    if (velocidadeEsquerda > vel_max_arduino){
-      velocidadeEsquerda = vel_max_arduino;
-    }
-    else if (velocidadeEsquerda < -vel_max_arduino){
-      velocidadeEsquerda = -vel_max_arduino;
-    }
-    if (velocidadeDireita > vel_max_arduino){
-      velocidadeDireita = vel_max_arduino;
-    }
-    else if (velocidadeDireita < -vel_max_arduino){
-      velocidadeDireita = -vel_max_arduino;
-    }
+		float abs_esq = abs(velocidadeEsquerda), abs_dir = abs(velocidadeDireita);
+	
+		if ((abs_esq > vel_max_arduino) || (abs_dir > vel_max_arduino)){
+			if (abs_esq > abs_dir ) {
+				if (velocidadeDireita >= 0) {
+					velocidadeDireita = (abs_dir/abs_esq)*vel_max_arduino;
+				}
+				else {
+					velocidadeDireita = -(abs_dir/abs_esq)*vel_max_arduino;
+				}
+				if (velocidadeEsquerda > 0) {
+					velocidadeEsquerda = vel_max_arduino;
+				}
+				else {
+					velocidadeEsquerda = -vel_max_arduino;
+				}
+			}
+			if (abs_dir > abs_esq ) {
+				if (velocidadeEsquerda >= 0) {
+					velocidadeEsquerda = (abs_esq/abs_dir)*vel_max_arduino;
+				}
+				else {
+					velocidadeEsquerda = -(abs_esq/abs_dir)*vel_max_arduino;
+				}
+				if (velocidadeDireita > 0) {
+					velocidadeDireita = vel_max_arduino;
+				}
+				else {
+					velocidadeDireita = -vel_max_arduino;
+				}
+			}	
+			else {
+				if (velocidadeEsquerda > 0) {
+					velocidadeEsquerda = vel_max_arduino;
+				}
+				else {
+					velocidadeEsquerda = -vel_max_arduino;
+				}
+				if (velocidadeDireita > 0) {
+					velocidadeDireita = vel_max_arduino;
+				}
+				else {
+					velocidadeDireita = -vel_max_arduino;
+				}
+			}	
+		}
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
@@ -618,7 +730,7 @@ void controladorVelocidade(void){
   }
 
 #if defined(DEBUG)
-  fprintf(arq2, "%f  %f \n", velocidadeEsquerda,velocidadeDireita);
+  //fprintf(arq2, "%f  %f \n", velocidadeEsquerda,velocidadeDireita);
   ROS_INFO("%f  %f \n", velocidadeEsquerda,velocidadeDireita);
 #endif
 
@@ -733,8 +845,8 @@ int main(int argc, char **argv)
 {
 
 #if defined(DEBUG)
-  arq = fopen("feedback.txt", "w");
-  arq2 = fopen("feedbackvel.txt", "w");
+  //arq = fopen("feedback.txt", "w");
+  //arq2 = fopen("feedbackvel.txt", "w");
 #endif
 
   ros::init(argc, argv, "robo_virtual");
@@ -770,7 +882,7 @@ int main(int argc, char **argv)
 
   ros::Timer temporizador = n.createTimer(ros::Duration(TEMPO_AMOSTRAGEM),RoboReferencia, false);
 
-  ros::Rate loop_rate(5);
+  ros::Rate loop_rate(20);
   
 #if defined(ARDUINO)
   velocidadeArduinoDireita.id = 10;
@@ -805,7 +917,7 @@ int main(int argc, char **argv)
 #if defined(DEBUG)
     ROS_INFO("%f %f %f %f %f %f %f",tempo, roboReferencia.x, roboReferencia.y, roboReferencia.theta,roboAtual.x, roboAtual.y, roboAtual.theta);
     
-    fprintf(arq,"%f %f %f %f %f %f %f\n",tempo, roboReferencia.x, roboReferencia.y, roboReferencia.theta,roboAtual.x, roboAtual.y, roboAtual.theta); 
+    //fprintf(arq,"%f %f %f %f %f %f %f\n",tempo, roboReferencia.x, roboReferencia.y, roboReferencia.theta,roboAtual.x, roboAtual.y, roboAtual.theta); 
 #endif
 
     loop_rate.sleep();
@@ -813,7 +925,7 @@ int main(int argc, char **argv)
   
   }
 #if defined(DEBUG)
-  fclose(arq);
+  //fclose(arq);
 #endif
   return 0;
 }

@@ -19,6 +19,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include"
   "/home/pi/Documents/desenvolvimentoRos/devel/include"
+  "/home/pi/Documents/desenvolvimentoRos/devel/include/ros"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosconsole/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include"
   "/home/pi/Documents/desenvolvimentoRos/src/common_msgs/sensor_msgs/include"
   "/home/pi/Documents/desenvolvimentoRos/src/tf/include"
   "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/message_filters/include"

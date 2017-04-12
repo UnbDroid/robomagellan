@@ -27,7 +27,7 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 void cone_positionCallback(const geometry_msgs::Point32::ConstPtr& msg)
 {
   //ROS_INFO("I heard: [%s]", msg->data.c_str());
-  cout<<msg->x<<"   "<<msg->y<<endl;
+  cout<<msg->x<<"m   "<<msg->y<<"graus"<<endl;
 }
 
 int main(int argc, char **argv)

@@ -1,1 +1,0 @@
-set(ORDERED_PATHS "/home/pi/Documents/desenvolvimentoRos/devel/lib;/opt/ros/indigo/lib")

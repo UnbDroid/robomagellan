@@ -67,27 +67,26 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target install/local
+install/local/fast: install/local
 
-.PHONY : edit_cache/fast
+.PHONY : install/local/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target install/strip
-install/strip/fast: install/strip
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : install/strip/fast
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -99,16 +98,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # Special rule for the target install
 install: preinstall
@@ -122,16 +111,27 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target install/local
-install/local/fast: install/local
+# Special rule for the target install/strip
+install/strip/fast: install/strip
 
-.PHONY : install/local/fast
+.PHONY : install/strip/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,19 +166,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-imu/CMakeFiles/accTalker.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/accTalker.dir/rule
-.PHONY : imu/CMakeFiles/accTalker.dir/rule
+imu/CMakeFiles/gyroTalker.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroTalker.dir/rule
+.PHONY : imu/CMakeFiles/gyroTalker.dir/rule
 
 # Convenience name for target.
-accTalker: imu/CMakeFiles/accTalker.dir/rule
+gyroTalker: imu/CMakeFiles/gyroTalker.dir/rule
 
-.PHONY : accTalker
+.PHONY : gyroTalker
 
 # fast build rule for target.
-accTalker/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/build
-.PHONY : accTalker/fast
+gyroTalker/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
+.PHONY : gyroTalker/fast
 
 # Convenience name for target.
 imu/CMakeFiles/gyroOffset.dir/rule:
@@ -196,19 +196,34 @@ gyroOffset/fast:
 .PHONY : gyroOffset/fast
 
 # Convenience name for target.
-imu/CMakeFiles/gyroTalker.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroTalker.dir/rule
-.PHONY : imu/CMakeFiles/gyroTalker.dir/rule
+imu/CMakeFiles/accTalker.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/accTalker.dir/rule
+.PHONY : imu/CMakeFiles/accTalker.dir/rule
 
 # Convenience name for target.
-gyroTalker: imu/CMakeFiles/gyroTalker.dir/rule
+accTalker: imu/CMakeFiles/accTalker.dir/rule
 
-.PHONY : gyroTalker
+.PHONY : accTalker
 
 # fast build rule for target.
-gyroTalker/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
-.PHONY : gyroTalker/fast
+accTalker/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/build
+.PHONY : accTalker/fast
+
+# Convenience name for target.
+imu/CMakeFiles/magTalker.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/magTalker.dir/rule
+.PHONY : imu/CMakeFiles/magTalker.dir/rule
+
+# Convenience name for target.
+magTalker: imu/CMakeFiles/magTalker.dir/rule
+
+.PHONY : magTalker
+
+# fast build rule for target.
+magTalker/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/build
+.PHONY : magTalker/fast
 
 src/accTalker.o: src/accTalker.cpp.o
 
@@ -291,6 +306,33 @@ src/gyroTalker.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.s
 .PHONY : src/gyroTalker.cpp.s
 
+src/magTalker.o: src/magTalker.cpp.o
+
+.PHONY : src/magTalker.o
+
+# target to build an object file
+src/magTalker.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/src/magTalker.cpp.o
+.PHONY : src/magTalker.cpp.o
+
+src/magTalker.i: src/magTalker.cpp.i
+
+.PHONY : src/magTalker.i
+
+# target to preprocess a source file
+src/magTalker.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/src/magTalker.cpp.i
+.PHONY : src/magTalker.cpp.i
+
+src/magTalker.s: src/magTalker.cpp.s
+
+.PHONY : src/magTalker.s
+
+# target to generate assembly for a file
+src/magTalker.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/src/magTalker.cpp.s
+.PHONY : src/magTalker.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -298,15 +340,16 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... test"
-	@echo "... edit_cache"
-	@echo "... install/strip"
-	@echo "... rebuild_cache"
-	@echo "... list_install_components"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... accTalker"
-	@echo "... gyroOffset"
 	@echo "... gyroTalker"
+	@echo "... gyroOffset"
+	@echo "... accTalker"
+	@echo "... install/local"
+	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... install"
+	@echo "... install/strip"
+	@echo "... magTalker"
+	@echo "... edit_cache"
 	@echo "... src/accTalker.o"
 	@echo "... src/accTalker.i"
 	@echo "... src/accTalker.s"
@@ -316,6 +359,9 @@ help:
 	@echo "... src/gyroTalker.o"
 	@echo "... src/gyroTalker.i"
 	@echo "... src/gyroTalker.s"
+	@echo "... src/magTalker.o"
+	@echo "... src/magTalker.i"
+	@echo "... src/magTalker.s"
 .PHONY : help
 
 

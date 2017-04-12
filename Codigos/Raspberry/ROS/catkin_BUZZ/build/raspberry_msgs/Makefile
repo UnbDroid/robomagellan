@@ -166,6 +166,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+.PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_generate_messages_lisp: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : raspberry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
+.PHONY : raspberry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat64.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat64.dir/rule
 .PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat64.dir/rule
@@ -181,21 +196,6 @@ _raspberry_msgs_generate_messages_check_deps_StampedFloat64/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_StampedFloat64/fast
 
 # Convenience name for target.
-raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
-.PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
-
-# Convenience name for target.
-raspberry_msgs_gencpp: raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
-
-.PHONY : raspberry_msgs_gencpp
-
-# fast build rule for target.
-raspberry_msgs_gencpp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build
-.PHONY : raspberry_msgs_gencpp/fast
-
-# Convenience name for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/rule
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/rule
@@ -209,6 +209,21 @@ raspberry_msgs_genlisp: raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/rul
 raspberry_msgs_genlisp/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/build
 .PHONY : raspberry_msgs_genlisp/fast
+
+# Convenience name for target.
+raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
+.PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
+
+# Convenience name for target.
+raspberry_msgs_gencpp: raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
+
+.PHONY : raspberry_msgs_gencpp
+
+# fast build rule for target.
+raspberry_msgs_gencpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build
+.PHONY : raspberry_msgs_gencpp/fast
 
 # Convenience name for target.
 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat32.dir/rule:
@@ -436,6 +451,21 @@ _raspberry_msgs_generate_messages_check_deps_StampedBool/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_StampedBool/fast
 
 # Convenience name for target.
+raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/rule
+.PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/rule
+
+# Convenience name for target.
+_raspberry_msgs_generate_messages_check_deps_ParamMag: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/rule
+
+.PHONY : _raspberry_msgs_generate_messages_check_deps_ParamMag
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_ParamMag/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_ParamMag/fast
+
+# Convenience name for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir/rule
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir/rule
@@ -481,6 +511,21 @@ _raspberry_msgs_generate_messages_check_deps_Gyro/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_Gyro/fast
 
 # Convenience name for target.
+raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/rule
+.PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/rule
+
+# Convenience name for target.
+_raspberry_msgs_generate_messages_check_deps_Mag: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/rule
+
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Mag
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_Mag/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Mag/fast
+
+# Convenience name for target.
 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/rule
 .PHONY : raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/rule
@@ -510,21 +555,6 @@ raspberry_msgs_generate_messages_cpp/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
 .PHONY : raspberry_msgs_generate_messages_cpp/fast
 
-# Convenience name for target.
-raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
-.PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-raspberry_msgs_generate_messages_lisp: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : raspberry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-raspberry_msgs_generate_messages_lisp/fast:
-	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
-.PHONY : raspberry_msgs_generate_messages_lisp/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -535,9 +565,10 @@ help:
 	@echo "... install/strip"
 	@echo "... install"
 	@echo "... install/local"
+	@echo "... raspberry_msgs_generate_messages_lisp"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedFloat64"
-	@echo "... raspberry_msgs_gencpp"
 	@echo "... raspberry_msgs_genlisp"
+	@echo "... raspberry_msgs_gencpp"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedFloat32"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedUint32"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedChar"
@@ -555,13 +586,14 @@ help:
 	@echo "... list_install_components"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedString"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedBool"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_ParamMag"
 	@echo "... raspberry_msgs_genpy"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_GPS"
 	@echo "... edit_cache"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_Gyro"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_Mag"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedUint8"
 	@echo "... raspberry_msgs_generate_messages_cpp"
-	@echo "... raspberry_msgs_generate_messages_lisp"
 .PHONY : help
 
 

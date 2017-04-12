@@ -1,9 +1,0 @@
-bool valid
-float64 lat
-float64 lng
-float64 alt
-float64 speed
-float32 hdop
-float32 vdop
-float32 pdop
-int64 time

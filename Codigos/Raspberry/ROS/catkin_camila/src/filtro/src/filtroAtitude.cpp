@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 	q_estPosteriori << 1,
 		           0,
 		           0,
-                           0;
+                    0;
 
 	while (ros::ok()){
 

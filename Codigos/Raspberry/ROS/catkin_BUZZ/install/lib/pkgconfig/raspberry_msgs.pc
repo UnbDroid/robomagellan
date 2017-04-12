@@ -1,8 +1,0 @@
-prefix=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/install
-
-Name: raspberry_msgs
-Description: Description of raspberry_msgs
-Version: 0.0.0
-Cflags: -I/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/install/include
-Libs: -L/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/install/lib 
-Requires: 

@@ -51,9 +51,10 @@
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/install/strip.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/install.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/install/local.dir
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat64.dir
-/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat32.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint32.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar.dir
@@ -71,13 +72,14 @@
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/list_install_components.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedString.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedBool.dir
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/raspberry_msgs_genpy.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/edit_cache.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro.dir
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir
-/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/arduino_handler/CMakeFiles/edit_cache.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/arduino_handler/CMakeFiles/rebuild_cache.dir
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/arduino_handler/CMakeFiles/list_install_components.dir

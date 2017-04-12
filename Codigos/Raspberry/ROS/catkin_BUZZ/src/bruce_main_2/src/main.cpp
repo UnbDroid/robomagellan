@@ -73,7 +73,7 @@ int main(int argc, char **argv){
       ros::Publisher pubMapBLCoordinate = n.advertise<geometry_msgs::Point32>("map_bl_coord",1000,true); 
       ros::Publisher pubObstacles = n.advertise<geometry_msgs::PoseArray>("new_obstacles",1000);
       ros::Publisher pubOriginRequest = n.advertise<std_msgs::Bool>("request_origin",1000);
-      ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity",1000,true);
+      ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity",1000);
       ros::Publisher pubFollowCamera = n.advertise<std_msgs::Bool>("follow_camera",1000);
 
       info.n = &n;

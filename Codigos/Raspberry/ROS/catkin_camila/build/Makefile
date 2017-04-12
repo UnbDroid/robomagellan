@@ -257,6 +257,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named calibrarMag
+
+# Build rule for target.
+calibrarMag: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 calibrarMag
+.PHONY : calibrarMag
+
+# fast build rule for target.
+calibrarMag/fast:
+	$(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/build
+.PHONY : calibrarMag/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_lisp
 
 # Build rule for target.
@@ -504,17 +517,17 @@ gpsTalker/fast:
 .PHONY : gpsTalker/fast
 
 #=============================================================================
-# Target rules for targets named accTalker
+# Target rules for targets named gyroTalker
 
 # Build rule for target.
-accTalker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 accTalker
-.PHONY : accTalker
+gyroTalker: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gyroTalker
+.PHONY : gyroTalker
 
 # fast build rule for target.
-accTalker/fast:
-	$(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/build
-.PHONY : accTalker/fast
+gyroTalker/fast:
+	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
+.PHONY : gyroTalker/fast
 
 #=============================================================================
 # Target rules for targets named gyroOffset
@@ -530,17 +543,30 @@ gyroOffset/fast:
 .PHONY : gyroOffset/fast
 
 #=============================================================================
-# Target rules for targets named gyroTalker
+# Target rules for targets named accTalker
 
 # Build rule for target.
-gyroTalker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gyroTalker
-.PHONY : gyroTalker
+accTalker: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 accTalker
+.PHONY : accTalker
 
 # fast build rule for target.
-gyroTalker/fast:
-	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
-.PHONY : gyroTalker/fast
+accTalker/fast:
+	$(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/build
+.PHONY : accTalker/fast
+
+#=============================================================================
+# Target rules for targets named magTalker
+
+# Build rule for target.
+magTalker: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magTalker
+.PHONY : magTalker
+
+# fast build rule for target.
+magTalker/fast:
+	$(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/build
+.PHONY : magTalker/fast
 
 # Help Target
 help:
@@ -562,6 +588,7 @@ help:
 	@echo "... install/strip"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... calibrarMag"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... raspberry_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
@@ -581,9 +608,10 @@ help:
 	@echo "... filtroAtitude"
 	@echo "... filtro"
 	@echo "... gpsTalker"
-	@echo "... accTalker"
-	@echo "... gyroOffset"
 	@echo "... gyroTalker"
+	@echo "... gyroOffset"
+	@echo "... accTalker"
+	@echo "... magTalker"
 .PHONY : help
 
 

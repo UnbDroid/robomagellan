@@ -263,7 +263,7 @@ if __name__ == '__main__':
             sys.exit(1)
 
         # environment at generation time
-        CMAKE_PREFIX_PATH = '/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel;/home/pi/Documents/catkin_rosserial/devel;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel;/home/pi/Documents/desenvolvimentoRos/devel;/opt/ros/indigo'.split(';')
+        CMAKE_PREFIX_PATH = '/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel;/home/pi/Documents/catkin_rosserial/devel;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel;/home/pi/Documents/desenvolvimentoRos/devel;/opt/ros/indigo'.split(';')
         # prepend current workspace if not already part of CPP
         base_path = os.path.dirname(__file__)
         if base_path not in CMAKE_PREFIX_PATH:

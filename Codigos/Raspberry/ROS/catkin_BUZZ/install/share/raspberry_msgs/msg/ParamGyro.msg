@@ -1,3 +1,0 @@
-float64 offset_x
-float64 offset_y
-float64 offset_z

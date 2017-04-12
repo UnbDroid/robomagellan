@@ -245,7 +245,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=3,4 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=5,6 "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -277,7 +277,7 @@ clean: gtest/CMakeFiles/gtest_main.dir/clean
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=1,2 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=3,4 "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -306,10 +306,10 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 # Directory level rules for directory robo_virtual
 
 # Convenience name for "all" pass in the directory.
-robo_virtual/all: robo_virtual/CMakeFiles/robo_virtual.dir/all
 robo_virtual/all: robo_virtual/CMakeFiles/planejador.dir/all
-robo_virtual/all: robo_virtual/CMakeFiles/posicaoAtual.dir/all
+robo_virtual/all: robo_virtual/CMakeFiles/robo_virtual.dir/all
 robo_virtual/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/all
+robo_virtual/all: robo_virtual/CMakeFiles/controle_camera.dir/all
 
 .PHONY : robo_virtual/all
 
@@ -317,6 +317,7 @@ robo_virtual/all: robo_virtual/CMakeFiles/robo_virtual_generate_messages.dir/all
 robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_generate_messages_py.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/planejador.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/tf_generate_messages_py.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual.dir/clean
@@ -332,8 +333,6 @@ robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_py.dir/cl
 robo_virtual/clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_generate_messages_cpp.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/planejador.dir/clean
-robo_virtual/clean: robo_virtual/CMakeFiles/posicaoAtual.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/tf2_msgs_generate_messages_py.dir/clean
@@ -355,6 +354,7 @@ robo_virtual/clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_py.dir
 robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_gencpp.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/tf_generate_messages_lisp.dir/clean
 robo_virtual/clean: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
+robo_virtual/clean: robo_virtual/CMakeFiles/controle_camera.dir/clean
 
 .PHONY : robo_virtual/clean
 
@@ -456,6 +456,43 @@ robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean:
 
 # clean rule for target.
 clean: robo_virtual/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/planejador.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/planejador.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=7,8 "Built target planejador"
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/all
+
+# Include target in all.
+all: robo_virtual/CMakeFiles/planejador.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/planejador.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
+
+# Convenience name for target.
+planejador: robo_virtual/CMakeFiles/planejador.dir/rule
+
+.PHONY : planejador
+
+# clean rule for target.
+robo_virtual/CMakeFiles/planejador.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/clean
+.PHONY : robo_virtual/CMakeFiles/planejador.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/planejador.dir/clean
 
 .PHONY : clean
 
@@ -943,80 +980,6 @@ robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
 
 # clean rule for target.
 clean: robo_virtual/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/planejador.dir
-
-# All Build rule for target.
-robo_virtual/CMakeFiles/planejador.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=5,6 "Built target planejador"
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/all
-
-# Include target in all.
-all: robo_virtual/CMakeFiles/planejador.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/planejador.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/planejador.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/rule
-
-# Convenience name for target.
-planejador: robo_virtual/CMakeFiles/planejador.dir/rule
-
-.PHONY : planejador
-
-# clean rule for target.
-robo_virtual/CMakeFiles/planejador.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/planejador.dir/build.make robo_virtual/CMakeFiles/planejador.dir/clean
-.PHONY : robo_virtual/CMakeFiles/planejador.dir/clean
-
-# clean rule for target.
-clean: robo_virtual/CMakeFiles/planejador.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target robo_virtual/CMakeFiles/posicaoAtual.dir
-
-# All Build rule for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/all:
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/depend
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=7,8 "Built target posicaoAtual"
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/all
-
-# Include target in all.
-all: robo_virtual/CMakeFiles/posicaoAtual.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/posicaoAtual.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/rule
-
-# Convenience name for target.
-posicaoAtual: robo_virtual/CMakeFiles/posicaoAtual.dir/rule
-
-.PHONY : posicaoAtual
-
-# clean rule for target.
-robo_virtual/CMakeFiles/posicaoAtual.dir/clean:
-	$(MAKE) -f robo_virtual/CMakeFiles/posicaoAtual.dir/build.make robo_virtual/CMakeFiles/posicaoAtual.dir/clean
-.PHONY : robo_virtual/CMakeFiles/posicaoAtual.dir/clean
-
-# clean rule for target.
-clean: robo_virtual/CMakeFiles/posicaoAtual.dir/clean
 
 .PHONY : clean
 
@@ -1697,6 +1660,43 @@ robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean:
 
 # clean rule for target.
 clean: robo_virtual/CMakeFiles/robo_virtual_genlisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target robo_virtual/CMakeFiles/controle_camera.dir
+
+# All Build rule for target.
+robo_virtual/CMakeFiles/controle_camera.dir/all:
+	$(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/depend
+	$(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles --progress-num=1,2 "Built target controle_camera"
+.PHONY : robo_virtual/CMakeFiles/controle_camera.dir/all
+
+# Include target in all.
+all: robo_virtual/CMakeFiles/controle_camera.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+robo_virtual/CMakeFiles/controle_camera.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 robo_virtual/CMakeFiles/controle_camera.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build/CMakeFiles 0
+.PHONY : robo_virtual/CMakeFiles/controle_camera.dir/rule
+
+# Convenience name for target.
+controle_camera: robo_virtual/CMakeFiles/controle_camera.dir/rule
+
+.PHONY : controle_camera
+
+# clean rule for target.
+robo_virtual/CMakeFiles/controle_camera.dir/clean:
+	$(MAKE) -f robo_virtual/CMakeFiles/controle_camera.dir/build.make robo_virtual/CMakeFiles/controle_camera.dir/clean
+.PHONY : robo_virtual/CMakeFiles/controle_camera.dir/clean
+
+# clean rule for target.
+clean: robo_virtual/CMakeFiles/controle_camera.dir/clean
 
 .PHONY : clean
 

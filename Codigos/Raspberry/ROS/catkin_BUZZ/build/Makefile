@@ -530,6 +530,19 @@ arduino_msgs_genpy/fast:
 .PHONY : arduino_msgs_genpy/fast
 
 #=============================================================================
+# Target rules for targets named raspberry_msgs_generate_messages_lisp
+
+# Build rule for target.
+raspberry_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs_generate_messages_lisp
+.PHONY : raspberry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+raspberry_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
+.PHONY : raspberry_msgs_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named _raspberry_msgs_generate_messages_check_deps_StampedFloat64
 
 # Build rule for target.
@@ -543,19 +556,6 @@ _raspberry_msgs_generate_messages_check_deps_StampedFloat64/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_StampedFloat64/fast
 
 #=============================================================================
-# Target rules for targets named raspberry_msgs_gencpp
-
-# Build rule for target.
-raspberry_msgs_gencpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs_gencpp
-.PHONY : raspberry_msgs_gencpp
-
-# fast build rule for target.
-raspberry_msgs_gencpp/fast:
-	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build
-.PHONY : raspberry_msgs_gencpp/fast
-
-#=============================================================================
 # Target rules for targets named raspberry_msgs_genlisp
 
 # Build rule for target.
@@ -567,6 +567,19 @@ raspberry_msgs_genlisp: cmake_check_build_system
 raspberry_msgs_genlisp/fast:
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_genlisp.dir/build
 .PHONY : raspberry_msgs_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named raspberry_msgs_gencpp
+
+# Build rule for target.
+raspberry_msgs_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs_gencpp
+.PHONY : raspberry_msgs_gencpp
+
+# fast build rule for target.
+raspberry_msgs_gencpp/fast:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/build
+.PHONY : raspberry_msgs_gencpp/fast
 
 #=============================================================================
 # Target rules for targets named _raspberry_msgs_generate_messages_check_deps_StampedFloat32
@@ -764,6 +777,19 @@ _raspberry_msgs_generate_messages_check_deps_StampedBool/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_StampedBool/fast
 
 #=============================================================================
+# Target rules for targets named _raspberry_msgs_generate_messages_check_deps_ParamMag
+
+# Build rule for target.
+_raspberry_msgs_generate_messages_check_deps_ParamMag: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _raspberry_msgs_generate_messages_check_deps_ParamMag
+.PHONY : _raspberry_msgs_generate_messages_check_deps_ParamMag
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_ParamMag/fast:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_ParamMag/fast
+
+#=============================================================================
 # Target rules for targets named raspberry_msgs_genpy
 
 # Build rule for target.
@@ -803,6 +829,19 @@ _raspberry_msgs_generate_messages_check_deps_Gyro/fast:
 .PHONY : _raspberry_msgs_generate_messages_check_deps_Gyro/fast
 
 #=============================================================================
+# Target rules for targets named _raspberry_msgs_generate_messages_check_deps_Mag
+
+# Build rule for target.
+_raspberry_msgs_generate_messages_check_deps_Mag: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _raspberry_msgs_generate_messages_check_deps_Mag
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Mag
+
+# fast build rule for target.
+_raspberry_msgs_generate_messages_check_deps_Mag/fast:
+	$(MAKE) -f raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/build.make raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag.dir/build
+.PHONY : _raspberry_msgs_generate_messages_check_deps_Mag/fast
+
+#=============================================================================
 # Target rules for targets named _raspberry_msgs_generate_messages_check_deps_StampedUint8
 
 # Build rule for target.
@@ -827,19 +866,6 @@ raspberry_msgs_generate_messages_cpp: cmake_check_build_system
 raspberry_msgs_generate_messages_cpp/fast:
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
 .PHONY : raspberry_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named raspberry_msgs_generate_messages_lisp
-
-# Build rule for target.
-raspberry_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs_generate_messages_lisp
-.PHONY : raspberry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-raspberry_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_lisp.dir/build
-.PHONY : raspberry_msgs_generate_messages_lisp/fast
 
 #=============================================================================
 # Target rules for targets named tf2_msgs_generate_messages_lisp
@@ -1311,9 +1337,10 @@ help:
 	@echo "... arduino_msgs_generate_messages_py"
 	@echo "... arduino_msgs_generate_messages_lisp"
 	@echo "... arduino_msgs_genpy"
+	@echo "... raspberry_msgs_generate_messages_lisp"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedFloat64"
-	@echo "... raspberry_msgs_gencpp"
 	@echo "... raspberry_msgs_genlisp"
+	@echo "... raspberry_msgs_gencpp"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedFloat32"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedUint32"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedChar"
@@ -1329,12 +1356,13 @@ help:
 	@echo "... _raspberry_msgs_generate_messages_check_deps_ParamGyro"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedString"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedBool"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_ParamMag"
 	@echo "... raspberry_msgs_genpy"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_GPS"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_Gyro"
+	@echo "... _raspberry_msgs_generate_messages_check_deps_Mag"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedUint8"
 	@echo "... raspberry_msgs_generate_messages_cpp"
-	@echo "... raspberry_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... arduino_handler"

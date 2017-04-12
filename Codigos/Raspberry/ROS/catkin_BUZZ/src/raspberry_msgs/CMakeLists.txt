@@ -62,6 +62,8 @@ find_package(catkin REQUIRED COMPONENTS
    GPS.msg
    ParamAcc.msg
    ParamGyro.msg
+   Mag.msg
+   ParamMag.msg
 
  )
 

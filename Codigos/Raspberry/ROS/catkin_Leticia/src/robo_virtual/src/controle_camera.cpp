@@ -7,10 +7,10 @@
 
 #define DEBUG 1
 
-#define DISTANCIA_MAXIMA 2.0f
-#define DISTANCIA_MINIMA 1.0f
+#define DISTANCIA_MAXIMA 3.0f
+#define DISTANCIA_MINIMA 2.0f
 #define VELOCIDADE_LINEAR 1.2f
-#define VELOCIDADE_LINEAR_APROX 1.0f
+#define VELOCIDADE_LINEAR_APROX 0.0f
 
 //Variaveis Globais-------------------------------------------------------------------------------------------------------
 
@@ -139,7 +139,7 @@ void enableCallback(const std_msgs::Bool::ConstPtr& msg){
 
 void calculaVelocidades2 (void) {
   
-  float k_linear = 2;
+  float k_linear = 0.8;
 
   if (!enable){
     velocidadeRobo.x = 0;
@@ -148,15 +148,15 @@ void calculaVelocidades2 (void) {
   }
   if (DistanciaCamera.x > DISTANCIA_MAXIMA) {
     velocidadeRobo.x = VELOCIDADE_LINEAR;
-    velocidadeRobo.z = PI/180*(DistanciaCamera.y);
+    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }  
   else if (DistanciaCamera.x > DISTANCIA_MINIMA){
     velocidadeRobo.x = k_linear*(DistanciaCamera.x);
-    velocidadeRobo.z = PI/180*(DistanciaCamera.y);
+    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }
   else if (DistanciaCamera.x < DISTANCIA_MINIMA){
-    velocidadeRobo.x = VELOCIDADE_LINEAR_APROX;
-    velocidadeRobo.z = PI/180*(DistanciaCamera.y);
+    velocidadeRobo.x = 0;//VELOCIDADE_LINEAR_APROX;
+    velocidadeRobo.z = 0;//PI/180*(DistanciaCamera.y);
   }
 
 #if defined(DEBUG)

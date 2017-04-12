@@ -30,7 +30,7 @@ int read_word(int fd, int adr_h,int adr_l){
 
 	short high = wiringPiI2CReadReg8 (fd,adr_h);
 	int low = wiringPiI2CReadReg8 (fd,adr_l);
-	int val = ((high << 8) + low);http://stackoverflow.com/questions/35647941/inverse-of-a-matrix-using-eigen
+	int val = ((high << 8) + low);
 
 	return val;
 

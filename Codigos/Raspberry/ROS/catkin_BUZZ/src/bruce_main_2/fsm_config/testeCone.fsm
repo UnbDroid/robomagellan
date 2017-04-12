@@ -1,0 +1,40 @@
+@Actions
++ change : change_state
++ publicar_origem_mapa: publish_map_bottom_left_corner
++ print: print
++ calcular_rota: request_route_calculation
++ habilitar_seguir_rota: send_enable_path_follow
++ calculando_rota: set_calculating_route
++ definir_alvo_gps: set_map_path_goal_gps
++ adicionar_timer: add_timer
++ resetar_timer: reset_timer
++ inserir_obstaculos_moveis: insert_us_obstacles_in_map
++ adicionar_posicao_cone: insert_camera_readings_in_map
++ adicionar_contador: add_counter
++ incrementar_contador: increment_counter
++ resetar_contador: reset_counter
++ requisitar_origem: request_set_origin
++ definir_velocidade: set_velocity
++ habilitar_seguir_camera: send_enable_follow_camera
+
+@Conditions
++ bigger: is_bigger
++ odom_ok: odom_ok
++ rota_calculada: route_calculated
++ distante_da_rota: distant_from_route
++ cone_encontrado: cone_found
++ distancia_us_menor: us_reading_smaller 
++ verificar_timer: check_timer
++ encostou_algo: check_touch_sensor
++ contador_maior: check_counter_bigger
++ contador_menor: check_counter_smaller
++ botao_verde: check_green_button
++ botao_preto: check_black_button
++ origem_recebida: check_origin_received
+
+@States
++ seguir_cone
+
+@FSM
++ seguir_cone
+	habilitar_seguir_camera(value: true)

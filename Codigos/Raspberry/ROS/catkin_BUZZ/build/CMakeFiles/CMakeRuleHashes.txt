@@ -13,8 +13,10 @@ e4a66be68c8d5998e4955fe3c6396947 /home/pi/Documents/robomagellan/Codigos/Raspber
 69a3d23c1beb0d171ab757725ac4eb27 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Acc.h
 1c6894258c3e65890d67799b377ad94d /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h
 61dc3222f9d7c0086768ea6f532bbe6c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Gyro.h
+8c11ab57559389ee057881c21e42293e /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/Mag.h
 dd9547cac1572bf2bfed391e9144caf5 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/ParamAcc.h
 5df6a3a28c43f4fdce0cf54c8dfddb66 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/ParamGyro.h
+4055d21b8cefbb4db36d51c58aaaf9d4 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/ParamMag.h
 6b4387e813f35f82e472bba4b3aaa36e /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedBool.h
 6032eea59b23ce088756d35e26dbaa70 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedChar.h
 86fde17ca3a646ad59413c1a43ae2b14 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedFloat32.h
@@ -42,8 +44,10 @@ cbd2a6fdbc66375777eae0bc902be9db /home/pi/Documents/robomagellan/Codigos/Raspber
 d900b820735be72846b01a39d8016074 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_Acc.py
 975a76122e7255a09eac17ce370faeb3 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_GPS.py
 5da89a4b9d1948e71ff17c6513a239fa /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_Gyro.py
+3c45c528a30e00b461debcd3038a3e33 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_Mag.py
 6ef21708c5bd30d1f8093e3b255da22f /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_ParamAcc.py
 f13689e7fa7b478fd96788044096eff2 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_ParamGyro.py
+694c01b7d40237d31d2534ebff1515c4 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_ParamMag.py
 ee70aeedefd3f1e3060b341c625caf72 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedBool.py
 27531b5333c4543cf00e0615aac1332e /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedChar.py
 b985efd33f5d112afc10929805980586 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/python2.7/dist-packages/raspberry_msgs/msg/_StampedFloat32.py
@@ -71,8 +75,10 @@ cf57fc6062a8692494b8e0d9c14f8282 /home/pi/Documents/robomagellan/Codigos/Raspber
 f7f3014a7ffba733b3b6aff9f40a010c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/Acc.lisp
 5328c874506e1c83efadd121db093db1 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/GPS.lisp
 9b9835673f66f1207043ec22346ab278 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/Gyro.lisp
+c4e2d8566edabe9bc7c2a18b2fe788a2 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/Mag.lisp
 0a4330988d69d8c68d1b04fbd59e2d9d /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/ParamAcc.lisp
 ddbf707ca9e4d8b3cad4d4ff1b701e64 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/ParamGyro.lisp
+109868e2425dba9e5aa72ba4cead8beb /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/ParamMag.lisp
 d38416cb166bcfae4c35ee442321a24a /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/StampedBool.lisp
 517bf0bee7a0806be6fae8c393257802 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/StampedChar.lisp
 7ae8ce67e497d56b84d6ff3b10c995ce /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/share/common-lisp/ros/raspberry_msgs/msg/StampedFloat32.lisp
@@ -103,8 +109,10 @@ c0cc848cccf29334c465fcfccb6a15c1 arduino_msgs/CMakeFiles/arduino_msgs_generate_m
 48ffb58a61ce6e8d8d60f8ac7d87141e raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Acc
 b997df493243b197c688630004772535 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_GPS
 20536127282dd1bad913c6099b815354 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Gyro
+2385e7666cfb292011f42a02babbb63c raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_Mag
 512dd476252359e42bfd2eb1466bcc0e raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamAcc
 39eb5d6c7f7f7f82f55bb614df0ab666 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamGyro
+e71931d940053f71ac4cafef0d47aba6 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_ParamMag
 afe85a64e829f1d1cc8fb0c96df3cbad raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedBool
 bc2ca66da65a91a2ffbac1bb3f5052a4 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedChar
 14bd6ec110d245f10693154373926ce7 raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedFloat32

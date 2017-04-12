@@ -483,20 +483,20 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "vision");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<geometry_msgs::Point32>("cone_position", 1000);
-	ros::Rate loop_rate(1000);
+	ros::Rate loop_rate(5);
 	struct timeval novo, velho;
 
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
 	bool aberta;
-	if(!cap.open(1))
+	if(!cap.open(0))
         aberta = false;
     else 
     	aberta = true;
 
 
 
-	while(aberta == true){
+	while( (aberta == true)&&(ros::ok() ) ){
 
 		geometry_msgs::Point32 msg;
 
@@ -529,8 +529,8 @@ int main(int argc, char **argv){
 			cone.rastreia(img);
 
 			if(cone.encontrou_cone){
-				msg.x = cone.pub_angulo;
-				msg.y = cone.pub_distancia;
+				msg.y = cone.pub_angulo;
+				msg.x = cone.pub_distancia;
 
 	    		chatter_pub.publish(msg);
 			}

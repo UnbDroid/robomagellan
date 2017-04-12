@@ -192,3 +192,7 @@ include_directories(
 add_executable(calibrarAcc src/calibrarAcc.cpp)
 target_link_libraries(calibrarAcc ${catkin_LIBRARIES} libwiringPi.so)
 add_dependencies(calibrarAcc calibrarAcc_generate_messages_cpp)
+
+add_executable(calibrarMag src/calibrarMag.cpp)
+target_link_libraries(calibrarMag ${catkin_LIBRARIES} libwiringPi.so)
+add_dependencies(calibrarMag calibrarMag_generate_messages_cpp)
