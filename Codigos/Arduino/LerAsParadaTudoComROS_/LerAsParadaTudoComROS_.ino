@@ -87,6 +87,7 @@ void taskShowUSReadingCallback(){
   Serial.print("Vel dir: "); Serial.println(velAtual.dir);
   Serial.print("Botao Verde: ");Serial.println(botaoVerde);
   Serial.print("Botao Preto: ");Serial.println(botaoPreto);
+  Serial.print("Trava de seguranca: ");Serial.println(travaSeguranca);
   unsigned long t2 = millis();
   Serial.print("Demorei ");
   Serial.println(t2-t1);
@@ -127,6 +128,11 @@ void taskBotaoCallback(){
 }
 void taskComArduinoCallback(){
   processarControleRC(velRef.dir,velRef.esq);
+
+  if(travaSeguranca){
+    velRef.dir = 0;
+    velRef.esq = 0;    
+  }
   
   velRefRaw.dir = vel2Raw(velRef.dir);
   velRefRaw.esq = vel2Raw(velRef.esq);
