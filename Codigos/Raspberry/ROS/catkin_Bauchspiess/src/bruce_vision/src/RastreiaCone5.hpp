@@ -1,3 +1,7 @@
+//#define usuario 
+
+
+
 #include "opencv2/opencv.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/core/core.hpp"
@@ -205,7 +209,7 @@ RastreiaCone5::RastreiaCone5(){
 	delta = 20;
 
 
-	min_H1i = 0;
+	min_H1i = 5;
 	max_H1i = 15;
 	min_S1i = 150;
 	max_S1i = 255;
@@ -221,9 +225,9 @@ RastreiaCone5::RastreiaCone5(){
 
 	min_H1z = 0;
 	max_H1z = 17;
-	min_S1z = 150;
+	min_S1z = 100;
 	max_S1z = 255;
-	min_V1z = 77;
+	min_V1z = 70;
 	max_V1z = 255;
 	min_H2z = 160;
 	max_H2z = 180;
@@ -254,7 +258,7 @@ RastreiaCone5::RastreiaCone5(){
 	blur_y_i = 3;
 	blur_x_i = 0;
 
-	tamanho_mat = 120;
+	tamanho_mat = 60;
 
 	atualiza = true;
 
@@ -264,7 +268,7 @@ RastreiaCone5::RastreiaCone5(){
 	iniciou_calibra = false;
 
 	tamanho_final = 200;
-	tamanho0 = 400;
+	tamanho0 = 200;
 
 	min_pontos = 10;
 	perc_pontosi = 400;
@@ -289,7 +293,7 @@ void RastreiaCone5::Laranja(Mat source, Mat* dest, int vez){
 	
 
 	//Visual
-/*
+ #ifdef usuario 
 	if(vez == 3){
 			
 			vector<Mat> canais;
@@ -337,8 +341,9 @@ void RastreiaCone5::Laranja(Mat source, Mat* dest, int vez){
 		}
 	//inRange(normal_img, Scalar(255,0,0), Scalar(255,255,0), azul);
 	//inRange(normal_img, Scalar(0,255,0), Scalar(255,255,0), verde);
+
 	//fim visual
-*/	
+#endif	
 
 	add(azul, verde, (*dest));
 	//imshow("aceita", hsv);
@@ -810,7 +815,7 @@ bool RastreiaCone5::dados_mancha(Mat mancha, int partes){
 	//cout<<endl;
 
 
-	for(i = 1; i<partes-2; i++){
+	for(i = 1; i<partes; i++){
 		if(atualiza)
 			//cout<<dados[i-1]<<"   "<<dados[i]<<"   "<<endl;
 		if(dados[i-1]<=dados[i]){
@@ -852,7 +857,7 @@ bool RastreiaCone5::dados_mancha(Mat mancha, int partes){
 
 	if(atualiza)
 		//cout<<" "<<cont_verdadeiros<<"   "<<cont_quase<<endl<<endl;
-	if( (cont_quase > 0.7)&&(cont_verdadeiros> 0.7)&&( (float)mancha.rows > (float)mancha.cols) ){
+	if( (cont_quase > 0.7)&&(cont_verdadeiros> 0.8)&&( (float)mancha.rows > (float)mancha.cols) ){
 		continuidade = true;
 	}
 
@@ -950,12 +955,8 @@ bool RastreiaCone5::identifica(Mat* source, int num_area, Mat* temp){
 		if(confirma){
 			aux_pos = ((area[2] + area[0])/2)/((float)(*Original).cols);
 			pos_angulo.push_back(aux_pos);
-			aux_pos =100*( ((area[3] - area[1])*(area[2] - area[0]))  /( (float)(*Original).rows*(float)(*Original).cols) );
 			aux_pos = ( (area[3] - area[1]) /( (float)(*Original).rows ) );
 			pos_dist.push_back(aux_pos);
-			if(aux_pos > 20){
-				proximo = true;
-			}
 			aux_cont = aux_pos;
 		}
 
@@ -981,7 +982,7 @@ bool RastreiaCone5::identifica(Mat* source, int num_area, Mat* temp){
 		Quadrado_d[regioes_novas].push_back(quadrado_d);
 		Quadrado_b[regioes_novas].push_back(quadrado_b);
 
-		
+		#ifdef usuario		
 		if(confirma){
 
 			
@@ -996,7 +997,7 @@ bool RastreiaCone5::identifica(Mat* source, int num_area, Mat* temp){
 			line( (*temp), Point(area[2],area[3]), Point(area[0],area[3]), Scalar(0,0,255), 1, 8);
 			line( (*temp), Point(area[0],area[3]), Point(area[0],area[1]), Scalar(0,0,255), 1, 8);
 		}	
-		
+		#endif
 
 	}
 	//imshow("SOURCE", (*temp));
@@ -1013,6 +1014,8 @@ void RastreiaCone5::angulo(Mat* source, int ref){
 	
 	pub_angulo = angulo;
 
+
+#ifdef usuario
 	bool sinal = false;
 	if(angulo < 0){
 		sinal = true;
@@ -1040,7 +1043,7 @@ void RastreiaCone5::angulo(Mat* source, int ref){
 		putText((*source), (num+'.'+num2+" graus"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
 	
 	//imshow("SOURCE", (*source));
-		
+	#endif	
 }
 
 
@@ -1054,6 +1057,8 @@ void RastreiaCone5::distancia(Mat* source, int ref){
 	//prox = sqrt(10/prox);
 	prox = (2/(3*prox) );
 	pub_distancia = prox;
+
+	#ifdef usuario
 	int prox2 = prox;
 	int_to_string(prox2, &num);
 	string num2;
@@ -1071,8 +1076,8 @@ void RastreiaCone5::distancia(Mat* source, int ref){
 
 	putText((*source), num+'.'+num2+'m', Point(0,40), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 1, 8, false );
 		
-	//imshow("SOURCE", (*source));
-
+	imshow("SOURCE", (*source));
+	#endif
 }
 
 
@@ -1152,16 +1157,16 @@ void RastreiaCone5::rastreia(Mat source){
 	Original = &source;
 	ratio_original = (float)source.cols/(float)source.rows;
 
-	
-	//Visual
 	Mat temp;
+	//Visual
+	#ifdef usuario
 	if(tamanho_final < 10)
 			tamanho_final = 10;
 	resize((*Original), temp, Size((int)(((float)tamanho_final)*ratio_original), tamanho_final ));
 	ratio_novo = ( (float) temp.rows /(float)(*Original).rows );
-	//imshow("SOURCE", temp);
+	imshow("SOURCE", temp);
 	//Fim Visual
-	
+	#endif
 
 	//estando muito proximo do cone não é mais necessário gastar muito processamento confirmando a identificação
 	//basta monitorar a aproximação em relação ao mesmo

@@ -1,3 +1,7 @@
+//#define usuario
+//#define ve_tempo
+
+
 #include "RastreiaCone5.hpp"
 #include <sys/time.h>
 #include "ros/ros.h"
@@ -22,16 +26,17 @@ using namespace std;
 RastreiaCone5 cone;
 RastreiaCone5 cone2;
 
+#ifdef ve_tempo
+struct timeval tempo1, tempo2;
+#endif
+
+
+#ifdef usuario
+
 Point inicio, fim;
 int pontos;
 int comando;
 int quadro;
-
-int num_divisoes = 0;
-
-struct timeval tempo1, tempo2;
-
-
 
 
 void normaliza(Mat source, Mat* dest){
@@ -193,67 +198,7 @@ void sonda(Mat img){
 	}
 	int comprimento = max_x-min_x+1;
 	int altura =  max_y - min_y + 1; 
-/*	
-	azul = azul/(comprimento*altura);
-	verde = verde/(comprimento*altura);
-	vermelho = vermelho/(comprimento*altura);
-	float media = (azul+vermelho+verde)/3;
-	cout<<"Media BGR = ("<<azul<<","<<verde<<","<<vermelho<<") = "<<media<<endl;
-	float soma = verde + azul + vermelho;
-	cout<<"verde parcial:  "<<verde/soma<<endl;
-	cout<<"vermelho parcial:  "<<vermelho/soma<<endl;
-	cout<<"azul parcial:  "<<azul/soma<<endl;
 
-
-	cout<<"----Normalizado-------"<<endl;
-	azulN = azulN/(comprimento*altura);
-	verdeN = verdeN/(comprimento*altura);
-	vermelhoN = vermelhoN/(comprimento*altura);
-	float mediaN = (azulN+vermelhoN+verdeN)/3;
-	cout<<"Media BGR = ("<<azulN<<","<<verdeN<<","<<vermelhoN<<") = "<<mediaN<<endl;
-	soma = verdeN + azulN + vermelhoN;
-	cout<<"verde parcial:  "<<verdeN/soma<<endl;
-	cout<<"vermelho parcial:  "<<vermelhoN/soma<<endl;
-	cout<<"azul parcial:  "<<azulN/soma<<endl;
-	
-	I_norm = I_norm/(comprimento*altura);
-	cout<<"Intensidade:  "<<I_norm<<endl;
-
-	cout<<"(Intensidade*vermelhoN*(vermelho+azul-verde))/(vermelho*media):  ";
-
-	if(vermelho > 0){
-		cout<<sqrt(((vermelho+azul-verde)*vermelhoN*I_norm)/vermelho)<<endl;
-	}
-	else{
-		cout<<0<<endl;
-	}	
-
-
-	cout<<"----HSV-------"<<endl;
-	H = H/(comprimento*altura);
-	S = S/(comprimento*altura);
-	V = V/(comprimento*altura);
-	cout<<"Media HSV = ("<<H<<","<<S<<","<<V<<")"<<endl;
-	//imshow("HSV", hsv);
-
-	cout<<"----Preto e branco-------"<<endl;
-	cinza = cinza/(comprimento*altura);
-	cout<<"Media cinza = "<<cinza<<endl;
-	//imshow("GRAY", gray);
-
-	cout<<"-----equalizacao de histograma-----"<<endl;
-	azulH = azulH/(comprimento*altura);
-	verdeH = verdeH/(comprimento*altura);
-	vermelhoH = vermelhoH/(comprimento*altura);
-	media = (azulH+vermelhoH+verdeH)/3;
-	cout<<"Media BGR equalizada = ("<<azulH<<","<<verdeH<<","<<vermelhoH<<") = "<<media<<endl;
-	soma = verdeH + azulH + vermelhoH;
-	cout<<"verde parcial:  "<<verdeH/soma<<endl;
-	cout<<"vermelho parcial:  "<<vermelhoH/soma<<endl;
-	cout<<"azul parcial:  "<<azulH/soma<<endl;
-	//imshow("EQUALIZADA", img_hist_equalized);
-*/
-	//cout<<"-----equalizacao de histograma HSV-----"<<endl;
 	H2 = H2/(comprimento*altura);
 	S2 = S2/(comprimento*altura);
 	V2 = V2/(comprimento*altura);
@@ -477,14 +422,20 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 	return aberta;
 }
 
+#endif
+
 
 int main(int argc, char **argv){
 
 	ros::init(argc, argv, "vision");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<geometry_msgs::Point32>("cone_position", 1000);
-	ros::Rate loop_rate(5);
+	ros::Rate loop_rate(100);
+	
+
 	struct timeval novo, velho;
+
+	int tempo;
 
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
@@ -495,14 +446,15 @@ int main(int argc, char **argv){
     	aberta = true;
 
 
-
 	while( (aberta == true)&&(ros::ok() ) ){
 
 		geometry_msgs::Point32 msg;
 
 
+			#ifdef ve_tempo
+			gettimeofday(&tempo1, NULL);
+			#endif
 
-			//gettimeofday(&tempo1, NULL);
 			if(cone.atualiza)
 				cap >> img;
 			if( img.empty() ){
@@ -514,31 +466,33 @@ int main(int argc, char **argv){
 			if(aberta == false)
 				break;
 			
-			/*
+			#ifdef ve_tempo
 			gettimeofday(&tempo2, NULL);
 			tempo = (int) (1000000 * (tempo2.tv_sec - tempo1.tv_sec) + (tempo2.tv_usec - tempo1.tv_usec));
 			if(cone.atualiza){
 				cout<<"camera: "<<tempo;
 			}
-			*/
-			
+			gettimeofday(&velho, NULL);
+			#endif
 
-			//gettimeofday(&velho, NULL);
-					
 			//imshow("SOURCE", img);
 			cone.rastreia(img);
 
 			if(cone.encontrou_cone){
 				msg.y = cone.pub_angulo;
 				msg.x = cone.pub_distancia;
-
-	    		chatter_pub.publish(msg);
+				msg.z = 1;
+			}
+			else{
+				msg.z = 0;
 			}
 
+			chatter_pub.publish(msg);
 
 
 
-				/*				
+
+				#ifdef ve_tempo				
 				gettimeofday(&novo, NULL);
 				tempo = (int) (1000000 * (novo.tv_sec - velho.tv_sec) + (novo.tv_usec - velho.tv_usec));
 				if(cone.atualiza){
@@ -548,10 +502,11 @@ int main(int argc, char **argv){
 				if(cone.atualiza){
 					cout<<"   total: "<<tempo<<endl;
 				}
-				*/					
-	
+				#endif
+									
+				#ifdef usuario
 				aberta = Comando(img, &cap, aberta);
-
+				#endif
 
 
 		loop_rate.sleep();

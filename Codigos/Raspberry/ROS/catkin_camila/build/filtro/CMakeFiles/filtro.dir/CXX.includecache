@@ -1057,6 +1057,8 @@ raspberry_msgs/Gyro.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/filtro/src/raspberry_msgs/Gyro.h
 raspberry_msgs/Acc.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/filtro/src/raspberry_msgs/Acc.h
+raspberry_msgs/Mag.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/filtro/src/raspberry_msgs/Mag.h
 nav_msgs/Odometry.h
 -
 geometry_msgs/Point32.h

@@ -19,6 +19,7 @@
 #define g 9.7808439
 #define m  23462.2
 #define tSetup 30
+#define ERRO 0.3
 
 using namespace Eigen;
 
@@ -248,34 +249,58 @@ MatrixXf predicao(MatrixXf anterior){
 }
 
 //Correção da atitude pela fusão do acc e do mag
-MatrixXf TRIAD(MatrixXf anterior){
-	
-	float mod_g = sqrt(pow(accData.x,2),pow(accData.y,2),pow(accData.z,2));
-	if(abs(abs(mod_g) - abs(g)) > ERRO )
+/*MatrixXf TRIAD(MatrixXf anterior){
+
+		
+	float mod_g = sqrt(pow(accData.x,2)+pow(accData.y,2)+pow(accData.z,2));
+	if(std::abs(std::abs(mod_g) - std::abs(g)) > ERRO )
 		return anterior;
 
 	MatrixXf g_unitario_b(3,1);
 	g_unitario_b << accData.x, accData.y, accData.z;
 	g_unitario_b = g_unitario_b/mod_g;
 
-	float mod_m = sqrt(pow(magData.x,2),pow(magData.y,2),pow(magData.z,2));
-	MatrixXf m_unitario_b << magData.x, magData.y, magData.z;
+	float mod_m = sqrt(pow(magData.x,2)+pow(magData.y,2)+pow(magData.z,2));
+	MatrixXf m_unitario_b(3,1);
+	m_unitario_b << magData.x, magData.y, magData.z;
 	m_unitario_b = m_unitario_b/mod_m;
 
 	MatrixXf i_n(3,1);
 	MatrixXf j_n(3,1);
 	MatrixXf k_n(3,1);
 
-	i_n = (g_unitário_n+m_unitario_n)/abs(g_unitário_n+m_unitario_n);
-	j_n = (i_n*(g_unitario_n - m_unitario_g))/abs(i_n*(g_unitario_n - m_unitario_n));
+	MatrixXf mod_soma_n(3,1);
+	mod_soma_n << std::abs(g_unitario_n(0,0)+m_unitario_n(0,0)), std::abs(g_unitario_n(1,0)+m_unitario_n(1,0)), std::abs(g_unitario_n(2,0)+m_unitario_n(2,0));
+	MatrixXf mod_sub_n(3,1);
+
+        i_n = (g_unitario_n+m_unitario_n)/mod_soma_n;
+
+	mod_sub_n << (g_unitario_n(0,0)-m_unitario_n(0,0)), (g_unitario_n(1,0)-m_unitario_n(1,0)), (g_unitario_n(2,0)-m_unitario_n(2,0));
+	mod_sub_n = i_n*mod_sub_n;
+	mod_sub_n(0,0) = std::abs(mod_sub_n(0,0));
+	mod_sub_n(1,0) = std::abs(mod_sub_n(1,0));  
+	mod_sub_n(2,0) = std::abs(mod_sub_n(2,0));  
+  
+	j_n = (i_n*(g_unitario_n - m_unitario_n))/mod_sub_n;
 	k_n = i_n*j_n;
 
 	MatrixXf i_b(3,1);
 	MatrixXf j_b(3,1);
 	MatrixXf k_b(3,1);
+  
+	MatrixXf mod_soma_b(3,1);
+        mod_soma_b << std::abs(g_unitario_n(0,0)+m_unitario_n(0,0)), std::abs(g_unitario_n(1,0)+m_unitario_n(1,0)), std::abs(g_unitario_n(2,0)+m_unitario_n(2,0)); 
+        MatrixXf mod_sub_b(3,1);
 
-	i_b = (g_unitário_b+m_unitario_b)/abs(g_unitário_b+m_unitario_b);
-	j_b = (i_b*(g_unitario_b - m_unitario_b))/abs(i_b*(g_unitario_b - m_unitario_b));
+        i_b = (g_unitario_b+m_unitario_b)/mod_soma_b;
+
+        mod_sub_b << (g_unitario_n(0,0)-m_unitario_n(0,0)), (g_unitario_n(1,0)-m_unitario_n(1,0)), (g_unitario_n(2,0)-m_unitario_n(2,0));
+        mod_sub_b = i_b*mod_sub_b;
+        mod_sub_b(0,0) = std::abs(mod_sub_b(0,0));
+        mod_sub_b(1,0) = std::abs(mod_sub_b(1,0));  
+        mod_sub_b(2,0) = std::abs(mod_sub_b(2,0));  
+
+	j_b = (i_b*(g_unitario_b - m_unitario_b))/mod_sub_b;
 	k_b = i_b*j_b;
 
 	MatrixXf C_n(3,3);
@@ -296,7 +321,7 @@ MatrixXf TRIAD(MatrixXf anterior){
 
 	return orient;
 
-}
+}*/
 
 //Correção da posição e velocidade pela medicao do GPS e da atitude pelo algoritmo TRIAD
 MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
@@ -328,7 +353,8 @@ MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
 
 	//std::cout << pos << std::endl;
 
-	orient = TRIAD(q_anterior);
+	orient << q_anterior;
+	//orient = TRIAD(q_anterior);
 
 	float speed;
 	speed = gpsData.speed;
@@ -498,7 +524,7 @@ int main(int argc, char **argv){
 	ros::Subscriber subMag = n.subscribe("magInfo", 1000, magCallback);
 	
 	ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
-  	ros::Publisher origin_pub = n.advertise<geometry_msgs::Point32>("origin", 50);
+  	ros::Publisher origin_pub = n.advertise<geometry_msgs::Point32>("origin", 50,true);
   	ros::Publisher odom_ok = n.advertise<std_msgs::Bool>("odom_ok", 50);
 
 	ros::Time current_time;
@@ -530,10 +556,10 @@ int main(int argc, char **argv){
 
 	//Variaveis TRIAD
 	g_unitario_n << 0, 0, 1;
-	m_unitário_n << 19463.6, -7667.6, -10623;
-	m_unitário_n = m_unitário_n/m;
+	m_unitario_n << 19463.6, -7667.6, -10623;
+	m_unitario_n = m_unitario_n/m;
 
-	H = jacobianaMedida();
+	H = jacobianaCorrecao();
 
 	I10.setIdentity();
 
@@ -543,7 +569,7 @@ int main(int argc, char **argv){
 	Q = I10*0.1;
 	R = I10*0.001;
 	
-	int flagSetup = 0;
+	int flagSetup = 1;
 	ros::Time tInicial = ros::Time::now();
 	int count = 0;	
 	
@@ -581,31 +607,32 @@ int main(int argc, char **argv){
 	            // std::cout << "count : "<< count << std::endl;
 	            origin.x = ref.lat;
 	            origin.y = ref.lng;
+		    origin_pub.publish(origin);
 			}
 
 		//Filtro	
 		}else{
 
 			// Estimação
-		//	x_estPriori = predicao(x_estPosteriori);
-		//	F = jacobianaModelo(x_estPosteriori);
-		//	P_priori = F + P_posteriori*F.transpose() + Q;
+			x_estPriori = predicao(x_estPosteriori);
+			F = jacobianaPredicao(x_estPosteriori);
+			P_priori = F + P_posteriori*F.transpose() + Q;
 
 			// Correção
-		//	if(gpsData.valid){
-		//		KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
+			if(gpsData.valid){
+				KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
 				M = medicao(ref, q_anterior);
-		//		odomOK.data = true;
-		//	}
-		//	else{
-		//    	KG.setZero();
-		//		M.setZero();
-		//		odomOK.data = false;
-		//	}
-			x_estPosteriori = M;	
-		//	x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+				odomOK.data = true;
+			}
+			else{
+		    	KG.setZero();
+				M.setZero();
+				odomOK.data = false;
+			}
+		//	x_estPosteriori = M;	
+			x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	
-		//	P_posteriori = (I10 - KG*H)*P_priori;
+			P_posteriori = (I10 - KG*H)*P_priori;
 
 			q_anterior << x_estPosteriori(0,0), x_estPosteriori(1,0), x_estPosteriori(2,0), x_estPosteriori(3,0);
 		
@@ -629,7 +656,6 @@ int main(int argc, char **argv){
 	    	odom.pose.pose.orientation.w = x_estPosteriori(0,0);	
 
 			odom_pub.publish(odom);
-	    	origin_pub.publish(origin);
 	    	odom_ok.publish(odomOK);	
 		}
 

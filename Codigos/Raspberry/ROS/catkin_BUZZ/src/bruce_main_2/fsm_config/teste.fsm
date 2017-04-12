@@ -47,9 +47,6 @@
 + esperar_botao
 	adicionar_contador(name: requisitar_origem)
 	adicionar_contador(name: teste)
-	definir_velocidade(linear: 0, angular: 0)
-	habilitar_seguir_camera(value: true)
-	contador_menor(name: teste, value: 1) >> incrementar_contador(name: teste) & habilitar_seguir_rota(value: 3)
 	botao_verde() >> change(next_state: setup)
 	botao_preto() >> change(next_state: esperar_definicao_origem)
 + esperar_definicao_origem
@@ -60,7 +57,7 @@
 	adicionar_timer(name: us_timer)
 	adicionar_timer(name: aproximar_fino_timer)
 + calcular_rota_primeiro_cone
-	definir_alvo_gps(latitude: -15.762601, longitude: -47.857045)
+	definir_alvo_gps(latitude: -15.764938, longitude: -47.872255)
 	calcular_rota()
 	calculando_rota(value: true)
 	rota_calculada() >> calculando_rota(value: false) & change(next_state: aproximar_cruzeiro)
