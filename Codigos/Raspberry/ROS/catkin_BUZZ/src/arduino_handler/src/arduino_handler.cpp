@@ -9,6 +9,9 @@
 #include <string>
 #include <sstream>
 
+#define VEL_REF_DIR 10
+#define VEL_REF_ESQ 11
+
 #define SENSOR_TOQUE 300
 #define BOTAO_VERDE 301
 #define BOTAO_PRETO 302
@@ -25,16 +28,18 @@
 #define US10 564
 #define US11 565
 
-#define NUM_US 11
-
 #define GPS_LAT 666
 #define GPS_LON 667
 #define GPS_ALT 668
 #define GPS_VALID 669
-#define GPS_UPDATED 670
+#define GPS_HDOP 670
+#define GPS_SPEED 671
+#define GPS_COURSE 672
 
 #define VEL_ATUAL_DIR 798
 #define VEL_ATUAL_ESQ 799
+
+#define NUM_US 11
 
 #define MAX_DIST 200
 
@@ -175,7 +180,15 @@ void stampedFloat64Callback(const arduino_msgs::StampedFloat64::ConstPtr& msg){
  	gpsData.lat = msg->data;	  	
   }else if(msg->id == GPS_LON){
  	gpsData.lng = msg->data;	  	
+  }else if(msg->id == GPS_HDOP){
+    gpsData.hdop = msg->data;
+  }else if(msg->id == GPS_SPEED){
+    gpsData.speed = msg->data;      
+  }else if(msg->id == GPS_COURSE){
+    gpsData.course= msg->data;      
   }
+
+
 }
 
 void arduinoVelocityCallback(const raspberry_msgs::StampedFloat32::ConstPtr& msg){
@@ -251,6 +264,9 @@ int main(int argc, char **argv)
     gps_msg.valid = gpsData.valid;
     gps_msg.lat = gpsData.lat;
     gps_msg.lng = gpsData.lng;
+    gps_msg.hdop = gpsData.hdop;
+    gps_msg.speed = gpsData.speed;
+    gps_msg.course = gpsData.course;
 
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);

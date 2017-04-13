@@ -8,7 +8,7 @@
 
 TinyGPSPlus gps;
 
-double lat,lon,alt;
+double lat,lon,alt,hdop,speed,course;
 bool gps_valid;
 
 const int chipSelect = CS;
@@ -44,6 +44,9 @@ void displayInfo()
     lat = gps.location.lat();
     lon = gps.location.lng();
     alt = gps.altitude.meters();
+    speed = gps.speed.kmph();
+    course = gps.course.deg();
+    hdop = gps.hdop.value()/100.0;
     /*Serial.print(lat,8);
     Serial.print(F("\t"));
     Serial.print(lon,8);

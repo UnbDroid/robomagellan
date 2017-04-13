@@ -117,6 +117,9 @@ void taskROSCallback(){
   sendFloat64(GPS_LAT,lat);
   sendFloat64(GPS_LON,lon);
   sendInt64(GPS_VALID,gps_valid);
+  sendFloat64(GPS_HDOP,hdop);
+  sendFloat64(GPS_SPEED,speed);
+  sendFloat64(GPS_COURSE,course);
   //sendFloat64(GPS_ALT,alt);
   
 }
