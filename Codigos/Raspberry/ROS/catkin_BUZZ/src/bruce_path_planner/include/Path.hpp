@@ -150,13 +150,38 @@ void SmoothEdges(std::vector<T>& pts, const StateSpace<T>& stateSpace) {
 
 template <typename T>
 void SmoothEdges2(std::vector<T>& pts, const StateSpace<T>& stateSpace) {
-  RRT::SuperSampleVector(pts,10);
+  RRT::SuperSampleVector(pts,20);
       for(unsigned i = 0; i < pts.size(); i++) {
         for(unsigned j = i+1; j < pts.size(); j++ ){
             if(stateSpace.transitionValid(pts[i], pts[j])){
                 unsigned pos = i+1;
                 for(unsigned k = i+1;k<j;k++){
                     pts.erase(pts.begin()+pos);
+                }
+            }
+        }
+    }  
+}
+
+template <typename T>
+void SmoothEdges3(std::vector<T>& pts, const StateSpace<T>& stateSpace) {
+  RRT::SuperSampleVector(pts,20);
+      for(unsigned i = 0; i < pts.size(); i++) {
+        //ROS_INFO("AQUI 1");
+        //ROS_INFO("%u,%lu",i,pts.size());
+        for(unsigned j = pts.size()-1; j >= i+1 ; j-- ){
+            //ROS_INFO("AQUI 2");
+            //ROS_INFO("%u,%u,%lu",i,j,pts.size());
+            if(stateSpace.transitionValid(pts[i], pts[j])){
+                //ROS_INFO("AQUI 3");
+                unsigned pos = i+1;
+                if(pos < pts.size()){
+                    for(unsigned k = i+1;k<j;k++){
+                        //ROS_INFO("AQUI 4");
+                        //ROS_INFO("%u,%u,%u,%lu",i,j,k,pts.size());
+                        pts.erase(pts.begin()+pos);
+                    }
+                    break;
                 }
             }
         }

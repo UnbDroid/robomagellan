@@ -10,7 +10,7 @@
 #include "Path.hpp"
 #include <string>
 #include <sstream>
-//#define PRINT_ENABLED
+#define PRINT_ENABLED
 
 OccupancyMap occMap;
 std::shared_ptr<OccupancyMap> _stateSpace;
@@ -60,13 +60,22 @@ int main(int argc, char **argv){
       #ifdef PRINT_ENABLED
         ROS_INFO("START");
       #endif
-      for(unsigned i = 0; i < 3; ++i) {
+       bool goalIsObstacle = (*_stateSpace)[goal] != 0;
+      #ifdef PRINT_ENABLED
+        ROS_INFO("Is goal obstacle? %d",goalIsObstacle);
+      #endif 
+      if(goalIsObstacle){
+        goal = _stateSpace->nearestClearGoal(start,goal);
+      }
+      for(unsigned i = 0; i < 2; ++i) {
         RRT::BiRRT<Coordinates> biRRT(_stateSpace);
         biRRT.setStartState(start);
         biRRT.setGoalState(goal);
         biRRT.setStepSize(1);
         biRRT.setGoalBias(0.4);
         biRRT.setMaxIterations(10000);
+
+       
 
         bool success = biRRT.run();
         #ifdef PRINT_ENABLED
@@ -76,7 +85,8 @@ int main(int argc, char **argv){
 
         RRT::SmoothPath<Coordinates>(path, *_stateSpace);
 
-        RRT::SmoothEdges2(path, *_stateSpace);
+        RRT::SmoothEdges3(path, *_stateSpace);
+        //RRT::SmoothEdges2(path, *_stateSpace);
  
         #ifdef PRINT_ENABLED
           ROS_INFO("Path size: %lu",path.size());
@@ -96,10 +106,12 @@ int main(int argc, char **argv){
             aux.pose.position.y = path[i].y;
             pathMsg.poses.push_back(aux);
           }
-          geometry_msgs::PoseStamped aux;
-          aux.pose.position.x = goal.x;
-          aux.pose.position.y = goal.y;
-          pathMsg.poses.push_back(aux);
+          if(!goalIsObstacle){
+            geometry_msgs::PoseStamped aux;
+            aux.pose.position.x = goal.x;
+            aux.pose.position.y = goal.y;
+            pathMsg.poses.push_back(aux);
+          }
         }
       }
       std_msgs::Bool okMsg;
@@ -136,7 +148,7 @@ void TFCallback(const tf2_msgs::TFMessage::ConstPtr& msg){
   for(int i=0; i<msg->transforms.size();i++){
     if(msg->transforms[i].header.frame_id == "map"){
       #ifdef PRINT_ENABLED
-        ROS_INFO("x : %f, y: %f",msg->transforms[i].transform.translation.x,msg->transforms[i].transform.translation.y);
+        //ROS_INFO("x : %f, y: %f",msg->transforms[i].transform.translation.x,msg->transforms[i].transform.translation.y);
       #endif
         start.x = msg->transforms[i].transform.translation.x;
         start.y = msg->transforms[i].transform.translation.y;
@@ -166,7 +178,7 @@ void NewObstaclesCallback(const geometry_msgs::PoseArray::ConstPtr& msg){
   for (int i = 0; i < msg->poses.size(); ++i){
     Coordinates aux = {(float)msg->poses[i].position.x,(float)msg->poses[i].position.y};
     #ifdef PRINT_ENABLED
-      ROS_INFO("Point: (%f,%f)",aux.x,aux.y);
+      //ROS_INFO("Point: (%f,%f)",aux.x,aux.y);
     #endif
     _stateSpace->obstacles().push_back(aux);
   }

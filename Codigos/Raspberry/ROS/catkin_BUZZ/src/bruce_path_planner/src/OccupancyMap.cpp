@@ -253,3 +253,60 @@ bool OccupancyMap::transitionValid(const Coordinates& from,
 
     return true;
 }
+
+Coordinates OccupancyMap::nearestClearGoal(Coordinates& origin, Coordinates & goal){
+    bool found = false;
+    float distanceMin = 9999999;
+    Coordinates newGoal = goal;
+    for (float r = resolution; !found; r+=resolution){
+        for(float x = goal.x-r;x <= goal.x+r;x+=resolution){
+            Coordinates aux(x,goal.y-r);
+            if((*this)[aux] == 0){
+                Coordinates dif = aux-origin;
+                float distance = dif.norm();
+                if( distance < distanceMin){
+                    distanceMin = distance;
+                    newGoal = aux;
+                    found = true;
+                }
+            }
+        }
+        for(float x = goal.x-r;x <= goal.x+r;x+=resolution){
+            Coordinates aux(x,goal.y+r);
+            if((*this)[aux] == 0){
+                Coordinates dif = aux-origin;
+                float distance = dif.norm();
+                if( distance < distanceMin){
+                    distanceMin = distance;
+                    newGoal = aux;
+                    found = true;
+                }
+            }
+        }
+        for(float y = goal.y-r;y <= goal.y+r;y+=resolution){
+            Coordinates aux(goal.x-r,y);
+            if((*this)[aux] == 0){
+                Coordinates dif = aux-origin;
+                float distance = dif.norm();
+                if( distance < distanceMin){
+                    distanceMin = distance;
+                    newGoal = aux;
+                    found = true;
+                }
+            }
+        }
+        for(float y = goal.y-r;y <= goal.y+r;y+=resolution){
+            Coordinates aux(goal.x+r,y);
+            if((*this)[aux] == 0){
+                Coordinates dif = aux-origin;
+                float distance = dif.norm();
+                if( distance < distanceMin){
+                    distanceMin = distance;
+                    newGoal = aux;
+                    found = true;
+                }
+            }
+        }
+    }
+    return newGoal;
+}

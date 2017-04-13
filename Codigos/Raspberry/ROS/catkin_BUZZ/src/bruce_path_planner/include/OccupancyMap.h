@@ -42,6 +42,9 @@ public:
 	bool transitionValid(const Coordinates& from, const Coordinates& to) const;
 	float nearestObstacleDist(const Coordinates& state, float maxDist) const ;
 
+	// AUX
+	Coordinates nearestClearGoal(Coordinates& origin, Coordinates & goal);
+
 private:
 	unsigned long _size;
 	unsigned int _width;
