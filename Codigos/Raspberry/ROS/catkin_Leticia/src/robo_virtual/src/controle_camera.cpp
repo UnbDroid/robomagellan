@@ -6,8 +6,6 @@
 #define PI 3.14159265f
 
 #define DEBUG 1
-//#define GAZEBO 1
-#define ARDUINO 1
 
 #define DISTANCIA_MAXIMA 2.0f
 #define DISTANCIA_MINIMA 1.0f
@@ -21,12 +19,10 @@ geometry_msgs::Point32 DistanciaCamera;
 
 geometry_msgs::Point32 velocidadeRobo;
 
-static bool enable;
-
-static bool inicio = false;
+static bool enable = false;
 
 #if defined(DEBUG)
-  FILE *arq, *arq2;
+  FILE *arq;
 #endif
 
 //Funcoes ---------------------------------------------------------------------------------------------------------------
@@ -163,11 +159,18 @@ void calculaVelocidades2 (void) {
     velocidadeRobo.z = PI/180*(DistanciaCamera.y);
   }
 
+#if defined(DEBUG)
+  fprintf(arq,"%f %f \n",velocidadeRobo.x,velocidadeRobo.z);
+#endif
 
 }
 
 int main(int argc, char **argv)
 {
+
+#if defined(DEBUG)
+  arq = fopen("feedback_controle_camera.txt", "w");
+#endif
 
   ros::init(argc, argv, "controle_camera");
 
@@ -190,10 +193,18 @@ int main(int argc, char **argv)
       pubVelocidade.publish(velocidadeRobo);
     
     }
+    else {
+      velocidadeRobo.x = 0;
+      velocidadeRobo.z = 0;
+      pubVelocidade.publish(velocidadeRobo);
+    }
 
     loop_rate.sleep();
     ros::spinOnce();
   
   }
+#if defined(DEBUG)
+  fclose(arq);
+#endif
   return 0;
 }
