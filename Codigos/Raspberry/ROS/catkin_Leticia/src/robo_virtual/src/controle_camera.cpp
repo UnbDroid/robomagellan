@@ -151,7 +151,7 @@ void calculaVelocidades2 (void) {
     velocidadeRobo.z = PI/180*(DistanciaCamera.y);
   }  
   else if (DistanciaCamera.x > DISTANCIA_MINIMA){
-    velocidadeRobo.x = k_linear*(DistanciaCamera.x - DISTANCIA_MINIMA);
+    velocidadeRobo.x = k_linear*(DistanciaCamera.x);
     velocidadeRobo.z = PI/180*(DistanciaCamera.y);
   }
   else if (DistanciaCamera.x < DISTANCIA_MINIMA){
@@ -161,6 +161,7 @@ void calculaVelocidades2 (void) {
 
 #if defined(DEBUG)
   fprintf(arq,"%f %f \n",velocidadeRobo.x,velocidadeRobo.z);
+  ROS_INFO("%f %f %f %f \n",velocidadeRobo.x,velocidadeRobo.z, DistanciaCamera.x, DistanciaCamera.y);
 #endif
 
 }
@@ -181,9 +182,7 @@ int main(int argc, char **argv)
 
   ros::Publisher pubVelocidade = n.advertise<geometry_msgs::Point32>("velocity", 1000);
 
-  ros::Rate loop_rate(5);
-  
-  float tempo = 0;
+  ros::Rate loop_rate(100);
 
   while (ros::ok()){
 
