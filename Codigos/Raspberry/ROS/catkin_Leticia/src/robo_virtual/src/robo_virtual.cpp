@@ -16,12 +16,12 @@
 
 #define PI 3.14159265f
 
-//#define DEBUG 1
-//#define GAZEBO 1
+#define DEBUG 1
+#define GAZEBO 1
 #define ARDUINO 1
 
 // Modos de operacao
-#define PARAR 0
+#define PARA 0
 #define SEGUIR_TRAJETORIA 1
 #define APROXIMAR_CONE 2
 #define SEGUIR_VELOCIDADE 3
@@ -29,20 +29,21 @@
 #define TEMPO_AMOSTRAGEM 0.1f
 
 #if defined(GAZEBO)
+  #warning Atencao!Gazebo esta definido
 #define VELOCIDADE_MAXIMA 0.9f
-#define VELOCIDADE_MAXIMA_APROX 0.5f
+#define VELOCIDADE_MAXIMA_APROX 1.0f
 #define VELOCIDADE_MINIMA 0.15f
 #define VELOCIDADE_MINIMA_ANGULAR 0.05f
-#define VEL_VIRTUAL 0.9f
+#define VEL_VIRTUAL 2.0f
 #endif
 
-#if defined(ARDUINO)
+/*#if defined(ARDUINO)
 #define VELOCIDADE_MAXIMA 5.5f
 #define VELOCIDADE_MAXIMA_APROX 3.5f
 #define VELOCIDADE_MINIMA 2.0f
 #define VELOCIDADE_MINIMA_ANGULAR 2.0f
 #define VEL_VIRTUAL 2.0f
-#endif
+#endif*/
 
 #define DISTANCIA_MAXIMA 1.0f
 #define DISTANCIA_MINIMA 0.002f
@@ -70,6 +71,7 @@ geometry_msgs::Point32 VelocidadeRecebida;
 #endif
 
 #if defined(ARDUINO)
+  #warning Atencao!Arduino esta definido
   raspberry_msgs::StampedFloat32 velocidadeArduinoEsquerda;
   raspberry_msgs::StampedFloat32 velocidadeArduinoDireita;
 #endif
@@ -83,19 +85,24 @@ bool desviou = false;
 
 static float velocidadeLinear = 0, velocidadeAngular = 0;
 
+//conta o segmento de trajetoria que esta sendo seguido
 static int trajetoriaAtual = 0;
-/*Parametros de adaptacao do controlador*/
-static float a1 =0, a2 = 0; 
-/*Parametros de erro*/
+
+//Parametros de adaptacao do controlador
+//static float a1 =0, a2 = 0; 
+
+//Parametros de erros
 static float erro1 = 0, erro2 = 0, erro3=0;
+
 /*Parametros do controle da ZVD*/
 static float fk = 0, thetak = 0;
 
 static bool inicio = false;
-/*Flag que permite receber nova trajetoria*/
+
+/*Flag que permite receber nova trajetoria, novas velocidades a serem seguidas*/
 static int16_t enable = 0;
 
-static float vel_max = 0;
+static float vel_max = 0, vel_max_arduino = 0;
 
 float DIST_MAX[NUM_US] = {0.5,0.5,0.5,1,1,1,1,1,0.5,0.5,0.5};
 
@@ -113,10 +120,12 @@ sin(34.8*PI/180)*DIST_MAX[3],sin(17.4*PI/180)*DIST_MAX[4],0*DIST_MAX[5],sin(-17.
 sin(-34.8*PI/180)*DIST_MAX[7],sin(-52.5*PI/180)*DIST_MAX[8],sin(-69.6*PI/180)*DIST_MAX[9],sin(-87*PI/180)*DIST_MAX[10]};
 
 #if defined(DEBUG)
+  #warning Atencao! DEBUG esta definido
   FILE *arq, *arq2;
 #endif
 
 //Funcoes ---------------------------------------------------------------------------------------------------------------
+
 void trajetoCallback(const nav_msgs::Path::ConstPtr& msg);
 void enablePathCallback(const std_msgs::Int16::ConstPtr& msg);
 void posicaoAtualCallback(const nav_msgs::Odometry::ConstPtr& msg);
@@ -132,7 +141,7 @@ void verificaObstaculos (tf::TransformListener &tfListener);
 /**Funcao do subscriber que recebe os pontos a serem seguidos*/
 void trajetoCallback(const nav_msgs::Path::ConstPtr& msg)
 {
-  if((enable != PARAR) && (enable != SEGUIR_VELOCIDADE)){
+  if((enable != PARA) && (enable != SEGUIR_VELOCIDADE)){
     pose = msg->poses;
     trajetoriaAtual = 0;
 
@@ -147,7 +156,7 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
   enable = msg->data;
 
 #if defined(DEBUG)
-  if(enable != PARAR){
+  if(enable != PARA){
     ROS_INFO("enable true");
   }
   if (enable == SEGUIR_VELOCIDADE){
@@ -157,9 +166,14 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
 
   if (enable == SEGUIR_TRAJETORIA) {
     vel_max = VELOCIDADE_MAXIMA;
+    vel_max_arduino = 5.5;
   }
   else if((enable == APROXIMAR_CONE) || (enable == SEGUIR_VELOCIDADE)){
     vel_max = VELOCIDADE_MAXIMA_APROX;
+    vel_max_arduino = 3.5;
+  }
+  else if (enable == PARA){
+    parar = true;
   }
 }
 
@@ -222,13 +236,14 @@ void calculaSegmento (void) {
   static float gama = 0; /*angulo de inclinacao da reta de segmento de trajetoria*/
 
   //Indica que ele passou da regiao do seguimeto atual e ira prossegir para o proximo segmento ou que irá comecar o primeiro segmento  
-  if (enable == PARAR){
+  if (enable == PARA){
     parar = true;
     inicio = false;
     return;
   }
   if (enable == SEGUIR_VELOCIDADE){
     parar = false;
+    inicio  = false;
     return;
   }
   if ((((cos(gama)*(roboAtual.x - roboDestino.x))+(sin(gama)*(roboAtual.y - roboDestino.y))) > 0) || (trajetoriaAtual == 0)){
@@ -254,8 +269,8 @@ void calculaSegmento (void) {
 
       roboReferencia = roboAtual;
       roboInicial = roboReferencia;
-      a1 =0, a2 = 0; 
-      erro1 = 0, erro2 = 0, erro3=0;
+      //a1 = 0, a2 = 0; 
+      erro1 = 0, erro2 = 0, erro3 = 0;
       parar = false;
 
       inicio = true;
@@ -267,7 +282,7 @@ void calculaSegmento (void) {
 
     }
     else{
-      parar=true;
+      parar = true;
       inicio = false;
     }
   }
@@ -275,7 +290,6 @@ void calculaSegmento (void) {
 }
 
 // Fazendo a trajetoria de referencia por meio de interpolacao
-// Dando errado - velocidade linear nao pode ser constante (nao pode andar reto)
 void RoboReferencia(const ros::TimerEvent&){
 
   static float vx = 0, vy = 0 , w = 0;
@@ -297,7 +311,7 @@ void RoboReferencia(const ros::TimerEvent&){
 
     theta = anguloReta - roboReferencia.theta;
 
-    // Angulo do robo fica entre -PI e PI
+    // Angulo de deslocamento fica entre -PI e PI
     while (abs(theta) > PI){
       if ((theta > PI) && (theta > 0)) {
         theta -= PI;
@@ -373,11 +387,13 @@ void RoboReferencia(const ros::TimerEvent&){
   }
 
   if (!obstaculo) {
+    /*velocidade linear  m/s */
     velocidadeLinear = cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy;
+    /*velocidade em rad/s */
     velocidadeAngular = w;  
   }
   else {
-    velocidadeLinear = velocidadeLinear - abs(Kt*(fk)*cos(thetak));
+    velocidadeLinear = /*cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy*/ velocidadeLinear - abs(Kt*(fk)*cos(thetak));
     velocidadeAngular = velocidadeAngular + Kr*(fk)*sin(thetak);
     
     roboReferencia.x = roboReferencia.x + (velocidadeLinear)*cos(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
@@ -386,6 +402,7 @@ void RoboReferencia(const ros::TimerEvent&){
 
   }
   
+  // deixa o angulo do robo entre -PI e PI
   while (abs(roboReferencia.theta) > PI){
     if ((roboReferencia.theta > PI) && (roboReferencia.theta > 0)) {
       roboReferencia.theta -= PI;
@@ -407,26 +424,33 @@ void RoboReferencia(const ros::TimerEvent&){
 /**Funcao do controlador de trajetoria para o robo real*/
 void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 
-  const float lambda = 1.47;
-  /*Parametros de ganho do controlador*/
-  const float gama1 = 1.2;
-  const float gama2 = 1.2;
+  /*const float lambda = 1.47;
+  //Parametros de ganho do controlador
+  const float gama1 = 0.08;
+  const float gama2 = 0.08;
+  static float funcaoAuxiliar = 0;*/
+
   const float k1=1.2, k2=1.3, k3=1.2;
-
-  /*velocidades dadas para o robo simulado*/
+  const float b1 = 1/(0.06), b2 = 0.075/0.06;
   static float vf=0, wf=0; 
-  /*velocidades dadas às rodas do robo real*/
+  //velocidades dadas às rodas do robo real
   static float velocidadeEsquerda = 0, velocidadeDireita = 0; 
-  static float funcaoAuxiliar = 0;
-
+  
+  
   erro1 = cos(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + sin(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
   erro2 = -sin(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + cos(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
   erro3 = roboReferencia.theta - roboAtual.theta;
  
   vf = (velocidadeLinear * cos(erro3)) + (k1 *erro1);
   wf = velocidadeAngular + (velocidadeLinear * k2 * erro2) + (k3 * sin(erro3));
+
+  //Calculo direto da velocidade
   
-  if (a2 > lambda){
+  velocidadeDireita = (b1*vf + b2*wf)/(2*PI);
+  velocidadeEsquerda = (b1*vf - b2*wf)/(2*PI);
+
+  //Controle adaptativo da trajetoria de velocidade 
+  /*if (a2 > lambda){
     funcaoAuxiliar = 0; 
   }
   else {
@@ -437,48 +461,45 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   }
 
   a1 = a1 + (gama1*erro1*vf);
-  a2 = a2 + ((lambda/k2)*wf*sin(erro3)) + funcaoAuxiliar; 
-
+  a2 = a2 + ((lambda/k2)*wf*sin(erro3)) + funcaoAuxiliar;
+  
   // Transforma para rotacoes por segundo
-  velocidadeDireita = (a1*vf + a2*wf)/(2*PI);
-  velocidadeEsquerda = (a1*vf - a2*wf)/(2*PI);
-
-  //ROS_INFO("Velocidades para o robo simulado: vf:%f wf:%f",vf,wf);
-  //ROS_INFO("Velocidades para o robo real: vd:%f ve:%f",velocidadeDireita, velocidadeEsquerda);
-
-  if (!parar || obstaculo) {
+  velocidadeDireita = (a1*vf + a2*wf)*(2*PI);
+  velocidadeEsquerda = (a1*vf - a2*wf)*(2*PI);
+  */
 
 #if defined(GAZEBO)
-    if (vf > vel_max){
-      vf = vel_max;
-    }
-    else if (vf < -vel_max){
-      vf = -vel_max;
-    }
-    if (wf > vel_max){
-      wf = vel_max;
-    }
-    else if (wf < -vel_max){
-      wf = -vel_max;
-    }
-
+  if (vf > vel_max){
+    vf = vel_max;
+  }
+  else if (vf < -vel_max){
+    vf = -vel_max;
+  }
+  if (wf > vel_max){
+    wf = vel_max;
+  }
+  else if (wf < -vel_max){
+    wf = -vel_max;
+  }
 #endif
 
 #if defined(ARDUINO)
-    if (velocidadeEsquerda > vel_max){
-      velocidadeEsquerda = vel_max;
-    }
-    else if (velocidadeEsquerda < -vel_max){
-      velocidadeEsquerda = -vel_max;
-    }
-    if (velocidadeDireita > vel_max){
-      velocidadeDireita = vel_max;
-    }
-    else if (velocidadeDireita < -vel_max){
-      velocidadeDireita = -vel_max;
-    }
+  /*if (velocidadeEsquerda > vel_max_arduino){
+    velocidadeEsquerda = vel_max_arduino;
+  }
+  else if (velocidadeEsquerda < -vel_max_arduino){
+    velocidadeEsquerda = -vel_max_arduino;
+  }
+  if (velocidadeDireita > vel_max_arduino){
+    velocidadeDireita = vel_max_arduino;
+  }
+  else if (velocidadeDireita < -vel_max_arduino){
+    velocidadeDireita = -vel_max_arduino;
+  }*/
 
 #endif
+
+  if (!parar || obstaculo) {
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
@@ -510,6 +531,10 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   else {
     vf = 0;
     wf = 0;
+
+    velocidadeEsquerda = 0, velocidadeDireita = 0; 
+    //funcaoAuxiliar = 0;
+
 #if defined(GAZEBO)
     velocidadeRobo.linear.x = 0;
     velocidadeRobo.angular.z = 0;
@@ -523,7 +548,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   }
 
 #if defined(DEBUG)
-  fprintf(arq2, "%f  %f \n", vf,wf);
+  fprintf(arq2, "%f  %f %f %f \n", vf,wf, velocidadeEsquerda, velocidadeDireita);
 #endif
 
 }
@@ -539,17 +564,17 @@ void controladorVelocidade(void){
 
   if (!parar) {
 
-    if (velocidadeEsquerda > vel_max){
-      velocidadeEsquerda = vel_max;
+    if (velocidadeEsquerda > vel_max_arduino){
+      velocidadeEsquerda = vel_max_arduino;
     }
-    else if (velocidadeEsquerda < -vel_max){
-      velocidadeEsquerda = -vel_max;
+    else if (velocidadeEsquerda < -vel_max_arduino){
+      velocidadeEsquerda = -vel_max_arduino;
     }
-    if (velocidadeDireita > vel_max){
-      velocidadeDireita = vel_max;
+    if (velocidadeDireita > vel_max_arduino){
+      velocidadeDireita = vel_max_arduino;
     }
-    else if (velocidadeDireita < -vel_max){
-      velocidadeDireita = -vel_max;
+    else if (velocidadeDireita < -vel_max_arduino){
+      velocidadeDireita = -vel_max_arduino;
     }
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
@@ -732,6 +757,7 @@ int main(int argc, char **argv)
   ros::Subscriber subUS9 = n.subscribe("ultrasound9",1000,UltrassomCallback);
   ros::Subscriber subUS10 = n.subscribe("ultrasound10",1000,UltrassomCallback);
   ros::Subscriber subUS11 = n.subscribe("ultrasound11",1000,UltrassomCallback);
+
   tf::TransformListener tfListener;
 
 #if defined(GAZEBO)
@@ -739,7 +765,7 @@ int main(int argc, char **argv)
 #endif
 
 #if defined(ARDUINO)
-  ros::Publisher pubVelocidade = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000);
+  ros::Publisher pubVelocidadear = n.advertise<raspberry_msgs::StampedFloat32>("raspberry_float32", 1000);
 #endif
 
   ros::Timer temporizador = n.createTimer(ros::Duration(TEMPO_AMOSTRAGEM),RoboReferencia, false);
@@ -772,8 +798,8 @@ int main(int argc, char **argv)
 #endif
 
 #if defined(ARDUINO)
-    pubVelocidade.publish(velocidadeArduinoDireita);
-    pubVelocidade.publish(velocidadeArduinoEsquerda);
+    pubVelocidadear.publish(velocidadeArduinoDireita);
+    pubVelocidadear.publish(velocidadeArduinoEsquerda);
 #endif
 
 #if defined(DEBUG)
@@ -791,389 +817,3 @@ int main(int argc, char **argv)
 #endif
   return 0;
 }
-
-
-
-
-
-//-----------------------------Backup -----------------------------------------------------------------------------
-/**As coordenadas x e y do robo estao em relacao ao mapa do mundo, nao em relacao aos eixos do robo*/
-/**Funcao que calcula a cinematica do robo de referencia*/
-// void cinematicaRoboReferenciaErrada(const ros::TimerEvent&){
-
-//   static float vx = 0, vy = 0;
-
-//   static ros::Time tempo = ros::Time::now();  
-//   float tempo_aux = ros::Time::now().toSec() - tempo.toSec();
-//   float erro_x = 0, erro_y = 0;
-
-//   tempo = ros::Time::now();
-
-//   //Atualizando a posicao do robo de referencia
-//   roboReferencia.x = roboReferencia.x + (cos(roboReferencia.theta)*velocidadeLinear - sin(roboReferencia.theta)*velocidadeAngular)*tempo_aux;
-//   roboReferencia.y = roboReferencia.y + (sin(roboReferencia.theta)*velocidadeLinear + cos(roboReferencia.theta)*velocidadeAngular)*tempo_aux;
-//   roboReferencia.theta = roboReferencia.theta + (2*PI*velocidadeAngular*tempo_aux);
-
-//   // Angulo do robo fica entre -PI e PI
-//   while (abs(roboReferencia.theta) > PI){
-//     if ((roboReferencia.theta > PI) && (roboReferencia.theta > 0)) {
-//       roboReferencia.theta -= PI;
-//     }
-//     if ((roboReferencia.theta < -PI) && (roboReferencia.theta < 0)) {
-//       roboReferencia.theta += PI;
-//     }
-//   }
-
-//   //velocidade em x e y do robo de referencia em relacao ao mundo
-//   if (!parar) {
-//     erro_x = (roboDestino.x - roboReferencia.x);
-//     erro_y = (roboDestino.y - roboReferencia.y);
-
-//     vx = erro_x/TEMPO_AMOSTRAGEM; 
-//     vy = erro_y/TEMPO_AMOSTRAGEM;
-
-//   }
-  
-//   /*velocidades lineares e angulares a serem aplicadas no robo de referencia*/
-//   velocidadeLinear = cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy;
-//   velocidadeAngular = -sin(roboReferencia.theta)*vx+ cos(roboReferencia.theta)*vy;
-
-//   if (velocidadeLinear > vel_max){
-//     velocidadeLinear = vel_max;
-//   }
-//   else if (velocidadeLinear < -vel_max){
-//     velocidadeLinear = -vel_max;
-//   }
-//   if (velocidadeAngular > vel_max){
-//     velocidadeAngular = vel_max;
-//   }
-//   else if (velocidadeAngular < -vel_max){
-//     velocidadeAngular = -vel_max;
-//   }
-
-//   /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
-
-//     if ((velocidadeLinear < VELOCIDADE_MINIMA) && (velocidadeLinear> 0)){
-//       velocidadeLinear = VELOCIDADE_MINIMA;
-//     }
-//     else if ((velocidadeLinear > (-VELOCIDADE_MINIMA)) && (velocidadeLinear < 0)){
-//       velocidadeLinear = -VELOCIDADE_MINIMA;
-//     }
-  
-//   }*/
-
-//   if (parar) {
-//     velocidadeLinear = 0;
-//     velocidadeAngular = 0;
-//     vx = 0;
-//     vy = 0;
-//   }
-  
-//   controladorTrajetoriaReal();  
-  
-// }
-// void RoboReferenciaAntigo(const ros::TimerEvent&){
-
-//   static float vx = 0, vy = 0;
-
-//   static float incremento = 0, incrementoangulo = 0, t =0 , amostras = 0; 
-//   float distancia = 0, anguloReta = 0;
-//   float x,y;
-
-//   static ros::Time tempo = ros::Time::now();  
-//   float tempo_aux = ros::Time::now().toSec() - tempo.toSec();
-//   tempo = ros::Time::now();
-
-//   if (inicio) {
-
-//     x = roboDestino.x - roboInicial.x;
-//     y = roboDestino.y - roboInicial.y;
-    
-//     anguloReta = atan2(y,x);
-
-//     x  = pow(x , 2);
-//     y  = pow(y , 2);
-
-//     distancia = sqrt(x+y);
-
-//     roboReferencia.theta = roboReferencia.theta + (2*PI*velocidadeAngular*tempo_aux);
-
-//     if (pose.size() > 0) {
-
-//       vx = 0.8*cos(roboReferencia.theta);
-//       vy = 0.8*sin(roboReferencia.theta);
-      
-//       if (distancia < 0.08/*0.173*/){
-//         incremento = 1;
-//         t = 1;
-//         amostras = 1;
-//       }
-//       else {
-//         amostras = distancia/0.08;
-//         incremento = 1/amostras;
-//         t = 0;
-//       }
-
-//     }
-//     else {
-      
-//       vx = 0.5*cos(roboReferencia.theta);
-//       vy = 0.5*sin(roboReferencia.theta);
-
-//       if (distancia < 0.05){
-//         incremento = 1;
-//         t = 1;
-//         amostras = 1;
-//       }
-//       else {
-//         amostras = (distancia/0.05);
-//         incremento = 1/amostras;
-//       }
-
-//     }
-
-//     incrementoangulo = (anguloReta - roboReferencia.theta)/amostras;
-
-//     inicio = false;
-    
-//   }
-
-//   if ((t+incremento) <= 1){
-//     t = t+incremento;  
-//     roboReferencia.x = roboInicial.x + t*(roboDestino.x - roboInicial.x);
-//     roboReferencia.y = roboInicial.y + t*(roboDestino.y - roboInicial.y);
-//     roboReferencia.theta = roboReferencia.theta + (2*PI*velocidadeAngular*tempo_aux);
-//   }
-//   else {
-//     roboReferencia.theta = atan2((roboDestino.y - roboReferencia.y), (roboDestino.x - roboReferencia.x));
-//     roboReferencia.x = roboDestino.x;
-//     roboReferencia.y = roboDestino.y;
-//   }
-  
-//   //ROS_INFO("roboReferencia: x: %f y: %f theta: %f", roboReferencia.x, roboReferencia.y, roboReferencia.theta);
-
-//   //velocidades lineares e angulares a serem aplicadas no robo de referencia
-//   velocidadeLinear = cos(roboReferencia.theta - anguloReta)*vx + sin(roboReferencia.theta - anguloReta)*vy;
-//   velocidadeAngular = -sin(roboReferencia.theta - anguloReta)*vx+ cos(roboReferencia.theta - anguloReta)*vy;
-
-//   if (velocidadeAngular > vel_max){
-//     velocidadeAngular = vel_max;
-//   }
-//   else if (velocidadeAngular < -vel_max){
-//     velocidadeAngular = -vel_max;
-//   }
-
-//   if (parar) {
-//     velocidadeLinear = 0;
-//     velocidadeAngular = 0;
-//     vx = 0;
-//     vy = 0;
-//   }
-  
-//   controladorTrajetoriaReal();  
-  
-// }
-
-
-// /**As coordenadas x e y do robo estao em relacao ao mapa do mundo, nao em relacao aos eixos do robo*/
-// /**Funcao que calcula a cinematica do robo de referencia*/
-// void cinematicaRoboReferencia(const ros::TimerEvent&){
-
-//   static float vx = 0, vy = 0, vTheta = 0;
-
-//   static ros::Time tempo = ros::Time::now();  
-//   float tempo_aux = ros::Time::now().toSec() - tempo.toSec();
-//   float erro_x = 0, erro_y = 0, erro_theta = 0;
-
-//   tempo = ros::Time::now();
-
-//   //Atualizando a posicao do robo de referencia
-//   roboReferencia.x = roboReferencia.x + (cos(roboReferencia.theta)*velocidadeLinear)*tempo_aux;
-//   roboReferencia.y = roboReferencia.y + (sin(roboReferencia.theta)*velocidadeLinear)*tempo_aux;
-//   roboReferencia.theta = roboReferencia.theta + (2*PI*velocidadeAngular*tempo_aux);
-
-//   // Angulo do robo fica entre -PI e PI
-//   while (abs(roboReferencia.theta) > PI){
-//     if ((roboReferencia.theta > PI) && (roboReferencia.theta > 0)) {
-//       roboReferencia.theta -= PI;
-//     }
-//     if ((roboReferencia.theta < -PI) && (roboReferencia.theta < 0)) {
-//       roboReferencia.theta += PI;
-//     }
-//   }
-
-//   //velocidade em x e y do robo de referencia em relacao ao mundo
-//   if (!parar) {
-//     erro_x = (roboDestino.x - roboReferencia.x);
-//     erro_y = (roboDestino.y - roboReferencia.y);
-//     erro_theta = (roboDestino.theta - roboReferencia.theta);
-
-//     vx = erro_x/TEMPO_AMOSTRAGEM; 
-//     vy = erro_y/TEMPO_AMOSTRAGEM;
-//     vTheta = erro_theta/2*PI/TEMPO_AMOSTRAGEM;
-
-//   }
-  
-//   /*velocidades lineares e angulares a serem aplicadas no robo de referencia*/
-//   velocidadeLinear = cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy;
-//   velocidadeAngular = vTheta;
-
-//   if (velocidadeLinear > vel_max){
-//     velocidadeLinear = vel_max;
-//   }
-//   else if (velocidadeLinear < -vel_max){
-//     velocidadeLinear = -vel_max;
-//   }
-//   if (velocidadeAngular > vel_max){
-//     velocidadeAngular = vel_max;
-//   }
-//   else if (velocidadeAngular < -vel_max){
-//     velocidadeAngular = -vel_max;
-//   }
-
-//   /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
-
-//     if ((velocidadeLinear < VELOCIDADE_MINIMA) && (velocidadeLinear> 0)){
-//       velocidadeLinear = VELOCIDADE_MINIMA;
-//     }
-//     else if ((velocidadeLinear > (-VELOCIDADE_MINIMA)) && (velocidadeLinear < 0)){
-//       velocidadeLinear = -VELOCIDADE_MINIMA;
-//     }
-  
-//   }*/
-
-//   if (parar) {
-//     velocidadeLinear = 0;
-//     velocidadeAngular = 0;
-//     vx = 0;
-//     vy = 0;
-//   }
-  
-//   controladorTrajetoriaReal();  
-  
-// }
-
-// void verificaObstaculos (tf::TransformListener &tfListener) {
-
-//   ultrassons us1;
-//   std::vector<ultrassons> US_aux;
-//   int j;
-//   float aux_theta = 0, aux_x = 0, aux_y = 0;
-//   float w = 0;
-//   float vlinear = 0, vangular = 0;
-//   float theta = 0, distancia = 0;
-//   std::string usNames[] = {"/ultrasound1","/ultrasound2","/ultrasound3","/ultrasound4","/ultrasound5",
-//                                         "/ultrasound6","/ultrasound7","/ultrasound8","/ultrasound9","/ultrasound10",
-//                                         "/ultrasound11"};
-
-//   for (int i = 0; i < NUM_US; ++i){
-      
-//       if(US[i] < DISTANCIA_MAXIMA){
-//         tf::StampedTransform transform;
-        
-//         try{
-//           us1.id = i;
-//           tfListener.lookupTransform(usNames[i], "/base_link",  
-//           ros::Time(0), transform);
-//           tf::Vector3 us(US[i],0,0);
-//           tf::Vector3 usT = transform.inverse()(us);
-//           us1.x = usT.x();
-//           us1.y = usT.y();
-//           us1.z = usT.z();
-//           US_aux.push_back(us1);
-
-// #if defined(DEBUG)
-//           ROS_INFO("%f,%f,%f",usT.x(),usT.y(),usT.z());
-// #endif
-//         }catch (tf::TransformException & ex){
-//           ROS_ERROR("%s",ex.what());
-        
-//         }
-// #if defined(DEBUG)
-//         ROS_INFO("US[%d] = %f",i+1,US[i]);
-// #endif
-//       }
-
-//   }
-
-//   if (!US_aux.empty()){
-//     obstaculo = true;
-//     velocidadeReacaoLinear = 0;
-//     velocidadeReacaoAngular = 0;
-//   }
-//   else {
-//     if (obstaculo){
-//       desviou = true;
-//       roboInicial = roboAtual;
-//     }
-//     obstaculo = false;
-//   }
-
-//   while (!US_aux.empty()){
-
-//     us1 = US_aux.front();
-//     US_aux.erase(US_aux.begin());  
-    
-//     us1.x = us1.x + DISTANCIA_CENTRO;
-//     aux_x = (us1.x)*cos(roboAtual.theta) + us1.y*sin(roboAtual.theta);
-//     aux_y = us1.y*cos(roboAtual.theta) - (us1.x)*sin(roboAtual.theta);
-    
-//     aux_theta = atan2(aux_y,aux_x);
-
-//     theta = atan2(us1.y,us1.x);
-    
-//     distancia = US[us1.id]* cos(theta);
-
-//     if (distancia > DISTANCIA_MAXIMA) {
-//       vlinear = -VELOCIDADE_MINIMA;
-//     }
-//     else if (distancia < DISTANCIA_MINIMA){
-//       vlinear = -vel_max;
-//     } 
-//     else {
-//       vlinear = -(vel_max)/(distancia - DISTANCIA_MINIMA);
-//     }
-
-//     if ((theta > 0) && (theta < PI/4)) {
-//       w = -vel_max;
-//     }
-//     else if ((theta > 0) && (theta >= PI/4)){
-//       w = -vel_max/2;
-//     }
-    
-//   }
-
-//   if (obstaculo){
-  
-//     if (vlinear < -(vel_max)){
-//     vlinear = -vel_max;
-//     }
-//     else if (vlinear > -VELOCIDADE_MINIMA){
-//       vlinear = -VELOCIDADE_MINIMA;
-//     }
-
-//     if (w < 0) {
-//       if (w < -vel_max){
-//         w = -vel_max;
-//       }
-//       else if (vlinear > -VELOCIDADE_MINIMA){
-//         w = -VELOCIDADE_MINIMA;
-//       }
-//     }
-//     else {
-//       if (w > vel_max){
-//         w = vel_max;
-//       }
-//       else if (w  < VELOCIDADE_MINIMA){
-//         w = VELOCIDADE_MINIMA;
-//       }
-//     }    
-//     velocidadeReacaoAngular = w;
-//     velocidadeReacaoLinear = vlinear;
-
-// #if defined(DEBUG)
-//     ROS_INFO("v reacao linear: %f angular: %f", vlinear,w);  
-// #endif
-//   }
-  
-// }

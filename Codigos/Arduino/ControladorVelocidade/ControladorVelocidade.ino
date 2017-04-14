@@ -147,9 +147,9 @@ void startEncoder () {
 //Comunicacao arduino
 
 void startComunicacao(){
-  Serial3.begin(9600);
-  ETin.begin(details(velocidade_recebida), &Serial3);
-  ETout.begin(details(velocidade_enviada), &Serial3);
+  Serial2.begin(9600);
+  ETin.begin(details(velocidade_recebida), &Serial2);
+  ETout.begin(details(velocidade_enviada), &Serial2);
   
 }
 
@@ -327,16 +327,18 @@ void controleAdaptativoVelocidade() {
   
   potencia_aux_esquerda = pot_esquerda;
   potencia_aux_direita = pot_direita;
-  Serial.print("Potência esquerda antes limitador:");  Serial.println(pot_esquerda);
 
   setVelocidade();
+  /*Serial.print("Potência esquerda antes limitador:");  Serial.println(pot_esquerda);
+
+  
   Serial.print("Potência controlada esquerda:"); Serial.println(pot_esquerda);
   Serial.print("Theta1_esquerda: ");            Serial.println(theta1_esquerda);
   Serial.print("Theta2_esquerda: ");            Serial.println(theta2_esquerda);
   Serial.print("Potencia esquerda: ");          Serial.println(pot_esquerda);
   Serial.print("Velocidade esquerda modelo: "); Serial.println(velocidade_esquerda_modelo);
   Serial.println(" ");
-
+  */
   return;
 }
 
@@ -346,6 +348,7 @@ void controleAdaptativoVelocidade() {
 void setup() {
 
   tempo = millis();
+  
   Serial.begin(115200);
   //startSD();
   
@@ -354,6 +357,7 @@ void setup() {
   startEncoder();
 
   startComunicacao();
+
 }
 
 void loop() {
@@ -390,13 +394,13 @@ void loop() {
   }
   controleAdaptativoVelocidade();
   
-  if (Serial.available() > 0) {
+  /*if (Serial.available() > 0) {
     velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
     velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
     velocidade_ReferenciaDireita = Serial.parseFloat();
     velocidade_ReferenciaEsquerda = velocidade_ReferenciaDireita;
     Serial.print("Velocidade recebida: ");      Serial.println(velocidade_ReferenciaDireita);
-  }
+  }*/
   
   if(ETin.receiveData()){
     if (abs((float)velocidade_recebida.dir/100.0) < VELOCIDADE_MAXIMA){
@@ -442,7 +446,7 @@ void loop() {
   Serial.print("Potencia direita: ");           Serial.println(pot_direita);
   Serial.print("Potencia esquerda: ");          Serial.println(pot_esquerda);
   Serial.println(" ");*/
-  
+ 
   delay(100);
   
 }

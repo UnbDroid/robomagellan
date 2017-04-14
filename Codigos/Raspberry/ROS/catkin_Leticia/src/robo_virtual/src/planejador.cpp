@@ -31,21 +31,26 @@ int main(int argc, char **argv)
 
   ros::Rate loop_rate(1);
 
-  while (contador < 8) {
+  /*while (contador < 8) {
     auxPosition.header.seq = (int)contador;
     auxPosition.pose.position.x = contador;
     auxPosition.pose.position.y = contador;
     auxPosition.pose.position.z = contador;
     trajeto.poses.push_back(auxPosition);
     contador += 1;
-  }
+  }*/
     auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+     auxPosition.header.seq = (int)contador;
     auxPosition.pose.position.x = 9;
     auxPosition.pose.position.y = 9;
     auxPosition.pose.position.z = contador;
     trajeto.poses.push_back(auxPosition);
-
-    auxPosition.header.seq = (int)contador;
+ /*   auxPosition.header.seq = (int)contador;
     auxPosition.pose.position.x = 0;
     auxPosition.pose.position.y = 9;
     auxPosition.pose.position.z = contador;
@@ -57,92 +62,7 @@ int main(int argc, char **argv)
     auxPosition.pose.position.z = contador;
     trajeto.poses.push_back(auxPosition);
     contador -= 1;
-  }
-  /*auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = 0;
-  auxPosition.pose.position.y = 0;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-  contador += 0.5;*/
-
-  /*auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = 4.5;
-  auxPosition.pose.position.y = 4.5;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = 9;
-  auxPosition.pose.position.y = 9;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = 4.5;
-  auxPosition.pose.position.y = 4.5;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  /*auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = -7;
-  auxPosition.pose.position.y = 22;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = -27;
-  auxPosition.pose.position.y = 14;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = -14;
-  auxPosition.pose.position.y = 1.4;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = -34;
-  auxPosition.pose.position.y = -14;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);*/
-  
-
-  /*auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = 6;
-  auxPosition.pose.position.y = -5;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);*/
-
-  /*auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = -4;
-  auxPosition.pose.position.y = 3;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = -1;
-  auxPosition.pose.position.y = -3;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = -6;
-  auxPosition.pose.position.y = -3;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);*/
-
-  /*auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = 9;
-  auxPosition.pose.position.y = 9;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);*/
-
-  auxPosition.header.seq = (int)contador;
-  auxPosition.pose.position.x = 0;
-  auxPosition.pose.position.y = 0;
-  auxPosition.pose.position.z = 0;
-  trajeto.poses.push_back(auxPosition);
+  }*/
   
   std_msgs::Int16 enable;
 

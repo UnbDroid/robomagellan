@@ -1,13 +1,13 @@
 
 
 // Defines ----------------------------------------------------------------------------------------------------------
-#define IN1_D 9
-#define IN2_D 10
-#define IN1_E 12
-#define IN2_E 13
+#define IN1_E 9
+#define IN2_E 10
+#define IN1_D 12
+#define IN2_D 13
 
-#define PWM_D 8
-#define PWM_E 11
+#define PWM_E 8
+#define PWM_D 11
 
 #define POT_MAX_ESQUERDA 206
 #define POT_MAX_DIREITA 206
