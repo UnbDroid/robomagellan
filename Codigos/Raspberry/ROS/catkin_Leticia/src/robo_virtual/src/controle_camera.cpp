@@ -9,14 +9,10 @@
 //#define GAZEBO 1
 #define ARDUINO 1
 
-#define DISTANCIA_MAXIMA 1.5f
-#define DISTANCIA_MINIMA 0.02f
-#define NUM_US 11
-#define DISTANCIA_CENTRO 0.1f
+#define DISTANCIA_MAXIMA 2.0f
+#define DISTANCIA_MINIMA 1.0f
 #define VELOCIDADE_LINEAR 1.2f
 #define VELOCIDADE_LINEAR_APROX 1.0f
-
-#define TEMPO_AMOSTRAGEM 0.1f
 
 //Variaveis Globais-------------------------------------------------------------------------------------------------------
 
@@ -37,7 +33,7 @@ static bool inicio = false;
 
 void distanciaCallback(const geometry_msgs::Point32::ConstPtr& msg);
 void enableCallback(const std_msgs::Bool::ConstPtr& msg);
-void calcularVelocidades(const ros::TimerEvent&);
+void calcularVelocidades(void );
 
 //-----------------------------------------------------------------------------------------------------------------------
 void distanciaCallback(const geometry_msgs::Point32::ConstPtr& msg){
@@ -45,14 +41,6 @@ void distanciaCallback(const geometry_msgs::Point32::ConstPtr& msg){
   DistanciaCamera.x = msg->x;
   DistanciaCamera.y = msg->y;
   DistanciaCamera.z = msg->z;
-
-  if (enable && !inicio) {
-    inicio = true;
-    //DistanciaInicialCamera = DistanciaCamera;
-  }
-  else{
-    inicio = false;
-  }
 
 }
 void enableCallback(const std_msgs::Bool::ConstPtr& msg){
@@ -153,9 +141,9 @@ void enableCallback(const std_msgs::Bool::ConstPtr& msg){
 
 // }
 
-void calculaVelocidades2 (const ros::TimerEvent&) {
+void calculaVelocidades2 (void) {
   
-  float k_linear = 5;
+  float k_linear = 2;
 
   if (!enable){
     velocidadeRobo.x = 0;
@@ -164,15 +152,15 @@ void calculaVelocidades2 (const ros::TimerEvent&) {
   }
   if (DistanciaCamera.x > DISTANCIA_MAXIMA) {
     velocidadeRobo.x = VELOCIDADE_LINEAR;
-    velocidadeRobo.y = PI/180*(DistanciaCamera.z);
+    velocidadeRobo.z = PI/180*(DistanciaCamera.y);
   }  
   else if (DistanciaCamera.x > DISTANCIA_MINIMA){
     velocidadeRobo.x = k_linear*(DistanciaCamera.x - DISTANCIA_MINIMA);
-    velocidadeRobo.y = PI/180*(DistanciaCamera.z);
+    velocidadeRobo.z = PI/180*(DistanciaCamera.y);
   }
   else if (DistanciaCamera.x < DISTANCIA_MINIMA){
     velocidadeRobo.x = VELOCIDADE_LINEAR_APROX;
-    velocidadeRobo.y = PI/180*(DistanciaCamera.z);
+    velocidadeRobo.z = PI/180*(DistanciaCamera.y);
   }
 
 
@@ -181,18 +169,12 @@ void calculaVelocidades2 (const ros::TimerEvent&) {
 int main(int argc, char **argv)
 {
 
-#if defined(DEBUG)
-  arq = fopen("feedbackcamera.txt", "w");
-  arq2 = fopen("feedbackcameravel.txt", "w");
-#endif
-
   ros::init(argc, argv, "controle_camera");
 
   ros::NodeHandle n;
  
   ros::Subscriber subDistancia = n.subscribe("cone_position", 1000, distanciaCallback);
   ros::Subscriber subEnable = n.subscribe("follow_camera", 1000, enableCallback);
-  ros::Timer temporizador = n.createTimer(ros::Duration(TEMPO_AMOSTRAGEM),calculaVelocidades2, false);
 
   ros::Publisher pubVelocidade = n.advertise<geometry_msgs::Point32>("velocity", 1000);
 
@@ -204,7 +186,7 @@ int main(int argc, char **argv)
 
     //Se estiver no modo seguir trajetoria
     if (enable){
-
+      calculaVelocidades2();
       pubVelocidade.publish(velocidadeRobo);
     
     }
@@ -213,8 +195,5 @@ int main(int argc, char **argv)
     ros::spinOnce();
   
   }
-#if defined(DEBUG)
-  fclose(arq);
-#endif
   return 0;
 }
