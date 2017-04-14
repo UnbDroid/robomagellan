@@ -2,6 +2,7 @@
 #include "raspberry_msgs/GPS.h"
 #include "raspberry_msgs/Gyro.h"
 #include "raspberry_msgs/Acc.h"
+#include "raspberry_msgs/Mag.h"
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Point32.h>
 #include <std_msgs/Bool.h>
@@ -16,10 +17,11 @@
 #define PI 3.14159265
 #define tAmostragem 0.01
 #define g 9.7808439
+#define m  23462.2
 #define tSetup 30
 
 using namespace Eigen;
-#define PI 3.14159265
+
 struct GPSData{
 
 	bool valid;
@@ -52,6 +54,14 @@ struct AccData{
 	ros::Time time;
 };
 
+struct MagData{
+
+	float x;
+	float y;
+	float z;
+
+};
+
 struct NEDCoord{
   double x,y,z;
 };
@@ -68,9 +78,12 @@ struct GPSCoord{
 GPSData gpsData;
 GyroData gyroData;
 AccData accData;
+MagData magData;
 MatrixXf G(3,1);
 MatrixXf R(10,10);
 MatrixXf I10(10,10);
+MatrixXf g_unitario_n(3,1);
+MatrixXf m_unitario_n(3,1);
 
 void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
 
@@ -127,6 +140,18 @@ void accCallback(const raspberry_msgs::Acc::ConstPtr& msg){
 
 }
 
+void magCallback(const raspberry_msgs::Mag::ConstPtr& msg){
+
+	magData.x = msg->m_x;
+	magData.y = msg->m_y;
+	magData.z = msg->m_z;
+
+	//ROS_INFO("a_x: %f", accData.x);
+	//ROS_INFO("a_y: %f", accData.y);
+	//ROS_INFO("a_z: %f", accData.z);
+
+}
+
 float toRadian(float degree){
   return (degree*PI/180.0);
 }
@@ -174,6 +199,15 @@ NEDCoord GPS2NED(GPSCoord gpoint ,GPSCoord ref){
   return nedPoint;
 }
 
+float quaternion2euler_yaw(MatrixXf q){
+
+	double t1 = 2.0*(q(0,0)*q(3,0) + q(1,0)*q(2,0));
+	double t2 = 1.0 - 2.0*(q(2,0)*q(2,0) + q(3,0)*q(3,0));
+	float yaw = atan2(t1,t2);
+
+	return yaw;
+}
+
 MatrixXf predicao(MatrixXf anterior){
 
 	MatrixXf q_anterior(4,1), v_anterior(3,1), r_anterior(3,1);
@@ -213,7 +247,59 @@ MatrixXf predicao(MatrixXf anterior){
 	return est;
 }
 
-MatrixXf medicao(GPSCoord ref){
+//Correção da atitude pela fusão do acc e do mag
+MatrixXf TRIAD(MatrixXf anterior){
+	
+	float mod_g = sqrt(pow(accData.x,2),pow(accData.y,2),pow(accData.z,2));
+	if(abs(abs(mod_g) - abs(g)) > ERRO )
+		return anterior;
+
+	MatrixXf g_unitario_b(3,1);
+	g_unitario_b << accData.x, accData.y, accData.z;
+	g_unitario_b = g_unitario_b/mod_g;
+
+	float mod_m = sqrt(pow(magData.x,2),pow(magData.y,2),pow(magData.z,2));
+	MatrixXf m_unitario_b << magData.x, magData.y, magData.z;
+	m_unitario_b = m_unitario_b/mod_m;
+
+	MatrixXf i_n(3,1);
+	MatrixXf j_n(3,1);
+	MatrixXf k_n(3,1);
+
+	i_n = (g_unitário_n+m_unitario_n)/abs(g_unitário_n+m_unitario_n);
+	j_n = (i_n*(g_unitario_n - m_unitario_g))/abs(i_n*(g_unitario_n - m_unitario_n));
+	k_n = i_n*j_n;
+
+	MatrixXf i_b(3,1);
+	MatrixXf j_b(3,1);
+	MatrixXf k_b(3,1);
+
+	i_b = (g_unitário_b+m_unitario_b)/abs(g_unitário_b+m_unitario_b);
+	j_b = (i_b*(g_unitario_b - m_unitario_b))/abs(i_b*(g_unitario_b - m_unitario_b));
+	k_b = i_b*j_b;
+
+	MatrixXf C_n(3,3);
+	MatrixXf C_b(3,3);
+	MatrixXf C_n_b(3,3);
+
+	C_n << i_n,j_n,k_n;
+	C_b << i_b, j_b, k_b;
+	C_n_b = C_b*C_n.transpose();
+
+	float q0 = sqrt(1 + C_n_b(0,0) + C_n_b(1,1) + C_n_b(2,2))/2;
+	float q1 = (C_n_b(2,1) - C_n_b(1,2))/(4*q0);
+	float q2 = (C_n_b(0,2) - C_n_b(2,0))/(4*q0);
+	float q3 = (C_n_b(1,0) - C_n_b(0,1))/(4*q0);
+
+	MatrixXf orient(4,1);
+	orient << q0, q1, q2, q3;
+
+	return orient;
+
+}
+
+//Correção da posição e velocidade pela medicao do GPS e da atitude pelo algoritmo TRIAD
+MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
 
 	MatrixXf pos(3,1), vel(3,1), orient(4,1);
 	NEDCoord pointNed;
@@ -226,9 +312,9 @@ MatrixXf medicao(GPSCoord ref){
 	static std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 	std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t-t1);
-	ROS_INFO("tempo: %f", time_span.count());
-	ROS_INFO("lat m: %f",pointGPS.lat );
-	ROS_INFO("lng m: %f", pointGPS.lng);
+	//ROS_INFO("tempo: %f", time_span.count());
+	//ROS_INFO("lat m: %f",pointGPS.lat );
+	//ROS_INFO("lng m: %f", pointGPS.lng);
 	
 //	std::cout << "ref: " << ref.lat << " " << ref.lng << std::endl;
 //	std::cout << "coord: " << pointGPS.lat << " " << pointGPS.lng  << std::endl;
@@ -241,15 +327,17 @@ MatrixXf medicao(GPSCoord ref){
 	pos << pointNed.x, pointNed.y, pointNed.z;
 
 	//std::cout << pos << std::endl;
-	float speed, course;
 
+	orient = TRIAD(q_anterior);
+
+	float speed;
 	speed = gpsData.speed;
-	course = gpsData.course;
-	
-	vel << speed*sin(course), speed*cos(course), 0;
+
+	float yaw = quaternion2euler_yaw(orient);
+		
+	vel << speed*sin(yaw), speed*cos(yaw), 0;
 //	std::cout<< vel << std::endl;
 //	std::cout<< ""<< std::endl;
-	orient << cos(course/2), 0, 0, sin(course/2);
 //	std::cout<< orient << std::endl;
 	MatrixXf med(10,1);
 	
@@ -259,7 +347,7 @@ MatrixXf medicao(GPSCoord ref){
 
 }
 
-MatrixXf jacobianaModelo(MatrixXf anterior){
+MatrixXf jacobianaPredicao(MatrixXf anterior){
 
 	MatrixXf A(10,10), orient(4,4);
 
@@ -371,7 +459,7 @@ MatrixXf jacobianaModelo(MatrixXf anterior){
 
 }
 
-MatrixXf jacobianaMedida(){
+MatrixXf jacobianaCorrecao(){
 
 	MatrixXf C(10,10);
 	
@@ -398,40 +486,16 @@ MatrixXf jacobianaMedida(){
 
 }
 
-GPSCoord setup(){
-
-	GPSCoord ref;
-	ref.lat = 0;
-	ref.lng = 0;
-	ref.alt = 0;
-
-	int count = 0;	
-
-	ros::Time tInicial = ros::Time::now();
-	while (count < 100000){
-		
-		ref.lat += gpsData.lat;
-		ref.lng += gpsData.lng;
-		ref.alt += gpsData.alt;
-		ROS_INFO("lat: %f", gpsData.lat);
-		count++;
-	}
-
-	ref.lat = ref.lat/count;
-	ref.lng = ref.lng/count;
-	ref.alt = ref.alt/count;
-
-	return ref;
-
-}
 
 int main(int argc, char **argv){	
 
+	//Variaveis ROS
   	ros::init(argc, argv, "filtro");
 	ros::NodeHandle n;
 	ros::Subscriber subGPS = n.subscribe("gpsInfo", 1000, GPSCallback);
 	ros::Subscriber subGyro = n.subscribe("gyroInfo", 1000, gyroCallback);
 	ros::Subscriber subAcc = n.subscribe("accInfo", 1000, accCallback);
+	ros::Subscriber subMag = n.subscribe("magInfo", 1000, magCallback);
 	
 	ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
   	ros::Publisher origin_pub = n.advertise<geometry_msgs::Point32>("origin", 50);
@@ -445,12 +509,14 @@ int main(int argc, char **argv){
   	std_msgs::Bool odomOK;
 	nav_msgs::Odometry odom;
 
+	//Variaveis GPS
 	GPSCoord ref;
 
 	ref.lat = 0;
 	ref.lng = 0;
 	ref.alt = 0;
 
+	//Variaveis filtro
 	MatrixXf x_estPriori(10,1); // [q0 q1 q2 q3 vx vy vz rx ry rz] 
 	MatrixXf x_estPosteriori(10,1); 
 	MatrixXf x_medido(10,1);
@@ -458,13 +524,21 @@ int main(int argc, char **argv){
 	MatrixXf Q(10,10), H(10,10), F(10,10), KG(10,10);
 	MatrixXf M(10,1);
 
+	MatrixXf q_anterior(4,1);
+
 	G << 0,0,g;
+
+	//Variaveis TRIAD
+	g_unitario_n << 0, 0, 1;
+	m_unitário_n << 19463.6, -7667.6, -10623;
+	m_unitário_n = m_unitário_n/m;
 
 	H = jacobianaMedida();
 
 	I10.setIdentity();
 
 	x_estPosteriori << 1, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	q_anterior << 1,0,0,0;
 	P_posteriori = I10*0.1;
 	Q = I10*0.1;
 	R = I10*0.001;
@@ -475,86 +549,92 @@ int main(int argc, char **argv){
 	
 	while (ros::ok()){
 
-	if (flagSetup){	
-       
-		if(gpsData.valid){
-                	std::cout << "setup" << std::endl;
-                	odomOK.data = true;
+		//Setup para pegar posição inicial
+		if (flagSetup){	
+	       
+			if(gpsData.valid){
 
-			ref.lat += gpsData.lat;
-			ref.lng += gpsData.lng;
-			ref.alt += gpsData.alt;
-		//	ROS_INFO("lat: %f", gpsData.lat);
-			count++;
+				#ifdef DEBUG
+	        	std::cout << "setup" << std::endl;
+	        	#endif
+	            odomOK.data = true;
+
+				ref.lat += gpsData.lat;
+				ref.lng += gpsData.lng;
+				ref.alt += gpsData.alt;
+				count++;
+
+			}else{
+	            odomOK.data = false;
+	         	ref.lat = 0; ref.lng = 0; ref.alt = 0;
+			}
+
+			if(ros::Time::now().toSec() - tInicial.toSec() > 30){
+
+				flagSetup = 0;
+				ref.lat = ref.lat/count;
+	            ref.lng = ref.lng/count;
+	            ref.alt = 0;
+
+	            // std::cout << "lat: " << ref.lat << std ::endl;
+	            // std::cout <<" lng: " << ref.lng << std::endl;
+	            // std::cout << "count : "<< count << std::endl;
+	            origin.x = ref.lat;
+	            origin.y = ref.lng;
+			}
+
+		//Filtro	
 		}else{
-                	odomOK.data = false;
-         	       ref.lat = 0; ref.lng = 0; ref.alt = 0;
+
+			// Estimação
+		//	x_estPriori = predicao(x_estPosteriori);
+		//	F = jacobianaModelo(x_estPosteriori);
+		//	P_priori = F + P_posteriori*F.transpose() + Q;
+
+			// Correção
+		//	if(gpsData.valid){
+		//		KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
+				M = medicao(ref, q_anterior);
+		//		odomOK.data = true;
+		//	}
+		//	else{
+		//    	KG.setZero();
+		//		M.setZero();
+		//		odomOK.data = false;
+		//	}
+			x_estPosteriori = M;	
+		//	x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+		//	std::cout << "oi" << std::endl;	
+		//	P_posteriori = (I10 - KG*H)*P_priori;
+
+			q_anterior << x_estPosteriori(0,0), x_estPosteriori(1,0), x_estPosteriori(2,0), x_estPosteriori(3,0);
+		
+			#ifdef DEBUG
+			std::cout << x_estPosteriori << std::endl;
+			std::cout << "\n";
+			#endif
+
+			current_time = ros::Time::now();  
+	    	odom.header.stamp = current_time;
+	    	odom.header.frame_id = "odom";
+
+			//set the position
+	    	odom.pose.pose.position.x = x_estPosteriori(7,0);
+	    	odom.pose.pose.position.y = x_estPosteriori(8,0);
+	    	odom.pose.pose.position.z = x_estPosteriori(9,0);
+
+	    	odom.pose.pose.orientation.x = x_estPosteriori(1,0);
+	    	odom.pose.pose.orientation.y = x_estPosteriori(2,0);
+	    	odom.pose.pose.orientation.z = x_estPosteriori(3,0);    
+	    	odom.pose.pose.orientation.w = x_estPosteriori(0,0);	
+
+			odom_pub.publish(odom);
+	    	origin_pub.publish(origin);
+	    	odom_ok.publish(odomOK);	
 		}
-
-		if(ros::Time::now().toSec() - tInicial.toSec() > 30){
-			flagSetup = 0;
-			ref.lat = ref.lat/count;
-               		 ref.lng = ref.lng/count;
-               		 ref.alt = 0;
-
-               // std::cout << "lat: " << ref.lat << std ::endl;
-               // std::cout <<" lng: " << ref.lng << std::endl;
-               // std::cout << "count : "<< count << std::endl;
-                origin.x = ref.lat;
-                origin.y = ref.lng;
-
-		}
-	}else{
-
-
-		// Estimação
-		x_estPriori = predicao(x_estPosteriori);
-	//	F = jacobianaModelo(x_estPosteriori);
-	//	P_priori = F + P_posteriori*F.transpose() + Q;
-
-		// Correção
-	//	if(gpsData.valid){
-	//		KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
-	//		M = medicao(ref);
-	//		odomOK.data = true;
-	//	}
-	//	else{
-	    	KG.setZero();
-			M.setZero();
-	//		odomOK.data = false;
-	//	}
-	//	x_estPosteriori = M;	
-		x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
-	//	std::cout << "oi" << std::endl;	
-	//	P_posteriori = (I10 - KG*H)*P_priori;
-	
-		#ifdef DEBUG
-		std::cout << x_estPosteriori << std::endl;
-		#endif
-
-	std::cout << "\n";
-
-		current_time = ros::Time::now();  
-    		odom.header.stamp = current_time;
-    		odom.header.frame_id = "odom";
-
-		//set the position
-    		odom.pose.pose.position.x = x_estPosteriori(7,0);
-    		odom.pose.pose.position.y = x_estPosteriori(8,0);
-    		odom.pose.pose.position.z = x_estPosteriori(9,0);
-
-    		odom.pose.pose.orientation.x = x_estPosteriori(1,0);
-    		odom.pose.pose.orientation.y = x_estPosteriori(2,0);
-    		odom.pose.pose.orientation.z = x_estPosteriori(3,0);    
-    		odom.pose.pose.orientation.w = x_estPosteriori(0,0);	
-
-		odom_pub.publish(odom);
-    		origin_pub.publish(origin);
-    		odom_ok.publish(odomOK);	
-	}
 
 		loop_rate.sleep();
-       		ros::spinOnce();
+	    ros::spinOnce();
 
 	}
 
