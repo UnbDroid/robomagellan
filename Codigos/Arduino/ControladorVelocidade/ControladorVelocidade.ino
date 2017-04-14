@@ -59,6 +59,7 @@ void startSD () {
 #define Kd_direita 0.1f
 
 #define VELOCIDADE_MAXIMA 5.5f
+#define VELOCIDADE_LIMITE 8.0f
 
 // Variáveis -----------------------------------------------------------------------------------------------
 
@@ -369,7 +370,7 @@ void loop() {
       dataFile = SD.open(nomearquivo, FILE_WRITE);
     }*/
     
-    if (millis() - tempo > 50) {
+   if (millis() - tempo > 50) {
       
       tempo_aux = (millis() - tempo);
       tempo = millis();
@@ -385,8 +386,8 @@ void loop() {
     
       /*Serial.print("Velocidade esquerda: ");      Serial.println(velocidade_esquerda);
       Serial.print("Velocidade direita: ");       Serial.println(velocidade_direita);
-      Serial.println(" ");*/
-    
+      Serial.println(" ");
+      */    
       velocidade_enviada.esq = velocidade_esquerda * 100;
       velocidade_enviada.dir = velocidade_direita * 100;
       ETout.sendData();
@@ -403,33 +404,35 @@ void loop() {
   }*/
   
   if(ETin.receiveData()){
-    if (abs((float)velocidade_recebida.dir/100.0) < VELOCIDADE_MAXIMA){
-      velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
-      velocidade_ReferenciaDireita = (float)velocidade_recebida.dir/100.0;
+    if (abs(((float)velocidade_recebida.dir/100.0)) < VELOCIDADE_LIMITE && abs((float)velocidade_recebida.esq/100.0) < VELOCIDADE_LIMITE){
+      if (abs((float)velocidade_recebida.dir/100.0) < VELOCIDADE_MAXIMA){
+        velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+        velocidade_ReferenciaDireita = (float)velocidade_recebida.dir/100.0;
+      }
+      else if (((float)velocidade_recebida.dir/100) < 0){
+        velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+        velocidade_ReferenciaDireita = -VELOCIDADE_MAXIMA;      
+      }
+      else if (((float)velocidade_recebida.dir/100) > 0){
+        velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+        velocidade_ReferenciaDireita = VELOCIDADE_MAXIMA;      
+      }
+      if (abs((float)velocidade_recebida.esq/100.0) < VELOCIDADE_MAXIMA){
+        velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;      
+        velocidade_ReferenciaEsquerda = (float)velocidade_recebida.esq/100.0;
+      }
+      else if (((float)velocidade_recebida.esq/100) < 0){
+        velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+        velocidade_ReferenciaEsquerda = -VELOCIDADE_MAXIMA;      
+      }
+      else if (((float)velocidade_recebida.dir/100) > 0){
+        velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+        velocidade_ReferenciaEsquerda = VELOCIDADE_MAXIMA;      
+      }
+     
+      Serial.print("Esquerda: "); Serial.println((float)velocidade_recebida.esq/100.0);
+      Serial.print("Direita: "); Serial.println((float)velocidade_recebida.dir/100.0);
     }
-    else if (((float)velocidade_recebida.dir/100) < 0){
-      velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
-      velocidade_ReferenciaDireita = -VELOCIDADE_MAXIMA;      
-    }
-    else if (((float)velocidade_recebida.dir/100) > 0){
-      velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
-      velocidade_ReferenciaDireita = VELOCIDADE_MAXIMA;      
-    }
-    if (abs((float)velocidade_recebida.esq/100.0) < VELOCIDADE_MAXIMA){
-      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;      
-      velocidade_ReferenciaEsquerda = (float)velocidade_recebida.esq/100.0;
-    }
-    else if (((float)velocidade_recebida.esq/100) < 0){
-      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
-      velocidade_ReferenciaEsquerda = -VELOCIDADE_MAXIMA;      
-    }
-    else if (((float)velocidade_recebida.dir/100) > 0){
-      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
-      velocidade_ReferenciaEsquerda = VELOCIDADE_MAXIMA;      
-    }
-   
-    Serial.print("Esquerda: "); Serial.println((float)velocidade_recebida.esq/100.0);
-    Serial.print("Direita: "); Serial.println((float)velocidade_recebida.dir/100.0);
   }
   /*if (dataFile) {
     dataFile.print(millis());dataFile.print(" ");dataFile.print(velocidade_esquerda);
@@ -441,12 +444,12 @@ void loop() {
     dataFile.close();
   }*/
   
-  /*Serial.print("Contador encoder esquerdo: ");  Serial.println (encoder0Pos, DEC);
+  Serial.print("Contador encoder esquerdo: ");  Serial.println (encoder0Pos, DEC);
   Serial.print("Contador encoder direito: ");   Serial.println (encoder1Pos, DEC);
   Serial.print("Potencia direita: ");           Serial.println(pot_direita);
   Serial.print("Potencia esquerda: ");          Serial.println(pot_esquerda);
-  Serial.println(" ");*/
+  Serial.println(" ");
  
-  delay(100);
+  //delay(100);
   
 }

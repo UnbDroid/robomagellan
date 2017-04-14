@@ -6,6 +6,7 @@
 #define PI 3.14159265f
 
 #define DEBUG 1
+//#define ARQ_DEBUG 1
 
 #define DISTANCIA_MAXIMA 3.0f
 #define DISTANCIA_MINIMA 2.0f
@@ -21,7 +22,7 @@ geometry_msgs::Point32 velocidadeRobo;
 
 static bool enable = false;
 
-#if defined(DEBUG)
+#if defined(ARQ_DEBUG)
   FILE *arq;
 #endif
 
@@ -43,6 +44,83 @@ void enableCallback(const std_msgs::Bool::ConstPtr& msg){
 
   enable = msg -> data;
 }
+
+void calculaVelocidades2 (void) {
+  
+  float k_linear = 0.8;
+
+  if (!enable || DistanciaCamera.z==0){
+    velocidadeRobo.x = 0;
+    velocidadeRobo.z = 0;
+    return;
+  }
+  if (DistanciaCamera.x > DISTANCIA_MAXIMA) {
+    velocidadeRobo.x = VELOCIDADE_LINEAR;
+    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
+  }  
+  else if (DistanciaCamera.x > DISTANCIA_MINIMA){
+    velocidadeRobo.x = k_linear*(DistanciaCamera.x);
+    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
+  }
+  else if (DistanciaCamera.x < DISTANCIA_MINIMA){
+    velocidadeRobo.x = 0;//VELOCIDADE_LINEAR_APROX;
+    velocidadeRobo.z = 0;//PI/180*(DistanciaCamera.y);
+  }
+
+#if defined(ARQ_DEBUG)
+  fprintf(arq,"%f %f \n",velocidadeRobo.x,velocidadeRobo.z);
+#endif
+
+#if defined(DEBUG)
+  #warning Atencao! DEBUG esta definido
+  ROS_INFO("%f %f %f %f \n",velocidadeRobo.x,velocidadeRobo.z, DistanciaCamera.x, DistanciaCamera.y);
+#endif
+
+}
+
+int main(int argc, char **argv)
+{
+
+#if defined(ARQ_DEBUG)
+  #warning Atencao! ARQ_DEBUG esta definido
+  arq = fopen("feedback_controle_camera.txt", "w");
+#endif
+
+  ros::init(argc, argv, "controle_camera");
+
+  ros::NodeHandle n;
+ 
+  ros::Subscriber subDistancia = n.subscribe("cone_position", 1000, distanciaCallback);
+  ros::Subscriber subEnable = n.subscribe("follow_camera", 1000, enableCallback);
+
+  ros::Publisher pubVelocidade = n.advertise<geometry_msgs::Point32>("velocity", 1000);
+
+  ros::Rate loop_rate(100);
+
+  while (ros::ok()){
+
+    //Se estiver no modo seguir trajetoria
+    if (enable){
+      calculaVelocidades2();
+      pubVelocidade.publish(velocidadeRobo);
+    
+    }
+    else {
+      velocidadeRobo.x = 0;
+      velocidadeRobo.z = 0;
+      pubVelocidade.publish(velocidadeRobo);
+    }
+
+    loop_rate.sleep();
+    ros::spinOnce();
+  
+  }
+#if defined(ARQ_DEBUG)
+  fclose(arq);
+#endif
+  return 0;
+}
+
 
 /**Funcao que calcula as velocidades para alcancar o ponto da camera*/
 // void calculaVelocidades (const ros::TimerEvent&){
@@ -136,74 +214,3 @@ void enableCallback(const std_msgs::Bool::ConstPtr& msg){
 //   velocidadeRobo.z = w + (vx * k2 * erro2) + (k3 * sin(erro3));
 
 // }
-
-void calculaVelocidades2 (void) {
-  
-  float k_linear = 0.8;
-
-  if (!enable){
-    velocidadeRobo.x = 0;
-    velocidadeRobo.z = 0;
-    return;
-  }
-  if (DistanciaCamera.x > DISTANCIA_MAXIMA) {
-    velocidadeRobo.x = VELOCIDADE_LINEAR;
-    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
-  }  
-  else if (DistanciaCamera.x > DISTANCIA_MINIMA){
-    velocidadeRobo.x = k_linear*(DistanciaCamera.x);
-    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
-  }
-  else if (DistanciaCamera.x < DISTANCIA_MINIMA){
-    velocidadeRobo.x = 0;//VELOCIDADE_LINEAR_APROX;
-    velocidadeRobo.z = 0;//PI/180*(DistanciaCamera.y);
-  }
-
-#if defined(DEBUG)
-  fprintf(arq,"%f %f \n",velocidadeRobo.x,velocidadeRobo.z);
-  ROS_INFO("%f %f %f %f \n",velocidadeRobo.x,velocidadeRobo.z, DistanciaCamera.x, DistanciaCamera.y);
-#endif
-
-}
-
-int main(int argc, char **argv)
-{
-
-#if defined(DEBUG)
-  arq = fopen("feedback_controle_camera.txt", "w");
-#endif
-
-  ros::init(argc, argv, "controle_camera");
-
-  ros::NodeHandle n;
- 
-  ros::Subscriber subDistancia = n.subscribe("cone_position", 1000, distanciaCallback);
-  ros::Subscriber subEnable = n.subscribe("follow_camera", 1000, enableCallback);
-
-  ros::Publisher pubVelocidade = n.advertise<geometry_msgs::Point32>("velocity", 1000);
-
-  ros::Rate loop_rate(100);
-
-  while (ros::ok()){
-
-    //Se estiver no modo seguir trajetoria
-    if (enable){
-      calculaVelocidades2();
-      pubVelocidade.publish(velocidadeRobo);
-    
-    }
-    else {
-      velocidadeRobo.x = 0;
-      velocidadeRobo.z = 0;
-      pubVelocidade.publish(velocidadeRobo);
-    }
-
-    loop_rate.sleep();
-    ros::spinOnce();
-  
-  }
-#if defined(DEBUG)
-  fclose(arq);
-#endif
-  return 0;
-}
