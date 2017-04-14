@@ -122,7 +122,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib;/home/pi/Documents/desenvolvimentoRos/devel/lib;/opt/ros/indigo/lib)
+    foreach(path /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/devel/lib;/home/pi/Documents/catkin_rosserial/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/devel/lib;/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib;/home/pi/Documents/desenvolvimentoRos/devel/lib;/opt/ros/indigo/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

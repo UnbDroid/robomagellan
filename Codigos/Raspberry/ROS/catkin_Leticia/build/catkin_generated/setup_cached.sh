@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/leticia/catkin_Leticia/build"
+export PWD="/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Leticia/build"

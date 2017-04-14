@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/devel
+
+Name: tf2
+Description: Description of tf2
+Version: 0.5.13
+Cflags: -I/home/pi/Documents/desenvolvimentoRos/src/tf2/include -I/usr/include
+Libs: -L/home/pi/Documents/desenvolvimentoRos/devel/lib -ltf2 -l:/usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
+Requires: geometry_msgs tf2_msgs rostime

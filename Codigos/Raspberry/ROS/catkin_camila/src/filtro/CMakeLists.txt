@@ -114,6 +114,7 @@ catkin_package(
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  /home/pi/Documents
 )
 
 ## Declare a C++ library
@@ -186,8 +187,14 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
+add_definitions(-std=c++11)
 
 add_executable(filtro src/filtro.cpp)
 target_link_libraries(filtro ${catkin_LIBRARIES})
 add_dependencies(filtro filtro_generate_messages_cpp)
+
+add_executable(filtroAtitude src/filtroAtitude.cpp)
+target_link_libraries(filtroAtitude ${catkin_LIBRARIES})
+add_dependencies(filtroAtitude filtro_generate_messages_cpp)
+
 

@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/devel
+
+Name: teste
+Description: Description of teste
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/Documents/desenvolvimentoRos/devel/lib 
+Requires: 

@@ -32,6 +32,7 @@ GPS::GPS()
 
 bool GPS::encode(char c)
 {
+	//std::cout << c << std::endl;
   ++encodedCharCount;
 
   switch(c)
@@ -144,6 +145,7 @@ bool GPS::endOfTermHandler()
     uint8_t checksum = 16 * fromHex(term[0]) + fromHex(term[1]);
     if (checksum == parity)
     {
+     std::cout << "checksum" << std::endl;
       passedChecksumCount++;
       if (sentenceHasFix)
         ++sentencesWithFixCount;
@@ -180,6 +182,7 @@ bool GPS::endOfTermHandler()
 
     else
     {
+	std::cout << "fail" << std::endl;
       ++failedChecksumCount;
     }
 

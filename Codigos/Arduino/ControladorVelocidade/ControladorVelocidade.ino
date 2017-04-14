@@ -7,6 +7,27 @@
   to the A & B channel outputs
 */
 
+// SD card
+
+/*#include <SD.h>
+
+#define CS 53
+
+const int chipSelect = CS;
+int dataString = 0;
+bool abriu = true;
+char nomearquivo[] = "datalog1.txt";
+
+void startSD () {
+  
+  pinMode (CS,OUTPUT); 
+  if (!SD.begin(chipSelect)) {
+    Serial.println("Card failed, or not present");
+    return;
+  }
+  Serial.println("card initialized.");
+}*/
+
 // Includes ------------------------------------------------------------------------------------------------
 
 #include <math.h>
@@ -14,17 +35,16 @@
 #include <EasyTransfer.h>
 
 #include "driver.h"
-//#include <SoftwareSerial.h>
 
 // Defines -------------------------------------------------------------------------------------------------
 
 // Encoders esquerda
-#define encoder0PinA 18
-#define encoder0PinB 19
+#define encoder0PinA 19
+#define encoder0PinB 18
 
 // Encoders direita
-#define encoder1PinA 2
-#define encoder1PinB 3
+#define encoder1PinA 3
+#define encoder1PinB 2
 
 // Calculo de velocidade
 #define pi 3.14159265359f
@@ -38,6 +58,7 @@
 #define Ki_direita 0.05f
 #define Kd_direita 0.1f
 
+#define VELOCIDADE_MAXIMA 5.5f
 
 // Variáveis -----------------------------------------------------------------------------------------------
 
@@ -60,8 +81,8 @@ double tempo_aux;
 float velocidade_ReferenciaDireita_anterior = 0;
 float velocidade_ReferenciaEsquerda_anterior = 0;
 
-float theta1_esquerda = 0.50;
-float theta2_esquerda = 0.25;
+float theta1_esquerda = 0.40;
+float theta2_esquerda = 0.15;//0.25;
 float yTv_esquerda = 0.08;
 
 float theta1_direita = 0.40;
@@ -70,11 +91,15 @@ float yTv_direita = 0.07;
 
 float velocidade_esquerda_modelo = 0;
 float velocidade_direita_modelo = 0;
-float pot_esquerda_teste = 0;
-float pot_direita_teste = 0;
 float tensaomotor_esquerda = 0;
 float tensaomotor_direita = 0;
-float tensao_bateria = 12;
+float tensao_bateria = 14.8;
+
+//desacelerar
+float potencia_aux_esquerda = 0;
+float potencia_aux_direita = 0;
+float aceleracao_Esquerda =0;
+float aceleracao_Direita = 0;
 
 //Comunicacao Arduino
 EasyTransfer ETin; 
@@ -122,9 +147,9 @@ void startEncoder () {
 //Comunicacao arduino
 
 void startComunicacao(){
-  Serial3.begin(9600);
-  ETin.begin(details(velocidade_recebida), &Serial3);
-  ETout.begin(details(velocidade_enviada), &Serial3);
+  Serial2.begin(9600);
+  ETin.begin(details(velocidade_recebida), &Serial2);
+  ETout.begin(details(velocidade_enviada), &Serial2);
   
 }
 
@@ -238,7 +263,24 @@ void doEncoder1B() {
 
 
 // Funcoes Controle de Velocidade -----------------------------------------------------------------------------------------
+void desacelerar (){
 
+  aceleracao_Esquerda = (-potencia_aux_esquerda)/0.2; 
+  aceleracao_Direita = (-potencia_aux_direita)/0.2;
+  
+  pot_esquerda = potencia_aux_esquerda + (aceleracao_Esquerda*millis()/1000);
+  pot_direita = potencia_aux_direita + (aceleracao_Direita*millis()/1000); 
+  
+  if ((potencia_aux_esquerda > 0 && pot_esquerda < 0) || (potencia_aux_esquerda < 0 && pot_esquerda > 0) || (abs(pot_esquerda) < POT_MIN_ESQUERDA)){
+    parar();
+    pot_esquerda = 0;
+    pot_direita = 0;  
+  }
+  else{
+    setVelocidade();  
+  }
+ 
+}
 void controleAdaptativoVelocidade() {
 
   if (velocidade_ReferenciaEsquerda == 0 && velocidade_ReferenciaDireita == 0) {
@@ -246,15 +288,16 @@ void controleAdaptativoVelocidade() {
     velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
     velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
     
-    theta1_esquerda = 0.50;
-    theta2_esquerda = 0.25;
+    theta1_esquerda = 0.40;
+    theta2_esquerda = 0.15;
     yTv_esquerda = 0.08;
 
     theta1_direita = 0.40;
     theta2_direita = 0.15;
     yTv_direita = 0.07;
-    
-    parar();
+
+    //parar();
+    desacelerar();
     return;
   }
 
@@ -277,22 +320,26 @@ void controleAdaptativoVelocidade() {
   velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
 
   pot_esquerda = 100 * tensaomotor_esquerda / (tensao_bateria);
-  pot_esquerda_teste = pot_esquerda;
-
+  
+  
   //TODO compensar a deadzone
   pot_direita = 100 * tensaomotor_direita / (tensao_bateria);
-  pot_direita_teste = pot_direita;
-
-  Serial.print("Potência esquerda antes limitador:");  Serial.println(pot_esquerda);
+  
+  potencia_aux_esquerda = pot_esquerda;
+  potencia_aux_direita = pot_direita;
 
   setVelocidade();
+  /*Serial.print("Potência esquerda antes limitador:");  Serial.println(pot_esquerda);
+
+  
   Serial.print("Potência controlada esquerda:"); Serial.println(pot_esquerda);
   Serial.print("Theta1_esquerda: ");            Serial.println(theta1_esquerda);
   Serial.print("Theta2_esquerda: ");            Serial.println(theta2_esquerda);
   Serial.print("Potencia esquerda: ");          Serial.println(pot_esquerda);
   Serial.print("Velocidade esquerda modelo: "); Serial.println(velocidade_esquerda_modelo);
   Serial.println(" ");
-
+  */
+  return;
 }
 
 
@@ -301,77 +348,105 @@ void controleAdaptativoVelocidade() {
 void setup() {
 
   tempo = millis();
-
+  
+  Serial.begin(115200);
+  //startSD();
+  
   startDriver();
 
   startEncoder();
 
   startComunicacao();
 
-  Serial.begin(115200);
 }
 
 void loop() {
 
-//if ((millis() / 1000) > 5) {
+    /*File dataFile = SD.open(nomearquivo, FILE_WRITE);
 
-    /*if ((millis() / 1000) > 30) {
-      velocidade_Referencia = 0;
-      parar();
+    if(!dataFile) {
+      nomearquivo[14] = "datalog2.txt"; 
+      dataFile = SD.open(nomearquivo, FILE_WRITE);
     }*/
-
+    
     if (millis() - tempo > 50) {
+      
       tempo_aux = (millis() - tempo);
       tempo = millis();
-
+    
       voltas_esquerda = encoder0Pos / 1632.67;
       voltas_direita = encoder1Pos / 1632.67;
-
+    
       velocidade_esquerda = 1000 * (voltas_esquerda - voltas_esquerda_anterior) / (tempo_aux);
       velocidade_direita = 1000 * (voltas_direita - voltas_direita_anterior) / (tempo_aux);
-
+    
       voltas_esquerda_anterior = voltas_esquerda;
       voltas_direita_anterior = voltas_direita;
-
+    
       /*Serial.print("Velocidade esquerda: ");      Serial.println(velocidade_esquerda);
       Serial.print("Velocidade direita: ");       Serial.println(velocidade_direita);
       Serial.println(" ");*/
-
+    
       velocidade_enviada.esq = velocidade_esquerda * 100;
       velocidade_enviada.dir = velocidade_direita * 100;
       ETout.sendData();
       
-    }
-    controleAdaptativoVelocidade();
-
-    if (Serial.available() > 0) {
-      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+  }
+  controleAdaptativoVelocidade();
+  
+  /*if (Serial.available() > 0) {
+    velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+    velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+    velocidade_ReferenciaDireita = Serial.parseFloat();
+    velocidade_ReferenciaEsquerda = velocidade_ReferenciaDireita;
+    Serial.print("Velocidade recebida: ");      Serial.println(velocidade_ReferenciaDireita);
+  }*/
+  
+  if(ETin.receiveData()){
+    if (abs((float)velocidade_recebida.dir/100.0) < VELOCIDADE_MAXIMA){
       velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
-      velocidade_ReferenciaDireita = Serial.parseFloat();
-      velocidade_ReferenciaEsquerda = velocidade_ReferenciaDireita;
-      Serial.print("Velocidade recebida: ");      Serial.println(velocidade_ReferenciaDireita);
+      velocidade_ReferenciaDireita = (float)velocidade_recebida.dir/100.0;
     }
-    
-    if(ETin.receiveData()){
-      if (abs((float)velocidade_recebida.dir/100.0) < 8){
-        velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
-        velocidade_ReferenciaDireita = (float)velocidade_recebida.dir/100.0;
-      }
-      if (abs((float)velocidade_recebida.esq/100.0) < 8){
-        velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;      
-        velocidade_ReferenciaEsquerda = (float)velocidade_recebida.esq/100.0;
-      }
-     
-      Serial.print("Esquerda: "); Serial.println((float)velocidade_recebida.esq/100.0);
-      Serial.print("Direita: "); Serial.println((float)velocidade_recebida.dir/100.0);
+    else if (((float)velocidade_recebida.dir/100) < 0){
+      velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+      velocidade_ReferenciaDireita = -VELOCIDADE_MAXIMA;      
     }
-
-    /*Serial.print("Contador encoder esquerdo: ");  Serial.println (encoder0Pos, DEC);
-    Serial.print("Contador encoder direito: ");   Serial.println (encoder1Pos, DEC);
-    Serial.print("Potencia direita: ");           Serial.println(pot_direita);
-    Serial.print("Potencia esquerda: ");          Serial.println(pot_esquerda);
-    Serial.println(" ");*/
-    delay(100);
+    else if (((float)velocidade_recebida.dir/100) > 0){
+      velocidade_ReferenciaDireita_anterior = velocidade_ReferenciaDireita;
+      velocidade_ReferenciaDireita = VELOCIDADE_MAXIMA;      
+    }
+    if (abs((float)velocidade_recebida.esq/100.0) < VELOCIDADE_MAXIMA){
+      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;      
+      velocidade_ReferenciaEsquerda = (float)velocidade_recebida.esq/100.0;
+    }
+    else if (((float)velocidade_recebida.esq/100) < 0){
+      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+      velocidade_ReferenciaEsquerda = -VELOCIDADE_MAXIMA;      
+    }
+    else if (((float)velocidade_recebida.dir/100) > 0){
+      velocidade_ReferenciaEsquerda_anterior = velocidade_ReferenciaEsquerda;
+      velocidade_ReferenciaEsquerda = VELOCIDADE_MAXIMA;      
+    }
    
-//}
+    Serial.print("Esquerda: "); Serial.println((float)velocidade_recebida.esq/100.0);
+    Serial.print("Direita: "); Serial.println((float)velocidade_recebida.dir/100.0);
+  }
+  /*if (dataFile) {
+    dataFile.print(millis());dataFile.print(" ");dataFile.print(velocidade_esquerda);
+    dataFile.print(" ");dataFile.print(velocidade_direita);
+    dataFile.print(" ");dataFile.print(velocidade_ReferenciaEsquerda);
+    dataFile.print(" ");dataFile.print(velocidade_ReferenciaDireita);
+    dataFile.print(" ");dataFile.print(pot_esquerda);
+    dataFile.print(" ");dataFile.println(pot_direita);   
+    dataFile.close();
+  }*/
+  
+  /*Serial.print("Contador encoder esquerdo: ");  Serial.println (encoder0Pos, DEC);
+  Serial.print("Contador encoder direito: ");   Serial.println (encoder1Pos, DEC);
+  Serial.print("Potencia direita: ");           Serial.println(pot_direita);
+  Serial.print("Potencia esquerda: ");          Serial.println(pot_esquerda);
+  Serial.println(" ");*/
+ 
+  delay(100);
+  
 }

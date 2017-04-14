@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/devel
+
+Name: tf
+Description: Description of tf
+Version: 1.11.8
+Cflags: -I/home/pi/Documents/desenvolvimentoRos/devel/include -I/home/pi/Documents/desenvolvimentoRos/src/tf/include
+Libs: -L/home/pi/Documents/desenvolvimentoRos/devel/lib -ltf
+Requires: geometry_msgs message_filters message_runtime roscpp sensor_msgs std_msgs tf2_ros rosconsole

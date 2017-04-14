@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/install
+
+Name: tf2_py
+Description: Description of tf2_py
+Version: 0.5.13
+Cflags: 
+Libs: -L/home/pi/Documents/desenvolvimentoRos/install/lib 
+Requires: rospy tf2

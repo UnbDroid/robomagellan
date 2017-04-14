@@ -24,27 +24,32 @@ struct Gyro_
   typedef Gyro_<ContainerAllocator> Type;
 
   Gyro_()
-    : g_x(0)
-    , g_y(0)
-    , g_z(0)  {
+    : g_x(0.0)
+    , g_y(0.0)
+    , g_z(0.0)
+    , time(0)  {
     }
   Gyro_(const ContainerAllocator& _alloc)
-    : g_x(0)
-    , g_y(0)
-    , g_z(0)  {
+    : g_x(0.0)
+    , g_y(0.0)
+    , g_z(0.0)
+    , time(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef int16_t _g_x_type;
+   typedef float _g_x_type;
   _g_x_type g_x;
 
-   typedef int16_t _g_y_type;
+   typedef float _g_y_type;
   _g_y_type g_y;
 
-   typedef int16_t _g_z_type;
+   typedef float _g_z_type;
   _g_z_type g_z;
+
+   typedef int64_t _time_type;
+  _time_type time;
 
 
 
@@ -123,12 +128,12 @@ struct MD5Sum< ::raspberry_msgs::Gyro_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "a226b3476bda898c80dcdb0ff0b085e7";
+    return "fdbe35c96cc4518a9444f2526afab160";
   }
 
   static const char* value(const ::raspberry_msgs::Gyro_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xa226b3476bda898cULL;
-  static const uint64_t static_value2 = 0x80dcdb0ff0b085e7ULL;
+  static const uint64_t static_value1 = 0xfdbe35c96cc4518aULL;
+  static const uint64_t static_value2 = 0x9444f2526afab160ULL;
 };
 
 template<class ContainerAllocator>
@@ -147,9 +152,10 @@ struct Definition< ::raspberry_msgs::Gyro_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int16 g_x\n\
-int16 g_y\n\
-int16 g_z\n\
+    return "float32 g_x\n\
+float32 g_y\n\
+float32 g_z\n\
+int64 time\n\
 ";
   }
 
@@ -171,6 +177,7 @@ namespace serialization
       stream.next(m.g_x);
       stream.next(m.g_y);
       stream.next(m.g_z);
+      stream.next(m.time);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -190,11 +197,13 @@ struct Printer< ::raspberry_msgs::Gyro_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::raspberry_msgs::Gyro_<ContainerAllocator>& v)
   {
     s << indent << "g_x: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.g_x);
+    Printer<float>::stream(s, indent + "  ", v.g_x);
     s << indent << "g_y: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.g_y);
+    Printer<float>::stream(s, indent + "  ", v.g_y);
     s << indent << "g_z: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.g_z);
+    Printer<float>::stream(s, indent + "  ", v.g_z);
+    s << indent << "time: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.time);
   }
 };
 

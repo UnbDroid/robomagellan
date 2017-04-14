@@ -58,6 +58,7 @@ public:
    uint8_t minute();
    uint8_t second();
    uint8_t centisecond();
+   uint32_t getTime(){return time;};
 
    TinyGPSTime() : valid(false), updated(false), time(0)
    {}
@@ -67,6 +68,7 @@ private:
    uint32_t time, newTime;
    void commit();
    void setTime(const char *term);
+ 
 };
 
 struct TinyGPSDecimal

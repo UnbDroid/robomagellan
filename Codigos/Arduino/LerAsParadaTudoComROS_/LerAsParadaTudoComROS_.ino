@@ -7,6 +7,7 @@
 #include "ultrassom.h"
 #include "controlerc.h"
 #include "sensortoque.h"
+#include "botaoStart.h"
 #include "tasksdeclarations.h"
 
 
@@ -17,6 +18,13 @@ void messageInt64Cb( const raspberry_msgs::StampedInt64& r_int64_msg){
 }
 
 void messageFloat32Cb( const raspberry_msgs::StampedFloat32& r_float32_msg){
+
+  if(r_float32_msg.id == VEL_REF_DIR){
+    velRef.dir = r_float32_msg.data;
+  }else if(r_float32_msg.id == VEL_REF_ESQ){
+    velRef.esq = r_float32_msg.data;
+  }
+
 }
 
 void messageFloat64Cb( const raspberry_msgs::StampedFloat64& r_float64_msg){
@@ -77,6 +85,9 @@ void taskShowUSReadingCallback(){
   Serial.print("Toque: ");      Serial.println(sensorToque);
   Serial.print("Vel esq: "); Serial.println(velAtual.esq);
   Serial.print("Vel dir: "); Serial.println(velAtual.dir);
+  Serial.print("Botao Verde: ");Serial.println(botaoVerde);
+  Serial.print("Botao Preto: ");Serial.println(botaoPreto);
+  Serial.print("Trava de seguranca: ");Serial.println(travaSeguranca);
   unsigned long t2 = millis();
   Serial.print("Demorei ");
   Serial.println(t2-t1);
@@ -97,21 +108,34 @@ void taskROSCallback(){
   sendInt64(US11, USReadings[10]);
 
   sendInt64(SENSOR_TOQUE, sensorToque);
+  sendInt64(BOTAO_PRETO, botaoPreto);
+  sendInt64(BOTAO_VERDE, botaoVerde);
 
   sendFloat64(VEL_ATUAL_DIR,velAtual.dir);
   sendFloat64(VEL_ATUAL_ESQ,velAtual.esq);   
 
-  //sendFloat64(GPS_LAT,lat);
-  //sendFloat64(GPS_LON,lon);
+  sendFloat64(GPS_LAT,lat);
+  sendFloat64(GPS_LON,lon);
+  sendInt64(GPS_VALID,gps_valid);
+  sendFloat64(GPS_HDOP,hdop);
+  sendFloat64(GPS_SPEED,speed);
+  sendFloat64(GPS_COURSE,course);
   //sendFloat64(GPS_ALT,alt);
   
 }
 
 void taskBotaoCallback(){
   sensorToque = lerSensorToque();
+  botaoPreto = lerBotaoPreto();
+  botaoVerde = lerBotaoVerde();
 }
 void taskComArduinoCallback(){
   processarControleRC(velRef.dir,velRef.esq);
+
+  if(travaSeguranca){
+    velRef.dir = 0;
+    velRef.esq = 0;    
+  }
   
   velRefRaw.dir = vel2Raw(velRef.dir);
   velRefRaw.esq = vel2Raw(velRef.esq);
@@ -126,10 +150,14 @@ void taskComArduinoCallback(){
 
 void setup() {
   // put your setup code here, to run once:
- 
-  //Serial.begin(115200);
+
+  #ifdef ROS
+    initializeRosCom();
+  #else
+    Serial.begin(115200);
+  #endif
+  
   delay(1000);
-  initializeRosCom();
 
   start_COMARDUINO();
 
@@ -138,6 +166,12 @@ void setup() {
   start_TASKS();
   
   startSENSORTOQUE();
+
+  startBotoes();
+
+  start_GPS();
+
+  //start_SD();
   
 }
 
@@ -147,5 +181,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   //esquerda_eixo(50,50);
   runner.execute();
-  nh.spinOnce();
+  #ifdef ROS
+    nh.spinOnce();
+  #endif
 }

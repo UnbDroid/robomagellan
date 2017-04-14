@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/install
+
+Name: bruce_main_2
+Description: Description of bruce_main_2
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/install/lib 
+Requires: 

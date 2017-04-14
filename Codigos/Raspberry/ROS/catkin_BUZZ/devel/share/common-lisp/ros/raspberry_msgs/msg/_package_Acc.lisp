@@ -5,4 +5,6 @@
           A_Y
           A_Z-VAL
           A_Z
+          TIME-VAL
+          TIME
 ))

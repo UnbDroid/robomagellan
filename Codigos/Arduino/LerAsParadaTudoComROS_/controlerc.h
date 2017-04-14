@@ -16,6 +16,8 @@ volatile int prev_time3 = 0;
 uint8_t latest_interrupted_pin1;
 uint8_t latest_interrupted_pin2;
 uint8_t latest_interrupted_pin3;
+bool controlar;
+bool travaSeguranca;
 
 void falling1();
 void falling2();
@@ -70,25 +72,26 @@ void start_RC() {
 }
 
 void processarControleRC(float & velDir, float & velEsq){
-  bool controlar = (channel_value1 > 1500);
+  controlar = (channel_value1 > 1500);
   if(controlar){
+    travaSeguranca = false;
     velDir = (channel_value2-1338.0)/2000.0*10.0;
     velEsq = velDir;
-    float guinada = (((channel_value3-1420.0)/(2000.0*0.24)))*2;
+    float guinada = (((channel_value3-1440.0)/(2000.0*0.24)))*2;
     if(abs(velDir) < 0.5){
       velDir = 0;
     }else if(velDir > 0.5){
-      velDir += 3;
+      velDir += 2;
     }else if(velDir < -0.5){
-      velDir -= 3;
+      velDir -= 2;
     }
     
     if(abs(velEsq) < 0.5){
       velEsq = 0;
     }else if(velEsq > 0.5){
-      velEsq += 3;
+      velEsq += 2;
     }else if(velEsq < -0.5){
-      velEsq -= 3;
+      velEsq -= 2;
     }
   
     if(abs(guinada) < 0.10){
@@ -99,6 +102,8 @@ void processarControleRC(float & velDir, float & velEsq){
     }else if(guinada < 0){
       velDir *= (1+guinada);
     }    
+  }else{
+    travaSeguranca = (channel_value2 < 1800);
   }
 }
 

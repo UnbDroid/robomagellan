@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/desenvolvimentoRos/devel
+
+Name: tf2_msgs
+Description: Description of tf2_msgs
+Version: 0.5.13
+Cflags: -I/home/pi/Documents/desenvolvimentoRos/devel/include -I/home/pi/Documents/desenvolvimentoRos/src/tf2_msgs/include
+Libs: -L/home/pi/Documents/desenvolvimentoRos/devel/lib 
+Requires: message_generation geometry_msgs actionlib_msgs

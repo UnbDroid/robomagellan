@@ -8,6 +8,9 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+  tf
+  sensor_msgs
+  raspberry_msgs
 )
 
 
@@ -196,6 +199,6 @@ add_executable(planejador src/planejador.cpp)
 target_link_libraries(planejador ${catkin_LIBRARIES})
 add_dependencies(planejador beginner_tutorials_generate_messages_cpp)
 
-add_executable(posicaoAtual src/posicaoAtual.cpp)
-target_link_libraries(posicaoAtual ${catkin_LIBRARIES})
-add_dependencies(posicaoAtual beginner_tutorials_generate_messages_cpp)
+add_executable(controle_camera src/controle_camera.cpp)
+target_link_libraries(controle_camera ${catkin_LIBRARIES})
+add_dependencies(controle_camera beginner_tutorials_generate_messages_cpp)

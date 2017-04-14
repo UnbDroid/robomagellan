@@ -1,2 +1,2 @@
-arduino_handler:arduino_msgs:raspberry_msgs
+arduino_handler:arduino_msgs:bruce_main_2:bruce_path_planner:raspberry_msgs
 -DCATKIN_DEVEL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel -DCMAKE_INSTALL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/install -G Unix Makefiles

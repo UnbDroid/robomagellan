@@ -7,14 +7,15 @@ import struct
 
 
 class Acc(genpy.Message):
-  _md5sum = "5e828625e6cd4bb051f091c5afb51743"
+  _md5sum = "79dbd4567e140183ab42121735f0a17c"
   _type = "raspberry_msgs/Acc"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """int16 a_x
-int16 a_y
-int16 a_z"""
-  __slots__ = ['a_x','a_y','a_z']
-  _slot_types = ['int16','int16','int16']
+  _full_text = """float32 a_x
+float32 a_y
+float32 a_z
+int64 time"""
+  __slots__ = ['a_x','a_y','a_z','time']
+  _slot_types = ['float32','float32','float32','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -24,7 +25,7 @@ int16 a_z"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       a_x,a_y,a_z
+       a_x,a_y,a_z,time
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -34,15 +35,18 @@ int16 a_z"""
       super(Acc, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
       if self.a_x is None:
-        self.a_x = 0
+        self.a_x = 0.
       if self.a_y is None:
-        self.a_y = 0
+        self.a_y = 0.
       if self.a_z is None:
-        self.a_z = 0
+        self.a_z = 0.
+      if self.time is None:
+        self.time = 0
     else:
-      self.a_x = 0
-      self.a_y = 0
-      self.a_z = 0
+      self.a_x = 0.
+      self.a_y = 0.
+      self.a_z = 0.
+      self.time = 0
 
   def _get_types(self):
     """
@@ -57,7 +61,7 @@ int16 a_z"""
     """
     try:
       _x = self
-      buff.write(_struct_3h.pack(_x.a_x, _x.a_y, _x.a_z))
+      buff.write(_struct_3fq.pack(_x.a_x, _x.a_y, _x.a_z, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -70,8 +74,8 @@ int16 a_z"""
       end = 0
       _x = self
       start = end
-      end += 6
-      (_x.a_x, _x.a_y, _x.a_z,) = _struct_3h.unpack(str[start:end])
+      end += 20
+      (_x.a_x, _x.a_y, _x.a_z, _x.time,) = _struct_3fq.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -85,7 +89,7 @@ int16 a_z"""
     """
     try:
       _x = self
-      buff.write(_struct_3h.pack(_x.a_x, _x.a_y, _x.a_z))
+      buff.write(_struct_3fq.pack(_x.a_x, _x.a_y, _x.a_z, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -99,11 +103,11 @@ int16 a_z"""
       end = 0
       _x = self
       start = end
-      end += 6
-      (_x.a_x, _x.a_y, _x.a_z,) = _struct_3h.unpack(str[start:end])
+      end += 20
+      (_x.a_x, _x.a_y, _x.a_z, _x.time,) = _struct_3fq.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_3h = struct.Struct("<3h")
+_struct_3fq = struct.Struct("<3fq")

@@ -1,0 +1,8 @@
+prefix=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/install
+
+Name: bruce_vision
+Description: Description of bruce_vision
+Version: 0.0.0
+Cflags: -I/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/install/include
+Libs: -L/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/install/lib -lbruce_vision
+Requires: roscpp rospy std_msgs message_runtime

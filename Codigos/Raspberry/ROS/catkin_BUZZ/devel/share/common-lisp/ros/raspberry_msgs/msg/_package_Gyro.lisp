@@ -5,4 +5,6 @@
           G_Y
           G_Z-VAL
           G_Z
+          TIME-VAL
+          TIME
 ))

@@ -29,9 +29,11 @@ struct GPS_
     , lng(0.0)
     , alt(0.0)
     , speed(0.0)
+    , course(0.0)
     , hdop(0.0)
     , vdop(0.0)
-    , pdop(0.0)  {
+    , pdop(0.0)
+    , time(0)  {
     }
   GPS_(const ContainerAllocator& _alloc)
     : valid(false)
@@ -39,9 +41,11 @@ struct GPS_
     , lng(0.0)
     , alt(0.0)
     , speed(0.0)
+    , course(0.0)
     , hdop(0.0)
     , vdop(0.0)
-    , pdop(0.0)  {
+    , pdop(0.0)
+    , time(0)  {
   (void)_alloc;
     }
 
@@ -62,6 +66,9 @@ struct GPS_
    typedef double _speed_type;
   _speed_type speed;
 
+   typedef double _course_type;
+  _course_type course;
+
    typedef float _hdop_type;
   _hdop_type hdop;
 
@@ -70,6 +77,9 @@ struct GPS_
 
    typedef float _pdop_type;
   _pdop_type pdop;
+
+   typedef int64_t _time_type;
+  _time_type time;
 
 
 
@@ -148,12 +158,12 @@ struct MD5Sum< ::raspberry_msgs::GPS_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "eb3a7471d9a50e828ab96794f4a00013";
+    return "71546074f6ec76fd1ffdf15346a8ac4a";
   }
 
   static const char* value(const ::raspberry_msgs::GPS_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xeb3a7471d9a50e82ULL;
-  static const uint64_t static_value2 = 0x8ab96794f4a00013ULL;
+  static const uint64_t static_value1 = 0x71546074f6ec76fdULL;
+  static const uint64_t static_value2 = 0x1ffdf15346a8ac4aULL;
 };
 
 template<class ContainerAllocator>
@@ -177,9 +187,11 @@ float64 lat\n\
 float64 lng\n\
 float64 alt\n\
 float64 speed\n\
+float64 course\n\
 float32 hdop\n\
 float32 vdop\n\
 float32 pdop\n\
+int64 time\n\
 ";
   }
 
@@ -203,9 +215,11 @@ namespace serialization
       stream.next(m.lng);
       stream.next(m.alt);
       stream.next(m.speed);
+      stream.next(m.course);
       stream.next(m.hdop);
       stream.next(m.vdop);
       stream.next(m.pdop);
+      stream.next(m.time);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -234,12 +248,16 @@ struct Printer< ::raspberry_msgs::GPS_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.alt);
     s << indent << "speed: ";
     Printer<double>::stream(s, indent + "  ", v.speed);
+    s << indent << "course: ";
+    Printer<double>::stream(s, indent + "  ", v.course);
     s << indent << "hdop: ";
     Printer<float>::stream(s, indent + "  ", v.hdop);
     s << indent << "vdop: ";
     Printer<float>::stream(s, indent + "  ", v.vdop);
     s << indent << "pdop: ";
     Printer<float>::stream(s, indent + "  ", v.pdop);
+    s << indent << "time: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.time);
   }
 };
 

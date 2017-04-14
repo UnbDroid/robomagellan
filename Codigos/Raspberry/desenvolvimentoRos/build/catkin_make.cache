@@ -1,0 +1,2 @@
+teste:tf:tf2:tf2_msgs:tf2_py:tf2_ros:ultrassom
+-DCATKIN_DEVEL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/desenvolvimentoRos/devel -DCMAKE_INSTALL_PREFIX=/home/pi/Documents/robomagellan/Codigos/Raspberry/desenvolvimentoRos/install -G Unix Makefiles
