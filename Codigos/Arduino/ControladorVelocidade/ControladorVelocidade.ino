@@ -370,7 +370,7 @@ void loop() {
       dataFile = SD.open(nomearquivo, FILE_WRITE);
     }*/
     
-   if (millis() - tempo > 50) {
+   if (millis() - tempo > 20) {
       
       tempo_aux = (millis() - tempo);
       tempo = millis();
@@ -449,7 +449,7 @@ void loop() {
   Serial.print("Potencia direita: ");           Serial.println(pot_direita);
   Serial.print("Potencia esquerda: ");          Serial.println(pot_esquerda);
   Serial.println(" ");
- 
+  
   //delay(100);
   
 }
