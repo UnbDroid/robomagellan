@@ -1,4 +1,4 @@
-//#define usuario 
+#define usuario 
 
 
 
@@ -109,6 +109,11 @@ public:
 	
 
 private:
+
+
+	vector<Vec3f> dados;
+	int ref_dados;
+	int ultimo_valido;
 
 	Mat* Original;
 
@@ -258,7 +263,7 @@ RastreiaCone5::RastreiaCone5(){
 	blur_y_i = 3;
 	blur_x_i = 0;
 
-	tamanho_mat = 60;
+	tamanho_mat = 80;
 
 	atualiza = true;
 
@@ -268,13 +273,25 @@ RastreiaCone5::RastreiaCone5(){
 	iniciou_calibra = false;
 
 	tamanho_final = 200;
-	tamanho0 = 200;
+	tamanho0 = 300;
 
 	min_pontos = 10;
 	perc_pontosi = 400;
 
 	cont_ruim = 0;
 	aux_cont = 0;
+
+	Vec3f dado;
+	dado[0] = 0;
+	dado[1] = 0;
+	dado[2] = 0;
+
+
+	for(int i = 0; i<30; i++){
+		dados.push_back(dado);
+	}
+	ref_dados = 29;
+	ultimo_valido = 0;
 
 }
 
@@ -788,6 +805,8 @@ bool RastreiaCone5::dados_mancha(Mat mancha, int partes){
 	float cont_verdadeiros = 0;
 	float cont_quase = 0;
 
+
+
 	for(k = 0; k< partes; k++){
 		avg_inicio = 0;
 		avg_fim = 0;
@@ -813,6 +832,9 @@ bool RastreiaCone5::dados_mancha(Mat mancha, int partes){
 
 	}
 	//cout<<endl;
+
+
+
 
 
 	for(i = 1; i<partes; i++){
@@ -1051,14 +1073,23 @@ void RastreiaCone5::distancia(Mat* source, int ref){
 
 	float prox = pos_dist[ref];
 
-	encontrou_cone = true;
 
-	string num;
+	Vec3f dado;
+
+
 	//prox = sqrt(10/prox);
 	prox = (2/(3*prox) );
-	pub_distancia = prox;
+
+	dado[0] = prox;
+	dado[1] = pub_angulo;
+	dado[2] = 1;
+
+	dados[ref_dados] = dado;
+
+	ultimo_valido = ref_dados;
 
 	#ifdef usuario
+	string num;
 	int prox2 = prox;
 	int_to_string(prox2, &num);
 	string num2;
@@ -1150,7 +1181,11 @@ void RastreiaCone5::achaPerto(Mat* source, Mat* temp){
 
 void RastreiaCone5::rastreia(Mat source){
 	
-
+	ref_dados++;
+	if(ref_dados>29){
+		ref_dados = 0;
+	}
+	dados[ref_dados][2] = 0;
 
 	//gettimeofday(&velho, NULL);
 	Mat temp2(source.size(), CV_8UC3);
@@ -1250,4 +1285,16 @@ void RastreiaCone5::rastreia(Mat source){
 		cout<<"Tempo novo: "<<tempo<<endl;
 	}
 	*/
+	int cont_certos = 0;
+	for(int i = 0; i<30; i++){
+		if(dados[i][2] > 0){
+			cont_certos++;
+		}		
+	}
+	encontrou_cone = false;
+	if(cont_certos > 15){
+		encontrou_cone = true;
+		pub_distancia = dados[ultimo_valido][0];
+		pub_angulo = dados[ultimo_valido][1];
+	}
 }
