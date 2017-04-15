@@ -11,7 +11,7 @@
 #define DISTANCIA_MAXIMA 3.0f
 #define DISTANCIA_MINIMA 1.0f
 #define VELOCIDADE_LINEAR 1.1f
-#define VELOCIDADE_LINEAR_APROX 0.76f
+#define VELOCIDADE_LINEAR_APROX 0.70f
 
 //Variaveis Globais-------------------------------------------------------------------------------------------------------
 
@@ -56,15 +56,15 @@ void calculaVelocidades2 (void) {
   }
   if (DistanciaCamera.x > DISTANCIA_MAXIMA) {
     velocidadeRobo.x = VELOCIDADE_LINEAR;
-    velocidadeRobo.z = -10*PI/180*(DistanciaCamera.y);
+    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }  
   else if (DistanciaCamera.x > DISTANCIA_MINIMA){
     velocidadeRobo.x = k_linear*(DistanciaCamera.x);
-    velocidadeRobo.z = -10*PI/180*(DistanciaCamera.y);
+    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }
   else if (DistanciaCamera.x < DISTANCIA_MINIMA){
     velocidadeRobo.x = VELOCIDADE_LINEAR_APROX;
-    velocidadeRobo.z = -10*PI/180*(DistanciaCamera.y);
+    velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }
 
 #if defined(ARQ_DEBUG)

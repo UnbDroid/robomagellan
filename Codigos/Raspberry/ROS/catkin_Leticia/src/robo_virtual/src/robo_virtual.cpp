@@ -240,6 +240,7 @@ void calculaSegmento (void) {
   if (enable == PARA){
     parar = true;
     inicio = false;
+    erro1 = 0, erro2 = 0, erro3 = 0;
     return;
   }
   if (enable == SEGUIR_VELOCIDADE){
@@ -977,6 +978,22 @@ int main(int argc, char **argv)
     }
     else if (enable == SEGUIR_VELOCIDADE){
       controladorVelocidade();
+    }
+    else if (enable == APROXIMAR_CONE){
+      controladorTrajetoria();
+    }
+    else if (enable == PARA) {
+      parar = true;
+      inicio = false;
+      erro1 = 0, erro2 = 0, erro3 = 0;
+#if defined(ARDUINO)
+      velocidadeArduinoEsquerda.data = 0;
+      velocidadeArduinoDireita.data = 0;
+#endif
+#if defined(GAZEBO)
+      velocidadeRobo.linear.x = 0;
+      velocidadeRobo.angular.z = 0;
+#endif
     }
 
 
