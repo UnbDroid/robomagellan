@@ -48,21 +48,25 @@ void enableCallback(const std_msgs::Bool::ConstPtr& msg){
 void calculaVelocidades2 (void) {
   
   float k_linear = 0.7;
+  static bool fase3 = false;
 
-  if (!enable || DistanciaCamera.z==0){
+  if (!enable || (DistanciaCamera.z==0 && !fase3)){
     velocidadeRobo.x = 0;
     velocidadeRobo.z = 0;
     return;
   }
   if (DistanciaCamera.x > DISTANCIA_MAXIMA) {
+    fase3 = false;
     velocidadeRobo.x = VELOCIDADE_LINEAR;
     velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }  
   else if (DistanciaCamera.x > DISTANCIA_MINIMA){
+    fase3 = false;
     velocidadeRobo.x = k_linear*(DistanciaCamera.x);
     velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }
   else if (DistanciaCamera.x < DISTANCIA_MINIMA){
+    fase3 = true;
     velocidadeRobo.x = VELOCIDADE_LINEAR_APROX;
     velocidadeRobo.z = -15*PI/180*(DistanciaCamera.y);
   }

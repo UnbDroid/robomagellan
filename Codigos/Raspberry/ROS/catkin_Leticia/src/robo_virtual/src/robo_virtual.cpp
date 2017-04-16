@@ -103,7 +103,7 @@ static bool inicio = false;
 /*Flag que permite receber nova trajetoria, novas velocidades a serem seguidas*/
 static int16_t enable = 0;
 
-static float vel_max = 0, vel_max_arduino = 0, vel_min_arduino = 2.0;
+static float vel_max = 0, vel_max_arduino = 0, vel_min_arduino = 1.5;
 
 float DIST_MAX[NUM_US] = {0.5,0.5,0.5,1,1,1,1,1,0.5,0.5,0.5};
 
