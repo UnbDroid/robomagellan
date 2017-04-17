@@ -14,7 +14,7 @@
 #define PI 3.14159265
 #define NUM_US 11
 #define MAX_RANGE 2.0f
-//#define PRINT_ENABLED
+#define PRINT_ENABLED
 
 class Coordinates{
 public:

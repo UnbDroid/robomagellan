@@ -16,11 +16,11 @@ e apertar q
 #include "rosbag/bag.h"
 #include "raspberry_msgs/ParamMag.h"
 
-#define SCALE 0.00092
+#define SCALE 0.00152
 #define t 0.0001 
-#define iTotal 10
+#define iTotal 100
 #define nMedidas 7
-#define m 23
+#define m  23.4622
 
 using namespace Eigen;
 
@@ -30,7 +30,7 @@ int read_word(int fd, int adr_h,int adr_l){
 
 	short high = wiringPiI2CReadReg8 (fd,adr_h);
 	int low = wiringPiI2CReadReg8 (fd,adr_l);
-	int val = ((high << 8) + low);http://stackoverflow.com/questions/35647941/inverse-of-a-matrix-using-eigen
+	int val = ((high << 8) + low);
 
 	return val;
 
@@ -98,7 +98,8 @@ float m_z = 0;
 int fd = wiringPiI2CSetup(0x1E);
 
 	wiringPiI2CWriteReg8 (fd, Register_A,  0x38);  //
-	wiringPiI2CWriteReg8 (fd, Register_B,  0x10); 
+	wiringPiI2CWriteReg8 (fd, Register_B,  0x60); 
+	wiringPiI2CWriteReg8 (fd, Register_Mode,  0x00); 
 
 rosbag::Bag bag;
 bag.open("parametrosMag.bag", rosbag::bagmode::Write);
@@ -130,14 +131,14 @@ for(int n = 0;n < nMedidas; n++){
 	c = 'a';
 
 	while(count < 30){
-		wiringPiI2CWriteReg8 (fd, Register_Mode,  0x01); 
+	
 		mag_x = read_word(fd,Register_XH,Register_XL);
-		mag_y = read_word(fd,Register_YH,Register_YL);
+		mag_y = -read_word(fd,Register_YH,Register_YL);
 		mag_z = read_word(fd,Register_ZH,Register_ZL);
 			
-		m_x += mag_x*SCALE*t;
-		m_y += mag_y*SCALE*t;
-		m_z += mag_z*SCALE*t;
+		m_x += mag_x*SCALE*t*1e6;
+		m_y += mag_y*SCALE*t*1e6;
+		m_z += mag_z*SCALE*t*1e6;
 		count++;
 	}
 
@@ -168,6 +169,8 @@ theta.col(0) << 0.0,
 G.setOnes(nMedidas,1);
 G = G*m;
 
+std::cout <<"campo magnético: " <<  G  << std::endl;
+
 J = jacobiana(fMedido, theta.col(0));
 
 int i = 0;
@@ -188,8 +191,21 @@ msg.sz = theta(5, i - 1);
 
 bag.write("param_mag",ros::Time::now(),msg);
 
+wiringPiI2CWriteReg8 (fd, Register_Mode,  0x01); 
+mag_x = read_word(fd,Register_XH,Register_XL);
+mag_y = -read_word(fd,Register_YH,Register_YL);
+mag_z = read_word(fd,Register_ZH,Register_ZL);
+			
+m_x = (mag_x*SCALE*t*1000000.0 - msg.bx)/msg.sx	;
+m_y = (mag_y*SCALE*t*1000000.0 - msg.by)/msg.sy;
+m_z = (mag_z*SCALE*t*1000000.0 - msg.bz)/msg.sz;
+
 std::cout << "Parâmetros: " << std::endl;
 std::cout << theta << std::endl;
+std::cout << "Medidas: " << std::endl;
+std::cout << "x:  " << m_x << " y: " << m_y << " z: " << m_z << std::endl;
+
+
 
 bag.close();
 

@@ -61,12 +61,19 @@ int main(int argc, char **argv){
         ROS_INFO("START");
       #endif
        bool goalIsObstacle = (*_stateSpace)[goal] != 0;
+       bool startIsObstacle = (*_stateSpace)[start] != 0;
       #ifdef PRINT_ENABLED
         ROS_INFO("Is goal obstacle? %d",goalIsObstacle);
+	ROS_INFO("Is start obstacle? %d", startIsObstacle);
       #endif 
+      if(startIsObstacle){
+	start = _stateSpace->nearestClearGoal(goal,start);
+      }
       if(goalIsObstacle){
         goal = _stateSpace->nearestClearGoal(start,goal);
       }
+
+
       for(unsigned i = 0; i < 2; ++i) {
         RRT::BiRRT<Coordinates> biRRT(_stateSpace);
         biRRT.setStartState(start);

@@ -53,14 +53,15 @@
 	contador_menor(name: requisitar_origem, value: 1) >> print(message: requisitando) & incrementar_contador(name: requisitar_origem) & requisitar_origem()
 	origem_recebida() >> print(message: recebi origem) & change(next_state: esperar_botao) & resetar_contador(name: requisitar_origem)
 + setup
-	publicar_origem_mapa(latitude: -15.765437, longitude: -47.872648)
+	publicar_origem_mapa(latitude: -15.762866, longitude: -47.858645)
 	adicionar_timer(name: us_timer)
 	adicionar_timer(name: aproximar_fino_timer)
+	odom_ok() >> change(next_state: calcular_rota_primeiro_cone)
 + calcular_rota_primeiro_cone
-	definir_alvo_gps(latitude: -15.764938, longitude: -47.872255)
+	definir_alvo_gps(latitude: -15.762601, longitude: -47.857045)
 	calcular_rota()
 	calculando_rota(value: true)
-	rota_calculada() >> calculando_rota(value: false) & change(next_state: aproximar_cruzeiro)
+	rota_calculada() >> calculando_rota(value: false) & change(next_state: esperar_botao)
 + aproximar_cruzeiro
 	habilitar_seguir_rota(value: 1)
 	distante_da_rota(distance: 2) >> change(next_state: recalcular_rota)

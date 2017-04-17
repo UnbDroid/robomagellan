@@ -1,4 +1,4 @@
-#define usuario
+//#define usuario
 //#define ve_tempo
 
 
@@ -440,7 +440,7 @@ int main(int argc, char **argv){
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
 	bool aberta;
-	if(!cap.open(1))
+	if(!cap.open(0))
         aberta = false;
     else 
     	aberta = true;

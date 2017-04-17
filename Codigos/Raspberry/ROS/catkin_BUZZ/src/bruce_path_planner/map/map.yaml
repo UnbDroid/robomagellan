@@ -1,5 +1,5 @@
-image: IDA.pgm
-resolution: 0.171847507
+image: mapaCO.pgm
+resolution: 0.2187
 origin: [0.000000, 0.000000, 0.000000]
 negate: 0
 occupied_thresh: 0.65

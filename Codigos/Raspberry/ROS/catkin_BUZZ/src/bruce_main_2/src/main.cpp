@@ -47,7 +47,6 @@ int main(int argc, char **argv){
       ros::Subscriber subRouteOk = n.subscribe("route_ok", 1000, RouteOkCallback);
       ros::Subscriber subOrigin = n.subscribe("origin", 1000, OriginCallback);
       ros::Subscriber subPath = n.subscribe("map_path_planned",1000,PathCallback);
-      ros::Subscriber subConeEncontrado = n.subscribe("cone_encontrado",1000,ConeEncontradoCallback);
       ros::Subscriber subUS1 = n.subscribe("ultrasound1",1000,UltrassomCallback);
       ros::Subscriber subUS2 = n.subscribe("ultrasound2",1000,UltrassomCallback);
       ros::Subscriber subUS3 = n.subscribe("ultrasound3",1000,UltrassomCallback);
@@ -124,13 +123,6 @@ void RouteOkCallback(const std_msgs::Bool::ConstPtr& msg){
   #endif
 }
 
-void ConeEncontradoCallback(const std_msgs::Bool::ConstPtr& msg){
-  info.cone_encontrado = msg->data;
-  #ifdef PRINT_ENABLED
-    ROS_INFO("O cone foi encontrado %d", msg->data);  
-  #endif
-}
-
 void startInfo(robot_information & info){
   info.position_is_valid = false;
   info.route_calculated = false;
@@ -196,8 +188,14 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
 }
 
 void CameraPositionCallback(const geometry_msgs::Point32::ConstPtr& msg){
-  info.cameraReadDistance = msg->x;
-  info.cameraReadOrientation = msg->y;
+	info.cone_encontrado = msg->z;
+	if(info.cone_encontrado){
+		info.cameraReadDistance = msg->x;	
+		info.cameraReadOrientation = msg->y;		
+	}
+  #ifdef PRINT_ENABLED
+    ROS_INFO("O cone foi encontrado %d", msg->z);  
+  #endif
 }
 
 double distanceFromSegmentToPoint(NEDCoord P1 ,NEDCoord P2,NEDCoord P0){

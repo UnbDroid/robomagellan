@@ -41,10 +41,6 @@ arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/wall_timer_options.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcDecl.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcValue.h
-arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedFloat64.h
-arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedInt64.h
-arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/GPS.h
-arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedFloat32.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/arduino_handler.cpp
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/builtin_message_traits.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/datatypes.h

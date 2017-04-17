@@ -11,12 +11,18 @@
 #include <unsupported/Eigen/MatrixFunctions>
 #include <iostream>
 #include <chrono>
+//#include "tf/transform_datatypes.h"
+//#include "geometry_msgs/Quaternion.h"
 
-#define DEBUG
+//#define debug _posteriori
+//#define debug_priori
+//#define debug_ganho
+//#define debug_covarPriori
+//#define debug_covarPosteriori
 
 #define PI 3.14159265
 #define tAmostragem 0.01
-#define g 9.7808439
+#define g -9.7808439
 #define m  23462.2
 #define tSetup 30
 #define ERRO 0.3
@@ -83,8 +89,8 @@ MagData magData;
 MatrixXf G(3,1);
 MatrixXf R(10,10);
 MatrixXf I10(10,10);
-MatrixXf g_unitario_n(3,1);
-MatrixXf m_unitario_n(3,1);
+Vector3f g_unitario_n;
+Vector3f m_unitario_n;
 
 void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
 
@@ -218,7 +224,7 @@ MatrixXf predicao(MatrixXf anterior){
 	r_anterior << anterior(7,0), anterior(8,0), anterior(9,0);
 	
 
-	MatrixXf W(4,4), orient(4,4);
+	MatrixXf W(4,4), orient(4,1);
 
 	W << 0, gyroData.x, gyroData.y, gyroData.z,
 	     -gyroData.x, 0, -gyroData.z, gyroData.y,
@@ -227,6 +233,7 @@ MatrixXf predicao(MatrixXf anterior){
 
 	W = -W*tAmostragem;
 	orient = W.exp()*q_anterior;
+	orient = orient/orient.norm();
 
 	MatrixXf C(3,3), vel(3,1), pos(3,1), acc(3,1);
 
@@ -248,60 +255,69 @@ MatrixXf predicao(MatrixXf anterior){
 	return est;
 }
 
+Eigen::Quaternionf quatMult(Eigen::Quaternionf q1, Eigen::Quaternionf q2) {
+    Eigen::Quaternionf resultQ;
+    resultQ.setIdentity();
+
+    resultQ.w() = q1.w() * q2.w() - q1.vec().dot(q2.vec());
+    resultQ.vec() = q1.w() * q2.vec() + q2.w() * q1.vec() + q1.vec().cross(q2.vec());
+
+    return resultQ;
+}
+
 //Correção da atitude pela fusão do acc e do mag
-/*MatrixXf TRIAD(MatrixXf anterior){
+MatrixXf TRIAD(MatrixXf anterior){
 
 		
 	float mod_g = sqrt(pow(accData.x,2)+pow(accData.y,2)+pow(accData.z,2));
 	if(std::abs(std::abs(mod_g) - std::abs(g)) > ERRO )
 		return anterior;
 
-	MatrixXf g_unitario_b(3,1);
+	Vector3f g_unitario_b;
 	g_unitario_b << accData.x, accData.y, accData.z;
 	g_unitario_b = g_unitario_b/mod_g;
 
+	// std::cout << g_unitario_b << std::endl;
+
 	float mod_m = sqrt(pow(magData.x,2)+pow(magData.y,2)+pow(magData.z,2));
-	MatrixXf m_unitario_b(3,1);
+	Vector3f m_unitario_b;
 	m_unitario_b << magData.x, magData.y, magData.z;
 	m_unitario_b = m_unitario_b/mod_m;
 
-	MatrixXf i_n(3,1);
-	MatrixXf j_n(3,1);
-	MatrixXf k_n(3,1);
+	//std::cout << "n: "<< m_unitario_n << std::endl;
+	//std::cout << "b: "<<  mod_m << std::endl;
 
-	MatrixXf mod_soma_n(3,1);
-	mod_soma_n << std::abs(g_unitario_n(0,0)+m_unitario_n(0,0)), std::abs(g_unitario_n(1,0)+m_unitario_n(1,0)), std::abs(g_unitario_n(2,0)+m_unitario_n(2,0));
-	MatrixXf mod_sub_n(3,1);
+	Vector3f i_n;
+	Vector3f j_n;
+	Vector3f k_n;
+	
+	Vector3f soma_n;
+	Vector3f sub_n;
+	
+	soma_n = g_unitario_n+m_unitario_n;
 
-        i_n = (g_unitario_n+m_unitario_n)/mod_soma_n;
+    i_n = soma_n/soma_n.norm();
+    
+    sub_n = i_n.cross(g_unitario_n-m_unitario_n);
+    
+	j_n = sub_n/sub_n.norm();
+	k_n = i_n.cross(j_n);
 
-	mod_sub_n << (g_unitario_n(0,0)-m_unitario_n(0,0)), (g_unitario_n(1,0)-m_unitario_n(1,0)), (g_unitario_n(2,0)-m_unitario_n(2,0));
-	mod_sub_n = i_n*mod_sub_n;
-	mod_sub_n(0,0) = std::abs(mod_sub_n(0,0));
-	mod_sub_n(1,0) = std::abs(mod_sub_n(1,0));  
-	mod_sub_n(2,0) = std::abs(mod_sub_n(2,0));  
-  
-	j_n = (i_n*(g_unitario_n - m_unitario_n))/mod_sub_n;
-	k_n = i_n*j_n;
-
-	MatrixXf i_b(3,1);
-	MatrixXf j_b(3,1);
-	MatrixXf k_b(3,1);
-  
-	MatrixXf mod_soma_b(3,1);
-        mod_soma_b << std::abs(g_unitario_n(0,0)+m_unitario_n(0,0)), std::abs(g_unitario_n(1,0)+m_unitario_n(1,0)), std::abs(g_unitario_n(2,0)+m_unitario_n(2,0)); 
-        MatrixXf mod_sub_b(3,1);
-
-        i_b = (g_unitario_b+m_unitario_b)/mod_soma_b;
-
-        mod_sub_b << (g_unitario_n(0,0)-m_unitario_n(0,0)), (g_unitario_n(1,0)-m_unitario_n(1,0)), (g_unitario_n(2,0)-m_unitario_n(2,0));
-        mod_sub_b = i_b*mod_sub_b;
-        mod_sub_b(0,0) = std::abs(mod_sub_b(0,0));
-        mod_sub_b(1,0) = std::abs(mod_sub_b(1,0));  
-        mod_sub_b(2,0) = std::abs(mod_sub_b(2,0));  
-
-	j_b = (i_b*(g_unitario_b - m_unitario_b))/mod_sub_b;
-	k_b = i_b*j_b;
+	Vector3f i_b;
+	Vector3f j_b;
+	Vector3f k_b;
+	
+	Vector3f soma_b;
+	Vector3f sub_b;
+	
+	soma_b = g_unitario_b+m_unitario_b;
+ 
+ 	i_b = soma_b/soma_b.norm();
+ 	
+ 	sub_b = i_b.cross(g_unitario_b-m_unitario_b);
+ 	
+	j_b = sub_b/sub_b.norm();
+	k_b = i_b.cross(j_b);
 
 	MatrixXf C_n(3,3);
 	MatrixXf C_b(3,3);
@@ -311,17 +327,33 @@ MatrixXf predicao(MatrixXf anterior){
 	C_b << i_b, j_b, k_b;
 	C_n_b = C_b*C_n.transpose();
 
+//	std::cout << C_n_b << std::endl;
+
 	float q0 = sqrt(1 + C_n_b(0,0) + C_n_b(1,1) + C_n_b(2,2))/2;
 	float q1 = (C_n_b(2,1) - C_n_b(1,2))/(4*q0);
 	float q2 = (C_n_b(0,2) - C_n_b(2,0))/(4*q0);
 	float q3 = (C_n_b(1,0) - C_n_b(0,1))/(4*q0);
 
 	MatrixXf orient(4,1);
-	orient << q0, q1, q2, q3;
+	orient << q0, q1, q2, q3;	
+	
+	float declination = toRadian(-20.574);
+	MatrixXf q_declination(4,1);
+
+	float ta = cos(declination/2);
+        float tb = sin(declination/2);
+
+        q_declination << ta, 0, 0, tb;
+	//std::cout << q_declination << std::endl;
+	Quaternionf q_orient;
+	q_orient = quatMult(Quaternionf(orient(0,0), orient(1,0), orient(2,0), orient(3,0)), Quaternionf(q_declination(0,0),q_declination(1,0), q_declination(2,0), q_declination(3,0)));
+	orient  << q_orient.w(), q_orient.x(), q_orient.y(), q_orient.z();
+	
+	
 
 	return orient;
 
-}*/
+}
 
 //Correção da posição e velocidade pela medicao do GPS e da atitude pelo algoritmo TRIAD
 MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
@@ -329,6 +361,7 @@ MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
 	MatrixXf pos(3,1), vel(3,1), orient(4,1);
 	NEDCoord pointNed;
 	GPSCoord pointGPS;
+
 
 	pointGPS.lat = gpsData.lat;
 	pointGPS.lng = gpsData.lng;
@@ -353,15 +386,29 @@ MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
 
 	//std::cout << pos << std::endl;
 
-	orient << q_anterior;
-	//orient = TRIAD(q_anterior);
+	//orient << q_anterior;
+	orient = TRIAD(q_anterior);
 
-	float speed;
-	speed = gpsData.speed;
+	float speed = gpsData.speed/3.6;
+	//float course = toRadian(gpsData.course);
+	
+	//float ta = cos(course/2);
+	//float tb = sin(course/2);
 
-	float yaw = quaternion2euler_yaw(orient);
+	//orient << ta, 0, 0, tb;
+
+	float yaw;
+
+	double ta = 2*(orient(0,0)*orient(3,0) + orient(1,0)*orient(2,0));
+	double tb = 1 - 2*(orient(2,0)*orient(2,0) + orient(3,0)*orient(3,0));
+	yaw =  atan2(ta,tb);
+	
+	vel(0,0) = speed*cos(yaw);
+	vel(1,0) = speed*sin(yaw);
+	vel(2,0) = 0;
+
+	//float yaw = quaternion2euler_yaw(orient);
 		
-	vel << speed*sin(yaw), speed*cos(yaw), 0;
 //	std::cout<< vel << std::endl;
 //	std::cout<< ""<< std::endl;
 //	std::cout<< orient << std::endl;
@@ -537,6 +584,7 @@ int main(int argc, char **argv){
 
 	//Variaveis GPS
 	GPSCoord ref;
+	float courseInicial = 0;
 
 	ref.lat = 0;
 	ref.lng = 0;
@@ -571,36 +619,52 @@ int main(int argc, char **argv){
 	
 	int flagSetup = 1;
 	ros::Time tInicial = ros::Time::now();
-	int count = 0;	
-	
+	int count = 0;		
+
 	while (ros::ok()){
 
 		//Setup para pegar posição inicial
 		if (flagSetup){	
 	       
 			if(gpsData.valid){
-
-				#ifdef DEBUG
+			
 	        	std::cout << "setup" << std::endl;
-	        	#endif
 	            odomOK.data = true;
 
 				ref.lat += gpsData.lat;
 				ref.lng += gpsData.lng;
 				ref.alt += gpsData.alt;
+				q_anterior = TRIAD(q_anterior);
 				count++;
+
+
 
 			}else{
 	            odomOK.data = false;
-	         	ref.lat = 0; ref.lng = 0; ref.alt = 0;
+	         	ref.lat = 0; ref.lng = 0; ref.alt = 0; courseInicial = 0;
 			}
 
 			if(ros::Time::now().toSec() - tInicial.toSec() > 30){
 
-				flagSetup = 0;
+				if(ref.lat != ref.lat || ref.lng !=ref.lng){
+					flagSetup = 1;
+				}else{
+					flagSetup = 0;
+				}
 				ref.lat = ref.lat/count;
 	            ref.lng = ref.lng/count;
+	            //courseInicial = courseInicial/count;
 	            ref.alt = 0;
+	            
+	      //      float ta = cos(courseInicial/2);
+		//		float tb = sin(courseInicial/2);
+
+			//	q_anterior << ta, 0, 0, tb;
+				std::cout << q_anterior << std::endl;
+				x_estPosteriori(0,0) = q_anterior(0,0);
+				x_estPosteriori(1,0) = q_anterior(1,0);
+				x_estPosteriori(2,0) = q_anterior(2,0);
+				x_estPosteriori(3,0) = q_anterior(3,0);
 
 	            // std::cout << "lat: " << ref.lat << std ::endl;
 	            // std::cout <<" lng: " << ref.lng << std::endl;
@@ -615,8 +679,18 @@ int main(int argc, char **argv){
 
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
-			F = jacobianaPredicao(x_estPosteriori);
-			P_priori = F + P_posteriori*F.transpose() + Q;
+//			F = jacobianaPredicao(x_estPosteriori);
+//			P_priori = F + P_posteriori*F.transpose() + Q;
+			
+			#ifdef debug_priori
+			std::cout << x_estPriori << std::endl;
+			std:: cout << "\n";
+			#endif
+
+			#ifdef debug_covarPriori
+			std::cout << P_priori << std::endl;
+			std:: cout << "\n";
+			#endif
 
 			// Correção
 			if(gpsData.valid){
@@ -629,16 +703,27 @@ int main(int argc, char **argv){
 				M.setZero();
 				odomOK.data = false;
 			}
+			
+			#ifdef debug_ganho
+			std::cout << KG << std::endl;
+			std:: cout << "\n";
+			#endif
+			x_estPosteriori = x_estPriori;
 		//	x_estPosteriori = M;	
-			x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+		//x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	
-			P_posteriori = (I10 - KG*H)*P_priori;
+		//	P_posteriori = (I10 - KG*H)*P_priori;
 
 			q_anterior << x_estPosteriori(0,0), x_estPosteriori(1,0), x_estPosteriori(2,0), x_estPosteriori(3,0);
 		
-			#ifdef DEBUG
+			#ifdef debug_posteriori
 			std::cout << x_estPosteriori << std::endl;
 			std::cout << "\n";
+			#endif
+			
+			#ifdef debug_covarPosteriori
+			std::cout << P_posteriori << std::endl;
+			std:: cout << "\n";
 			#endif
 
 			current_time = ros::Time::now();  

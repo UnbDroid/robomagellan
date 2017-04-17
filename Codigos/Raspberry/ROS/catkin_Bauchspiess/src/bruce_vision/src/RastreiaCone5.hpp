@@ -1,4 +1,5 @@
-#define usuario 
+//#define usuario 
+#define filmar
 
 
 
@@ -165,6 +166,8 @@ private:
 	int cont_ruim;
 	float aux_cont;
 
+	VideoWriter *video;
+	bool video_init;
 
 public:
 	bool anterior;
@@ -215,12 +218,12 @@ RastreiaCone5::RastreiaCone5(){
 
 
 	min_H1i = 5;
-	max_H1i = 15;
-	min_S1i = 150;
+	max_H1i = 13;
+	min_S1i = 160;
 	max_S1i = 255;
-	min_V1i = 80;
+	min_V1i = 100;
 	max_V1i = 255;
-	min_H2i = 160;
+	min_H2i = 190;
 	max_H2i = 180;
 	min_S2i = 150;
 	max_S2i = 190;
@@ -228,11 +231,11 @@ RastreiaCone5::RastreiaCone5(){
 	max_V2i = 255;
 
 
-	min_H1z = 0;
-	max_H1z = 17;
+	min_H1z = 5;
+	max_H1z = 13;
 	min_S1z = 100;
 	max_S1z = 255;
-	min_V1z = 70;
+	min_V1z = 100;
 	max_V1z = 255;
 	min_H2z = 160;
 	max_H2z = 180;
@@ -293,6 +296,7 @@ RastreiaCone5::RastreiaCone5(){
 	ref_dados = 29;
 	ultimo_valido = 0;
 
+	video_init = false;
 }
 
 
@@ -302,6 +306,9 @@ void RastreiaCone5::Laranja(Mat source, Mat* dest, int vez){
 		gettimeofday(&velho, NULL);
 	}
 	*/
+
+
+
 	Mat azul, verde, hsv;
 	cvtColor(source, hsv, CV_BGR2HSV);
 
@@ -397,17 +404,18 @@ int RastreiaCone5::varredura0(Mat* source){
 	max_V2 = max_V2i;
 
 	Mat aux;
-	//blur(*source, *source, Size(1,4 ));
+	//blur(*source, *source, Size(1, 3));
 	Laranja(*source, source,1);
-	/*
+	
 	blur( (*source), aux, Size(2,4 ));
-	inRange(aux, Scalar(120), Scalar(255), aux);
+	inRange(aux, Scalar(200), Scalar(255), aux);
 	canais.clear();
 	canais.push_back(aux);
 	canais.push_back( (*source) );
 	merge(canais, aux);
 	inRange(aux, Scalar(255, 255), Scalar(255,255), (*source) );
-	*/
+	//imshow("Filtro",(*source));
+	
 	vector<Mat> manchas;
 	vector<Vec4i> posicoes;
 	string num;
@@ -470,20 +478,24 @@ bool RastreiaCone5::varredura1(Mat* source, int num_area){
 	//blur((*source), (*source), Size(blur_x_i+1,blur_y_i+1 ));
 	Laranja((*source), source,2);
 
-	/*
-	imshow("antes", (*source));
 	
-	blur( (*source), aux, Size(blur_x+1,blur_y + 1  ));
-	inRange(aux, Scalar(min_blur), Scalar(255), aux);
+	//imshow("antes", (*source));
+	
+	//blur( (*source), aux, Size(blur_x+1,blur_y + 1  ));
+	blur( (*source), aux, Size(2,4 ));
+	inRange(aux, Scalar(200), Scalar(255), (*source));
+	/*
 	canais.clear();
 	canais.push_back(aux);
 	canais.push_back( (*source) );
 	merge(canais, aux);
 	inRange(aux, Scalar(255, 255), Scalar(255,255), (*source) );
-	
-	imshow("depois", (*source));
-	//imshow("parte", *source);
 	*/
+	#ifdef usuario
+		imshow("depois", (*source));
+	#endif
+	//imshow("parte", *source);
+	
 }
 
 
@@ -1004,21 +1016,39 @@ bool RastreiaCone5::identifica(Mat* source, int num_area, Mat* temp){
 		Quadrado_d[regioes_novas].push_back(quadrado_d);
 		Quadrado_b[regioes_novas].push_back(quadrado_b);
 
+
+		#ifdef filmar		
+			if(confirma){
+
+				
+				area[0] = area[0]*ratio_novo;
+				area[1] = area[1]*ratio_novo;
+				area[2] = area[2]*ratio_novo;
+				area[3] = area[3]*ratio_novo;
+				
+
+				line( (*temp), Point(area[0],area[1]), Point(area[2],area[1]), Scalar(0,0,255), 1, 8);
+				line( (*temp), Point(area[2],area[1]), Point(area[2],area[3]), Scalar(0,0,255), 1, 8);
+				line( (*temp), Point(area[2],area[3]), Point(area[0],area[3]), Scalar(0,0,255), 1, 8);
+				line( (*temp), Point(area[0],area[3]), Point(area[0],area[1]), Scalar(0,0,255), 1, 8);
+			}	
+		#endif
+
 		#ifdef usuario		
-		if(confirma){
+			if(confirma){
 
-			
-			area[0] = area[0]*ratio_novo;
-			area[1] = area[1]*ratio_novo;
-			area[2] = area[2]*ratio_novo;
-			area[3] = area[3]*ratio_novo;
-			
+				
+				area[0] = area[0]*ratio_novo;
+				area[1] = area[1]*ratio_novo;
+				area[2] = area[2]*ratio_novo;
+				area[3] = area[3]*ratio_novo;
+				
 
-			line( (*temp), Point(area[0],area[1]), Point(area[2],area[1]), Scalar(0,0,255), 1, 8);
-			line( (*temp), Point(area[2],area[1]), Point(area[2],area[3]), Scalar(0,0,255), 1, 8);
-			line( (*temp), Point(area[2],area[3]), Point(area[0],area[3]), Scalar(0,0,255), 1, 8);
-			line( (*temp), Point(area[0],area[3]), Point(area[0],area[1]), Scalar(0,0,255), 1, 8);
-		}	
+				line( (*temp), Point(area[0],area[1]), Point(area[2],area[1]), Scalar(0,0,255), 1, 8);
+				line( (*temp), Point(area[2],area[1]), Point(area[2],area[3]), Scalar(0,0,255), 1, 8);
+				line( (*temp), Point(area[2],area[3]), Point(area[0],area[3]), Scalar(0,0,255), 1, 8);
+				line( (*temp), Point(area[0],area[3]), Point(area[0],area[1]), Scalar(0,0,255), 1, 8);
+			}	
 		#endif
 
 	}
@@ -1037,34 +1067,63 @@ void RastreiaCone5::angulo(Mat* source, int ref){
 	pub_angulo = angulo;
 
 
-#ifdef usuario
-	bool sinal = false;
-	if(angulo < 0){
-		sinal = true;
-		angulo = angulo*(-1);
-	}
-	string num;
-	int angulo2 = angulo;
-	int_to_string(angulo2, &num);
-	string num2;
-	angulo = angulo-angulo2;
-	if( fabs(angulo) > 0 )
-		angulo = angulo*100;
-	else 
-		angulo = 0;
-	angulo2 = angulo;
-	int_to_string(angulo2, &num2);
+	#ifdef usuario
+		bool sinal = false;
+		if(angulo < 0){
+			sinal = true;
+			angulo = angulo*(-1);
+		}
+		string num;
+		int angulo2 = angulo;
+		int_to_string(angulo2, &num);
+		string num2;
+		angulo = angulo-angulo2;
+		if( fabs(angulo) > 0 )
+			angulo = angulo*100;
+		else 
+			angulo = 0;
+		angulo2 = angulo;
+		int_to_string(angulo2, &num2);
 
-	while(num2.size() < 2){
-		num2 = '0'+num2;
-	}
+		while(num2.size() < 2){
+			num2 = '0'+num2;
+		}
 
-	if(sinal)
-		putText((*source), ('-'+num+'.'+num2+" graus"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-	else
-		putText((*source), (num+'.'+num2+" graus"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-	
-	//imshow("SOURCE", (*source));
+		if(sinal)
+			putText((*source), ('-'+num+'.'+num2+" graus"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+		else
+			putText((*source), (num+'.'+num2+" graus"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+		
+		//imshow("SOURCE", (*source));
+	#endif
+	#ifdef filmar
+		bool sinal = false;
+		if(angulo < 0){
+			sinal = true;
+			angulo = angulo*(-1);
+		}
+		string num;
+		int angulo2 = angulo;
+		int_to_string(angulo2, &num);
+		string num2;
+		angulo = angulo-angulo2;
+		if( fabs(angulo) > 0 )
+			angulo = angulo*100;
+		else 
+			angulo = 0;
+		angulo2 = angulo;
+		int_to_string(angulo2, &num2);
+
+		while(num2.size() < 2){
+			num2 = '0'+num2;
+		}
+
+		if(sinal)
+			putText((*source), ('-'+num+'.'+num2+" graus"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+		else
+			putText((*source), (num+'.'+num2+" graus"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+		
+		//imshow("SOURCE", (*source));
 	#endif	
 }
 
@@ -1080,6 +1139,10 @@ void RastreiaCone5::distancia(Mat* source, int ref){
 	//prox = sqrt(10/prox);
 	prox = (2/(3*prox) );
 
+	if(prox < 1){
+		proximo = true;
+	}
+
 	dado[0] = prox;
 	dado[1] = pub_angulo;
 	dado[2] = 1;
@@ -1089,35 +1152,52 @@ void RastreiaCone5::distancia(Mat* source, int ref){
 	ultimo_valido = ref_dados;
 
 	#ifdef usuario
-	string num;
-	int prox2 = prox;
-	int_to_string(prox2, &num);
-	string num2;
-	prox = prox-prox2;
-	if( fabs(prox) > 0 )
-		prox = prox*1000;
-	else 
-		prox = 0;
-	prox2 = prox;
-	int_to_string(prox2, &num2);
-	while(num2.size() < 3){
-		num2 = '0'+num2;
-	}
+		string num;
+		int prox2 = prox;
+		int_to_string(prox2, &num);
+		string num2;
+		prox = prox-prox2;
+		if( fabs(prox) > 0 )
+			prox = prox*1000;
+		else 
+			prox = 0;
+		prox2 = prox;
+		int_to_string(prox2, &num2);
+		while(num2.size() < 3){
+			num2 = '0'+num2;
+		}
 
 
-	putText((*source), num+'.'+num2+'m', Point(0,40), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 1, 8, false );
-		
-	imshow("SOURCE", (*source));
+		putText((*source), num+'.'+num2+'m', Point(0,40), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 1, 8, false );
+			
+		imshow("SOURCE", (*source));
+	#endif
+
+	#ifdef filmar
+		string num;
+		int prox2 = prox;
+		int_to_string(prox2, &num);
+		string num2;
+		prox = prox-prox2;
+		if( fabs(prox) > 0 )
+			prox = prox*1000;
+		else 
+			prox = 0;
+		prox2 = prox;
+		int_to_string(prox2, &num2);
+		while(num2.size() < 3){
+			num2 = '0'+num2;
+		}
+
+
+		putText((*source), num+'.'+num2+'m', Point(0,40), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 1, 8, false );
+			
 	#endif
 }
 
 
 void RastreiaCone5::achaPerto(Mat* source, Mat* temp){
-		/*
-		if(anterior){
-			cout<<"PROXIMO INICIA AQUI"<<endl;
-		}
-		*/
+
 		proximo = false;
 		anterior = false;
 		min_H1 = min_H1p;
@@ -1134,48 +1214,49 @@ void RastreiaCone5::achaPerto(Mat* source, Mat* temp){
 		max_V2 = max_V2p;
 		resize( (*Original), (*source), Size((int)(((float)50)*ratio_original), 50 ));
 		Laranja((*source), source, 3);
-		pos_dist.clear();
-		pos_angulo.clear();
-		vector<Mat> manchas;
-		vector<Vec4i> posicoes;
-		define_objetos(source, &manchas, &posicoes, 50, 400);
-		vector<float> dados;
-		vector<Vec4i> limites;
-		cvtColor((*source),(*source), CV_GRAY2BGR);
-		float ratio_perto = ( (float) (*temp).rows /(float)(*source).rows );
-		Vec4i area;
-
-		float aux_pos;
-		if(posicoes.size()>0){
-			proximo = true;
-			
-			for(int i = 0; i<posicoes.size(); i++){	
-
-
-				aux_pos =100*( (float)manchas[i].cols * (float)manchas[i].rows) /( (float)(*source).rows*(float)(*source).cols) ;
-				pos_dist.push_back(aux_pos);
-
-				area[0] = posicoes[i][0]*ratio_perto;
-				area[1] = posicoes[i][1]*ratio_perto;
-				area[2] = posicoes[i][2]*ratio_perto;
-				area[3] = posicoes[i][3]*ratio_perto;
-
-				aux_pos = ((area[2] + area[0])/2)/((float)(*temp).cols);
-				pos_angulo.push_back(aux_pos);
-
-				line( (*temp), Point(area[0],area[1]), Point(area[2],area[1]), Scalar(0,0,255), 1, 8);
-				line( (*temp), Point(area[2],area[1]), Point(area[2],area[3]), Scalar(0,0,255), 1, 8);
-				line( (*temp), Point(area[2],area[3]), Point(area[0],area[3]), Scalar(0,0,255), 1, 8);
-				line( (*temp), Point(area[0],area[3]), Point(area[0],area[1]), Scalar(0,0,255), 1, 8);			
-			
+		float centro_x = 0;
+		float cont_pontos = 0;
+		for(int i= 0; i< source->rows; i++ ){
+			for(int j = 0; j<source->cols; j++){
+				if(source->at<uchar>(j,i) > 200){
+					cont_pontos++;
+					centro_x +=j;
+				}
 			}
 		}
-		/*
-		else{
-			cout<<"PROXIMO ACABA AQUI"<<endl;
+		centro_x = centro_x/cont_pontos;
+		//cout<<centro_x<<endl;
+		centro_x = centro_x/(float)source->cols;
+		cont_pontos = cont_pontos/(float)(source->rows * source->cols);
+
+		if(cont_pontos > 0.1){
+			proximo = true;
+			Vec3f dado;
+			pos_dist.clear();
+			pos_angulo.clear();
+			pos_dist.push_back(1);
+			pos_angulo.push_back(centro_x);
+			angulo(temp,0);
+			distancia(temp,0);
 		}
-		*/
-		//imshow("SOURCE", (*temp));
+		else{
+			Vec3f dado;
+			dado[0] = 0;
+			dado[1] = 0;
+			dado[2] = 0;
+
+			dados[ref_dados] = dado;
+		}
+
+		#ifdef usuario
+			int pos_x = temp->cols*centro_x;
+			line( (*temp), Point(pos_x,0), Point(pos_x,temp->rows), Scalar(0,0,255), 1, 8);
+			imshow("SOURCE", (*temp));
+		#endif
+		#ifdef filmar
+			int pos_x = temp->cols*centro_x;
+			line( (*temp), Point(pos_x,0), Point(pos_x,temp->rows), Scalar(0,0,255), 1, 8);
+		#endif
 }
 
 
@@ -1203,6 +1284,10 @@ void RastreiaCone5::rastreia(Mat source){
 	//Fim Visual
 	#endif
 
+	#ifdef filmar
+	resize((*Original), temp, Size((int)(((float)tamanho_final)*ratio_original), tamanho_final ));
+	#endif
+
 	//estando muito proximo do cone não é mais necessário gastar muito processamento confirmando a identificação
 	//basta monitorar a aproximação em relação ao mesmo
 	
@@ -1213,10 +1298,12 @@ void RastreiaCone5::rastreia(Mat source){
 	//if(proximo){
 	if(false){
 		achaPerto(&temp2, &temp);
+		/*
 		for(int i = 0; i< pos_angulo.size(); i++){
 			angulo(&temp, i);
 			distancia(&temp, i);
 		}
+		*/
 	}
 	
 	else{
@@ -1261,12 +1348,13 @@ void RastreiaCone5::rastreia(Mat source){
 			proximo = false;
 			if(tamanho0 < 10)
 				tamanho0 = 10;
+
 			resize(source, temp2, Size((int)(((float)tamanho0)*ratio_original), tamanho0 ));
 			varredura0(&temp2);
 			pos_angulo.clear();
 			for(int i = 0; i<Quadrado_x[regioes_antigas].size(); i++ ){
 				varredura1(&temp2,i);
-				identifica(&temp2, i, &temp2);
+				identifica(&temp2, i, &temp);
 			}
 			/*
 			for(int i = 0; i<pos_angulo.size(); i++){
@@ -1297,4 +1385,10 @@ void RastreiaCone5::rastreia(Mat source){
 		pub_distancia = dados[ultimo_valido][0];
 		pub_angulo = dados[ultimo_valido][1];
 	}
+
+	if(!video_init){
+		video = new VideoWriter("/home/pi/Documents/oi2.avi",CV_FOURCC('M','J','P','G'),33, Size(temp.cols,temp.rows),true);
+		video_init = true;
+	}
+	video->write(temp);
 }
