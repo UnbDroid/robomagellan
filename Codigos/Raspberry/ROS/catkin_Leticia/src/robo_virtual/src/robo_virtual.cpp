@@ -20,6 +20,7 @@
 #define DEBUG 1
 #define GAZEBO 1
 #define ARDUINO 1
+//#define CONVERTER_COORD 1
 
 // Modos de operacao
 #define PARA 0
@@ -209,9 +210,17 @@ void posicaoAtualCallback(const nav_msgs::Odometry::ConstPtr& msg)
   //ROS_INFO("quaternions: x: %f y: %f z:%f w: %f", orientacao.x,orientacao.y,orientacao.z,orientacao.w);
   //ROS_INFO("yaw: %f pitch: %f roll: %f", yaw,pitch,roll);
   
+#if defined(CONVERTER_COORD)
+
+  #warning Atencao! CONVERTER_COORD esta definido!
+  roboAtual.x = msg->pose.pose.position.y;
+  roboAtual.y = msg->pose.pose.position.x;
+  roboAtual.theta = 90 - yaw;
+#else
   roboAtual.x = msg->pose.pose.position.x;
   roboAtual.y = msg->pose.pose.position.y;
   roboAtual.theta = yaw;
+#endif
 
   //ROS_INFO("Posicao atual lida: x:%f y:%f theta: %f", roboAtual.x, roboAtual.y, roboAtual.theta);
 }
@@ -270,8 +279,13 @@ void calculaSegmento (void) {
       aux_x = roboDestino.x;
       aux_y = roboDestino.y;
 
+#if defined(CONVERTER_COORD)
+      roboDestino.x = auxPose.pose.position.y;
+      roboDestino.y = auxPose.pose.position.x;
+#else        
       roboDestino.x = auxPose.pose.position.x;
       roboDestino.y = auxPose.pose.position.y;
+#endif
       
       if (trajetoriaAtual == 0){
         gama = atan2((roboDestino.y - roboAtual.y),(roboDestino.x - roboAtual.x));  
@@ -328,14 +342,36 @@ void RoboReferencia(const ros::TimerEvent&){
     theta = anguloReta - roboReferencia.theta;
 
     // Angulo de deslocamento fica entre -PI e PI
-    while (abs(theta) > PI){
+    float abs_theta = abs(theta);
+
+    while (abs_theta > PI){
+      abs_theta = abs(theta);
+      if (abs_theta > 2*PI) {
+        if (theta > 0) {
+         theta -= 2*PI;
+        }
+        else if (theta < 0) {
+          theta += 2*PI;
+        }
+      }
+      else if (abs_theta > PI){
+        if (theta > 0) {
+          theta = 2*PI - theta;
+        }
+        else if (theta < 0) {
+          theta = 2*PI + theta;
+        } 
+
+      }
+    }
+    /*while (abs(theta) > PI){
       if ((theta > PI) && (theta > 0)) {
         theta -= PI;
       }
       if ((theta < -PI) && (theta < 0)) {
         theta += PI;
       }
-    }
+    }*/
 
     if ((abs(x) >= abs(y)) && (abs(x) >= abs(theta))) {
       periodo = x/VEL_VIRTUAL;
@@ -421,12 +457,34 @@ void RoboReferencia(const ros::TimerEvent&){
   }
   
   // deixa o angulo do robo entre -PI e PI
-  while (abs(roboReferencia.theta) > PI){
+  /*while (abs(roboReferencia.theta) > PI){
     if ((roboReferencia.theta > PI) && (roboReferencia.theta > 0)) {
       roboReferencia.theta -= PI;
     }
     if ((roboReferencia.theta < -PI) && (roboReferencia.theta < 0)) {
       roboReferencia.theta += PI;
+    }
+  }*/
+
+  float abs_thetaRobo = abs(roboReferencia.theta);
+
+  while (abs_thetaRobo > PI){
+    abs_thetaRobo = abs(roboReferencia.theta);
+    if (abs_thetaRobo > 2*PI) {
+      if (roboReferencia.theta > 0) {
+        roboReferencia.theta -= 2*PI;
+      }
+      else if (roboReferencia.theta < 0) {
+        roboReferencia.theta += 2*PI;
+      }
+    }
+    else if (abs_thetaRobo > PI){
+      if (roboReferencia.theta > 0) {
+        roboReferencia.theta = 2*PI - roboReferencia.theta;
+      }
+      else if (roboReferencia.theta < 0) {
+        roboReferencia.theta = 2*PI + roboReferencia.theta;
+      } 
     }
   }
 
