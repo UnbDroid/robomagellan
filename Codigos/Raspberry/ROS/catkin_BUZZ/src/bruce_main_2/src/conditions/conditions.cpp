@@ -53,6 +53,14 @@ void startConditionsParser(std::vector<ConditionParser> & conditions){
 	/* check_origin_received condition */
 	ConditionParser check_origin_received_condition = {"","check_origin_received",check_origin_received};
 	conditions.push_back(check_origin_received_condition);
+	/* compare condition */
+	ConditionParser compare_condition = {"","compare",compare};
+	compare_condition.condition_param_names.push_back("arg1");
+	compare_condition.condition_param_names.push_back("arg2");
+	compare_condition.condition_param_names.push_back("arg1Type");
+	compare_condition.condition_param_names.push_back("arg2Type");
+	compare_condition.condition_param_names.push_back("comparation");
+	conditions.push_back(compare_condition);	
 }
 
 bool getConditionByFunctionName(ConditionParser & condition, std::string funcName, std::vector<ConditionParser> & conditions){

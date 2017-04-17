@@ -210,7 +210,10 @@ set(${PROJECT_NAME}_ACTIONS
       src/actions/request_set_origin
       src/actions/set_velocity
       src/actions/send_enable_follow_camera
-	src/actions/print)
+	src/actions/print
+      src/actions/print_bool
+      src/actions/print_int
+      src/actions/print_float)
   
 set(${PROJECT_NAME}_CONDITIONS
 	src/conditions/conditions 
@@ -226,7 +229,8 @@ set(${PROJECT_NAME}_CONDITIONS
       src/conditions/check_counter_bigger
       src/conditions/check_green_button
       src/conditions/check_black_button
-      src/conditions/check_origin_received)
+      src/conditions/check_origin_received
+      src/conditions/compare)
 
 
 

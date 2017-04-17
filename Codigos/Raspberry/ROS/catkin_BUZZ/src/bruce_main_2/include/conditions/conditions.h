@@ -52,3 +52,5 @@ bool check_green_button(Fsm *obj, std::vector<std::string>);
 bool check_black_button(Fsm *obj, std::vector<std::string>);
 
 bool check_origin_received(Fsm *obj, std::vector<std::string>);
+
+bool compare(Fsm *obj, std::vector<std::string>);

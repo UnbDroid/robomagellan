@@ -16,6 +16,9 @@
 + requisitar_origem: request_set_origin
 + definir_velocidade: set_velocity
 + habilitar_seguir_camera: send_enable_follow_camera
++ print_bool: print_bool
++ print_int: print_int
++ print_float: print_float
 
 @Conditions
 + bigger: is_bigger
@@ -31,6 +34,7 @@
 + botao_verde: check_green_button
 + botao_preto: check_black_button
 + origem_recebida: check_origin_received
++ compare: compare
 
 @States
 + esperar_botao

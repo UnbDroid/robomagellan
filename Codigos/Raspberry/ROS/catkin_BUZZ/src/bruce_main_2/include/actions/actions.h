@@ -24,6 +24,9 @@ Action * createAction(std::string & name, std::string & args , std::vector<Actio
 
 void change_state(struct Fsm *obj, std::vector<std::string>);
 void print(struct Fsm *obj, std::vector<std::string>);
+void print_bool(struct Fsm *obj, std::vector<std::string>);
+void print_int(struct Fsm *obj, std::vector<std::string>);
+void print_float(struct Fsm *obj, std::vector<std::string>);
 void publish_map_bottom_left_corner(struct Fsm *obj, std::vector<std::string>);
 void request_route_calculation(struct Fsm *obj, std::vector<std::string>);
 void send_enable_path_follow(struct Fsm *obj, std::vector<std::string>);

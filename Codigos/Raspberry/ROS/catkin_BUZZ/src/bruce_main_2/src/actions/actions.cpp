@@ -10,6 +10,18 @@ void startActionsParser(std::vector<ActionParser> & actions){
 	ActionParser print_action = {"","print",print};
 	print_action.action_param_names.push_back("message");
 	actions.push_back(print_action);
+	/* print_bool action */
+	ActionParser print_bool_action = {"","print_bool",print_bool};
+	print_bool_action.action_param_names.push_back("value");
+	actions.push_back(print_bool_action);
+	/* print_int action */
+	ActionParser print_int_action = {"","print_int",print_int};
+	print_int_action.action_param_names.push_back("value");
+	actions.push_back(print_int_action);
+	/* print_float action */
+	ActionParser print_float_action = {"","print_float",print_float};
+	print_float_action.action_param_names.push_back("value");
+	actions.push_back(print_float_action);	
 	/* Publish Map Bottom Left Corner action */
 	ActionParser publish_map_bottom_left_corner_action = {"","publish_map_bottom_left_corner",publish_map_bottom_left_corner};
 	publish_map_bottom_left_corner_action.action_param_names.push_back("latitude");

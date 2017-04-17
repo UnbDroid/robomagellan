@@ -96,4 +96,143 @@ struct robot_information{
 	std::vector<NEDCoord> path;
 };
 
+static void  * getMember(robot_information * info, std::string MemberName){
+  if(MemberName == "position_is_valid"){
+  	return (void *) & info->position_is_valid;
+  }
+  if(MemberName == "route_calculated"){
+  	return (void *) & info->route_calculated;
+  }
+  if(MemberName == "calculating_route"){
+  	return (void *) & info->calculating_route;
+  }
+  if(MemberName == "cone_encontrado"){
+  	return (void *) & info->cone_encontrado;
+  }
+  if(MemberName == "sensor_toque"){
+  	return (void *) & info->sensor_toque;
+  } 
+  if(MemberName == "botao_verde"){
+  	return (void *) & info->botao_verde;
+  }
+  if(MemberName == "botao_preto"){
+  	return (void *) & info->botao_preto;
+  }
+  if(MemberName == "origin_received"){
+  	return (void *) & info->origin_received;
+  }
+  if(MemberName == "pose"){
+  	return (void *) & info->pose;
+  }
+  if(MemberName == "pose.x"){
+  	return (void *) & info->pose.position.x;
+  }
+  if(MemberName == "pose.y"){
+  	return (void *) & info->pose.position.y;
+  }
+  if(MemberName == "pose.z"){
+  	return (void *) & info->pose.position.z;
+  }
+  if(MemberName == "pose.q.x"){
+  	return (void *) & info->pose.orientation.x;
+  }
+  if(MemberName == "pose.q.y"){
+  	return (void *) & info->pose.orientation.y;
+  }
+  if(MemberName == "pose.q.z"){
+  	return (void *) & info->pose.orientation.z;
+  }
+  if(MemberName == "pose.q.w"){
+  	return (void *) & info->pose.orientation.w;
+  }  
+  if(MemberName == "currentMapGoal"){
+  	return (void *) & info->currentMapGoal;
+  }
+  if(MemberName == "currentMapGoal.x"){
+  	return (void *) & info->currentMapGoal.x;
+  }
+  if(MemberName == "currentMapGoal.y"){
+  	return (void *) & info->currentMapGoal.y;
+  }
+  if(MemberName == "currentMapGoal.z"){
+  	return (void *) & info->currentMapGoal.z;
+  }
+  if(MemberName == "originInMap"){
+  	return (void *) & info->originInMap;
+  }
+  if(MemberName == "originInMap.x"){
+  	return (void *) & info->originInMap.x;
+  }
+  if(MemberName == "originInMap.y"){
+  	return (void *) & info->originInMap.y;
+  }
+  if(MemberName == "originInMap.z"){
+  	return (void *) & info->originInMap.z;
+  }
+  if(MemberName == "us1"){
+  	return (void *) & info->US[0];
+  }
+  if(MemberName == "us2"){
+  	return (void *) & info->US[1];
+  }
+  if(MemberName == "us3"){
+  	return (void *) & info->US[2];
+  }
+  if(MemberName == "us4"){
+  	return (void *) & info->US[3];
+  }
+  if(MemberName == "us5"){
+  	return (void *) & info->US[4];
+  }
+  if(MemberName == "us6"){
+  	return (void *) & info->US[5];
+  }
+  if(MemberName == "us7"){
+  	return (void *) & info->US[6];
+  }
+  if(MemberName == "us8"){
+  	return (void *) & info->US[7];
+  }
+  if(MemberName == "us9"){
+  	return (void *) & info->US[8];
+  }
+  if(MemberName == "us10"){
+  	return (void *) & info->US[9];
+  }
+  if(MemberName == "us11"){
+  	return (void *) & info->US[10];
+  }
+  if(MemberName == "cameraReadDistance"){
+  	return (void *) & info->cameraReadDistance;
+  }
+  if(MemberName == "cameraReadOrientation"){
+  	return (void *) & info->cameraReadOrientation;
+  }
+  if(MemberName == "origin"){
+  	return (void *) & info->origin;
+  }
+  if(MemberName == "origin.lat"){
+  	return (void *) & info->origin.lat;
+  }
+  if(MemberName == "origin.lng"){
+  	return (void *) & info->origin.lng;
+  }
+  if(MemberName == "origin.alt"){
+  	return (void *) & info->origin.alt;
+  }
+  if(MemberName == "bottomLeft"){
+  	return (void *) & info->bottomLeft;
+  }
+  if(MemberName == "bottomLeft.lat"){
+  	return (void *) & info->bottomLeft.lat;
+  }
+  if(MemberName == "bottomLeft.lng"){
+  	return (void *) & info->bottomLeft.lng;
+  }
+  if(MemberName == "bottomLeft.alt"){
+  	return (void *) & info->bottomLeft.alt;
+  }
+
+  return NULL;
+}
 

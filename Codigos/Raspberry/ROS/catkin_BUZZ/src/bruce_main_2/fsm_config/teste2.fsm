@@ -16,6 +16,9 @@
 + requisitar_origem: request_set_origin
 + definir_velocidade: set_velocity
 + habilitar_seguir_camera: send_enable_follow_camera
++ print_bool: print_bool
++ print_int: print_int
++ print_float: print_float
 
 @Conditions
 + bigger: is_bigger
@@ -34,14 +37,16 @@
 + compare: compare
 
 @States
-+ seguir_cone
-+ parar
++ esperar_botao
++ esperar_definicao_origem
++ setup
++ calcular_rota_primeiro_cone
++ calcular_rota_segundo_cone
++ aproximar_cruzeiro
++ recalcular_rota
++ calcular_desvio_obstaculo_movel
++ aproximar_fino
 
 @FSM
-+ seguir_cone
-	adicionar_timer(name: reiniciar)
-	habilitar_seguir_camera(value: true)
-	encostou_algo(min_times: 2) >> resetar_timer(name: reiniciar) & change(next_state: parar) & habilitar_seguir_camera(value: false)
-+ parar
-	print(message: terminei)
-	verificar_timer(name: reiniciar,time: 10) >> change(next_state: seguir_cone)
++ esperar_botao
+	compare(arg1: 14.5, arg2: pose.x, arg1Type: float, arg2Type: float, comparation: e) >> print_float(value: pose.x)

@@ -194,7 +194,7 @@ void CameraPositionCallback(const geometry_msgs::Point32::ConstPtr& msg){
 		info.cameraReadOrientation = msg->y;		
 	}
   #ifdef PRINT_ENABLED
-    ROS_INFO("O cone foi encontrado %d", msg->z);  
+    ROS_INFO("O cone foi encontrado %f", msg->z);  
   #endif
 }
 
