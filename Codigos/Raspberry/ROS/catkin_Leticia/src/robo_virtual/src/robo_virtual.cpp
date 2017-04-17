@@ -16,9 +16,9 @@
 
 #define PI 3.14159265f
 
-//#define ARQ_DEBUG 1
+#define ARQ_DEBUG 1
 #define DEBUG 1
-//#define GAZEBO 1
+#define GAZEBO 1
 #define ARDUINO 1
 
 // Modos de operacao
@@ -30,22 +30,27 @@
 #define TEMPO_AMOSTRAGEM 0.1f
 
 #if defined(GAZEBO)
-  #warning Atencao!Gazebo esta definido
-#define VELOCIDADE_MAXIMA 0.9f
-#define VELOCIDADE_MAXIMA_APROX 1.0f
+#define VELOCIDADE_MAXIMA 1.0f
+#define VELOCIDADE_MAXIMA_APROX 0.7f
 #define VELOCIDADE_MINIMA 0.15f
 #define VELOCIDADE_MINIMA_ANGULAR 0.05f
-#define VEL_VIRTUAL 2.0f
+#define VEL_VIRTUAL 1.0f
+#define VELOCIDADE_MAX_ARDUINO 5.5f
+#define VELOCIDADE_MAX_ARDUINO_APROX 3.0f
+#define vel_min_arduino 1.5f
 #endif
 
-#if defined(ARDUINO)
+/*#if defined(ARDUINO)
 #define VELOCIDADE_MAXIMA 5.5f
 #define VELOCIDADE_MAXIMA_APROX 3.0f
 #define VELOCIDADE_MINIMA 1.0f
 #define VELOCIDADE_MINIMA_ANGULAR 0.2f
 #define VEL_VIRTUAL 2.0f
+#define VELOCIDADE_MAX_ARDUINO 5.5f
+#define VELOCIDADE_MAX_ARDUINO_APROX 3.0f
+#define vel_min_arduino 1.5f
 #endif
-
+*/
 #define DISTANCIA_MAXIMA 1.0f
 #define DISTANCIA_MINIMA 0.002f
 #define NUM_US 11
@@ -68,6 +73,7 @@ geometry_msgs::PoseStamped auxPose;
 geometry_msgs::Point32 VelocidadeRecebida;
 
 #if defined(GAZEBO)
+  #warning Atencao!Gazebo esta definido
   geometry_msgs::Twist velocidadeRobo;
 #endif
 
@@ -103,7 +109,7 @@ static bool inicio = false;
 /*Flag que permite receber nova trajetoria, novas velocidades a serem seguidas*/
 static int16_t enable = 0;
 
-static float vel_max = 0, vel_max_arduino = 0, vel_min_arduino = 1.5;
+static float vel_max = 0, vel_max_arduino = 0;
 
 float DIST_MAX[NUM_US] = {0.5,0.5,0.5,1,1,1,1,1,0.5,0.5,0.5};
 
@@ -156,29 +162,36 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
 {
   enable = msg->data;
 
-#if defined(DEBUG)
-  if(enable != PARA){
-    ROS_INFO("enable true");
-  }
-  if (enable == SEGUIR_VELOCIDADE){
-    ROS_INFO("enable seguir velocidade");
-  }
-#endif
-
   if (enable == SEGUIR_TRAJETORIA) {
     vel_max = VELOCIDADE_MAXIMA;
-    vel_max_arduino = 5.5;
+    vel_max_arduino = VELOCIDADE_MAX_ARDUINO;
   }
   else if((enable == APROXIMAR_CONE) || (enable == SEGUIR_VELOCIDADE)){
     vel_max = VELOCIDADE_MAXIMA_APROX;
-    vel_max_arduino = 3.0;
+    vel_max_arduino = VELOCIDADE_MAX_ARDUINO_APROX;
   }
   else if (enable == PARA){
     parar = true;
   }
+
+#if defined(DEBUG)
+  if(enable == PARA){
+    ROS_INFO("enable parar");
+  }
+  if (enable == SEGUIR_VELOCIDADE){
+    ROS_INFO("enable seguir velocidade");
+  }
+  else if (enable == APROXIMAR_CONE) {
+    ROS_INFO("enable aproximar cone");
+  }
+  else if (enable == SEGUIR_TRAJETORIA){
+    ROS_INFO("enable seguir trajetoria");
+  }
+#endif
+
 }
 
-/**Posicao atual lida do siimulador gazebo*/
+/**Posicao atual lida do robo*/
 void posicaoAtualCallback(const nav_msgs::Odometry::ConstPtr& msg)
 {
   geometry_msgs::Quaternion orientacao;
@@ -271,10 +284,9 @@ void calculaSegmento (void) {
 
       roboReferencia = roboAtual;
       roboInicial = roboReferencia;
-      //a1 = 0, a2 = 0; 
+      //a1 = 0, a2 = 0; //Parametros do controlador adaptativo
       erro1 = 0, erro2 = 0, erro3 = 0;
       parar = false;
-
       inicio = true;
 
 #if defined(DEBUG)
@@ -429,7 +441,7 @@ void RoboReferencia(const ros::TimerEvent&){
 
 /**Funcao do controlador de trajetoria para o robo real*/
 void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
-
+  
   /*const float lambda = 1.47;
   //Parametros de ganho do controlador
   const float gama1 = 0.08;
@@ -490,6 +502,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 #endif
 
 #if defined(ARDUINO)
+  
 	float abs_esq = abs(velocidadeEsquerda), abs_dir = abs(velocidadeDireita);
 
 	if ((abs_esq > vel_max_arduino) || (abs_dir > vel_max_arduino)){
@@ -507,8 +520,8 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 				velocidadeEsquerda = -vel_max_arduino;
 			}
 		}
-		if (abs_dir > abs_esq ) {
-			if (velocidadeEsquerda >= 0) {
+		else if (abs_dir > abs_esq ) {
+      if (velocidadeEsquerda >= 0) {
 				velocidadeEsquerda = (abs_esq/abs_dir)*vel_max_arduino;
 			}
 			else {
@@ -537,14 +550,19 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 		}	
 	}
 	
-	if ((abs_esq < vel_min_arduino) || (abs_dir < vel_min_arduino)){
+	else if ((abs_esq < vel_min_arduino) || (abs_dir < vel_min_arduino)){
 		if (abs_esq < abs_dir ) {
-			if (velocidadeDireita >= 0) {
-				velocidadeDireita = (abs_dir/abs_esq)*vel_min_arduino;
-			}
-			else {
-				velocidadeDireita = -(abs_dir/abs_esq)*vel_min_arduino;
-			}
+      if (abs_esq != 0) {
+  			if (velocidadeDireita >= 0) {
+  				velocidadeDireita = (abs_dir/abs_esq)*vel_min_arduino;
+  			}
+  			else {
+  				velocidadeDireita = -(abs_dir/abs_esq)*vel_min_arduino;
+  			}
+      }
+      else {
+        velocidadeDireita = vel_min_arduino;
+      }
 			if (velocidadeEsquerda > 0) {
 				velocidadeEsquerda = vel_min_arduino;
 			}
@@ -555,13 +573,18 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
         velocidadeEsquerda = 0; 
       }
 		}
-		if (abs_dir < abs_esq ) {
-			if (velocidadeEsquerda >= 0) {
-				velocidadeEsquerda = (abs_esq/abs_dir)*vel_min_arduino;
-			}
-			else {
-				velocidadeEsquerda = -(abs_esq/abs_dir)*vel_min_arduino;
-			}
+		else if (abs_dir < abs_esq ) {
+      if (abs_dir != 0) {
+  			if (velocidadeEsquerda >= 0) {
+  				velocidadeEsquerda = (abs_esq/abs_dir)*vel_min_arduino;
+  			}
+  			else {
+  				velocidadeEsquerda = -(abs_esq/abs_dir)*vel_min_arduino;
+  			}
+      }
+      else {
+        velocidadeEsquerda = vel_min_arduino;
+      }
 			if (velocidadeDireita > 0) {
 				velocidadeDireita = vel_min_arduino;
 			}
@@ -596,7 +619,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 
 #endif
 
-  if (!parar || obstaculo) {
+  if (!parar /*|| obstaculo*/) {  // INCLUIR obstaculo para testar ZVD
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
@@ -677,7 +700,7 @@ void controladorVelocidade(void){
           velocidadeEsquerda = -vel_max_arduino;
         }
       }
-      if (abs_dir > abs_esq ) {
+      else if (abs_dir > abs_esq ) {
         if (velocidadeEsquerda >= 0) {
           velocidadeEsquerda = (abs_esq/abs_dir)*vel_max_arduino;
         }
@@ -707,13 +730,18 @@ void controladorVelocidade(void){
       } 
     }
     
-    if ((abs_esq < vel_min_arduino) || (abs_dir < vel_min_arduino)){
+    else if ((abs_esq < vel_min_arduino) || (abs_dir < vel_min_arduino)){
       if (abs_esq < abs_dir ) {
-        if (velocidadeDireita >= 0) {
-          velocidadeDireita = (abs_dir/abs_esq)*vel_min_arduino;
+        if (abs_esq != 0) {
+          if (velocidadeDireita >= 0) {
+            velocidadeDireita = (abs_dir/abs_esq)*vel_min_arduino;
+          }
+          else {
+            velocidadeDireita = -(abs_dir/abs_esq)*vel_min_arduino;
+          }
         }
         else {
-          velocidadeDireita = -(abs_dir/abs_esq)*vel_min_arduino;
+          velocidadeDireita = vel_min_arduino;
         }
         if (velocidadeEsquerda > 0) {
           velocidadeEsquerda = vel_min_arduino;
@@ -725,12 +753,17 @@ void controladorVelocidade(void){
           velocidadeEsquerda = 0; 
         }
       }
-      if (abs_dir < abs_esq ) {
-        if (velocidadeEsquerda >= 0) {
-          velocidadeEsquerda = (abs_esq/abs_dir)*vel_min_arduino;
+      else if (abs_dir < abs_esq ) {
+        if (abs_dir != 0) {
+          if (velocidadeEsquerda >= 0) {
+            velocidadeEsquerda = (abs_esq/abs_dir)*vel_min_arduino;
+          }
+          else {
+            velocidadeEsquerda = -(abs_esq/abs_dir)*vel_min_arduino;
+          }
         }
         else {
-          velocidadeEsquerda = -(abs_esq/abs_dir)*vel_min_arduino;
+          velocidadeEsquerda = vel_min_arduino;
         }
         if (velocidadeDireita > 0) {
           velocidadeDireita = vel_min_arduino;
@@ -763,22 +796,6 @@ void controladorVelocidade(void){
         }
       } 
     }
-    /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
-
-    if ((vf < VELOCIDADE_MINIMA) && (vf>0)){
-      vf = VELOCIDADE_MINIMA;
-    }
-    else if ((vf > (-VELOCIDADE_MINIMA)) && (vf < 0)){
-      vf = -VELOCIDADE_MINIMA;
-    }*/
-    /*if ((wf < VELOCIDADE_MINIMA_ANGULAR) && (wf > 0)){
-      wf = VELOCIDADE_MINIMA_ANGULAR;
-    }
-    else if ((wf > (-VELOCIDADE_MINIMA_ANGULAR)) && (wf < 0)){
-      wf = -VELOCIDADE_MINIMA_ANGULAR;
-    }*/
-  
-  //}
 
 #if defined(GAZEBO)
     velocidadeRobo.linear.x = VelocidadeRecebida.x;
@@ -868,8 +885,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
       US_aux.erase(US_aux.begin());  
     
       us1.x = us1.x + DISTANCIA_CENTRO;
-    
-        
+            
       if (US[i] > DIST_MAX[i]){
         delta_atual[i] = 0;
       }
@@ -974,7 +990,7 @@ int main(int argc, char **argv)
     //Se estiver no modo seguir trajetoria
     if (enable == SEGUIR_TRAJETORIA){
       controladorTrajetoria();
-      verificaObstaculosZVD (tfListener);  
+      verificaObstaculosZVD(tfListener);  
     }
     else if (enable == SEGUIR_VELOCIDADE){
       controladorVelocidade();
@@ -1007,11 +1023,12 @@ int main(int argc, char **argv)
 #endif
 
 #if defined(DEBUG)
+    #warning Atencao! DEBUG esta definido!
     ROS_INFO("%f %f %f %f %f %f %f",tempo, roboReferencia.x, roboReferencia.y, roboReferencia.theta,roboAtual.x, roboAtual.y, roboAtual.theta);
-    
-    //fprintf(arq,"%f %f %f %f %f %f %f\n",tempo, roboReferencia.x, roboReferencia.y, roboReferencia.theta,roboAtual.x, roboAtual.y, roboAtual.theta); 
 #endif
-
+#if defined(ARQ_DEBUG)
+    fprintf(arq,"%f %f %f %f %f %f %f\n",tempo, roboReferencia.x, roboReferencia.y, roboReferencia.theta,roboAtual.x, roboAtual.y, roboAtual.theta); 
+#endif
     loop_rate.sleep();
     ros::spinOnce();
   

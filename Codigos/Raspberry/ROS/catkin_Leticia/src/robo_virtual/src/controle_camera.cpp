@@ -51,6 +51,7 @@ void calculaVelocidades2 (void) {
   static bool fase3 = false;
 
   if (!enable || (DistanciaCamera.z==0 && !fase3)){
+    fase3 = false;
     velocidadeRobo.x = 0;
     velocidadeRobo.z = 0;
     return;
