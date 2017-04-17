@@ -29,7 +29,7 @@ int read_word(int fd, int adr_h,int adr_l){
 
 	short high = wiringPiI2CReadReg8 (fd,adr_h);
 	int low = wiringPiI2CReadReg8 (fd,adr_l);
-	int val = ((high << 8) + low);http://stackoverflow.com/questions/35647941/inverse-of-a-matrix-using-eigen
+	int val = ((high << 8) + low);
 
 	return val;
 
@@ -105,7 +105,7 @@ ros::NodeHandle n;
 //----------------------------------------------------------------
 
 MatrixXf theta; // Parâmetros [bx by bz sx sy sz]
-MatrixXf G; // Aceleracao da gravidade
+MatrixXf G; // campo magnetico
 MatrixXf fMedido(nMedidas,3); //Medidas do sensor em diferentes posiçõeçs [x y z]
 MatrixXf J(nMedidas,6); //Jacobiana do erro
 

@@ -30,8 +30,8 @@ struct GPS_
     , alt(0.0)
     , speed(0.0)
     , course(0.0)
+    , updated(false)
     , hdop(0.0)
-    , vdop(0.0)
     , pdop(0.0)
     , time(0)  {
     }
@@ -42,8 +42,8 @@ struct GPS_
     , alt(0.0)
     , speed(0.0)
     , course(0.0)
+    , updated(false)
     , hdop(0.0)
-    , vdop(0.0)
     , pdop(0.0)
     , time(0)  {
   (void)_alloc;
@@ -69,11 +69,11 @@ struct GPS_
    typedef double _course_type;
   _course_type course;
 
+   typedef uint8_t _updated_type;
+  _updated_type updated;
+
    typedef float _hdop_type;
   _hdop_type hdop;
-
-   typedef float _vdop_type;
-  _vdop_type vdop;
 
    typedef float _pdop_type;
   _pdop_type pdop;
@@ -158,12 +158,12 @@ struct MD5Sum< ::raspberry_msgs::GPS_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "71546074f6ec76fd1ffdf15346a8ac4a";
+    return "af03eea1fc21cc32275a1d14bd4d469e";
   }
 
   static const char* value(const ::raspberry_msgs::GPS_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x71546074f6ec76fdULL;
-  static const uint64_t static_value2 = 0x1ffdf15346a8ac4aULL;
+  static const uint64_t static_value1 = 0xaf03eea1fc21cc32ULL;
+  static const uint64_t static_value2 = 0x275a1d14bd4d469eULL;
 };
 
 template<class ContainerAllocator>
@@ -188,8 +188,8 @@ float64 lng\n\
 float64 alt\n\
 float64 speed\n\
 float64 course\n\
+bool updated\n\
 float32 hdop\n\
-float32 vdop\n\
 float32 pdop\n\
 int64 time\n\
 ";
@@ -216,8 +216,8 @@ namespace serialization
       stream.next(m.alt);
       stream.next(m.speed);
       stream.next(m.course);
+      stream.next(m.updated);
       stream.next(m.hdop);
-      stream.next(m.vdop);
       stream.next(m.pdop);
       stream.next(m.time);
     }
@@ -250,10 +250,10 @@ struct Printer< ::raspberry_msgs::GPS_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.speed);
     s << indent << "course: ";
     Printer<double>::stream(s, indent + "  ", v.course);
+    s << indent << "updated: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.updated);
     s << indent << "hdop: ";
     Printer<float>::stream(s, indent + "  ", v.hdop);
-    s << indent << "vdop: ";
-    Printer<float>::stream(s, indent + "  ", v.vdop);
     s << indent << "pdop: ";
     Printer<float>::stream(s, indent + "  ", v.pdop);
     s << indent << "time: ";

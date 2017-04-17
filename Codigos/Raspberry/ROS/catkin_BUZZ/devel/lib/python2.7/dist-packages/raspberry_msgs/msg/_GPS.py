@@ -7,7 +7,7 @@ import struct
 
 
 class GPS(genpy.Message):
-  _md5sum = "71546074f6ec76fd1ffdf15346a8ac4a"
+  _md5sum = "af03eea1fc21cc32275a1d14bd4d469e"
   _type = "raspberry_msgs/GPS"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """bool valid
@@ -16,12 +16,13 @@ float64 lng
 float64 alt
 float64 speed
 float64 course
+bool updated
 float32 hdop
-float32 vdop
 float32 pdop
-int64 time"""
-  __slots__ = ['valid','lat','lng','alt','speed','course','hdop','vdop','pdop','time']
-  _slot_types = ['bool','float64','float64','float64','float64','float64','float32','float32','float32','int64']
+int64 time
+"""
+  __slots__ = ['valid','lat','lng','alt','speed','course','updated','hdop','pdop','time']
+  _slot_types = ['bool','float64','float64','float64','float64','float64','bool','float32','float32','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -31,7 +32,7 @@ int64 time"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       valid,lat,lng,alt,speed,course,hdop,vdop,pdop,time
+       valid,lat,lng,alt,speed,course,updated,hdop,pdop,time
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -52,10 +53,10 @@ int64 time"""
         self.speed = 0.
       if self.course is None:
         self.course = 0.
+      if self.updated is None:
+        self.updated = False
       if self.hdop is None:
         self.hdop = 0.
-      if self.vdop is None:
-        self.vdop = 0.
       if self.pdop is None:
         self.pdop = 0.
       if self.time is None:
@@ -67,8 +68,8 @@ int64 time"""
       self.alt = 0.
       self.speed = 0.
       self.course = 0.
+      self.updated = False
       self.hdop = 0.
-      self.vdop = 0.
       self.pdop = 0.
       self.time = 0
 
@@ -85,7 +86,7 @@ int64 time"""
     """
     try:
       _x = self
-      buff.write(_struct_B5d3fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.hdop, _x.vdop, _x.pdop, _x.time))
+      buff.write(_struct_B5dB2fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -98,9 +99,10 @@ int64 time"""
       end = 0
       _x = self
       start = end
-      end += 61
-      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.hdop, _x.vdop, _x.pdop, _x.time,) = _struct_B5d3fq.unpack(str[start:end])
+      end += 58
+      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time,) = _struct_B5dB2fq.unpack(str[start:end])
       self.valid = bool(self.valid)
+      self.updated = bool(self.updated)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -114,7 +116,7 @@ int64 time"""
     """
     try:
       _x = self
-      buff.write(_struct_B5d3fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.hdop, _x.vdop, _x.pdop, _x.time))
+      buff.write(_struct_B5dB2fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -128,12 +130,13 @@ int64 time"""
       end = 0
       _x = self
       start = end
-      end += 61
-      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.hdop, _x.vdop, _x.pdop, _x.time,) = _struct_B5d3fq.unpack(str[start:end])
+      end += 58
+      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time,) = _struct_B5dB2fq.unpack(str[start:end])
       self.valid = bool(self.valid)
+      self.updated = bool(self.updated)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_B5d3fq = struct.Struct("<B5d3fq")
+_struct_B5dB2fq = struct.Struct("<B5dB2fq")

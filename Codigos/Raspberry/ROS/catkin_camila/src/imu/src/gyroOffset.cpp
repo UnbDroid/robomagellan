@@ -96,9 +96,9 @@ int main(int argc, char **argv){
 	
 	ROS_INFO("\n\n");
 
-	ROS_INFO("x: %f", offset_x);
-	ROS_INFO("y: %f", offset_y);
-	ROS_INFO("z: %f", offset_z);
+	ROS_INFO("x: %f", msg.offset_x);
+	ROS_INFO("y: %f", msg.offset_y);
+	ROS_INFO("z: %f", msg.offset_z);
 
 	bag.close();
 

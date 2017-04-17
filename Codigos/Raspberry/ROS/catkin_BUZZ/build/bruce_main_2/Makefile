@@ -456,6 +456,87 @@ src/actions/print.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.s
 .PHONY : src/actions/print.cpp.s
 
+src/actions/print_bool.o: src/actions/print_bool.cpp.o
+
+.PHONY : src/actions/print_bool.o
+
+# target to build an object file
+src/actions/print_bool.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o
+.PHONY : src/actions/print_bool.cpp.o
+
+src/actions/print_bool.i: src/actions/print_bool.cpp.i
+
+.PHONY : src/actions/print_bool.i
+
+# target to preprocess a source file
+src/actions/print_bool.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.i
+.PHONY : src/actions/print_bool.cpp.i
+
+src/actions/print_bool.s: src/actions/print_bool.cpp.s
+
+.PHONY : src/actions/print_bool.s
+
+# target to generate assembly for a file
+src/actions/print_bool.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.s
+.PHONY : src/actions/print_bool.cpp.s
+
+src/actions/print_float.o: src/actions/print_float.cpp.o
+
+.PHONY : src/actions/print_float.o
+
+# target to build an object file
+src/actions/print_float.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o
+.PHONY : src/actions/print_float.cpp.o
+
+src/actions/print_float.i: src/actions/print_float.cpp.i
+
+.PHONY : src/actions/print_float.i
+
+# target to preprocess a source file
+src/actions/print_float.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.i
+.PHONY : src/actions/print_float.cpp.i
+
+src/actions/print_float.s: src/actions/print_float.cpp.s
+
+.PHONY : src/actions/print_float.s
+
+# target to generate assembly for a file
+src/actions/print_float.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.s
+.PHONY : src/actions/print_float.cpp.s
+
+src/actions/print_int.o: src/actions/print_int.cpp.o
+
+.PHONY : src/actions/print_int.o
+
+# target to build an object file
+src/actions/print_int.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o
+.PHONY : src/actions/print_int.cpp.o
+
+src/actions/print_int.i: src/actions/print_int.cpp.i
+
+.PHONY : src/actions/print_int.i
+
+# target to preprocess a source file
+src/actions/print_int.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.i
+.PHONY : src/actions/print_int.cpp.i
+
+src/actions/print_int.s: src/actions/print_int.cpp.s
+
+.PHONY : src/actions/print_int.s
+
+# target to generate assembly for a file
+src/actions/print_int.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.s
+.PHONY : src/actions/print_int.cpp.s
+
 src/actions/publish_map_bottom_left_corner.o: src/actions/publish_map_bottom_left_corner.cpp.o
 
 .PHONY : src/actions/publish_map_bottom_left_corner.o
@@ -915,6 +996,33 @@ src/conditions/check_touch_sensor.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.s
 .PHONY : src/conditions/check_touch_sensor.cpp.s
 
+src/conditions/compare.o: src/conditions/compare.cpp.o
+
+.PHONY : src/conditions/compare.o
+
+# target to build an object file
+src/conditions/compare.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.o
+.PHONY : src/conditions/compare.cpp.o
+
+src/conditions/compare.i: src/conditions/compare.cpp.i
+
+.PHONY : src/conditions/compare.i
+
+# target to preprocess a source file
+src/conditions/compare.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.i
+.PHONY : src/conditions/compare.cpp.i
+
+src/conditions/compare.s: src/conditions/compare.cpp.s
+
+.PHONY : src/conditions/compare.s
+
+# target to generate assembly for a file
+src/conditions/compare.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.s
+.PHONY : src/conditions/compare.cpp.s
+
 src/conditions/conditions.o: src/conditions/conditions.cpp.o
 
 .PHONY : src/conditions/conditions.o
@@ -1281,6 +1389,15 @@ help:
 	@echo "... src/actions/print.o"
 	@echo "... src/actions/print.i"
 	@echo "... src/actions/print.s"
+	@echo "... src/actions/print_bool.o"
+	@echo "... src/actions/print_bool.i"
+	@echo "... src/actions/print_bool.s"
+	@echo "... src/actions/print_float.o"
+	@echo "... src/actions/print_float.i"
+	@echo "... src/actions/print_float.s"
+	@echo "... src/actions/print_int.o"
+	@echo "... src/actions/print_int.i"
+	@echo "... src/actions/print_int.s"
 	@echo "... src/actions/publish_map_bottom_left_corner.o"
 	@echo "... src/actions/publish_map_bottom_left_corner.i"
 	@echo "... src/actions/publish_map_bottom_left_corner.s"
@@ -1332,6 +1449,9 @@ help:
 	@echo "... src/conditions/check_touch_sensor.o"
 	@echo "... src/conditions/check_touch_sensor.i"
 	@echo "... src/conditions/check_touch_sensor.s"
+	@echo "... src/conditions/compare.o"
+	@echo "... src/conditions/compare.i"
+	@echo "... src/conditions/compare.s"
 	@echo "... src/conditions/conditions.o"
 	@echo "... src/conditions/conditions.i"
 	@echo "... src/conditions/conditions.s"

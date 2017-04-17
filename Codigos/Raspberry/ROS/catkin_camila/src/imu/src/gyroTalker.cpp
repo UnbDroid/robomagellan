@@ -67,7 +67,7 @@ int main(int argc, char **argv){
 	double g_yEstAnt = 0;
 	double  g_zEstAnt = 0;
 	
-	float RC = 1;(2*PI*FC);
+	float RC = 1/(2*PI*FC);
 	float alfa = RC/(RC+0.01);
 
 	int fd = wiringPiI2CSetup(0x69);
@@ -85,7 +85,7 @@ int main(int argc, char **argv){
 
 //Leitura parametros
 //-------------------------------------------------------------------
-/*	rosbag::Bag bagParam;
+	rosbag::Bag bagParam;
 	bagParam.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/parametrosGyro.bag", rosbag::bagmode::Read);
 
  	std::vector<std::string> topics;
@@ -98,12 +98,12 @@ int main(int argc, char **argv){
 		if (s != NULL){
 			offset_x = s->offset_x;
 			offset_y = s->offset_y;
-			offset_z = s->offset_z;
+			offset_z = -s->offset_z;
 		
 		}
 	}
 
-	bagParam.close()*/;
+	bagParam.close();
 //-------------------------------------------------------------------
 	
 	//bag.open("gyro.bag", rosbag::bagmode::Write);
@@ -115,11 +115,11 @@ int main(int argc, char **argv){
 
 		gyro_x = read_word(fd,reg_x_h,reg_x_l);
 		gyro_y = read_word(fd,reg_y_h,reg_y_l);
-		gyro_z = read_word(fd,reg_z_h,reg_z_l);
+		gyro_z = -read_word(fd,reg_z_h,reg_z_l);
 
-		g_x = parseRadians(gyro_x*SCALE ) ;//- offset_x);
-        g_y = parseRadians(gyro_y*SCALE ) ;//- offset_y);
-        g_z = parseRadians(gyro_z*SCALE ); //- offset_z);
+		g_x = parseRadians(gyro_x*SCALE- offset_x);
+        g_y = parseRadians(gyro_y*SCALE - offset_y);
+        g_z = parseRadians(gyro_z*SCALE - offset_z);
 
 		//Filtro passa-alta para tirar a componente dc (offset)
 		g_xEst = alfa*g_xEstAnt + alfa*(g_x - g_xAnt);
@@ -134,9 +134,9 @@ int main(int argc, char **argv){
 		g_zAnt = g_z;
 		g_zEstAnt = g_zEst; 
 
-		msg.g_x = g_xEst;
-		msg.g_y = g_yEst;
-		msg.g_z = g_zEst;
+		msg.g_x = g_x;// g_xEst;
+		msg.g_y = g_y;//g_yEst;
+		msg.g_z = g_z;//g_zEst;
 
 		tempo = ros::Time::now();
 		msg.time = tempo.toNSec() * 1e-6;		

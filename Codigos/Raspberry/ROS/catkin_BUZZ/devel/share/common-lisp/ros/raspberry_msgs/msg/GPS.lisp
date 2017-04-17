@@ -37,14 +37,14 @@
     :initarg :course
     :type cl:float
     :initform 0.0)
+   (updated
+    :reader updated
+    :initarg :updated
+    :type cl:boolean
+    :initform cl:nil)
    (hdop
     :reader hdop
     :initarg :hdop
-    :type cl:float
-    :initform 0.0)
-   (vdop
-    :reader vdop
-    :initarg :vdop
     :type cl:float
     :initform 0.0)
    (pdop
@@ -97,15 +97,15 @@
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader raspberry_msgs-msg:course-val is deprecated.  Use raspberry_msgs-msg:course instead.")
   (course m))
 
+(cl:ensure-generic-function 'updated-val :lambda-list '(m))
+(cl:defmethod updated-val ((m <GPS>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader raspberry_msgs-msg:updated-val is deprecated.  Use raspberry_msgs-msg:updated instead.")
+  (updated m))
+
 (cl:ensure-generic-function 'hdop-val :lambda-list '(m))
 (cl:defmethod hdop-val ((m <GPS>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader raspberry_msgs-msg:hdop-val is deprecated.  Use raspberry_msgs-msg:hdop instead.")
   (hdop m))
-
-(cl:ensure-generic-function 'vdop-val :lambda-list '(m))
-(cl:defmethod vdop-val ((m <GPS>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader raspberry_msgs-msg:vdop-val is deprecated.  Use raspberry_msgs-msg:vdop instead.")
-  (vdop m))
 
 (cl:ensure-generic-function 'pdop-val :lambda-list '(m))
 (cl:defmethod pdop-val ((m <GPS>))
@@ -164,12 +164,8 @@
     (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'updated) 1 0)) ostream)
   (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'hdop))))
-    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
-  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'vdop))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -243,18 +239,13 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'course) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:setf (cl:slot-value msg 'updated) (cl:not (cl:zerop (cl:read-byte istream))))
     (cl:let ((bits 0))
       (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'hdop) (roslisp-utils:decode-single-float-bits bits)))
-    (cl:let ((bits 0))
-      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
-    (cl:setf (cl:slot-value msg 'vdop) (roslisp-utils:decode-single-float-bits bits)))
     (cl:let ((bits 0))
       (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
@@ -281,16 +272,16 @@
   "raspberry_msgs/GPS")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<GPS>)))
   "Returns md5sum for a message object of type '<GPS>"
-  "71546074f6ec76fd1ffdf15346a8ac4a")
+  "af03eea1fc21cc32275a1d14bd4d469e")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'GPS)))
   "Returns md5sum for a message object of type 'GPS"
-  "71546074f6ec76fd1ffdf15346a8ac4a")
+  "af03eea1fc21cc32275a1d14bd4d469e")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<GPS>)))
   "Returns full string definition for message of type '<GPS>"
-  (cl:format cl:nil "bool valid~%float64 lat~%float64 lng~%float64 alt~%float64 speed~%float64 course~%float32 hdop~%float32 vdop~%float32 pdop~%int64 time~%~%"))
+  (cl:format cl:nil "bool valid~%float64 lat~%float64 lng~%float64 alt~%float64 speed~%float64 course~%bool updated~%float32 hdop~%float32 pdop~%int64 time~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'GPS)))
   "Returns full string definition for message of type 'GPS"
-  (cl:format cl:nil "bool valid~%float64 lat~%float64 lng~%float64 alt~%float64 speed~%float64 course~%float32 hdop~%float32 vdop~%float32 pdop~%int64 time~%~%"))
+  (cl:format cl:nil "bool valid~%float64 lat~%float64 lng~%float64 alt~%float64 speed~%float64 course~%bool updated~%float32 hdop~%float32 pdop~%int64 time~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <GPS>))
   (cl:+ 0
      1
@@ -299,7 +290,7 @@
      8
      8
      8
-     4
+     1
      4
      4
      8
@@ -313,8 +304,8 @@
     (cl:cons ':alt (alt msg))
     (cl:cons ':speed (speed msg))
     (cl:cons ':course (course msg))
+    (cl:cons ':updated (updated msg))
     (cl:cons ':hdop (hdop msg))
-    (cl:cons ':vdop (vdop msg))
     (cl:cons ':pdop (pdop msg))
     (cl:cons ':time (time msg))
 ))

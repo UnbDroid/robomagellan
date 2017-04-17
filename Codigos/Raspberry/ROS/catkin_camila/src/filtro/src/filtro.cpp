@@ -14,14 +14,14 @@
 //#include "tf/transform_datatypes.h"
 //#include "geometry_msgs/Quaternion.h"
 
-//#define debug _posteriori
-//#define debug_priori
+//#define debug_posteriori
+#define debug_priori
 //#define debug_ganho
 //#define debug_covarPriori
 //#define debug_covarPosteriori
 
 #define PI 3.14159265
-#define tAmostragem 0.01
+#define tAmostragem 0.05
 #define g -9.7808439
 #define m  23462.2
 #define tSetup 30
@@ -337,7 +337,7 @@ MatrixXf TRIAD(MatrixXf anterior){
 	MatrixXf orient(4,1);
 	orient << q0, q1, q2, q3;	
 	
-	float declination = toRadian(-20.574);
+	float declination = toRadian(-21.5091);
 	MatrixXf q_declination(4,1);
 
 	float ta = cos(declination/2);
@@ -612,10 +612,11 @@ int main(int argc, char **argv){
 	I10.setIdentity();
 
 	x_estPosteriori << 1, 0, 0, 0, 0, 0, 0, 0, 0, 0;
-	q_anterior << 1,0,0,0;
-	P_posteriori = I10*0.1;
-	Q = I10*0.1;
-	R = I10*0.001;
+	//q_anterior << 1,0,0,0;
+	P_posteriori = I10*0.01;
+	//estimacao
+	Q  = I10*0.001; 
+	R = I10*0.01; //correcao
 	
 	int flagSetup = 1;
 	ros::Time tInicial = ros::Time::now();
@@ -679,11 +680,12 @@ int main(int argc, char **argv){
 
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
-//			F = jacobianaPredicao(x_estPosteriori);
-//			P_priori = F + P_posteriori*F.transpose() + Q;
+			F = jacobianaPredicao(x_estPosteriori);
+			P_priori = F + P_posteriori*F.transpose() + Q;
 			
 			#ifdef debug_priori
 			std::cout << x_estPriori << std::endl;
+			ROS_INFO("");
 			std:: cout << "\n";
 			#endif
 
@@ -694,7 +696,7 @@ int main(int argc, char **argv){
 
 			// Correção
 			if(gpsData.valid){
-				KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R);
+				KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
 				M = medicao(ref, q_anterior);
 				odomOK.data = true;
 			}
@@ -708,11 +710,11 @@ int main(int argc, char **argv){
 			std::cout << KG << std::endl;
 			std:: cout << "\n";
 			#endif
-			x_estPosteriori = x_estPriori;
+		//	x_estPosteriori = x_estPriori;
 		//	x_estPosteriori = M;	
-		//x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+		x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	
-		//	P_posteriori = (I10 - KG*H)*P_priori;
+			P_posteriori = (I10 - KG*H)*P_priori;
 
 			q_anterior << x_estPosteriori(0,0), x_estPosteriori(1,0), x_estPosteriori(2,0), x_estPosteriori(3,0);
 		

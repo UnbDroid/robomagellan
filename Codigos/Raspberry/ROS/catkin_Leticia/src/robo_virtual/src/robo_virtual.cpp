@@ -18,9 +18,9 @@
 
 #define ARQ_DEBUG 1
 #define DEBUG 1
-#define GAZEBO 1
+//#define GAZEBO 1
 #define ARDUINO 1
-//#define CONVERTER_COORD 1
+#define CONVERTER_COORD 1
 
 // Modos de operacao
 #define PARA 0
@@ -41,17 +41,17 @@
 #define vel_min_arduino 1.5f
 #endif
 
-/*#if defined(ARDUINO)
+#if defined(ARDUINO)
 #define VELOCIDADE_MAXIMA 5.5f
 #define VELOCIDADE_MAXIMA_APROX 3.0f
 #define VELOCIDADE_MINIMA 1.0f
-#define VELOCIDADE_MINIMA_ANGULAR 0.2f
+#define VELOCIDADE_MINIMA_ANGULAR 1.0f
 #define VEL_VIRTUAL 2.0f
 #define VELOCIDADE_MAX_ARDUINO 5.5f
 #define VELOCIDADE_MAX_ARDUINO_APROX 3.0f
 #define vel_min_arduino 1.5f
 #endif
-*/
+
 #define DISTANCIA_MAXIMA 1.0f
 #define DISTANCIA_MINIMA 0.002f
 #define NUM_US 11
@@ -149,14 +149,14 @@ void verificaObstaculos (tf::TransformListener &tfListener);
 /**Funcao do subscriber que recebe os pontos a serem seguidos*/
 void trajetoCallback(const nav_msgs::Path::ConstPtr& msg)
 {
-  if((enable != PARA) && (enable != SEGUIR_VELOCIDADE)){
+ // if((enable != PARA) && (enable != SEGUIR_VELOCIDADE)){
     pose = msg->poses;
     trajetoriaAtual = 0;
 
 #if defined(DEBUG)
     ROS_INFO("Posicao recebida");
 #endif
-  }
+ // }
 }
 
 void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
@@ -215,7 +215,7 @@ void posicaoAtualCallback(const nav_msgs::Odometry::ConstPtr& msg)
   #warning Atencao! CONVERTER_COORD esta definido!
   roboAtual.x = msg->pose.pose.position.y;
   roboAtual.y = msg->pose.pose.position.x;
-  roboAtual.theta = 90 - yaw;
+  roboAtual.theta = PI/2 - yaw;
 #else
   roboAtual.x = msg->pose.pose.position.x;
   roboAtual.y = msg->pose.pose.position.y;
@@ -995,8 +995,8 @@ int main(int argc, char **argv)
 {
 
 #if defined(ARQ_DEBUG)
-  arq = fopen("feedback.txt", "w");
-  arq2 = fopen("feedbackvel.txt", "w");
+  arq = fopen("/home/pi/Documents/feedback.txt", "w");
+  arq2 = fopen("/home/pi/Documents/feedbackvel.txt", "w");
 #endif
 
   ros::init(argc, argv, "robo_virtual");

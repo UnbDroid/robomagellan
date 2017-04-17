@@ -11,10 +11,10 @@
           SPEED
           COURSE-VAL
           COURSE
+          UPDATED-VAL
+          UPDATED
           HDOP-VAL
           HDOP
-          VDOP-VAL
-          VDOP
           PDOP-VAL
           PDOP
           TIME-VAL

@@ -22,6 +22,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/bruce_main2.dir/src/actions/set_velocity.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o"
+  "CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o"
+  "CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o"
+  "CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o"
@@ -36,6 +39,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.o"
   "CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp.o"
+  "CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.o"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2.pdb"
   "/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2"
 )

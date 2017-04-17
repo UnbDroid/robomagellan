@@ -16,9 +16,6 @@
 + requisitar_origem: request_set_origin
 + definir_velocidade: set_velocity
 + habilitar_seguir_camera: send_enable_follow_camera
-+ print_bool: print_bool
-+ print_int: print_int
-+ print_float: print_float
 
 @Conditions
 + bigger: is_bigger
@@ -34,7 +31,6 @@
 + botao_verde: check_green_button
 + botao_preto: check_black_button
 + origem_recebida: check_origin_received
-+ compare: compare
 
 @States
 + esperar_botao
@@ -57,23 +53,18 @@
 	contador_menor(name: requisitar_origem, value: 1) >> print(message: requisitando) & incrementar_contador(name: requisitar_origem) & requisitar_origem()
 	origem_recebida() >> print(message: recebi origem) & change(next_state: esperar_botao) & resetar_contador(name: requisitar_origem)
 + setup
-	publicar_origem_mapa(latitude: -15.762866, longitude: -47.858645)
+	publicar_origem_mapa(latitude: -15.765437, longitude: -47.872648)
 	adicionar_timer(name: us_timer)
 	adicionar_timer(name: aproximar_fino_timer)
 	odom_ok() >> change(next_state: calcular_rota_primeiro_cone)
 + calcular_rota_primeiro_cone
-	definir_alvo_gps(latitude: -15.762601, longitude: -47.857045)
+	definir_alvo_gps(latitude: -15.764997, longitude: -47.872191)
 	calcular_rota()
 	calculando_rota(value: true)
-	rota_calculada() >> calculando_rota(value: false) & change(next_state: esperar_botao)
+	rota_calculada() >> calculando_rota(value: false) & change(next_state: aproximar_cruzeiro)
 + aproximar_cruzeiro
 	habilitar_seguir_rota(value: 1)
-	distante_da_rota(distance: 2) >> change(next_state: recalcular_rota)
-	distancia_us_menor(us_number: 3, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
-	distancia_us_menor(us_number: 4, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
-	distancia_us_menor(us_number: 5, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
-	distancia_us_menor(us_number: 6, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
-	distancia_us_menor(us_number: 7, distance: 0.5)  & verificar_timer(name: us_timer, time: 15) >> resetar_timer(name: us_timer) & change(next_state: calcular_desvio_obstaculo_movel)
+	distante_da_rota(distance: 5) >> change(next_state: recalcular_rota)
 	cone_encontrado() >> habilitar_seguir_rota(value: 0) & change(next_state: aproximar_fino)
 + recalcular_rota
 	calcular_rota()

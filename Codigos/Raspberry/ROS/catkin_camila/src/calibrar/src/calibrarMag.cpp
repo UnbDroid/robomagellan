@@ -18,7 +18,7 @@ e apertar q
 
 #define SCALE 0.00152
 #define t 0.0001 
-#define iTotal 100
+#define iTotal 1000
 #define nMedidas 7
 #define m  23.4622
 
@@ -133,7 +133,7 @@ for(int n = 0;n < nMedidas; n++){
 	while(count < 30){
 	
 		mag_x = read_word(fd,Register_XH,Register_XL);
-		mag_y = -read_word(fd,Register_YH,Register_YL);
+		mag_y = read_word(fd,Register_YH,Register_YL);
 		mag_z = read_word(fd,Register_ZH,Register_ZL);
 			
 		m_x += mag_x*SCALE*t*1e6;
@@ -178,7 +178,7 @@ int i = 0;
 for(i = 1;i < iTotal;i++){
 
 	J = jacobiana(fMedido, theta.col(i - 1));
-	theta.col(i) = theta.col(i-1) - (J.transpose()*J).inverse()*J.transpose()*(G - F);
+	theta.col(i) = theta.col(i-1) - 0.01*(J.transpose()*J).inverse()*J.transpose()*(G - F);
 
 }
 
@@ -191,9 +191,9 @@ msg.sz = theta(5, i - 1);
 
 bag.write("param_mag",ros::Time::now(),msg);
 
-wiringPiI2CWriteReg8 (fd, Register_Mode,  0x01); 
+//wiringPiI2CWriteReg8 (fd, Register_Mode,  0x01); 
 mag_x = read_word(fd,Register_XH,Register_XL);
-mag_y = -read_word(fd,Register_YH,Register_YL);
+mag_y = read_word(fd,Register_YH,Register_YL);
 mag_z = read_word(fd,Register_ZH,Register_ZL);
 			
 m_x = (mag_x*SCALE*t*1000000.0 - msg.bx)/msg.sx	;
@@ -201,7 +201,8 @@ m_y = (mag_y*SCALE*t*1000000.0 - msg.by)/msg.sy;
 m_z = (mag_z*SCALE*t*1000000.0 - msg.bz)/msg.sz;
 
 std::cout << "Parâmetros: " << std::endl;
-std::cout << theta << std::endl;
+std::cout << theta.col(i-2) << std::endl;
+std::cout << theta.col(i-1) << std::endl;
 std::cout << "Medidas: " << std::endl;
 std::cout << "x:  " << m_x << " y: " << m_y << " z: " << m_z << std::endl;
 

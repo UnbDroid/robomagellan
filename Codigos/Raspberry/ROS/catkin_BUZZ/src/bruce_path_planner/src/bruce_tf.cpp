@@ -83,7 +83,8 @@ int main(int argc, char** argv){
   while (ros::ok()){
     time = ros::Time::now();
     NEDCoord onbl = GPS2NED(origin,bl);
-    tf::Transform transformMAP(tf::Quaternion(currentPose.pose.pose.orientation.x,currentPose.pose.pose.orientation.y,currentPose.pose.pose.orientation.z,currentPose.pose.pose.orientation.w),tf::Vector3(currentPose.pose.pose.position.y+onbl.y,currentPose.pose.pose.position.x+onbl.x,0));
+    tf::Quaternion quat = tf::Quaternion(0,0,0.707,0.707)*tf::Quaternion(currentPose.pose.pose.orientation.x,currentPose.pose.pose.orientation.y,currentPose.pose.pose.orientation.z,currentPose.pose.pose.orientation.w).inverse();
+    tf::Transform transformMAP(quat,tf::Vector3(currentPose.pose.pose.position.y+onbl.y,currentPose.pose.pose.position.x+onbl.x,0));
     br.sendTransform(tf::StampedTransform(transformMAP, time, "map", "base_link"));
     br.sendTransform(tf::StampedTransform(transformUS1, time, "base_link", "ultrasound1"));
     br.sendTransform(tf::StampedTransform(transformUS2, time, "base_link", "ultrasound2"));

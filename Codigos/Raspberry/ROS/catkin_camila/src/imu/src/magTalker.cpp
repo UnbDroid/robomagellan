@@ -41,7 +41,7 @@ int read_word(int fd, int adr_h,int adr_l){
 
 int main(int argc, char **argv){
 
-	float bx = 6,by = -4,bz = 3,sx = 0.943,sy = 0.996,sz = 0.827;
+	float bx = 6,by = 1,bz = 3,sx = 0.943,sy = 0.996,sz = 0.827;
 
 	int Register_A = 0x00;
 	int Register_B = 0x01;
@@ -105,7 +105,7 @@ int main(int argc, char **argv){
 		//leituras raw
 		
 		mag_x = read_word(fd,Register_XH,Register_XL);
-		mag_y = -read_word(fd,Register_YH,Register_YL);
+		mag_y = read_word(fd,Register_YH,Register_YL);
 		mag_z = read_word(fd,Register_ZH,Register_ZL);
 		ROS_INFO("x: %f", mag_x*SCALE*t*1000000.0);
                 ROS_INFO("y: %f", mag_y*SCALE*t*1000000.0);
