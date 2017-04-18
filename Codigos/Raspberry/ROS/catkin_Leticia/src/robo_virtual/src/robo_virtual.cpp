@@ -21,6 +21,7 @@
 //#define GAZEBO 1
 #define ARDUINO 1
 #define CONVERTER_COORD 1
+#define TESTE_US 1
 
 // Modos de operacao
 #define PARA 0
@@ -259,12 +260,21 @@ void calculaSegmento (void) {
   static float gama = 0; /*angulo de inclinacao da reta de segmento de trajetoria*/
 
   //Indica que ele passou da regiao do seguimeto atual e ira prossegir para o proximo segmento ou que irá comecar o primeiro segmento  
+#if defined(TESTE_US)
+  if (enable == PARA){
+    parar = false;
+    inicio = false;
+    erro1 = 0, erro2 = 0, erro3 = 0;
+    return;
+  }
+#else
   if (enable == PARA){
     parar = true;
     inicio = false;
     erro1 = 0, erro2 = 0, erro3 = 0;
     return;
   }
+#endif
   if (enable == SEGUIR_VELOCIDADE){
     parar = false;
     inicio  = false;
@@ -488,13 +498,22 @@ void RoboReferencia(const ros::TimerEvent&){
     }
   }
 
+#if defined(TESTE_US)
+  if (parar && !obstaculo) {
+    velocidadeLinear = 0;
+    velocidadeAngular = 0;
+    vx = 0;
+    vy = 0;
+  }
+
+#else
   if (parar) {
     velocidadeLinear = 0;
     velocidadeAngular = 0;
     vx = 0;
     vy = 0;
   }
-  
+#endif
 }
 
 /**Funcao do controlador de trajetoria para o robo real*/
@@ -1045,6 +1064,10 @@ int main(int argc, char **argv)
 
     calculaSegmento();
 
+#if defined(TESTE_US)
+    controladorTrajetoria();
+    verificaObstaculosZVD(tfListener); 
+#endif
     //Se estiver no modo seguir trajetoria
     if (enable == SEGUIR_TRAJETORIA){
       controladorTrajetoria();
@@ -1056,7 +1079,8 @@ int main(int argc, char **argv)
     else if (enable == APROXIMAR_CONE){
       controladorTrajetoria();
     }
-    else if (enable == PARA) {
+#if defined (TESTE_US)
+    else if (enable == PARA && !obstaculo) {
       parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
@@ -1069,6 +1093,22 @@ int main(int argc, char **argv)
       velocidadeRobo.angular.z = 0;
 #endif
     }
+
+#else 
+    else if (enable == PARA && !obstaculo) {
+      parar = true;
+      inicio = false;
+      erro1 = 0, erro2 = 0, erro3 = 0;
+#if defined(ARDUINO)
+      velocidadeArduinoEsquerda.data = 0;
+      velocidadeArduinoDireita.data = 0;
+#endif
+#if defined(GAZEBO)
+      velocidadeRobo.linear.x = 0;
+      velocidadeRobo.angular.z = 0;
+#endif
+    }
+#endif
 
 
 #if defined(GAZEBO)
