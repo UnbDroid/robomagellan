@@ -111,7 +111,7 @@ static bool inicio = false;
 /*Flag que permite receber nova trajetoria, novas velocidades a serem seguidas*/
 static int16_t enable = 0;
 
-static float vel_max = 0, vel_max_arduino = 0;
+static float vel_max = 0, vel_max_arduino = 3.0;
 
 float DIST_MAX[NUM_US] = {1,1,1,1,1,1,1,1,1,1,1};
 
@@ -175,6 +175,10 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
   else if (enable == PARA){
     parar = true;
   }
+
+#if defined(TESTE_US)
+  vel_max_arduino = 3.0;
+#endif
 
 #if defined(DEBUG)
   if(enable == PARA){
