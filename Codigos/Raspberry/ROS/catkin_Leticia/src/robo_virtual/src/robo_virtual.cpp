@@ -304,10 +304,10 @@ void calculaSegmento (void) {
       inicio = true;
 
 #if defined(DEBUG)
-      ROS_INFO("Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.x,auxPose.pose.position.y);
+      ROS_INFO("Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.y,auxPose.pose.position.x);
 #endif
 #if defined(ARQ_DEBUG)
-      fprintf(arq,"Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.x,auxPose.pose.position.y);
+      fprintf(arq,"Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.y,auxPose.pose.position.x);
 #endif
 
     }
