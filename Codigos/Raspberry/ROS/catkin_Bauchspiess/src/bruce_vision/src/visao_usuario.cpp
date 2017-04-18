@@ -1,8 +1,10 @@
 //#define usuario
 //#define ve_tempo
+//#define novo_codigo
+//#define codigo_continuo
+#define Rastreia9
 
-
-#include "RastreiaCone5.hpp"
+#include "RastreiaCone9.hpp"
 #include <sys/time.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
@@ -23,8 +25,7 @@
 using namespace cv;
 using namespace std;
 
-RastreiaCone5 cone;
-RastreiaCone5 cone2;
+RastreiaCone cone;
 
 #ifdef ve_tempo
 struct timeval tempo1, tempo2;
@@ -107,7 +108,9 @@ void sonda(Mat img){
 		min_y = fim.y;
 		max_y = inicio.y;
 	}
-	temp = img.clone();
+	//temp = img.clone();
+	float ratio_original = (float)img.cols/(float)img.rows;
+	resize(img, temp, Size((int)(((float)cone.tamanho0)*ratio_original), cone.tamanho0 ));
 	cvtColor(temp, gray, CV_BGR2GRAY);
 
 
@@ -223,53 +226,15 @@ bool p1 = false;
 bool p2 = false;
 bool p3 = false;
 bool p4 = false;
+bool p5 = false;
+bool p6 = false;
+bool p7 = false;
 
-
-void Painel1(){
-	//Obsoleto
-	/*
-	namedWindow( "Aceita Normalizado", WINDOW_NORMAL );
-	resizeWindow("Aceita Normalizado", 250, 1);
-	 createTrackbar( "Min Azul", "Aceita Normalizado", &cone.min_azul, 255);
-	 createTrackbar( "Max Azul", "Aceita Normalizado", &cone.max_azul, 255);
-	 createTrackbar( "Min Verde", "Aceita Normalizado", &cone.min_verde, 255);
-	 createTrackbar( "Max Verde", "Aceita Normalizado", &cone.max_verde, 255);
-	 createTrackbar( "Min Vermelho", "Aceita Normalizado", &cone.min_vermelho, 255);
-	 createTrackbar( "Max Vermelho", "Aceita Normalizado", &cone.max_vermelho, 255);
-	 createTrackbar( "Min Intensidade", "Aceita Normalizado", &cone.min_value, 255);
-	 createTrackbar( "Max Intensidade", "Aceita Normalizado", &cone.max_value, 255);
-	*/
-
-	 namedWindow( "Aceita HSV", WINDOW_NORMAL );
-	resizeWindow("Aceita HSV", 250, 1);
-	 createTrackbar( "Min H1", "Aceita HSV", &cone.min_H1i, 255);
-	 createTrackbar( "Max H1", "Aceita HSV", &cone.max_H1i, 255);
-	 createTrackbar( "Min S1", "Aceita HSV", &cone.min_S1i, 255);
-	 createTrackbar( "Max S1", "Aceita HSV", &cone.max_S1i, 255);
-	 createTrackbar( "Min V1", "Aceita HSV", &cone.min_V1i, 255);
-	 createTrackbar( "Max V1", "Aceita HSV", &cone.max_V1i, 255);
-	 createTrackbar( "Min H2", "Aceita HSV", &cone.min_H2i, 255);
-	 createTrackbar( "Max H2", "Aceita HSV", &cone.max_H2i, 255);
-	 createTrackbar( "Min S2", "Aceita HSV", &cone.min_S2i, 255);
-	 createTrackbar( "Max S2", "Aceita HSV", &cone.max_S2i, 255);
-	 createTrackbar( "Min V2", "Aceita HSV", &cone.min_V2i, 255);
-	 createTrackbar( "Max V2", "Aceita HSV", &cone.max_V2i, 255);
-	 
-
-	  
-}
 
 void Painel2(){
 	namedWindow( "PAINEL 2", WINDOW_NORMAL );
 	resizeWindow("PAINEL 2", 250, 1);
-	/*
-	createTrackbar( "define blur x", "PAINEL 2", &cone.define_blur_x, 100);
-	createTrackbar( "define blur y", "PAINEL 2", &cone.define_blur_y, 100);
-	createTrackbar( "define thresh", "PAINEL 2", &cone.define_thresh , 300);
-	*/
-	//createTrackbar( "Tamanho imagem", "PAINEL 2", &cone.tamanho_mat, 1000);
 
-	//createTrackbar( "Quadro", "PAINEL 2", &cone.quadro, 1000);
 
 	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
 	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
@@ -277,23 +242,35 @@ void Painel2(){
 	createTrackbar( "Minimo pontos", "PAINEL 2", &cone.min_pontos, 1000);
 	createTrackbar( "Percentual pontos", "PAINEL 2", &cone.perc_pontosi, 1000);
 
-	/*
-	createTrackbar( "Min Blur", "PAINEL 2", &cone.min_blur, 255);
-	createTrackbar( "Blur Y", "PAINEL 2", &cone.blur_y, 25);
-	createTrackbar( "Blur X", "PAINEL 2", &cone.blur_x, 25);
+	createTrackbar( "Aceita Range", "PAINEL 2", &cone.min_aceita, 256);
 
 
-	createTrackbar( "Min line intersections", "PAINEL 2", &cone.Hough_thresh, 200);
-	createTrackbar( "Min line lenght", "PAINEL 2", &cone.Hough_lenght, 200);
-	createTrackbar( "Max line gap", "PAINEL 2", &cone.Hough_gap, 200);
-	*/
 
-/*
-	createTrackbar( "Min Blur inicio" , "PAINEL 2", &cone.min_blur_i, 255);
-	createTrackbar( "Blur Y inicio", "PAINEL 2", &cone.blur_y_i, 25);
-	createTrackbar( "Blur X inicio", "PAINEL 2", &cone.blur_x_i, 25);
-*/
+}
 
+
+#ifndef Rastreia9
+
+void Painel1(){
+
+
+	 namedWindow( "Aceita HSV", WINDOW_NORMAL );
+	resizeWindow("Aceita HSV", 250, 1);
+	 createTrackbar( "Min H1", "Aceita HSV", &cone.min_H1i, 256);
+	 createTrackbar( "Max H1", "Aceita HSV", &cone.max_H1i, 256);
+	 createTrackbar( "Min S1", "Aceita HSV", &cone.min_S1i, 256);
+	 createTrackbar( "Max S1", "Aceita HSV", &cone.max_S1i, 256);
+	 createTrackbar( "Min V1", "Aceita HSV", &cone.min_V1i, 256);
+	 createTrackbar( "Max V1", "Aceita HSV", &cone.max_V1i, 256);
+	 createTrackbar( "Min H2", "Aceita HSV", &cone.min_H2i, 256);
+	 createTrackbar( "Max H2", "Aceita HSV", &cone.max_H2i, 256);
+	 createTrackbar( "Min S2", "Aceita HSV", &cone.min_S2i, 256);
+	 createTrackbar( "Max S2", "Aceita HSV", &cone.max_S2i, 256);
+	 createTrackbar( "Min V2", "Aceita HSV", &cone.min_V2i, 256);
+	 createTrackbar( "Max V2", "Aceita HSV", &cone.max_V2i, 256);
+	 
+
+	  
 }
 
 
@@ -302,18 +279,18 @@ void Painel3(){
 
 	namedWindow( "PROXIMO", WINDOW_NORMAL );
 	resizeWindow("PROXIMO", 250, 1);
-	createTrackbar( "Min H1", "PROXIMO", &cone.min_H1p, 255);
-	createTrackbar( "Max H1", "PROXIMO", &cone.max_H1p, 255);
-	createTrackbar( "Min S1", "PROXIMO", &cone.min_S1p, 255);
-	createTrackbar( "Max S1", "PROXIMO", &cone.max_S1p, 255);
-	createTrackbar( "Min V1", "PROXIMO", &cone.min_V1p, 255);
-	createTrackbar( "Max V1", "PROXIMO", &cone.max_V1p, 255);
-	createTrackbar( "Min H2", "PROXIMO", &cone.min_H2p, 255);
-	createTrackbar( "Max H2", "PROXIMO", &cone.max_H2p, 255);
-	createTrackbar( "Min S2", "PROXIMO", &cone.min_S2p, 255);
-	createTrackbar( "Max S2", "PROXIMO", &cone.max_S2p, 255);
-	createTrackbar( "Min V2", "PROXIMO", &cone.min_V2p, 255);
-	createTrackbar( "Max V2", "PROXIMO", &cone.max_V2p, 255);
+	createTrackbar( "Min H1", "PROXIMO", &cone.min_H1p, 256);
+	createTrackbar( "Max H1", "PROXIMO", &cone.max_H1p, 256);
+	createTrackbar( "Min S1", "PROXIMO", &cone.min_S1p, 256);
+	createTrackbar( "Max S1", "PROXIMO", &cone.max_S1p, 256);
+	createTrackbar( "Min V1", "PROXIMO", &cone.min_V1p, 256);
+	createTrackbar( "Max V1", "PROXIMO", &cone.max_V1p, 256);
+	createTrackbar( "Min H2", "PROXIMO", &cone.min_H2p, 256);
+	createTrackbar( "Max H2", "PROXIMO", &cone.max_H2p, 256);
+	createTrackbar( "Min S2", "PROXIMO", &cone.min_S2p, 256);
+	createTrackbar( "Max S2", "PROXIMO", &cone.max_S2p, 256);
+	createTrackbar( "Min V2", "PROXIMO", &cone.min_V2p, 256);
+	createTrackbar( "Max V2", "PROXIMO", &cone.max_V2p, 256);
 	
 }
 
@@ -337,6 +314,128 @@ void Painel4(){
 	 
 	  
 }
+
+
+#ifdef novo_codigo
+void Painel5(){
+
+
+	namedWindow( "HUE", WINDOW_NORMAL );
+	resizeWindow("HUE", 250, 1);
+	createTrackbar( "Min H bom", "HUE", &cone.min_Hb, 255);
+	createTrackbar( "Max H nom", "HUE", &cone.max_Hb, 255);
+	createTrackbar( "Min H medio", "HUE", &cone.min_Hm, 255);
+	createTrackbar( "Max H medio", "HUE", &cone.max_Hm, 255);
+	createTrackbar( "Min H ruim", "HUE", &cone.min_Hr, 255);
+	createTrackbar( "Max H ruim", "HUE", &cone.max_Hr, 255);
+	
+}
+
+void Painel6(){
+
+
+	namedWindow( "SATURATION", WINDOW_NORMAL );
+	resizeWindow("SATURATION", 250, 1);
+	createTrackbar( "Min S bom", "SATURATION", &cone.min_Sb, 255);
+	createTrackbar( "Max S nom", "SATURATION", &cone.max_Sb, 255);
+	createTrackbar( "Min S medio", "SATURATION", &cone.min_Sm, 255);
+	createTrackbar( "Max S medio", "SATURATION", &cone.max_Sm, 255);
+	createTrackbar( "Min S ruim", "SATURATION", &cone.min_Sr, 255);
+	createTrackbar( "Max S ruim", "SATURATION", &cone.max_Sr, 255);
+	
+}
+
+void Painel7(){
+
+
+	namedWindow( "VALUE", WINDOW_NORMAL );
+	resizeWindow("VALUE", 250, 1);
+	createTrackbar( "Min V bom", "VALUE", &cone.min_Vb, 255);
+	createTrackbar( "Max V nom", "VALUE", &cone.max_Vb, 255);
+	createTrackbar( "Min V medio", "VALUE", &cone.min_Vm, 255);
+	createTrackbar( "Max V medio", "VALUE", &cone.max_Vm, 255);
+	createTrackbar( "Min V ruim", "VALUE", &cone.min_Vr, 255);
+	createTrackbar( "Max V ruim", "VALUE", &cone.max_Vr, 255);
+	
+}
+
+#endif
+
+#ifdef codigo_continuo
+void Painel5(){
+
+
+	namedWindow( "CorLuz", WINDOW_NORMAL );
+	resizeWindow("CorLuz", 250, 1);
+	createTrackbar( "Min H", "CorLuz", &cone.min_Hf, 255);
+	createTrackbar( "Max H", "CorLuz", &cone.max_Hf, 255);
+	createTrackbar( "S ideal", "CorLuz", &cone.S_ideal, 255);
+	createTrackbar( "V ideal", "CorLuz", &cone.V_ideal, 255);
+	createTrackbar( "Min Range", "CorLuz", &cone.min_range, 255);
+
+	
+}
+
+#endif
+
+#endif
+
+
+#ifdef Rastreia9
+void Painel1(){
+
+
+	namedWindow( "H", WINDOW_NORMAL );
+	resizeWindow("H", 250, 1);
+	createTrackbar( "H1 subida", "H", &cone.subidaH1, 256);
+	createTrackbar( "H1 degrau subida", "H", &cone.step1_H1, 100);
+	createTrackbar( "H1 topo", "H", &cone.altoH1, 256);
+	createTrackbar( "H1 descida", "H", &cone.descidaH1, 256);
+	createTrackbar( "H1 degrau descida", "H", &cone.step2_H1, 100);
+	createTrackbar( "H1 baixo", "H", &cone.baixoH1, 256);
+
+	createTrackbar( "H2 subida", "H", &cone.subidaH2, 256);
+	createTrackbar( "H2 degrau subida", "H", &cone.step1_H2, 100);
+	createTrackbar( "H2 topo", "H", &cone.altoH2, 256);
+	createTrackbar( "H2 descida", "H", &cone.descidaH2, 256);
+	createTrackbar( "H2 degrau descida", "H", &cone.step2_H2, 100);
+	createTrackbar( "H2 baixo", "H", &cone.baixoH2, 256);
+
+
+
+
+	
+}
+
+void Painel3(){
+
+
+	namedWindow( "SV", WINDOW_NORMAL );
+	resizeWindow("SV", 250, 1);
+	
+	createTrackbar( "S subida", "SV", &cone.subidaS, 256);
+	createTrackbar( "S degrau subida", "SV", &cone.step1_S, 100);
+	createTrackbar( "S topo", "SV", &cone.altoS, 256);
+	createTrackbar( "S descida", "SV", &cone.descidaS, 256);
+	createTrackbar( "S degrau descida", "SV", &cone.step2_S, 100);
+	createTrackbar( "S baixo", "SV", &cone.baixoS, 256);
+
+	createTrackbar( "V subida", "SV", &cone.subidaV, 256);
+	createTrackbar( "V degrau subida", "SV", &cone.step1_V, 100);
+	createTrackbar( "V topo", "SV", &cone.altoV, 256);
+	createTrackbar( "V descida", "SV", &cone.descidaV, 256);
+	createTrackbar( "V degrau descida", "SV", &cone.step2_V, 100);
+	createTrackbar( "V baixo", "SV", &cone.baixoV, 256);
+
+
+	
+}
+
+
+
+#endif
+
+
 
 bool Comando(Mat source, VideoCapture* cap, bool aberta){
 
@@ -372,16 +471,6 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 					pontos = 0;
 				}	
 				break;
-			case(49):
-				if(p1){
-					p1 = false;
-					destroyWindow("Aceita HSV");
-				}
-				else{
-					Painel1();
-					p1 = true;
-				}
-				break;
 			case(50):
 				if(p2){
 					p2 = false;
@@ -390,6 +479,48 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 				else{
 					Painel2();
 					p2 = true;
+				}
+				break;
+		#ifdef Rastreia9
+			case(49):
+				if(p1){
+					p1 = false;
+					destroyWindow("H");
+				}
+				else{
+					Painel1();
+					p1 = true;
+				}
+				break;
+			case(51):
+				if(p3){
+					p3 = false;
+					destroyWindow("SV");
+				}
+				else{
+					Painel3();
+					p3 = true;
+				}
+				break;
+			case(97):
+				if(cone.filtro){
+					cone.filtro = false;
+				}
+				else{
+					cone.filtro = true;
+				}
+				break;	
+		#endif				
+
+		#ifndef Rastreia9 		
+			case(49):
+				if(p1){
+					p1 = false;
+					destroyWindow("Aceita HSV");
+				}
+				else{
+					Painel1();
+					p1 = true;
 				}
 				break;
 			case(51):
@@ -411,7 +542,59 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 					Painel4();
 					p4 = true;
 				}
+				break;
+			
+			#ifdef novo_codigo
+			
+			case(53):
+				if(p5){
+					p5 = false;
+					destroyWindow("HUE");
+				}
+				else{
+					Painel5();
+					p5 = true;
+				}
+				break;
+			case(54):
+				if(p6){
+					p6 = false;
+					destroyWindow("SATURATION");
+				}
+				else{
+					Painel6();
+					p6 = true;
+				}
+				break;
+			case(55):
+				if(p7){
+					p7 = false;
+					destroyWindow("VALUE");
+				}
+				else{
+					Painel7();
+					p7 = true;
+				}
 				break;		
+			
+			#endif	
+
+			#ifdef codigo_continuo
+			
+			case(53):
+				if(p5){
+					p5 = false;
+					destroyWindow("CorLuz");
+				}
+				else{
+					Painel5();
+					p5 = true;
+				}
+				break;		
+			#endif	
+
+		#endif		
+			
 			case( 27 ):  //Sair
 				aberta = false;
 				break;
@@ -431,7 +614,7 @@ int main(int argc, char **argv){
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<geometry_msgs::Point32>("cone_position", 1000);
 	ros::Rate loop_rate(100);
-	
+	geometry_msgs::Point32 msg;
 
 	struct timeval novo, velho;
 
@@ -440,15 +623,15 @@ int main(int argc, char **argv){
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
 	bool aberta;
-	if(!cap.open(0))
+	if(!cap.open(1))
         aberta = false;
     else 
     	aberta = true;
 
 
+
 	while( (aberta == true)&&(ros::ok() ) ){
 
-		geometry_msgs::Point32 msg;
 
 
 			#ifdef ve_tempo
@@ -512,6 +695,11 @@ int main(int argc, char **argv){
 		loop_rate.sleep();
 		
 	}
+
+	msg.x = -999;
+	msg.y = -999;
+	msg.z = 1;
+	chatter_pub.publish(msg);
 
 	return 0;	
 }
