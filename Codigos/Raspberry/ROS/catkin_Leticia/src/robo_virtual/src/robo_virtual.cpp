@@ -262,19 +262,16 @@ void calculaSegmento (void) {
   //Indica que ele passou da regiao do seguimeto atual e ira prossegir para o proximo segmento ou que irá comecar o primeiro segmento  
 #if defined(TESTE_US)
   if (enable == PARA){
-    parar = false;
-    inicio = false;
-    erro1 = 0, erro2 = 0, erro3 = 0;
     return;
   }
-#else
+#endif
+
   if (enable == PARA){
     parar = true;
     inicio = false;
     erro1 = 0, erro2 = 0, erro3 = 0;
     return;
   }
-#endif
   if (enable == SEGUIR_VELOCIDADE){
     parar = false;
     inicio  = false;
@@ -457,7 +454,7 @@ void RoboReferencia(const ros::TimerEvent&){
     velocidadeAngular = w;  
   }
   else {
-    velocidadeLinear = /*cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy*/ velocidadeLinear - abs(Kt*(fk)*cos(thetak));
+    velocidadeLinear = velocidadeLinear - abs(Kt*(fk)*cos(thetak));/*cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy*/
     velocidadeAngular = velocidadeAngular + Kr*(fk)*sin(thetak);
     
     roboReferencia.x = roboReferencia.x + (velocidadeLinear)*cos(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
@@ -499,13 +496,12 @@ void RoboReferencia(const ros::TimerEvent&){
   }
 
 #if defined(TESTE_US)
-  if (parar && !obstaculo) {
+  if (!obstaculo) {
     velocidadeLinear = 0;
     velocidadeAngular = 0;
     vx = 0;
     vy = 0;
   }
-
 #else
   if (parar) {
     velocidadeLinear = 0;
@@ -530,7 +526,6 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   static float vf=0, wf=0; 
   //velocidades dadas às rodas do robo real
   static float velocidadeEsquerda = 0, velocidadeDireita = 0; 
-  
   
   erro1 = cos(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + sin(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
   erro2 = -sin(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + cos(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
@@ -700,7 +695,9 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 
 #endif
 
-  if (!parar || obstaculo) {  // INCLUIR obstaculo para testar ZVD
+
+  // INCLUIR obstaculo para testar ZVD - MUDAR!!
+  if (!parar || obstaculo) {  
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
@@ -753,6 +750,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 #endif
 
 }
+
 void controladorVelocidade(void){
 
   const float b1 = 1/(0.06), b2 = 0.075/0.06;
@@ -975,7 +973,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
       }
     
       if (delta_atual[i] == 0) {//(delta_atual[i] - delta [i]) <= 0){
-        f_aux += 0;
+        f_aux += 0; 
       }
       else {
         f_aux += delta_atual[i] - delta[i];
@@ -987,7 +985,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
     }
   }
 
-  if (f_aux != 0) {
+  if (f_aux != 0 || aux_x!=0 || aux_y!=0) {
     obstaculo = true;
     fk = f_aux;
     thetak = atan2(aux_y,aux_x);
@@ -1069,8 +1067,8 @@ int main(int argc, char **argv)
     calculaSegmento();
 
 #if defined(TESTE_US)
-    controladorTrajetoria();
-    verificaObstaculosZVD(tfListener); 
+    verificaObstaculosZVD(tfListener);
+    controladorTrajetoria(); 
 #endif
     //Se estiver no modo seguir trajetoria
     if (enable == SEGUIR_TRAJETORIA){
@@ -1083,7 +1081,6 @@ int main(int argc, char **argv)
     else if (enable == APROXIMAR_CONE){
       controladorTrajetoria();
     }
-#if defined (TESTE_US)
     else if (enable == PARA && !obstaculo) {
      // parar = true;
       inicio = false;
@@ -1098,8 +1095,7 @@ int main(int argc, char **argv)
 #endif
     }
 
-#else 
-    else if (enable == PARA) {
+/*    else if (enable == PARA) {
       //parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
@@ -1112,7 +1108,7 @@ int main(int argc, char **argv)
       velocidadeRobo.angular.z = 0;
 #endif
     }
-#endif
+*/
 
 
 #if defined(GAZEBO)
