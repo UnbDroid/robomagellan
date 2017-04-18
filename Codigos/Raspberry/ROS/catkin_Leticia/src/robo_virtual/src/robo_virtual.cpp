@@ -113,7 +113,7 @@ static int16_t enable = 0;
 
 static float vel_max = 0, vel_max_arduino = 0;
 
-float DIST_MAX[NUM_US] = {0.5,0.5,0.5,1,1,1,1,1,0.5,0.5,0.5};
+float DIST_MAX[NUM_US] = {1,1,1,1,1,1,1,1,1,1,1};
 
 float US[NUM_US] = {999,999,999,999,999,999,999,999,9999,999,999};
 
@@ -976,7 +976,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
         f_aux += 0; 
       }
       else {
-        f_aux += delta_atual[i] - delta[i];
+        f_aux += delta_atual[i]; //- delta[i];
         aux_x += (SX[i] - us1.x );
         aux_y += (SY[i] - us1.y);
       }
@@ -985,7 +985,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
     }
   }
 
-  if (f_aux != 0 || aux_x!=0 || aux_y!=0) {
+  if (f_aux > 0) {
     obstaculo = true;
     fk = f_aux;
     thetak = atan2(aux_y,aux_x);
