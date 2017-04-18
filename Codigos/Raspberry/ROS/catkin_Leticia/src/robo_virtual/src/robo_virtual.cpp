@@ -91,6 +91,8 @@ bool parar = true;
 bool novoSegmento = false;
 bool obstaculo = false;
 bool desviou = false;
+bool testando_us = false;
+
 
 static float velocidadeLinear = 0, velocidadeAngular = 0;
 
@@ -111,9 +113,9 @@ static bool inicio = false;
 /*Flag que permite receber nova trajetoria, novas velocidades a serem seguidas*/
 static int16_t enable = 0;
 
-static float vel_max = 0, vel_max_arduino = 3.0;
+static float vel_max = 0, vel_max_arduino = 0;
 
-float DIST_MAX[NUM_US] = {1,1,1,1,1,1,1,1,1,1,1};
+float DIST_MAX[NUM_US] = {0.5,0.5,0.5,1,1,1,1,1,0.5,0.5,0.5};
 
 float US[NUM_US] = {999,999,999,999,999,999,999,999,9999,999,999};
 
@@ -176,10 +178,6 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
     parar = true;
   }
 
-#if defined(TESTE_US)
-  vel_max_arduino = 3.0;
-#endif
-
 #if defined(DEBUG)
   if(enable == PARA){
     ROS_INFO("enable parar");
@@ -235,8 +233,21 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
   std::string usNames[] = {"/ultrasound1","/ultrasound2","/ultrasound3","/ultrasound4","/ultrasound5",
                                         "/ultrasound6","/ultrasound7","/ultrasound8","/ultrasound9","/ultrasound10",
                                         "/ultrasound11"};
-  
-  if (enable == SEGUIR_TRAJETORIA || TESTE_US){
+
+#if defined(TESTE_US)
+
+  for(int i=0; i<NUM_US;i++){
+      if(usNames[i] == msg->header.frame_id){
+        US[i] = msg->range;
+
+#if defined(DEBUG)
+        ROS_INFO("ultrassom %d leitura %f", i, US[i]);
+#endif
+      }
+  }
+
+#else  
+  if (enable == SEGUIR_TRAJETORIA){
     for(int i=0; i<NUM_US;i++){
       if(usNames[i] == msg->header.frame_id){
         US[i] = msg->range;
@@ -247,6 +258,7 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
       }
     }  
   }
+#endif
 }
 
 void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg){
@@ -339,7 +351,7 @@ void RoboReferencia(const ros::TimerEvent&){
   float anguloReta = 0;
   static float x,y,theta;
   static int flag = 0;
-  const float Kr = 10, Kt = -10;
+  const float Kr = 3, Kt = -3;
 
   if ((inicio || desviou) && !parar) {
 
@@ -461,10 +473,6 @@ void RoboReferencia(const ros::TimerEvent&){
     velocidadeLinear = velocidadeLinear - abs(Kt*(fk)*cos(thetak));/*cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy*/
     velocidadeAngular = velocidadeAngular + Kr*(fk)*sin(thetak);
 
-#if defined(DEBUG)    
-    ROS_INFO ("calculei agora : %f %f", velocidadeLinear, velocidadeAngular);
-#endif
-
     roboReferencia.x = roboReferencia.x + (velocidadeLinear)*cos(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
     roboReferencia.y = roboReferencia.y + (velocidadeLinear)*sin(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
     roboReferencia.theta = roboReferencia.theta + velocidadeAngular*TEMPO_AMOSTRAGEM;
@@ -505,10 +513,10 @@ void RoboReferencia(const ros::TimerEvent&){
 
 #if defined(TESTE_US)
   if (!obstaculo) {
-   velocidadeLinear = 0;
-   velocidadeAngular = 0;
-   vx = 0;
-   vy = 0;
+    velocidadeLinear = 0;
+    velocidadeAngular = 0;
+    vx = 0;
+    vy = 0;
   }
 #else
   if (parar) {
@@ -704,9 +712,8 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 
 #endif
 
-
   // INCLUIR obstaculo para testar ZVD - MUDAR!!
-  if (!parar || obstaculo) {  
+  if (!parar || testando_us) {  
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
@@ -732,7 +739,6 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 #if defined(ARDUINO) 
     velocidadeArduinoEsquerda.data = velocidadeEsquerda;
     velocidadeArduinoDireita.data = velocidadeDireita;
-    ROS_INFO ("enviada %f %f ", velocidadeArduinoEsquerda.data, velocidadeArduinoDireita.data);
 #endif
 
   }
@@ -986,7 +992,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
         f_aux += 0; 
       }
       else {
-        f_aux += delta_atual[i]; //- delta[i];
+        f_aux += delta_atual[i] - delta[i];
         aux_x += (SX[i] - us1.x );
         aux_y += (SY[i] - us1.y);
       }
@@ -1077,9 +1083,19 @@ int main(int argc, char **argv)
     calculaSegmento();
 
 #if defined(TESTE_US)
+    vel_max_arduino = 3.0;
+
     verificaObstaculosZVD(tfListener);
     controladorTrajetoria(); 
+    if (obstaculo){
+      testando_us = true;
+    }
+    else {
+      testando_us = false;
+    }
+
 #endif
+
     //Se estiver no modo seguir trajetoria
     if (enable == SEGUIR_TRAJETORIA){
       controladorTrajetoria();
@@ -1091,7 +1107,7 @@ int main(int argc, char **argv)
     else if (enable == APROXIMAR_CONE){
       controladorTrajetoria();
     }
-    else if (enable == PARA && !obstaculo) {
+    else if (enable == PARA && !testando_us) {
      // parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
