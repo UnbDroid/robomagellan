@@ -15,7 +15,7 @@
 //#include "geometry_msgs/Quaternion.h"
 
 //#define debug_posteriori
-#define debug_priori
+//#define debug_priori
 //#define debug_ganho
 //#define debug_covarPriori
 //#define debug_covarPosteriori
@@ -26,6 +26,8 @@
 #define m  23462.2
 #define tSetup 30
 #define ERRO 0.3
+#define B 0.075 //comprimento do robo
+#define r 0.06 //raio da roda�
 
 using namespace Eigen;
 
@@ -38,7 +40,7 @@ struct GPSData{
 	double speed;
 	double course;
 	float hdop;
-	float vdop;
+	bool updated;
 	float pdop;
 	
 
@@ -69,6 +71,11 @@ struct MagData{
 
 };
 
+struct VelData{
+
+	float dir,esq;
+};
+
 struct NEDCoord{
   double x,y,z;
 };
@@ -86,9 +93,11 @@ GPSData gpsData;
 GyroData gyroData;
 AccData accData;
 MagData magData;
+VelData velData;
 MatrixXf G(3,1);
 MatrixXf R(10,10);
 MatrixXf I10(10,10);
+MatrixXf Z10(10,10);
 Vector3f g_unitario_n;
 Vector3f m_unitario_n;
 
@@ -100,10 +109,11 @@ void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
 	}
 	else{
 		gpsData.valid = msg->valid;
+		gpsData.updated = msg->updated;
 		gpsData.lat = msg->lat;
 		gpsData.lng = msg->lng;
 		//gpsData.alt = msg->alt;
-		//gpsData.speed = msg->speed;
+		gpsData.speed = msg->speed;
 		//gpsData.course = msg->course;
 		//gpsData.hdop = msg->hdop;
 		//gpsData.vdop = msg->vdop;
@@ -156,6 +166,13 @@ void magCallback(const raspberry_msgs::Mag::ConstPtr& msg){
 	//ROS_INFO("a_x: %f", accData.x);
 	//ROS_INFO("a_y: %f", accData.y);
 	//ROS_INFO("a_z: %f", accData.z);
+
+}
+
+void velCallback(const geometry_msgs::Point32::ConstPtr& msg){
+
+	velData.dir = msg->x*2*PI;
+	velData.esq = msg->y*2*PI;
 
 }
 
@@ -219,11 +236,11 @@ MatrixXf predicao(MatrixXf anterior){
 
 	MatrixXf q_anterior(4,1), v_anterior(3,1), r_anterior(3,1);
 
-	q_anterior << anterior(0,0), anterior(1,0), anterior(2,0), anterior(3,0);
+	q_anterior << anterior(0,0), 0, 0, anterior(3,0);
 	v_anterior << anterior(4,0), anterior(5,0), anterior(6,0);
 	r_anterior << anterior(7,0), anterior(8,0), anterior(9,0);
-	
 
+	//Predicao atitude
 	MatrixXf W(4,4), orient(4,1);
 
 	W << 0, gyroData.x, gyroData.y, gyroData.z,
@@ -235,20 +252,41 @@ MatrixXf predicao(MatrixXf anterior){
 	orient = W.exp()*q_anterior;
 	orient = orient/orient.norm();
 
-	MatrixXf C(3,3), vel(3,1), pos(3,1), acc(3,1);
+	//Predicao posicao acc
+//	MatrixXf C(3,3), vel(3,1), pos(3,1), acc(3,1);
 
-	C << pow(q_anterior(0,0),2)+pow(q_anterior(1,0),2)-pow(q_anterior(2,0),2)-pow(q_anterior(3,0),2), 2*q_anterior(1,0)*q_anterior(2,0) + 2*q_anterior(0,0)*q_anterior(3,0), 2*q_anterior(1,0)*q_anterior(3,0) - 2*q_anterior(0,0)*q_anterior(2,0),
- 	     2*q_anterior(1,0)*q_anterior(2,0) - 2*q_anterior(0,0)*q_anterior(3,0), pow(q_anterior(0,0),2)-pow(q_anterior(1,0),2)+pow(q_anterior(2,0),2)-pow(q_anterior(3,0),2), 2*q_anterior(2,0)*q_anterior(3,0) + 2*q_anterior(0,0)*q_anterior(1,0),
-	     2*q_anterior(1,0)*q_anterior(3,0) + 2*q_anterior(0,0)*q_anterior(2,0), 2*q_anterior(2,0)*q_anterior(3,0) - 2*q_anterior(0,0)*q_anterior(1,0), pow(q_anterior(0,0),2)-pow(q_anterior(1,0),2)-pow(q_anterior(2,0),2)+pow(q_anterior(3,0),2);	 
+//	C << pow(q_anterior(0,0),2)+pow(q_anterior(1,0),2)-pow(q_anterior(2,0),2)-pow(q_anterior(3,0),2), 2*q_anterior(1,0)*q_anterior(2,0) + 2*q_anterior(0,0)*q_anterior(3,0), 2*q_anterior(1,0)*q_anterior(3,0) - 2*q_anterior(0,0)*q_anterior(2,0),
+// 	     2*q_anterior(1,0)*q_anterior(2,0) - 2*q_anterior(0,0)*q_anterior(3,0), pow(q_anterior(0,0),2)-pow(q_anterior(1,0),2)+pow(q_anterior(2,0),2)-pow(q_anterior(3,0),2), 2*q_anterior(2,0)*q_anterior(3,0) + 2*q_anterior(0,0)*q_anterior(1,0),
+//	     2*q_anterior(1,0)*q_anterior(3,0) + 2*q_anterior(0,0)*q_anterior(2,0), 2*q_anterior(2,0)*q_anterior(3,0) - 2*q_anterior(0,0)*q_anterior(1,0), pow(q_anterior(0,0),2)-pow(q_anterior(1,0),2)-pow(q_anterior(2,0),2)+pow(q_anterior(3,0),2);	 
  
-	acc << accData.x, accData.y, accData.z;	
+//	acc << accData.x, accData.y, accData.z;	
 
-	vel = (C*acc + G)*tAmostragem + v_anterior;
-	pos = (C*acc + G)*tAmostragem*tAmostragem/2 + v_anterior*tAmostragem +  r_anterior;
+//	std::cout << C*acc << std::endl;
+//	std::cout << "\n";
+
+//	vel = (C*acc + G)*tAmostragem + v_anterior;
+//	pos = (C*acc + G)*tAmostragem*tAmostragem/2 + v_anterior*tAmostragem +  r_anterior;
+	
+//	if(velData.x == 0) vel(0,0) = 0;
+//	if(velData.y == 0) vel(1,0) = 0;
+//	if(velData.z == 0) vel(2,0) = 0;
+
+	//Predicao posicao odometria
+
+	// velocidade em x e y, matriz de rotacao, velocidades de rotacao das rodas
+	MatrixXf vel(2,1), t(2,2), rot(2,1), pos(2,1); 
+	
+	t << r/2*cos(quaternion2euler_yaw(q_anterior)), r/2*cos(quaternion2euler_yaw(q_anterior)),
+	     r/2*sin(quaternion2euler_yaw(q_anterior)), r/2*sin(quaternion2euler_yaw(q_anterior));	
+
+	rot << velData.dir, velData.esq;
+
+	vel = t*rot;
+	pos = vel*tAmostragem + r_anterior;
 
 	MatrixXf est(10,1);
 
-	est << orient, vel, pos;
+	est << orient, vel,0, pos, 0;
 	
 	//std::cout << W << std::endl;
 
@@ -534,7 +572,7 @@ MatrixXf jacobianaPredicao(MatrixXf anterior){
 
 MatrixXf jacobianaCorrecao(){
 
-	MatrixXf C(10,10);
+	MatrixXf C(10,10), C_O(4,4);
 	
 	C.topLeftCorner(4,4).setIdentity();
 	C.topRightCorner(4,6).setZero();
@@ -569,7 +607,8 @@ int main(int argc, char **argv){
 	ros::Subscriber subGyro = n.subscribe("gyroInfo", 1000, gyroCallback);
 	ros::Subscriber subAcc = n.subscribe("accInfo", 1000, accCallback);
 	ros::Subscriber subMag = n.subscribe("magInfo", 1000, magCallback);
-	
+	ros::Subscriber subVel = n.subscribe("velocidade_atual", 1000, velCallback);	
+
 	ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
   	ros::Publisher origin_pub = n.advertise<geometry_msgs::Point32>("origin", 50,true);
   	ros::Publisher odom_ok = n.advertise<std_msgs::Bool>("odom_ok", 50);
@@ -595,7 +634,7 @@ int main(int argc, char **argv){
 	MatrixXf x_estPosteriori(10,1); 
 	MatrixXf x_medido(10,1);
 	MatrixXf P_priori(10,10), P_posteriori(10,10);
-	MatrixXf Q(10,10), H(10,10), F(10,10), KG(10,10);
+	MatrixXf Q(10,10), H(10,10), H_O(4,4), F(10,10), KG(10,10);
 	MatrixXf M(10,1);
 
 	MatrixXf q_anterior(4,1);
@@ -608,15 +647,19 @@ int main(int argc, char **argv){
 	m_unitario_n = m_unitario_n/m;
 
 	H = jacobianaCorrecao();
+	H_O.setIdentity();
 
 	I10.setIdentity();
+	Z10.setZero();
+	Z10.topLeftCorner(4,4).setIdentity();
 
 	x_estPosteriori << 1, 0, 0, 0, 0, 0, 0, 0, 0, 0;
 	//q_anterior << 1,0,0,0;
-	P_posteriori = I10*0.01;
+	P_posteriori = I10*0.001;
 	//estimacao
-	Q  = I10*0.001; 
-	R = I10*0.01; //correcao
+	Q  = I10*0.001;
+	//correcao 
+	R = I10*0.001;
 	
 	int flagSetup = 1;
 	ros::Time tInicial = ros::Time::now();
@@ -680,8 +723,8 @@ int main(int argc, char **argv){
 
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
-			F = jacobianaPredicao(x_estPosteriori);
-			P_priori = F + P_posteriori*F.transpose() + Q;
+			//F = jacobianaPredicao(x_estPosteriori);
+			//P_priori = F + P_posteriori*F.transpose() + Q;
 			
 			#ifdef debug_priori
 			std::cout << x_estPriori << std::endl;
@@ -695,26 +738,24 @@ int main(int argc, char **argv){
 			#endif
 
 			// Correção
-			if(gpsData.valid){
-				KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
-				M = medicao(ref, q_anterior);
-				odomOK.data = true;
-			}
-			else{
-		    	KG.setZero();
-				M.setZero();
-				odomOK.data = false;
+			//KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
+			//M = medicao(ref, q_anterior);
+			if(!gpsData.updated){
+		    	       // KG = Z10*KG;
+				//M = Z10*M;
+				//std::cout <<  KG << std::endl;
+				//odomOK.data = false;
 			}
 			
 			#ifdef debug_ganho
 			std::cout << KG << std::endl;
 			std:: cout << "\n";
 			#endif
-		//	x_estPosteriori = x_estPriori;
+			x_estPosteriori = x_estPriori;
 		//	x_estPosteriori = M;	
-		x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+		//x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	
-			P_posteriori = (I10 - KG*H)*P_priori;
+			//P_posteriori = (I10 - KG*H)*P_priori;
 
 			q_anterior << x_estPosteriori(0,0), x_estPosteriori(1,0), x_estPosteriori(2,0), x_estPosteriori(3,0);
 		

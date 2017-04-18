@@ -6,6 +6,7 @@
 #include "rosbag/bag.h"
 #include <rosbag/view.h>
 #include <boost/foreach.hpp>
+#include "math.h"
 
 #define DEBUG
 
@@ -100,8 +101,11 @@ int main(int argc, char **argv){
 		acc_y = read_word(fd,Register_YH,Register_YL);
 		acc_z = read_word(fd,Register_ZH,Register_ZL);
 		
+		
 		msg.a_x = (acc_x*SCALE*g - bx)/sx;
+		msg.a_x = abs(msg.a_x) > 1 ? msg.a_x:0;
         	msg.a_y = (acc_y*SCALE*g - by)/sy;
+		msg.a_y = abs(msg.a_y) > 1 ? msg.a_y:0;
         	msg.a_z = (acc_z*SCALE*g - bz)/sz;
 		tempo = ros::Time::now();
 		msg.time = tempo.toNSec() * 1e-6;

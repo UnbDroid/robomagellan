@@ -16,7 +16,7 @@
 
 #define PI 3.14159265f
 
-#define ARQ_DEBUG 1
+//#define ARQ_DEBUG 1
 #define DEBUG 1
 //#define GAZEBO 1
 #define ARDUINO 1
@@ -56,7 +56,7 @@
 #define DISTANCIA_MAXIMA 1.0f
 #define DISTANCIA_MINIMA 0.002f
 #define NUM_US 11
-#define DISTANCIA_CENTRO 0.1f
+#define DISTANCIA_CENTRO 0.05f
 
 //Variaveis Globais-------------------------------------------------------------------------------------------------------
 
@@ -232,7 +232,7 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
                                         "/ultrasound6","/ultrasound7","/ultrasound8","/ultrasound9","/ultrasound10",
                                         "/ultrasound11"};
   
-  if (enable == SEGUIR_TRAJETORIA){
+  if (enable == SEGUIR_TRAJETORIA || TESTE_US){
     for(int i=0; i<NUM_US;i++){
       if(usNames[i] == msg->header.frame_id){
         US[i] = msg->range;
@@ -338,7 +338,7 @@ void RoboReferencia(const ros::TimerEvent&){
   float anguloReta = 0;
   static float x,y,theta;
   static int flag = 0;
-  const float Kr = 3, Kt = -3;
+  const float Kr = 10, Kt = -10;
 
   if ((inicio || desviou) && !parar) {
 
@@ -535,10 +535,14 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   erro1 = cos(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + sin(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
   erro2 = -sin(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + cos(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
   erro3 = roboReferencia.theta - roboAtual.theta;
- 
+
+#if defined(TESTE_US)
+  vf = velocidadeLinear;
+  wf = velocidadeAngular;
+#else  
   vf = (velocidadeLinear * cos(erro3)) + (k1 *erro1);
   wf = velocidadeAngular + (velocidadeLinear * k2 * erro2) + (k3 * sin(erro3));
-
+#endif
   //Calculo direto da velocidade
   
   velocidadeDireita = (b1*vf + b2*wf)/(2*PI);
@@ -696,7 +700,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 
 #endif
 
-  if (!parar /*|| obstaculo*/) {  // INCLUIR obstaculo para testar ZVD
+  if (!parar || obstaculo) {  // INCLUIR obstaculo para testar ZVD
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
@@ -983,7 +987,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
     }
   }
 
-  if (f_aux > 0) {
+  if (f_aux != 0) {
     obstaculo = true;
     fk = f_aux;
     thetak = atan2(aux_y,aux_x);
@@ -1081,7 +1085,7 @@ int main(int argc, char **argv)
     }
 #if defined (TESTE_US)
     else if (enable == PARA && !obstaculo) {
-      parar = true;
+     // parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
 #if defined(ARDUINO)
@@ -1095,13 +1099,13 @@ int main(int argc, char **argv)
     }
 
 #else 
-    else if (enable == PARA && !obstaculo) {
-      parar = true;
+    else if (enable == PARA) {
+      //parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
 #if defined(ARDUINO)
-      velocidadeArduinoEsquerda.data = 0;
-      velocidadeArduinoDireita.data = 0;
+      //velocidadeArduinoEsquerda.data = 0;
+      //velocidadeArduinoDireita.data = 0;
 #endif
 #if defined(GAZEBO)
       velocidadeRobo.linear.x = 0;

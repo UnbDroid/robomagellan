@@ -35,6 +35,7 @@
 #define GPS_HDOP 670
 #define GPS_SPEED 671
 #define GPS_COURSE 672
+#define GPS_UPDATED 673
 
 #define VEL_ATUAL_DIR 798
 #define VEL_ATUAL_ESQ 799
@@ -110,8 +111,7 @@ struct GPSData{
 	double speed;
 	double course;
 	float hdop;
-	float vdop;
-	float pdop;
+	bool updated;
 	
 
 };
@@ -168,6 +168,8 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
     botao_verde = msg->data;
   }else if(msg->id == GPS_VALID){
  	gpsData.valid = msg->data;	  	
+  }else if(msg->id == GPS_UPDATED){
+	gpsData.updated = msg->data;
   }
 }
 
@@ -267,6 +269,7 @@ int main(int argc, char **argv)
     gps_msg.hdop = gpsData.hdop;
     gps_msg.speed = gpsData.speed;
     gps_msg.course = gpsData.course;
+    gps_msg.updated = gpsData.updated;
 
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);

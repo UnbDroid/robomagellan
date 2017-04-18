@@ -41,7 +41,7 @@ int read_word(int fd, int adr_h,int adr_l){
 
 int main(int argc, char **argv){
 
-	float bx = 6,by = 1,bz = 3,sx = 0.943,sy = 0.996,sz = 0.827;
+	float bx = 7.5,by = 0,bz = 3,sx = 0.943,sy = 0.996,sz = 0.827;
 
 	int Register_A = 0x00;
 	int Register_B = 0x01;

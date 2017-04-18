@@ -31,7 +31,7 @@ void leituras(){
 				msg.speed = gps.speed.kmph();
 			if(gps.pdop.isUpdated()){
 				msg.hdop = gps.hdop.realValue();
-				msg.vdop = gps.vdop.realValue();
+				//msg.vdop = gps.vdop.realValue();
 				msg.pdop = gps.pdop.realValue();
 			}
 			tempo = ros::Time::now();

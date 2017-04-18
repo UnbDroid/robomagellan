@@ -75,6 +75,8 @@ rosbag/view.h
 -
 boost/foreach.hpp
 -
+math.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/src/math.h
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h
