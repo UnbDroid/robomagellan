@@ -456,7 +456,11 @@ void RoboReferencia(const ros::TimerEvent&){
   else {
     velocidadeLinear = velocidadeLinear - abs(Kt*(fk)*cos(thetak));/*cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy*/
     velocidadeAngular = velocidadeAngular + Kr*(fk)*sin(thetak);
-    
+
+#if defined(DEBUG)    
+    ROS_INFO ("calculei agora : %f %f", velocidadeLinear, velocidadeAngular);
+#endif
+
     roboReferencia.x = roboReferencia.x + (velocidadeLinear)*cos(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
     roboReferencia.y = roboReferencia.y + (velocidadeLinear)*sin(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
     roboReferencia.theta = roboReferencia.theta + velocidadeAngular*TEMPO_AMOSTRAGEM;
@@ -497,10 +501,10 @@ void RoboReferencia(const ros::TimerEvent&){
 
 #if defined(TESTE_US)
   if (!obstaculo) {
-    velocidadeLinear = 0;
-    velocidadeAngular = 0;
-    vx = 0;
-    vy = 0;
+   velocidadeLinear = 0;
+   velocidadeAngular = 0;
+   vx = 0;
+   vy = 0;
   }
 #else
   if (parar) {
@@ -534,6 +538,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 #if defined(TESTE_US)
   vf = velocidadeLinear;
   wf = velocidadeAngular;
+
 #else  
   vf = (velocidadeLinear * cos(erro3)) + (k1 *erro1);
   wf = velocidadeAngular + (velocidadeLinear * k2 * erro2) + (k3 * sin(erro3));
@@ -720,11 +725,12 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
     velocidadeRobo.linear.x = vf;
     velocidadeRobo.angular.z = wf;
 #endif
-
 #if defined(ARDUINO) 
     velocidadeArduinoEsquerda.data = velocidadeEsquerda;
     velocidadeArduinoDireita.data = velocidadeDireita;
+    ROS_INFO ("enviada %f %f ", velocidadeArduinoEsquerda.data, velocidadeArduinoDireita.data);
 #endif
+
   }
   else {
     vf = 0;

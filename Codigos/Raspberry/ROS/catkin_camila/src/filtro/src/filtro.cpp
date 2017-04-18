@@ -277,12 +277,13 @@ MatrixXf predicao(MatrixXf anterior){
 	MatrixXf vel(2,1), t(2,2), rot(2,1), pos(2,1); 
 	
 	t << r/2*cos(quaternion2euler_yaw(q_anterior)), r/2*cos(quaternion2euler_yaw(q_anterior)),
-	     r/2*sin(quaternion2euler_yaw(q_anterior)), r/2*sin(quaternion2euler_yaw(q_anterior));	
+	     r/2*sin(quaternion2euler_yaw(q_anterior)), r/2*sin(quaternion2euler_yaw(q_anterior));
+
 
 	rot << velData.dir, velData.esq;
 
 	vel = t*rot;
-	pos = vel*tAmostragem + r_anterior;
+	pos = vel*tAmostragem + r_anterior.topLeftCorner(2,1);
 
 	MatrixXf est(10,1);
 
@@ -396,7 +397,7 @@ MatrixXf TRIAD(MatrixXf anterior){
 //Correção da posição e velocidade pela medicao do GPS e da atitude pelo algoritmo TRIAD
 MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
 
-	MatrixXf pos(3,1), vel(3,1), orient(4,1);
+	MatrixXf pos(3,1), vel(2,1), orient(4,1);
 	NEDCoord pointNed;
 	GPSCoord pointGPS;
 
@@ -427,7 +428,7 @@ MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
 	//orient << q_anterior;
 	orient = TRIAD(q_anterior);
 
-	float speed = gpsData.speed/3.6;
+	//float speed = gpsData.speed/3.6;
 	//float course = toRadian(gpsData.course);
 	
 	//float ta = cos(course/2);
@@ -435,24 +436,35 @@ MatrixXf medicao(GPSCoord ref, MatrixXf q_anterior){
 
 	//orient << ta, 0, 0, tb;
 
-	float yaw;
+	//coreecao com a velocidade do gps
+	//float yaw;
 
-	double ta = 2*(orient(0,0)*orient(3,0) + orient(1,0)*orient(2,0));
-	double tb = 1 - 2*(orient(2,0)*orient(2,0) + orient(3,0)*orient(3,0));
-	yaw =  atan2(ta,tb);
+	//double ta = 2*(orient(0,0)*orient(3,0) + orient(1,0)*orient(2,0));
+	//double tb = 1 - 2*(orient(2,0)*orient(2,0) + orient(3,0)*orient(3,0));
+	//yaw =  atan2(ta,tb);
 	
-	vel(0,0) = speed*cos(yaw);
-	vel(1,0) = speed*sin(yaw);
-	vel(2,0) = 0;
+	//vel(0,0) = speed*cos(yaw);
+	//vel(1,0) = speed*sin(yaw);
+	//vel(2,0) = 0;
 
-	//float yaw = quaternion2euler_yaw(orient);
+	//correcao velocidade estimada
+	MatrixXf tr(2,2), rot(2,1);
+
+	tr << r/2*cos(quaternion2euler_yaw(q_anterior)), r/2*cos(quaternion2euler_yaw(q_anterior)),
+             r/2*sin(quaternion2euler_yaw(q_anterior)), r/2*sin(quaternion2euler_yaw(q_anterior));
+
+
+        rot << velData.dir, velData.esq;
+
+        vel = tr*rot;
+
 		
 //	std::cout<< vel << std::endl;
 //	std::cout<< ""<< std::endl;
 //	std::cout<< orient << std::endl;
 	MatrixXf med(10,1);
 	
-	med << orient, vel, pos;
+	med << orient, vel,0, pos;
 
 	return med;
 
@@ -655,11 +667,11 @@ int main(int argc, char **argv){
 
 	x_estPosteriori << 1, 0, 0, 0, 0, 0, 0, 0, 0, 0;
 	//q_anterior << 1,0,0,0;
-	P_posteriori = I10*0.001;
+	P_posteriori = I10*0.01;
 	//estimacao
-	Q  = I10*0.001;
+	Q  = I10*0.00001;
 	//correcao 
-	R = I10*0.001;
+	R = I10;
 	
 	int flagSetup = 1;
 	ros::Time tInicial = ros::Time::now();
@@ -723,8 +735,8 @@ int main(int argc, char **argv){
 
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
-			//F = jacobianaPredicao(x_estPosteriori);
-			//P_priori = F + P_posteriori*F.transpose() + Q;
+			F = jacobianaPredicao(x_estPosteriori);
+			P_priori = F + P_posteriori*F.transpose() + Q;
 			
 			#ifdef debug_priori
 			std::cout << x_estPriori << std::endl;
@@ -738,11 +750,11 @@ int main(int argc, char **argv){
 			#endif
 
 			// Correção
-			//KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
-			//M = medicao(ref, q_anterior);
+			KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
+			M = medicao(ref, q_anterior);
 			if(!gpsData.updated){
-		    	       // KG = Z10*KG;
-				//M = Z10*M;
+		    	        KG = Z10*KG;
+				M = Z10*M;
 				//std::cout <<  KG << std::endl;
 				//odomOK.data = false;
 			}
@@ -751,9 +763,9 @@ int main(int argc, char **argv){
 			std::cout << KG << std::endl;
 			std:: cout << "\n";
 			#endif
-			x_estPosteriori = x_estPriori;
+		//	x_estPosteriori = x_estPriori;
 		//	x_estPosteriori = M;	
-		//x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+			x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	
 			//P_posteriori = (I10 - KG*H)*P_priori;
 
