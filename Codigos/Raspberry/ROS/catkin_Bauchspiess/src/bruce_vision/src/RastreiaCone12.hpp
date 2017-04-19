@@ -5,8 +5,8 @@
 
 //#define mostra_range
 
-#define fosforescente
-//#define fosco
+//#define fosforescente
+#define fosco
 
 #define VEZ 1
 
@@ -438,36 +438,44 @@ RastreiaCone::RastreiaCone(){
 
 		#ifdef ponderado
 			
+			H_pondera = 0;
+			S_pondera = 100;
+			V_pondera = 70;
+			Hist_final = 160;
+			Peso_blur = 25;
+			aceita_blur = 50;
+			//Peso_original = 8;
 
 			subidaH1 = 0;
 			step1_H1 = 0;
 			altoH1 = 0;
-			descidaH1 = 30;
-			step2_H1 = 0;
-			baixoH1 = 80;
+			descidaH1 = 15;
+			step2_H1 = 20;
+			baixoH1 = 30;
 
-			subidaH2 = 190;
-			step1_H2 = 50;
-			altoH2 = 190;
-			descidaH2 = 180;
+			subidaH2 = 160;
+			step1_H2 = 0;
+			altoH2 = 170;
+			descidaH2 = 170;
 			step2_H2 = 0;
 			baixoH2 = 180;
 
-			subidaS = 215;
-			step1_S = 60;
-			altoS = 220;
+			subidaS = 130;
+			step1_S = 0;
+			altoS = 250;
 			descidaS = 256;
-			step2_S = 50;
+			step2_S = 100;
 			baixoS = 256;
 
-			subidaV = 140;
-			step1_V = 50;
-			altoV = 200;
-			descidaV = 250;
-			step2_V = 0;
+			subidaV = 0;
+			step1_V = 80;
+			altoV = 100;
+			descidaV = 256;
+			step2_V = 70;
 			baixoV = 256;
 
-			min_aceita = 220;
+			min_aceita = 250;
+			
 		#endif
 
 		#ifndef ponderado
