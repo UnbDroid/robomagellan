@@ -1677,8 +1677,8 @@ void RastreiaCone::rastreia(Mat source){
 	
 	else{
 		//avaliza apenas regiao em torno de onde o cone foi encontrado anteriormente
-		//if(anterior){
-		if(false){
+		if(anterior){
+		//if(false){
 			confirma = true;
 
 			anterior = false;
@@ -1713,13 +1713,13 @@ void RastreiaCone::rastreia(Mat source){
 			
 
 
-			/*
+			
 			pos_angulo.clear();
 			for(int i = 0; i<Quadrado_x[regioes_antigas].size(); i++ ){
 				varredura1(&temp2,i);
 				identifica(&temp2, i, &temp);
 			}
-			*/
+			
 			regioes_antigas = regioes_novas;
 			regioes_novas = 1-regioes_antigas;	
 		}
