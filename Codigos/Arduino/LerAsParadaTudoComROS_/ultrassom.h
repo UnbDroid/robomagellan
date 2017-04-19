@@ -3,34 +3,28 @@
 
 #include <NewPing.h>
 
-#define TRIGGER_1 39 
-#define ECHO_1 41 
-#define TRIGGER_2 38
-#define ECHO_2 40
-#define TRIGGER_3 26
-#define ECHO_3 28
-#define TRIGGER_4 30
-#define ECHO_4 32
-#define TRIGGER_5 46
-#define ECHO_5 48
-#define TRIGGER_6 34
-#define ECHO_6 36
-#define TRIGGER_7 27 
-#define ECHO_7 29 
-#define TRIGGER_8 35 
-#define ECHO_8 37 
+#define TRIGGER_1 26 
+#define ECHO_1 28 
+#define TRIGGER_2 24
+#define ECHO_2 22
+#define TRIGGER_3 25
+#define ECHO_3 23
+#define TRIGGER_4 29
+#define ECHO_4 27
+#define TRIGGER_5 33
+#define ECHO_5 31
+#define TRIGGER_6 37
+#define ECHO_6 35
+#define TRIGGER_7 39
+#define ECHO_7 41
+#define TRIGGER_8 43 
+#define ECHO_8 45
 #define TRIGGER_9 47
 #define ECHO_9 49
-#define TRIGGER_10 24 
-#define ECHO_10 22 
-#define TRIGGER_11 23 
-#define ECHO_11 25 
-#define TRIGGER_12 37
-#define ECHO_12 35
-#define TRIGGER_13 25
-#define ECHO_13 23
-#define TRIGGER_14 22
-#define ECHO_14 24
+#define TRIGGER_10 46 
+#define ECHO_10 48
+#define TRIGGER_11 42 
+#define ECHO_11 44
 #define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 
 #define SONAR_NUM     11 // Number of sensors.

@@ -29,6 +29,7 @@
 #define GPS_HDOP 670
 #define GPS_SPEED 671
 #define GPS_COURSE 672
+#define GPS_UPDATED 673
 
 #define VEL_ATUAL_DIR 798
 #define VEL_ATUAL_ESQ 799

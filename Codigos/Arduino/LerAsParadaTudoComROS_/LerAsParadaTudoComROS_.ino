@@ -32,35 +32,136 @@ void messageFloat64Cb( const raspberry_msgs::StampedFloat64& r_float64_msg){
 
 void taskGPSCallback(){
   leituraTinyGps();
+  #ifdef ROS
+    static bool old_gps_valid = false;
+    if(gps_valid != old_gps_valid){
+      old_gps_valid = gps_valid;
+      sendInt64(GPS_VALID,gps_valid);      
+    }
+    if(gps_valid){
+      static float old_lat = 0.0;
+      if(lat != old_lat){
+        old_lat = lat;
+        sendFloat64(GPS_LAT,lat);
+      }
+      static float old_lon = 0.0;
+      if(lon != old_lon){
+        old_lon = lon;
+        sendFloat64(GPS_LON,lon);
+      }      
+      static float old_hdop = 0.0;
+      if(hdop != old_hdop){
+        old_hdop = hdop;
+        sendFloat64(GPS_HDOP,hdop);
+      }
+      static float old_speed = 0.0;
+      if(speed != old_speed){
+        old_speed = speed;
+        sendFloat64(GPS_SPEED,speed);
+      }     
+      static bool old_gps_updated = false;
+      if(gps_updated != old_gps_updated){
+        old_gps_updated = gps_updated;
+        sendInt64(GPS_UPDATED,gps_updated);
+      }            
+    }
+  #endif  
 }
 
 void taskUSCallback1(){
   readUS(0);
   readUS(10);
+  #ifdef ROS
+      /*static int old_us1 = -1;
+      if(USReadings[0] != old_us1){
+        old_us1 = USReadings[0];*/
+        sendInt64(US01, USReadings[0]);
+      /*}
+      static int old_us11 = -1;
+      if(USReadings[10] != old_us11){
+        old_us11 = USReadings[10];*/
+        sendInt64(US11, USReadings[10]);
+      //}
+  #endif
 }
 
 void taskUSCallback2(){
   readUS(1);
   readUS(9);
+  #ifdef ROS
+    /*static int old_us2 = -1;
+    if(USReadings[1] != old_us2){
+      old_us2 = USReadings[1];*/
+      sendInt64(US02, USReadings[1]);
+    /*}
+    static int old_us10 = -1;
+    if(USReadings[9] != old_us10){
+      old_us10 = USReadings[9];*/
+      sendInt64(US10, USReadings[9]);
+    //}
+  #endif
 }
 
 void taskUSCallback3(){
   readUS(2);
   readUS(8);
+  #ifdef ROS
+    /*static int old_us3 = -1;
+    if(USReadings[2] != old_us3){
+      old_us3 = USReadings[2];*/
+      sendInt64(US03, USReadings[2]);
+    /*}
+    static int old_us09 = -1;
+    if(USReadings[8] != old_us09){
+      old_us09 = USReadings[8];*/
+      sendInt64(US09, USReadings[8]);
+    //}
+  #endif
 }
 
 void taskUSCallback4(){
   readUS(3);
   readUS(7);
+  #ifdef ROS
+    /*static int old_us4 = -1;
+    if(USReadings[3] != old_us4){
+      old_us4 = USReadings[3];*/
+      sendInt64(US04, USReadings[3]);
+    /*}
+    static int old_us08 = -1;
+    if(USReadings[7] != old_us08){
+      old_us08 = USReadings[7];*/
+      sendInt64(US08, USReadings[7]);
+    //}
+  #endif
 }
 
 void taskUSCallback5(){
   readUS(4);
   readUS(6);
+  #ifdef ROS
+    /*static int old_us5 = -1;
+    if(USReadings[4] != old_us5){
+      old_us5 = USReadings[4];*/
+      sendInt64(US05, USReadings[4]);
+    /*}
+    static int old_us07 = -1;
+    if(USReadings[6] != old_us07){
+      old_us07 = USReadings[6];*/
+      sendInt64(US07, USReadings[6]);
+   // }
+  #endif
 }
 
 void taskUSCallback6(){
   readUS(5);
+  #ifdef ROS
+    /*static int old_us6 = -1;
+    if(USReadings[5] != old_us6){
+      old_us6 = USReadings[5];*/
+      sendInt64(US06, USReadings[5]); 
+    //}    
+  #endif
 }
 
 void taskShowUSReadingCallback(){
@@ -88,46 +189,34 @@ void taskShowUSReadingCallback(){
   Serial.print("Botao Verde: ");Serial.println(botaoVerde);
   Serial.print("Botao Preto: ");Serial.println(botaoPreto);
   Serial.print("Trava de seguranca: ");Serial.println(travaSeguranca);
+ 
   unsigned long t2 = millis();
   Serial.print("Demorei ");
   Serial.println(t2-t1);
-  Serial.println(" ");    
-}
-
-void taskROSCallback(){
-  sendInt64(US01, USReadings[0]);
-  sendInt64(US02, USReadings[1]);
-  sendInt64(US03, USReadings[2]);
-  sendInt64(US04, USReadings[3]);
-  sendInt64(US05, USReadings[4]);
-  sendInt64(US06, USReadings[5]);
-  sendInt64(US07, USReadings[6]);
-  sendInt64(US08, USReadings[7]);
-  sendInt64(US09, USReadings[8]);
-  sendInt64(US10, USReadings[9]);
-  sendInt64(US11, USReadings[10]);
-
-  sendInt64(SENSOR_TOQUE, sensorToque);
-  sendInt64(BOTAO_PRETO, botaoPreto);
-  sendInt64(BOTAO_VERDE, botaoVerde);
-
-  sendFloat64(VEL_ATUAL_DIR,velAtual.dir);
-  sendFloat64(VEL_ATUAL_ESQ,velAtual.esq);   
-
-  sendFloat64(GPS_LAT,lat);
-  sendFloat64(GPS_LON,lon);
-  sendInt64(GPS_VALID,gps_valid);
-  sendFloat64(GPS_HDOP,hdop);
-  sendFloat64(GPS_SPEED,speed);
-  sendFloat64(GPS_COURSE,course);
-  //sendFloat64(GPS_ALT,alt);
-  
+  Serial.println(" "); 
 }
 
 void taskBotaoCallback(){
   sensorToque = lerSensorToque();
   botaoPreto = lerBotaoPreto();
   botaoVerde = lerBotaoVerde();
+  #ifdef ROS
+    static bool old_sensor_toque = false;
+    if(old_sensor_toque != sensorToque){
+      old_sensor_toque = sensorToque;
+      sendInt64(SENSOR_TOQUE, sensorToque); 
+    }
+    static bool old_botao_verde = false;
+    if(old_botao_verde != botaoVerde){
+      old_botao_verde = botaoVerde;
+      sendInt64(BOTAO_VERDE, botaoVerde);
+    }
+    static bool old_botao_preto = false;
+    if(old_botao_preto != botaoPreto){
+      old_botao_preto = botaoPreto;
+      sendInt64(BOTAO_PRETO, botaoPreto);
+    }    
+  #endif
 }
 void taskComArduinoCallback(){
   processarControleRC(velRef.dir,velRef.esq);
@@ -144,6 +233,18 @@ void taskComArduinoCallback(){
   if(ET2.receiveData()){
     velAtual.dir = velFromRaw(velAtualRaw.dir);
     velAtual.esq = velFromRaw(velAtualRaw.esq);
+    #ifdef ROS
+      static float old_vel_atual_dir = -999999;
+      if(old_vel_atual_dir != velAtual.dir){
+        old_vel_atual_dir = velAtual.dir;
+        sendFloat64(VEL_ATUAL_DIR,velAtual.dir);
+      }
+      static float old_vel_atual_esq = -999999;
+      if(old_vel_atual_esq != velAtual.esq){
+        old_vel_atual_esq = velAtual.esq;
+        sendFloat64(VEL_ATUAL_ESQ,velAtual.esq);
+      }
+    #endif
   }
     
 }

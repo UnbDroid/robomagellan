@@ -9,7 +9,8 @@
 TinyGPSPlus gps;
 
 double lat,lon,alt,hdop,speed,course;
-bool gps_valid;
+uint32_t age;
+bool gps_valid,gps_updated;
 
 const int chipSelect = CS;
 int dataString = 0;
@@ -39,14 +40,33 @@ void displayInfo()
   }*/
   //Serial.print(F("Location: "));
   gps_valid = gps.location.isValid();
-  if (gps.location.isValid())
+  //Serial.print("valid: ");Serial.println(gps_valid);
+  if (gps_valid)
   {
+    //gps_updated = gps.location.isUpdated();
     lat = gps.location.lat();
     lon = gps.location.lng();
     alt = gps.altitude.meters();
     speed = gps.speed.kmph();
     course = gps.course.deg();
     hdop = gps.hdop.value()/100.0;
+    age = gps.location.age();
+    if(age < 20){
+      gps_updated = true;
+    }else{
+      gps_updated = false;
+    }
+   /* #ifndef ROS
+      Serial.print("Lat: ");Serial.println(lat,8);
+      Serial.print("Lng: ");Serial.println(lon,8);
+      Serial.print("Speed: ");Serial.println(speed/3.6,8);
+      Serial.print("Hdop: ");Serial.println(hdop,8);  
+      Serial.print("valid: ");Serial.println(gps_valid);
+      Serial.print("updated: ");Serial.println(gps_updated);
+      Serial.print("Age: ");Serial.println(age);
+      Serial.println("-----------------------------------------");
+    #endif*/
+    
     /*Serial.print(lat,8);
     Serial.print(F("\t"));
     Serial.print(lon,8);
@@ -74,6 +94,7 @@ void displayInfo()
    //Serial.println(F("INVALID"));
     lat = 0;
     lon = 0;
+    gps_updated = false;
     
     /*if(dataFile){
       

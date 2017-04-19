@@ -18,8 +18,6 @@ void taskUSCallback6();
 void taskBotaoCallback();
 void taskShowUSReadingCallback(); // Essa é a task que printa as coisas no SERIAL, ela deve estar desabilitada para que haja comunicacao com o ROS
 
-void taskROSCallback(); // Somente deve ser usada sem a taskShowUSReadingCallback habilitada
-
 void taskComArduinoCallback();
 
 Task taskGPS(PERIODO, TASK_FOREVER, &taskGPSCallback);
@@ -34,8 +32,6 @@ Task showUSReadings(PERIODO, TASK_FOREVER, &taskShowUSReadingCallback);
 
 Task taskBotao(PERIODO, TASK_FOREVER, &taskBotaoCallback);
 
-Task taskROS(PERIODO,TASK_FOREVER, &taskROSCallback);
-
 Task taskComArduino (30, TASK_FOREVER, &taskComArduinoCallback);
 
 void start_TASKS(){
@@ -49,9 +45,7 @@ void start_TASKS(){
   runner.addTask(taskUS4);
   runner.addTask(taskUS5);
   runner.addTask(taskUS6);
-  #ifdef ROS
-   runner.addTask(taskROS); // NUNCA ADICIONAR ELA JUNTO COM A showUSReadings
-  #else
+  #ifndef ROS
    runner.addTask(showUSReadings); // NUNCA ADICIONAR ELA JUNTO COM A TASKROS
   #endif
   
@@ -64,9 +58,7 @@ void start_TASKS(){
   taskUS4.enable();
   taskUS5.enable();
   taskUS6.enable();
-  #ifdef ROS
-    taskROS.enable(); // NUNCA HABILITAR ELA JUNTO COM A showUSReadings
-  #else
+  #ifndef ROS
     showUSReadings.enable(); // NUNCA HABILITAR ELA JUNTO COM A TASKROS   
   #endif 
   taskComArduino.enable();
