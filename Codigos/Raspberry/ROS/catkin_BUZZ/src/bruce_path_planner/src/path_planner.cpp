@@ -43,8 +43,8 @@ int main(int argc, char **argv){
   ros::Subscriber subPathRequest = n.subscribe("path_request", 1000, PathRequestCallback);
   ros::Subscriber subNewObstacles = n.subscribe("new_obstacles", 1000, NewObstaclesCallback);
 
-  ros::Publisher pathPub = n.advertise<nav_msgs::Path>("map_path_planned",1000);
-  ros::Publisher routeOkPub = n.advertise<std_msgs::Bool>("route_ok",1000);
+  ros::Publisher pathPub = n.advertise<nav_msgs::Path>("map_path_planned",1000,true);
+  ros::Publisher routeOkPub = n.advertise<std_msgs::Bool>("route_ok",1000,true);
 
   pathMsg.header.seq = 0;
   pathMsg.header.stamp = ros::Time::now();

@@ -127,6 +127,9 @@ static bool botao_preto = false;
 static float velocidadeAtualEsq = 0.0;
 static float velocidadeAtualDir = 0.0;
 
+double oldLat = 0.0;
+double oldLng = 0.0;
+
 raspberry_msgs::StampedFloat32 velocidadeArduino;
 
 int verifyIfUS(long int id){
@@ -168,8 +171,6 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
     botao_verde = msg->data;
   }else if(msg->id == GPS_VALID){
  	gpsData.valid = msg->data;	  	
-  }else if(msg->id == GPS_UPDATED){
-	gpsData.updated = msg->data;
   }
 }
 
@@ -179,9 +180,22 @@ void stampedFloat64Callback(const arduino_msgs::StampedFloat64::ConstPtr& msg){
   }else if(msg->id == VEL_ATUAL_ESQ){
     velocidadeAtualEsq = msg->data;
   }else if(msg->id == GPS_LAT){
- 	gpsData.lat = msg->data;	  	
+ 	gpsData.lat = msg->data;
+	if(gpsData.lat != oldLat){
+		gpsData.updated = true;
+		oldLat = gpsData.lat;
+	}else{
+		gpsData.updated = false;
+	}	  	
   }else if(msg->id == GPS_LON){
- 	gpsData.lng = msg->data;	  	
+ 	gpsData.lng = msg->data;	
+	if(gpsData.lng != oldLng){
+                gpsData.updated = true;
+                oldLng = gpsData.lng;
+        }else{
+                gpsData.updated = false;
+        }
+  	
   }else if(msg->id == GPS_HDOP){
     gpsData.hdop = msg->data;
   }else if(msg->id == GPS_SPEED){

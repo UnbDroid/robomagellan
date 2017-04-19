@@ -16,12 +16,12 @@
 
 #define PI 3.14159265f
 
-//#define ARQ_DEBUG 1
-#define DEBUG 1
+#define ARQ_DEBUG 1
+//#define DEBUG 1
 //#define GAZEBO 1
 #define ARDUINO 1
 #define CONVERTER_COORD 1
-#define TESTE_US 1
+//#define TESTE_US 1
 
 // Modos de operacao
 #define PARA 0
@@ -155,7 +155,7 @@ void trajetoCallback(const nav_msgs::Path::ConstPtr& msg)
  // if((enable != PARA) && (enable != SEGUIR_VELOCIDADE)){
     pose = msg->poses;
     trajetoriaAtual = 0;
-
+    ROS_INFO ("Posicao Recebida");
 #if defined(DEBUG)
     ROS_INFO("Posicao recebida");
 #endif
