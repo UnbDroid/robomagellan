@@ -16,7 +16,7 @@
 
 #define PI 3.14159265f
 
-#define ARQ_DEBUG 1
+//#define ARQ_DEBUG 1
 //#define DEBUG 1
 //#define GAZEBO 1
 #define ARDUINO 1
@@ -72,6 +72,7 @@ struct ultrassons {
 
 std::vector<geometry_msgs::PoseStamped> pose;
 geometry_msgs::PoseStamped auxPose;
+geometry_msgs::PoseStamped trajetoRecebido;
 geometry_msgs::Point32 VelocidadeRecebida;
 
 #if defined(GAZEBO)
@@ -93,6 +94,7 @@ bool obstaculo = false;
 bool desviou = false;
 bool testando_us = false;
 
+static float trajetoria_id = -100, trajetoria_id_anterior = -200;
 
 static float velocidadeLinear = 0, velocidadeAngular = 0;
 
@@ -153,9 +155,17 @@ void verificaObstaculos (tf::TransformListener &tfListener);
 void trajetoCallback(const nav_msgs::Path::ConstPtr& msg)
 {
  // if((enable != PARA) && (enable != SEGUIR_VELOCIDADE)){
-    pose = msg->poses;
-    trajetoriaAtual = 0;
-    ROS_INFO ("Posicao Recebida");
+
+    trajetoRecebido = msg->poses.front();
+    trajetoria_id = trajetoRecebido.pose.position.z;
+    
+    if (trajetoria_id != trajetoria_id_anterior) {
+      trajetoria_id_anterior = trajetoria_id;
+      pose = msg->poses;
+      trajetoriaAtual = 0; 
+      ROS_INFO("Posicao recebida");
+    }
+
 #if defined(DEBUG)
     ROS_INFO("Posicao recebida");
 #endif
@@ -298,6 +308,18 @@ void calculaSegmento (void) {
     if (!pose.empty()){
       auxPose = pose.front();
       pose.erase(pose.begin());
+
+      if (trajetoriaAtual == 0) {
+        if (!pose.empty()){
+          auxPose = pose.front();
+          pose.erase(pose.begin());
+        }
+        else {
+          parar = true;
+          inicio = false;
+          return;
+        }
+      }
 
       aux_x = roboDestino.x;
       aux_y = roboDestino.y;
@@ -1083,6 +1105,7 @@ int main(int argc, char **argv)
     calculaSegmento();
 
 #if defined(TESTE_US)
+    #warning Atencao! TESTE_US esta definido!
     vel_max_arduino = 3.0;
 
     verificaObstaculosZVD(tfListener);
