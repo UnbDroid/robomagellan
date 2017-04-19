@@ -4,7 +4,7 @@
 //#define codigo_continuo
 #define Rastreia9
 
-#include "RastreiaCone9.hpp"
+#include "RastreiaCone12.hpp"
 #include <sys/time.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
@@ -231,22 +231,6 @@ bool p6 = false;
 bool p7 = false;
 
 
-void Painel2(){
-	namedWindow( "PAINEL 2", WINDOW_NORMAL );
-	resizeWindow("PAINEL 2", 250, 1);
-
-
-	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
-	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
-	createTrackbar( "Janela 1", "PAINEL 2", &cone.tamanho_mat, 1000);
-	createTrackbar( "Minimo pontos", "PAINEL 2", &cone.min_pontos, 1000);
-	createTrackbar( "Percentual pontos", "PAINEL 2", &cone.perc_pontosi, 1000);
-
-	createTrackbar( "Aceita Range", "PAINEL 2", &cone.min_aceita, 256);
-
-
-
-}
 
 
 #ifndef Rastreia9
@@ -271,6 +255,23 @@ void Painel1(){
 	 
 
 	  
+}
+
+void Painel2(){
+	namedWindow( "PAINEL 2", WINDOW_NORMAL );
+	resizeWindow("PAINEL 2", 250, 1);
+
+
+	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
+	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
+	createTrackbar( "Janela 1", "PAINEL 2", &cone.tamanho_mat, 1000);
+	createTrackbar( "Minimo pontos", "PAINEL 2", &cone.min_pontos, 1000);
+	createTrackbar( "Percentual pontos", "PAINEL 2", &cone.perc_pontosi, 1000);
+
+	createTrackbar( "Aceita Range", "PAINEL 2", &cone.min_aceita, 256);
+
+
+
 }
 
 
@@ -405,6 +406,31 @@ void Painel1(){
 
 
 	
+}
+
+void Painel2(){
+	namedWindow( "PAINEL 2", WINDOW_NORMAL );
+	resizeWindow("PAINEL 2", 250, 1);
+
+
+	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
+	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
+	createTrackbar( "Janela 1", "PAINEL 2", &cone.tamanho_mat, 1000);
+	createTrackbar( "Minimo pontos", "PAINEL 2", &cone.min_pontos, 1000);
+	createTrackbar( "Percentual pontos", "PAINEL 2", &cone.perc_pontosi, 1000);
+
+	createTrackbar( "Aceita Range", "PAINEL 2", &cone.min_aceita, 256);
+	//createTrackbar( "H hist ponderado", "PAINEL 2", &cone.H_pondera, 100);
+	//createTrackbar( "S hist ponderado", "PAINEL 2", &cone.S_pondera, 100);
+	//createTrackbar( "V hist ponderado", "PAINEL 2", &cone.V_pondera, 100);
+
+	//createTrackbar( "Peso Original", "PAINEL 2", &cone.Peso_original, 100);
+	createTrackbar( "Blur Regiao de Interesse", "PAINEL 2", &cone.Peso_blur, 100);
+	createTrackbar( "Aceita blur", "PAINEL 2", &cone.aceita_blur, 256);
+	createTrackbar( "Aceita Final", "PAINEL 2", &cone.Hist_final, 256);
+
+
+
 }
 
 void Painel3(){
