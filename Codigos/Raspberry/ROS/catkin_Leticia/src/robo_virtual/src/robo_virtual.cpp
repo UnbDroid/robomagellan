@@ -72,7 +72,7 @@ struct ultrassons {
 
 std::vector<geometry_msgs::PoseStamped> pose;
 geometry_msgs::PoseStamped auxPose;
-geometry_msgs::PoseStamped trajetoRecebido;
+//geometry_msgs::PoseStamped trajetoRecebido;
 geometry_msgs::Point32 VelocidadeRecebida;
 
 #if defined(GAZEBO)
@@ -94,7 +94,7 @@ bool obstaculo = false;
 bool desviou = false;
 bool testando_us = false;
 
-static float trajetoria_id = -100, trajetoria_id_anterior = -200;
+//static float trajetoria_id = -100, trajetoria_id_anterior = -200;
 
 static float velocidadeLinear = 0, velocidadeAngular = 0;
 
@@ -156,15 +156,15 @@ void trajetoCallback(const nav_msgs::Path::ConstPtr& msg)
 {
  // if((enable != PARA) && (enable != SEGUIR_VELOCIDADE)){
 
-    trajetoRecebido = msg->poses.front();
-    trajetoria_id = trajetoRecebido.pose.position.z;
+    //trajetoRecebido = msg->poses.front();
+    //trajetoria_id = trajetoRecebido.pose.position.z;
     
-    if (trajetoria_id != trajetoria_id_anterior) {
-      trajetoria_id_anterior = trajetoria_id;
+    //if (trajetoria_id != trajetoria_id_anterior) {
+      //trajetoria_id_anterior = trajetoria_id;
       pose = msg->poses;
       trajetoriaAtual = 0; 
       ROS_INFO("Posicao recebida");
-    }
+    //}
 
 #if defined(DEBUG)
     ROS_INFO("Posicao recebida");
