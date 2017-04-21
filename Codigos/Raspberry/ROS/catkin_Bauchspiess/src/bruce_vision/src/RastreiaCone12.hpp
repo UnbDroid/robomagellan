@@ -1,12 +1,14 @@
-//#define usuario 
+#define usuario 
 //#define filmar
 
 //#define mostra_partes
 
 //#define mostra_range
+//#define mostra_rangez
 
-//#define fosforescente
-#define fosco
+
+#define fosforescente
+//#define fosco
 
 #define VEZ 1
 
@@ -18,7 +20,7 @@
 
 
 
-//#define ve_tempo
+//#define ve_tempo9
 
 
 #include "opencv2/opencv.hpp"
@@ -98,18 +100,66 @@ public:
 	int descidaV;
 	int step2_V;
 	int baixoV;
-	
+
+
 	int min_aceita;
-
-	bool filtro;
-
+	int aceita_final;
 	int H_pondera;
 	int S_pondera;
 	int V_pondera;
-	int Hist_final;
-	int Peso_blur;
-	int Peso_original;
+	int size_blur;
 	int aceita_blur;
+
+	int potH;
+	int potS;
+	int potV;
+
+
+	int subidaH1z;
+	int step1_H1z;
+	int altoH1z;
+	int descidaH1z;
+	int step2_H1z;
+	int baixoH1z;
+
+	int subidaH2z;
+	int step1_H2z;
+	int altoH2z;
+	int descidaH2z;
+	int step2_H2z;
+	int baixoH2z;
+
+	int subidaSz;
+	int step1_Sz;
+	int altoSz;
+	int descidaSz;
+	int step2_Sz;
+	int baixoSz;
+
+	int subidaVz;
+	int step1_Vz;
+	int altoVz;
+	int descidaVz;
+	int step2_Vz;
+	int baixoVz;
+
+	int min_aceitaz;
+	int aceita_finalz;
+	int H_ponderaz;
+	int S_ponderaz;
+	int V_ponderaz;
+	int size_blurz;
+	int aceita_blurz;
+
+	int potHz;
+	int potSz;
+	int potVz;
+
+
+
+
+
+	bool filtro;
 
 private:
 
@@ -119,6 +169,11 @@ private:
 	float S[256];
 	float V[256];
 	uchar Tabela[256][256][256];
+
+	float Hz[256];
+	float Sz[256];
+	float Vz[256];
+	uchar Tabela_perto[256][256][256];
 
 	vector<Vec3f> dados;
 	int ref_dados;
@@ -207,7 +262,7 @@ public:
 
 void RastreiaCone::PreencheTabela(){
 
-	#ifdef ve_tempo	
+	#ifdef ve_tempo9	
 		gettimeofday(&tempo1, NULL);
 	#endif
 		
@@ -238,26 +293,7 @@ void RastreiaCone::PreencheTabela(){
 		H[i] = 0;
 	}
 
-	incremento = (1.0-(float)((float)step1_H2/100.0) )/(float)(altoH2 - subidaH2);
-	valor = (float)((float)step1_H2/100.0);
-	for( i = subidaH2; i<altoH2; i++){
-		valor += incremento;
-		H[i] = valor;
-	}
-	for(i = altoH2 ; i<descidaH2; i++){
-		H[i] = 1;
-	}
-	valor = 1;
-	incremento = (1.0-(float)((float)step2_H2/100.0) )/(float)(descidaH2 - baixoH2);
-	if(baixoH2 > 256)
-		baixoH2 = 256;
-	for(i = descidaH2; i<baixoH2; i++){
-		valor += incremento;
-		H[i] = valor;
-	}
-	for(i = baixoH2; i<256; i++){
-		H[i] = 0;
-	}
+
 
 
 
@@ -312,22 +348,301 @@ void RastreiaCone::PreencheTabela(){
 		V[i] = 0;
 	}
 
-	for(i = 0; i<256; i++){
-		for(j = 0; j<256; j++){
-			for(k = 0; k<256; k++){
+
+	#ifndef soma
+		float vetor_temporario[256];
+		if (potH == 0){
+			for(j = 0; j<256; j++){
+				H[j] = sqrt(H[j]);
+			}
+		}
+		else if(potH > 1){
+			for(i = 0; i<256; i++){
+				vetor_temporario[i] = H[i];
+			}
+			for(i = 0; i<potH-1; i++){
+				for(j = 0; j<256; j++){
+					H[j] = H[j]*vetor_temporario[j];
+				}
+			}
+		}
+		if (potS == 0){
+			for(j = 0; j<256; j++){
+				S[j] = sqrt(S[j]);
+			}
+		}
+		else if(potS > 1){
+			for(i = 0; i<256; i++){
+				vetor_temporario[i] = S[i];
+			}
+			for(i = 0; i<potS-1; i++){
+				for(j = 0; j<256; j++){
+					S[j] = S[j]*vetor_temporario[j];
+				}
+			}
+		}
+		if (potV == 0){
+			for(j = 0; j<256; j++){
+				V[j] = sqrt(V[j]);
+			}
+		}
+		else if(potV > 1){
+			for(i = 0; i<256; i++){
+				vetor_temporario[i] = V[i];
+			}
+			for(j = 0; j<256; j++){
+				for(i = 0; i< (potV-1); i++){
+					V[j] =  V[j]*vetor_temporario[j];
+				}
+			}
+		}	
+
+	#endif
+
+	for(k = 0; k<251; k++){
+		for(i = 0; i<256; i++){
+			for(j = 0; j<256; j++){
 				
 				#ifdef soma
 					Tabela[i][j][k] = (uchar) 255*( (H[i] + S[j] + V[k])/3.0);
 				#endif
 				#ifndef soma
-					Tabela[i][j][k] = (uchar) 255*H[i]*H[i]*H[i]*S[j]*S[j]*S[j]*S[j]*S[j]*V[k];
+					Tabela[i][j][k] = (uchar) 255*H[i]*S[j]*V[k];
 				#endif
 			}
 		}
 	}
 
+	for(i = 10; i<21; i++){
+		H[i] = 1;
+	}
 
-	#ifdef ve_tempo
+	for(k = 251; k<256; k++){
+		for(i = 0; i<256; i++){
+			for(j = 0; j<256; j++){
+				
+				#ifdef soma
+					Tabela[i][j][k] = (uchar) 255*( (H[i] + S[j] + V[k])/3.0);
+				#endif
+				#ifndef soma
+					Tabela[i][j][k] = (uchar) 255*H[i]*S[j]*V[k];
+				#endif
+			}
+		}
+	}
+
+	for(i = 175; i<177; i++ ){
+		for(k = 200; k<256; k++){
+			for(j = 190; j<256; j++){
+				
+				#ifdef soma
+					Tabela[i][j][k] = (uchar) 255*( (H[i] + S[j] + V[k])/3.0);
+				#endif
+				#ifndef soma
+					Tabela[i][j][k] = (uchar) 255*0.8;
+				#endif
+			}
+		}
+	}
+
+	for(i = 177; i<180; i++ ){
+		for(k = 200; k<256; k++){
+			for(j = 190; j<256; j++){
+				
+				#ifdef soma
+					Tabela[i][j][k] = (uchar) 255*( (H[i] + S[j] + V[k])/3.0);
+				#endif
+				#ifndef soma
+					Tabela[i][j][k] = (uchar) 255;
+				#endif
+			}
+		}
+	}
+
+	/*
+	for(i = 0; i<256; i++){
+		cout<<V[i]<<"    ";
+		if(i%10 == 9)
+			cout<<endl;
+	}
+
+	cout<<endl<<endl<<"---------------------------"<<endl;
+
+	for(i = 0; i<256; i++){
+		cout<<vetor_temporario[i]<<"    ";
+		if(i%10 == 9)
+			cout<<endl;
+	}
+
+	*/
+
+	/*
+ 	//----Para o Zoom -----
+
+
+	//Filtro da Matiz
+	for(i = 0; i<subidaH1z; i++){
+		Hz[i] = 0;
+	}
+	incremento = (1.0-(float)((float)step1_H1z/100.0) )/(float)(altoH1z - subidaH1z);
+	valor = (float)((float)step1_H1z/100.0);
+	for( i = subidaH1z; i<altoH1z; i++){
+		valor += incremento;
+		Hz[i] = valor;
+	}
+	for(i = altoH1z ; i<descidaH1z; i++){
+		Hz[i] = 1;
+	}
+	valor = 1;
+	incremento = (1.0-(float)((float)step2_H1z/100.0) )/(float)(descidaH1z - baixoH1z);
+	for(i = descidaH1z; i<baixoH1z; i++){
+		valor += incremento;
+		Hz[i] = valor;
+	}
+	for(i = baixoH1z; i<subidaH2z; i++){
+		Hz[i] = 0;
+	}
+
+	incremento = (1.0-(float)((float)step1_H2z/100.0) )/(float)(altoH2z - subidaH2z);
+	valor = (float)((float)step1_H2z/100.0);
+	for( i = subidaH2z; i<altoH2z; i++){
+		valor += incremento;
+		Hz[i] = valor;
+	}
+	for(i = altoH2z ; i<descidaH2z; i++){
+		Hz[i] = 1;
+	}
+	valor = 1;
+	incremento = (1.0-(float)((float)step2_H2z/100.0) )/(float)(descidaH2z - baixoH2z);
+	if(baixoH2z > 256)
+		baixoH2z = 256;
+	for(i = descidaH2z; i<baixoH2z; i++){
+		valor += incremento;
+		Hz[i] = valor;
+	}
+	for(i = baixoH2z; i<256; i++){
+		Hz[i] = 0;
+	}
+
+
+
+	//Filtro da Saturação
+	for(i = 0; i<subidaSz; i++){
+		Sz[i] = 0;
+	}
+	incremento = (1.0-(float)((float)step1_Sz/100.0) )/(float)(altoSz - subidaSz);
+	valor = (float)((float)step1_Sz/100.0);
+	for( i = subidaSz; i<altoSz; i++){
+		valor += incremento;
+		Sz[i] = valor;
+	}
+	for(i = altoSz ; i<descidaSz; i++){
+		Sz[i] = 1;
+	}
+	valor = 1;
+	incremento = (1.0-(float)((float)step2_Sz/100.0) )/(float)(descidaSz - baixoSz);
+	if(baixoSz > 256)
+		baixoSz = 256;
+	for(i = descidaSz; i<baixoSz; i++){
+		valor += incremento;
+		Sz[i] = valor;
+	}
+	for(i = baixoSz; i<256; i++){
+		Sz[i] = 0;
+	}
+
+
+	//Filtro do Value
+	for(i = 0; i<subidaVz; i++){
+		Vz[i] = 0;
+	}
+	incremento = (1.0-(float)((float)step1_Vz/100.0) )/(float)(altoVz - subidaVz);
+	valor = (float)((float)step1_Vz/100.0);
+	for( i = subidaVz; i<altoVz; i++){
+		valor += incremento;
+		Vz[i] = valor;
+	}
+	for(i = altoVz ; i<descidaVz; i++){
+		Vz[i] = 1;
+	}
+	valor = 1;
+	incremento = (1.0-(float)((float)step2_Vz/100.0) )/(float)(descidaVz - baixoVz);
+	if(baixoSz > 256)
+		baixoSz = 256;
+	for(i = descidaVz; i<baixoVz; i++){
+		valor += incremento;
+		Vz[i] = valor;
+	}
+	for(i = baixoVz; i<256; i++){
+		Vz[i] = 0;
+	}
+
+
+	#ifndef soma
+		if (potHz == 0){
+			for(j = 0; j<256; j++){
+				Hz[j] = sqrt(Hz[j]);
+			}
+		}
+		else if(potHz > 1){
+			for(i = 0; i<256; i++){
+				vetor_temporario[i] = Hz[i];
+			}
+			for(i = 0; i<potHz-1; i++){
+				for(j = 0; j<256; j++){
+					Hz[j] *= vetor_temporario[j];
+				}
+			}
+		}
+		if (potSz == 0){
+			for(j = 0; j<256; j++){
+				Sz[j] = sqrt(Sz[j]);
+			}
+		}
+		else if(potSz > 1){
+			for(i = 0; i<256; i++){
+				vetor_temporario[i] = Sz[i];
+			}
+			for(i = 0; i<potSz-1; i++){
+				for(j = 0; j<256; j++){
+					Sz[j] *= vetor_temporario[j];
+				}
+			}
+		}
+		if (potVz == 0){
+			for(j = 0; j<256; j++){
+				Vz[j] = sqrt(Vz[j]);
+			}
+		}
+		else if(potVz > 1){
+			for(i = 0; i<256; i++){
+				vetor_temporario[i] = Vz[i];
+			}
+			for(i = 0; i<potVz-1; i++){
+				for(j = 0; j<256; j++){
+					Vz[j] *= vetor_temporario[j];
+				}
+			}
+		}	
+
+	#endif
+
+	for(i = 0; i<256; i++){
+		for(j = 0; j<256; j++){
+			for(k = 0; k<256; k++){
+				
+				#ifdef soma
+					Tabela_perto[i][j][k] = (uchar) 255*( (Hz[i] + Sz[j] + Vz[k])/3.0);
+				#endif
+				#ifndef soma
+					Tabela_perto[i][j][k] = (uchar) 255*Hz[i]*Sz[j]*Vz[k];
+				#endif
+			}
+		}
+	}
+	
+	*/
+	#ifdef ve_tempo9
 		gettimeofday(&tempo2, NULL);
 		tempo = (int) (1000000 * (tempo2.tv_sec - tempo1.tv_sec) + (tempo2.tv_usec - tempo1.tv_usec));
 			cout<<"Preenche: "<<tempo<<endl;
@@ -362,11 +677,12 @@ RastreiaCone::RastreiaCone(){
 		#ifdef ponderado
 
 			H_pondera = 0;
-			S_pondera = 100;
+			S_pondera = 60;
 			V_pondera = 70;
-			Hist_final = 160;
-			Peso_blur = 25;
-			aceita_blur = 50;
+			aceita_final = 160;
+			size_blur = 15;
+			aceita_blur = 30;
+			min_aceita = 250;
 			//Peso_original = 8;
 
 			subidaH1 = 0;
@@ -383,53 +699,64 @@ RastreiaCone::RastreiaCone(){
 			step2_H2 = 0;
 			baixoH2 = 180;
 
-			subidaS = 130;
+			subidaS = 0;
 			step1_S = 0;
-			altoS = 250;
+			altoS = 200;
 			descidaS = 256;
 			step2_S = 100;
 			baixoS = 256;
 
 			subidaV = 0;
-			step1_V = 80;
-			altoV = 100;
+			step1_V = 0;
+			altoV = 0;
 			descidaV = 256;
 			step2_V = 70;
 			baixoV = 256;
 
-			min_aceita = 250;
-		#endif
+			potH = 3;
+			potS = 5;
+			potV = 0;
 
-		#ifndef ponderado
-			subidaH1 = 0;
-			step1_H1 = 50;
-			altoH1 = 0;
-			descidaH1 = 10;
-			step2_H1 = 0;
-			baixoH1 = 20;
 
-			subidaH2 = 190;
-			step1_H2 = 50;
-			altoH2 = 190;
-			descidaH2 = 180;
-			step2_H2 = 0;
-			baixoH2 = 180;
+			//Perto
+			min_aceitaz = 250;
+			H_ponderaz = 0;
+			S_ponderaz = 100;
+			V_ponderaz = 70;
+			aceita_finalz = 160;
+			size_blurz = 15;
+			aceita_blurz = 30;
+			//Peso_original = 8;
 
-			subidaS = 90;
-			step1_S = 0;
-			altoS = 170;
-			descidaS = 256;
-			step2_S = 50;
-			baixoS = 256;
+			subidaH1z = 0;
+			step1_H1z = 0;
+			altoH1z = 0;
+			descidaH1z = 10;
+			step2_H1z = 20;
+			baixoH1z = 30;
 
-			subidaV = 30;
-			step1_V = 70;
-			altoV = 130;
-			descidaV = 256;
-			step2_V = 50;
-			baixoV = 256;
+			subidaH2z = 160;
+			step1_H2z = 0;
+			altoH2z = 170;
+			descidaH2z = 170;
+			step2_H2z = 0;
+			baixoH2z = 180;
 
-			min_aceita = 230;
+			subidaSz = 130;
+			step1_Sz = 0;
+			altoSz = 250;
+			descidaSz = 256;
+			step2_Sz = 100;
+			baixoSz = 256;
+
+			subidaVz = 0;
+			step1_Vz = 80;
+			altoVz = 100;
+			descidaVz = 256;
+			step2_Vz = 70;
+			baixoVz = 256;
+
+
 		#endif	
 
 	#endif
@@ -441,8 +768,8 @@ RastreiaCone::RastreiaCone(){
 			H_pondera = 0;
 			S_pondera = 100;
 			V_pondera = 70;
-			Hist_final = 160;
-			Peso_blur = 25;
+			aceita_final = 160;
+			size_blur = 25;
 			aceita_blur = 50;
 			//Peso_original = 8;
 
@@ -476,38 +803,6 @@ RastreiaCone::RastreiaCone(){
 
 			min_aceita = 250;
 			
-		#endif
-
-		#ifndef ponderado
-			subidaH1 = 0;
-			step1_H1 = 0;
-			altoH1 = 0;
-			descidaH1 = 30;
-			step2_H1 = 0;
-			baixoH1 = 80;
-
-			subidaH2 = 190;
-			step1_H2 = 50;
-			altoH2 = 190;
-			descidaH2 = 180;
-			step2_H2 = 0;
-			baixoH2 = 180;
-
-			subidaS = 215;
-			step1_S = 60;
-			altoS = 220;
-			descidaS = 256;
-			step2_S = 50;
-			baixoS = 256;
-
-			subidaV = 0;
-			step1_V = 50;
-			altoV = 30;
-			descidaV = 136;
-			step2_V = 0;
-			baixoV = 256;
-
-			min_aceita = 220;
 		#endif
 
 	#endif
@@ -573,7 +868,7 @@ void RastreiaCone::Laranja(Mat source, Mat* dest, int vez){
 	
 
 	cvtColor(source, hsv, CV_BGR2HSV);
-	Mat final(source.size(), CV_8UC1);
+	cvtColor(source, (*dest), CV_BGR2GRAY);
 
 
 	Mat uniao;
@@ -586,7 +881,6 @@ void RastreiaCone::Laranja(Mat source, Mat* dest, int vez){
 
     vector<Mat> channels;
     vector<Mat> canais(3);
-    vector<Mat> fusao(3);
 
 
 	split(hsv, channels);
@@ -594,128 +888,264 @@ void RastreiaCone::Laranja(Mat source, Mat* dest, int vez){
 	
 
 
+	if(vez > 0 ){
+		
+		#ifdef ponderado
+			//equalizeHist(channels[0], canais[0]);
+			equalizeHist(channels[1], canais[1]);
+			/*
+			if(vez == 1){
+				
+				float S_hist = (float)S_pondera/100;
+				float S_regular = 1-S_hist;
+				add(S_regular*channels[1], S_hist*canais[1], channels[1]);
+			}
+			*/
+			float S_hist = (float)S_pondera/100;
+			float S_regular = 1-S_hist;
+			add(S_regular*channels[1], S_hist*canais[1], channels[1]);	
+			equalizeHist(channels[2], canais[2]);
+			float V_hist = (float)V_pondera/100;
+			float V_regular = 1-V_hist;
+			add(V_regular*channels[2], V_hist*canais[2], channels[2]);
+		#endif	
+		
+		
+	    #ifdef mostra_partes
 
-	#ifdef ponderado
-		//equalizeHist(channels[0], canais[0]);
-		equalizeHist(channels[1], channels[1]);
-		equalizeHist(channels[2], canais[2]);
 
-		float V_hist = (float)V_pondera/100;
-		float V_regular = 1-V_hist;
+			Mat mostra_imagem;
+			#ifdef ponderado	
+				Mat partes_mostra6(source.size(), CV_8UC1);
+				Mat partes_mostra7(source.size(), CV_8UC1);
+				Mat partes_mostra8(source.size(), CV_8UC1);;
+			#endif	
 
-		add(V_regular*channels[2], V_hist*canais[2], channels[2]);
-	#endif	
-
-	
-    #ifdef mostra_partes
+	   
 
 
-		Mat mostra_imagem;
-		#ifdef ponderado	
-			Mat partes_mostra6(source.size(), CV_8UC1);
-			Mat partes_mostra7(source.size(), CV_8UC1);
-			Mat partes_mostra8(source.size(), CV_8UC1);;
+			#ifdef ponderado    
+			    nRows = channels[0].rows;
+			    nCols = channels[0].cols;
+				if (channels[0].isContinuous())
+			    {
+			        nCols *= nRows;
+			        nRows = 1;
+			    }
+
+			    for( i = 0; i < nRows; ++i)
+			    {
+			    	p2 = partes_mostra6.ptr<uchar>(i);
+			        p = channels[0].ptr<uchar>(i);
+			        for ( j = 0; j < nCols; ++j)
+			        {
+			            p2[j] = 255*H[p[j]];
+			        }
+			    }
+
+			    nRows = channels[1].rows;
+			    nCols = channels[1].cols;
+				if (channels[1].isContinuous())
+			    {
+			        nCols *= nRows;
+			        nRows = 1;
+			    }
+
+			    for( i = 0; i < nRows; ++i)
+			    {
+			    	p2 = partes_mostra7.ptr<uchar>(i);
+			        p = channels[1].ptr<uchar>(i);
+			        for ( j = 0; j < nCols; ++j)
+			        {
+			            p2[j] = 255*S[p[j]];
+			        }
+			    }
+
+			    nRows = channels[2].rows;
+			    nCols = channels[2].cols;
+				if (channels[2].isContinuous())
+			    {
+			        nCols *= nRows;
+			        nRows = 1;
+			    }
+
+			    for( i = 0; i < nRows; ++i)
+			    {
+			    	p2 = partes_mostra8.ptr<uchar>(i);
+			        p = channels[2].ptr<uchar>(i);
+			        for ( j = 0; j < nCols; ++j)
+			        {
+			            p2[j] = 255*V[p[j]];
+			        }
+			    }
+
+			#endif    
+
+		    if(vez == VEZ){
+		    	
+		    	#ifdef ponderado
+			    	cvtColor(partes_mostra6, mostra_imagem, CV_GRAY2BGR);
+			    	putText(mostra_imagem, ("H"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+			    	imshow("Hdepois3", mostra_imagem);
+			    	cvtColor(partes_mostra7, mostra_imagem, CV_GRAY2BGR);
+			    	putText(mostra_imagem, ("S"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+			    	imshow("Sdepois3", mostra_imagem);
+			    	cvtColor(partes_mostra8, mostra_imagem, CV_GRAY2BGR);
+			    	putText(mostra_imagem, ("V"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+			    	imshow("Vdepois3", mostra_imagem);
+			    #endif	
+		    
+		    }
+	    #endif
+	  
+	    
+
+		#ifdef ponderado
+		    merge(channels, hsv);    
+		    num_channels = hsv.channels();
+		    nRows = hsv.rows;
+		    nCols = hsv.cols * num_channels;
+		    for( i = 0; i < nRows; ++i)
+		    {
+		        p = hsv.ptr<uchar>(i);
+		        p2 = dest->ptr<uchar>(i);
+		        for ( j = 0; j < nCols; j+=3)
+		        {
+		            p2[j/3] = Tabela[p[j]][p[j+1]][p[j+2]];
+		        }
+		    }
+		    #ifdef mostra_partes
+		    	imshow("combinacao",(*dest));
+		    #endif
+		#endif    
+	}	    	
+
+
+	/*
+	if(vez == 2){
+		#ifdef ponderado
+			//equalizeHist(channels[0], canais[0]);
+			equalizeHist(channels[1], channels[1]);
+			//equalizeHist(channels[2], canais[2]);
+
+			float V_hist = (float)V_pondera/100;
+			float V_regular = 1-V_hist;
+
+			add(V_regular*channels[2], V_hist*canais[2], channels[2]);
 		#endif	
 
-   
-
-
-		#ifdef ponderado    
-		    nRows = channels[0].rows;
-		    nCols = channels[0].cols;
-			if (channels[0].isContinuous())
-		    {
-		        nCols *= nRows;
-		        nRows = 1;
-		    }
-
-		    for( i = 0; i < nRows; ++i)
-		    {
-		    	p2 = partes_mostra6.ptr<uchar>(i);
-		        p = channels[0].ptr<uchar>(i);
-		        for ( j = 0; j < nCols; ++j)
-		        {
-		            p2[j] = 255*H[p[j]];
-		        }
-		    }
-
-		    nRows = channels[1].rows;
-		    nCols = channels[1].cols;
-			if (channels[1].isContinuous())
-		    {
-		        nCols *= nRows;
-		        nRows = 1;
-		    }
-
-		    for( i = 0; i < nRows; ++i)
-		    {
-		    	p2 = partes_mostra7.ptr<uchar>(i);
-		        p = channels[1].ptr<uchar>(i);
-		        for ( j = 0; j < nCols; ++j)
-		        {
-		            p2[j] = 255*S[p[j]];
-		        }
-		    }
-
-		    nRows = channels[2].rows;
-		    nCols = channels[2].cols;
-			if (channels[2].isContinuous())
-		    {
-		        nCols *= nRows;
-		        nRows = 1;
-		    }
-
-		    for( i = 0; i < nRows; ++i)
-		    {
-		    	p2 = partes_mostra8.ptr<uchar>(i);
-		        p = channels[2].ptr<uchar>(i);
-		        for ( j = 0; j < nCols; ++j)
-		        {
-		            p2[j] = 255*V[p[j]];
-		        }
-		    }
-
-		#endif    
-
-	    if(vez == VEZ){
-	    	
-	    	#ifdef ponderado
-		    	cvtColor(partes_mostra6, mostra_imagem, CV_GRAY2BGR);
-		    	putText(mostra_imagem, ("H"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-		    	imshow("Hdepois3", mostra_imagem);
-		    	cvtColor(partes_mostra7, mostra_imagem, CV_GRAY2BGR);
-		    	putText(mostra_imagem, ("S"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-		    	imshow("Sdepois3", mostra_imagem);
-		    	cvtColor(partes_mostra8, mostra_imagem, CV_GRAY2BGR);
-		    	putText(mostra_imagem, ("V"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-		    	imshow("Vdepois3", mostra_imagem);
-		    #endif	
-	    
-	    }
-    #endif
-  
-    
-
-	#ifdef ponderado
-	    merge(channels, hsv);    
-	    num_channels = hsv.channels();
-	    nRows = hsv.rows;
-	    nCols = hsv.cols * num_channels;
-	    for( i = 0; i < nRows; ++i)
-	    {
-	        p = hsv.ptr<uchar>(i);
-	        p2 = final.ptr<uchar>(i);
-	        for ( j = 0; j < nCols; j+=3)
-	        {
-	            p2[j/3] = Tabela[p[j]][p[j+1]][p[j+2]];
-	        }
-	    }
+		
 	    #ifdef mostra_partes
-	    	imshow("combinacao",final);
-	    #endif
-	#endif    
 
-    final.copyTo(*dest);
+
+			Mat mostra_imagem;
+			#ifdef ponderado	
+				Mat partes_mostra6(source.size(), CV_8UC1);
+				Mat partes_mostra7(source.size(), CV_8UC1);
+				Mat partes_mostra8(source.size(), CV_8UC1);;
+			#endif	
+
+	   
+
+
+			#ifdef ponderado    
+			    nRows = channels[0].rows;
+			    nCols = channels[0].cols;
+				if (channels[0].isContinuous())
+			    {
+			        nCols *= nRows;
+			        nRows = 1;
+			    }
+
+			    for( i = 0; i < nRows; ++i)
+			    {
+			    	p2 = partes_mostra6.ptr<uchar>(i);
+			        p = channels[0].ptr<uchar>(i);
+			        for ( j = 0; j < nCols; ++j)
+			        {
+			            p2[j] = 255*Hz[p[j]];
+			        }
+			    }
+
+			    nRows = channels[1].rows;
+			    nCols = channels[1].cols;
+				if (channels[1].isContinuous())
+			    {
+			        nCols *= nRows;
+			        nRows = 1;
+			    }
+
+			    for( i = 0; i < nRows; ++i)
+			    {
+			    	p2 = partes_mostra7.ptr<uchar>(i);
+			        p = channels[1].ptr<uchar>(i);
+			        for ( j = 0; j < nCols; ++j)
+			        {
+			            p2[j] = 255*Sz[p[j]];
+			        }
+			    }
+
+			    nRows = channels[2].rows;
+			    nCols = channels[2].cols;
+				if (channels[2].isContinuous())
+			    {
+			        nCols *= nRows;
+			        nRows = 1;
+			    }
+
+			    for( i = 0; i < nRows; ++i)
+			    {
+			    	p2 = partes_mostra8.ptr<uchar>(i);
+			        p = channels[2].ptr<uchar>(i);
+			        for ( j = 0; j < nCols; ++j)
+			        {
+			            p2[j] = 255*Vz[p[j]];
+			        }
+			    }
+
+			#endif    
+
+		    if(vez == VEZ){
+		    	
+		    	#ifdef ponderado
+			    	cvtColor(partes_mostra6, mostra_imagem, CV_GRAY2BGR);
+			    	putText(mostra_imagem, ("H"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+			    	imshow("Hdepois3", mostra_imagem);
+			    	cvtColor(partes_mostra7, mostra_imagem, CV_GRAY2BGR);
+			    	putText(mostra_imagem, ("S"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+			    	imshow("Sdepois3", mostra_imagem);
+			    	cvtColor(partes_mostra8, mostra_imagem, CV_GRAY2BGR);
+			    	putText(mostra_imagem, ("V"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
+			    	imshow("Vdepois3", mostra_imagem);
+			    #endif	
+		    
+		    }
+	    #endif
+	  
+	    
+
+		#ifdef ponderado
+		    merge(channels, hsv);    
+		    num_channels = hsv.channels();
+		    nRows = hsv.rows;
+		    nCols = hsv.cols * num_channels;
+		    for( i = 0; i < nRows; ++i)
+		    {
+		        p = hsv.ptr<uchar>(i);
+		        p2 = dest->ptr<uchar>(i);
+		        for ( j = 0; j < nCols; j+=3)
+		        {
+		            p2[j/3] = Tabela_perto[p[j]][p[j+1]][p[j+2]];
+		        }
+		    }
+		    #ifdef mostra_partes
+		    	imshow("combinacao",(*dest));
+		    #endif
+		#endif 
+	}	    	
+
+	*/
+    //final.copyTo(*dest);
 	
     #ifdef ve_tempo
 	    gettimeofday(&tempo2, NULL);
@@ -759,14 +1189,14 @@ int RastreiaCone::varredura0(Mat* source){
 			imshow("Range", aux);
 		#endif
 	#endif
-	blur(aux, aux2, Size(Peso_blur,Peso_blur));
+	blur(aux, aux2, Size(size_blur,size_blur));
 	inRange( aux2 , Scalar(aceita_blur), Scalar(257), aux2);
 	#ifdef usuario
 		#ifdef mostra_range
 			imshow("Regiao de Interesse", aux2);
 		#endif
 	#endif
-	inRange( (*source) , Scalar(Hist_final), Scalar(257), aux3);
+	inRange( (*source) , Scalar(aceita_final), Scalar(257), aux3);
 	#ifdef usuario
 		#ifdef mostra_range
 			imshow("Pontos novos", aux3);
@@ -828,40 +1258,48 @@ bool RastreiaCone::varredura1(Mat* source, int num_area){
 	float size = min( (quadrado_b - quadrado_y) , (float)tamanho_mat);
 	resize((*source), (*source), Size((int)(((float)size)*ratio), size ));
 
+	
+	#ifdef usuario
+		#ifdef mostra_rangez
+			imshow("Zoom", (*source));
+		#endif
+	#endif
+
+
 	//blur((*source), (*source), Size(blur_x_i+1,blur_y_i+1 ));
 	Laranja((*source), source,2);
 
 	Mat aux2;
 	Mat aux3;
 	#ifdef usuario
-		#ifdef mostra_range
-			imshow("Laranja", (*source) );
+		#ifdef mostra_rangez
+			imshow("Laranja2", (*source) );
 		#endif
 	#endif
 	
-	inRange( (*source) , Scalar(min_aceita), Scalar(257), aux);
+	inRange( (*source) , Scalar(min_aceitaz), Scalar(257), aux);
 	#ifdef usuario
-		#ifdef mostra_range
-			imshow("Range", aux);
+		#ifdef mostra_rangez
+			imshow("Range2", aux);
 		#endif
 	#endif
-	blur(aux, aux2, Size(Peso_blur,Peso_blur));
-	inRange( aux2 , Scalar(aceita_blur), Scalar(257), aux2);
+	blur(aux, aux2, Size(size_blurz,size_blurz));
+	inRange( aux2 , Scalar(aceita_blurz), Scalar(257), aux2);
 	#ifdef usuario
-		#ifdef mostra_range
-			imshow("Regiao de Interesse", aux2);
+		#ifdef mostra_rangez
+			imshow("Regiao de Interesse2", aux2);
 		#endif
 	#endif
-	inRange( (*source) , Scalar(Hist_final), Scalar(257), aux3);
+	inRange( (*source) , Scalar(aceita_finalz), Scalar(257), aux3);
 	#ifdef usuario
-		#ifdef mostra_range
-			imshow("Pontos novos", aux3);
+		#ifdef mostra_rangez
+			imshow("Pontos novos2", aux3);
 		#endif
 	#endif
 	bitwise_and(aux2,aux3, (*source));
 	#ifdef usuario
-		#ifdef mostra_range
-			imshow("Aceitos 1", (*source));
+		#ifdef mostra_rangez
+			imshow("Aceitos 2", (*source));
 		#endif
 	#endif
 	
@@ -1216,20 +1654,37 @@ bool RastreiaCone::dados_mancha(Mat mancha, int partes){
 
 
 
+	float cont_testes = 0;
 
+
+	cont_verdadeiros = 0;
+	cont_quase = 0;
 
 	for(i = 1; i<partes; i++){
+		#ifdef usuario
 		if(atualiza)
 			//cout<<dados[i-1]<<"   "<<dados[i]<<"   "<<endl;
-		if(dados[i-1]<=dados[i]){
-			cont_verdadeiros++;
-			if(dados[i-1]<dados[i]){
-				cont_quase++;
+		#endif
+		for(j = 0; j<i; j++){
+			cont_testes++;	
+			if(dados[j]<=dados[i]){
+				cont_verdadeiros++;
+				if(dados[j]<dados[i]){
+					cont_quase++;
+				}
 			}
-		}
+		}	
 	}
-	cont_verdadeiros = cont_verdadeiros/(float)(partes-1);
-	cont_quase = cont_quase/(float)(partes-1);
+	cont_verdadeiros = cont_verdadeiros/cont_testes;
+	cont_quase = cont_quase/cont_testes;
+
+	#ifdef usuario
+	if(atualiza)
+		cout<<cont_quase<<"   "<<cont_verdadeiros<<endl<<endl;
+	#endif
+	if((cont_quase > 0.7) && (cont_verdadeiros> 0.8)&&( (float)mancha.rows > (float)mancha.cols) ){
+		continuidade = true;
+	}
 
 	/*
 	for(i = 1; i<partes; i++){
@@ -1243,24 +1698,7 @@ bool RastreiaCone::dados_mancha(Mat mancha, int partes){
 		}
 		if(atualiza)
 			cout<<dados[2*(i-1)+1]<<"   "<<dados[2*i+1]<<endl;
-		if(dados[2*(i-1)+1]>=dados[2*i+1]){
-			cont_verdadeiros++;
-			if(dados[2*(i-1)+1]>dados[2*i+1]){
-				cont_quase++;
-			}
-		}
-	}
-	
-
-	cont_verdadeiros = cont_verdadeiros/(float)(2*(partes-1));
-	cont_quase = cont_quase/(float)(2*(partes-1));
-	*/
-
-
-
-	//if(atualiza)
-	//	cout<<" "<<cont_verdadeiros<<"   "<<cont_quase<<endl;
-	if( (cont_quase > 0.5)&&(cont_verdadeiros> 0.7)&&( (float)mancha.rows > (float)mancha.cols) ){
+		if(dados[2*(i-1)+1]>=d&&( (float)mancha.rows > (float)mancha.cols) ){
 		continuidade = true;
 	//	cout<<"ACHOU"<<endl;
 	}
@@ -1282,11 +1720,7 @@ bool RastreiaCone::dados_mancha(Mat mancha, int partes){
 		}
 	}
 	cont_verdadeiros = cont_verdadeiros/(float)(2*(partes-1));
-	//if(atualiza)
-		//cout<<" "<<cont_verdadeiros<<endl<<endl;
-	if( (cont_verdadeiros> 0.8)&&( (float)mancha.rows > (float)mancha.cols) ){
-		continuidade = true;
-	}
+	
 	*/
 	return continuidade;
 
@@ -1373,11 +1807,11 @@ bool RastreiaCone::identifica(Mat* source, int num_area, Mat* temp){
 		if(quadrado_b > (float)(*Original).rows-1 ){
 			quadrado_b = (float)(*Original).rows-1;
 		}
-		quadrado_x = (float)area[0] - (float)delta;
+		quadrado_x = (float)area[0] - (float)4*delta;
 		if(quadrado_x < 0){
 			quadrado_x = 0;
 		}	
-		quadrado_d = (float)area[2] + (float)delta;
+		quadrado_d = (float)area[2] + (float)4*delta;
 		if(quadrado_d > (float)(*Original).cols -1){
 			quadrado_d = (float)(*Original).cols - 1;
 		}
