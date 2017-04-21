@@ -49,7 +49,7 @@ int main(int argc, char **argv){
   pathMsg.header.seq = 0;
   pathMsg.header.stamp = ros::Time::now();
   pathMsg.header.frame_id = "map";
-  int seq = -1;
+  static float seq = -1;
 
   ros::Rate loop_rate(10);
 
@@ -107,16 +107,21 @@ int main(int argc, char **argv){
         if(cost < maxCost && success){
           maxCost = cost;
           pathMsg.poses.clear();
+	  //seq+=1.0;
+	  //ROS_INFO("%f",seq);
           for(unsigned long i = 0;i<path.size();i++){
             geometry_msgs::PoseStamped aux;
             aux.pose.position.x = path[i].x;
             aux.pose.position.y = path[i].y;
-            pathMsg.poses.push_back(aux);
+            //aux.pose.position.z = seq;
+	    	//ROS_INFO("%f, %f",seq, aux.pose.position.z); 
+	    	pathMsg.poses.push_back(aux);
           }
           if(!goalIsObstacle){
             geometry_msgs::PoseStamped aux;
             aux.pose.position.x = goal.x;
             aux.pose.position.y = goal.y;
+	    	//aux.pose.position.z = seq;
             pathMsg.poses.push_back(aux);
           }
         }
@@ -129,12 +134,13 @@ int main(int argc, char **argv){
       #ifdef PRINT_ENABLED
         ROS_INFO("STOP");
       #endif
-      seq++;
-      pathMsg.header.seq = seq;
+      // seq++;
+      //pathMsg.header.seq = seq;
       pathMsg.header.stamp = ros::Time::now();
       pathPub.publish(pathMsg);    
     }
-
+    //ROS_INFO("%f",seq);
+    //pathPub.publish(pathMsg);
     ros::spinOnce();
   }
 

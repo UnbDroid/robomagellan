@@ -1,0 +1,12 @@
+BL:   37.658845,-121.888672
+BR:   37.658845,-121.883202
+
+Tamanho: 481,5 metros
+Resolucao: 0.3530058651
+
+image: MapaCompeticaoMeio.pgm
+resolution: 0.3530058651
+origin: [0.000000, 0.000000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

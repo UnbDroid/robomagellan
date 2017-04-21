@@ -33,9 +33,9 @@
 + origem_recebida: check_origin_received
 
 @States
-+ esperar_botao
-+ esperar_definicao_origem
 + setup
++ esperar_definicao_origem
++ esperar_botao
 + calcular_rota_primeiro_cone
 + calcular_rota_segundo_cone
 + aproximar_cruzeiro

@@ -484,7 +484,7 @@ vector
 time.h
 -
 
-/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/RastreiaCone5.hpp
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/RastreiaCone12.hpp
 opencv2/opencv.hpp
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/opencv2/opencv.hpp
 opencv2/calib3d/calib3d.hpp
@@ -505,8 +505,8 @@ sys/time.h
 -
 
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/visao_usuario.cpp
-RastreiaCone5.hpp
-/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/RastreiaCone5.hpp
+RastreiaCone12.hpp
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/RastreiaCone12.hpp
 sys/time.h
 -
 ros/ros.h

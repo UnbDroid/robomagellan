@@ -22,15 +22,15 @@
 
 #define PI 3.14159265
 #define tAmostragem 0.05
-#define g -9.7808439
-#define m  23462.2
+#define g -9.79997
+#define m 48.3346
 #define tSetup 30
 #define ERRO 0.3
 #define B 0.075 //comprimento do robo
 #define r 0.06 //raio da roda�
-#define LAT -15.765246
-#define LNG -47.871987
-
+#define LAT 37.6596071
+#define LNG -121.8862376
+#define L_ERRO 0.01
 
 using namespace Eigen;
 
@@ -381,7 +381,7 @@ MatrixXf TRIAD(MatrixXf anterior){
 	MatrixXf orient(4,1);
 	orient << q0, q1, q2, q3;	
 	
-	float declination = toRadian(-45.5091);
+	float declination = toRadian(13.4593);
 	MatrixXf q_declination(4,1);
 
 	float ta = cos(declination/2);
@@ -695,7 +695,7 @@ int main(int argc, char **argv){
 
 	//Variaveis TRIAD
 	g_unitario_n << 0, 0, 1;
-	m_unitario_n << 19463.6, -7667.6, -10623;
+	m_unitario_n << 22.6254, 5.4149, -42.3674;
 	m_unitario_n = m_unitario_n/m;
 
 	H = jacobianaCorrecao();
@@ -711,7 +711,7 @@ int main(int argc, char **argv){
 	//estimacao
 	Q  = I10*0.000001;
 	//correcao 
-	R = I10*0.1;
+	R = I10*0.01;
 	
 	int flagSetup = 1;
 	ros::Time tInicial = ros::Time::now();
@@ -745,34 +745,26 @@ int main(int argc, char **argv){
 				ref.lat = ref.lat/count;
                                 ref.lng = ref.lng/count;
 
-				if((ref.lat != ref.lat || ref.lng !=ref.lng) ||  (ref.lat > LAT + 0.0001 || ref.lat < LAT - 0.0001) || (ref.lng > LNG + 0.0001 || ref.lng < LNG - 0.0001)){
+				if((ref.lat != ref.lat || ref.lng !=ref.lng) || ref.lat > LAT + L_ERRO || ref.lat < LAT - L_ERRO || ref.lng < LNG - L_ERRO || ref.lng > LNG + L_ERRO ){
 					flagSetup = 1;
 					count = 0;
 					ref.lat = 0;
 					ref.lng = 0;
+					tInicial = ros::Time::now();
 				}else{
+					ref.alt = 0; 
 					flagSetup = 0;
+					std::cout << q_anterior << std::endl;
+                                	x_estPosteriori(0,0) = q_anterior(0,0);
+                                	x_estPosteriori(1,0) = q_anterior(1,0);
+                                	x_estPosteriori(2,0) = q_anterior(2,0);
+                               		x_estPosteriori(3,0) = q_anterior(3,0);
+					origin.x = ref.lat;
+                    			origin.y = ref.lng;
+                    			origin_pub.publish(origin);
 				}
 				
-	            //courseInicial = courseInicial/count;
-	            ref.alt = 0;
-	            
-	      //      float ta = cos(courseInicial/2);
-		//		float tb = sin(courseInicial/2);
-
-			//	q_anterior << ta, 0, 0, tb;
-				std::cout << q_anterior << std::endl;
-				x_estPosteriori(0,0) = q_anterior(0,0);
-				x_estPosteriori(1,0) = q_anterior(1,0);
-				x_estPosteriori(2,0) = q_anterior(2,0);
-				x_estPosteriori(3,0) = q_anterior(3,0);
-
-	            // std::cout << "lat: " << ref.lat << std ::endl;
-	            // std::cout <<" lng: " << ref.lng << std::endl;
-	            // std::cout << "count : "<< count << std::endl;
-	            origin.x = ref.lat;
-	            origin.y = ref.lng;
-		    origin_pub.publish(origin);
+	     
 			}
 
 		//Filtro	
@@ -797,12 +789,12 @@ int main(int argc, char **argv){
 			// Correção
 			KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
 			M = medicao(ref, q_anterior);
-			//if(!gpsData.updated){
+			if(!gpsData.updated){
 		    	        KG = Z10*KG;
 			//	M = Z10*M;
 				//std::cout <<  KG << std::endl;
 				//odomOK.data = false;
-			//}
+			}
 			
 			#ifdef debug_ganho
 			std::cout << KG << std::endl;
@@ -853,3 +845,27 @@ int main(int argc, char **argv){
 return 0;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

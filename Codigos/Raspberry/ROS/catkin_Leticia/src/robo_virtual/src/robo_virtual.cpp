@@ -37,7 +37,7 @@
 #define VELOCIDADE_MINIMA 0.15f
 #define VELOCIDADE_MINIMA_ANGULAR 0.05f
 #define VEL_VIRTUAL 1.0f
-#define VELOCIDADE_MAX_ARDUINO 5.5f
+#define VELOCIDADE_MAX_ARDUINO 5.0f
 #define VELOCIDADE_MAX_ARDUINO_APROX 3.0f
 #define vel_min_arduino 1.5f
 #endif
@@ -187,7 +187,9 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
   else if (enable == PARA){
     parar = true;
   }
-
+  if (enable == SEGUIR_VELOCIDADE){
+   ROS_INFO("ativou camera");
+  }
 #if defined(DEBUG)
   if(enable == PARA){
     ROS_INFO("enable parar");
@@ -348,9 +350,9 @@ void calculaSegmento (void) {
       parar = false;
       inicio = true;
 
-#if defined(DEBUG)
+//#if defined(DEBUG)
       ROS_INFO("Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.y,auxPose.pose.position.x);
-#endif
+//#endif
 #if defined(ARQ_DEBUG)
       fprintf(arq,"Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.y,auxPose.pose.position.x);
 #endif

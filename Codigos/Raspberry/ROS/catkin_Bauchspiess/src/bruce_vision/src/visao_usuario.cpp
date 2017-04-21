@@ -3,8 +3,12 @@
 //#define novo_codigo
 //#define codigo_continuo
 #define Rastreia9
+//#define encontrar_arvore
 
-#include "RastreiaCone9.hpp"
+#include "RastreiaCone12.hpp"
+
+//#include "arvores.hpp"
+
 #include <sys/time.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
@@ -26,9 +30,12 @@ using namespace cv;
 using namespace std;
 
 RastreiaCone cone;
+#ifdef encontrar_arvore
+	AchaArvore detector_de_arvore;
+#endif
 
 #ifdef ve_tempo
-struct timeval tempo1, tempo2;
+	struct timeval tempo1, tempo2;
 #endif
 
 
@@ -111,12 +118,30 @@ void sonda(Mat img){
 	//temp = img.clone();
 	float ratio_original = (float)img.cols/(float)img.rows;
 	resize(img, temp, Size((int)(((float)cone.tamanho0)*ratio_original), cone.tamanho0 ));
-	cvtColor(temp, gray, CV_BGR2GRAY);
+	//cvtColor(temp, gray, CV_BGR2GRAY);
 
 
 	cvtColor(temp, hsv, CV_BGR2HSV);
 
+	Mat matriz_ponderada;
+
 	vector<Mat> channels; 
+	vector<Mat> canais(3);
+
+	split(hsv, channels);
+	equalizeHist(channels[1], canais[1]);
+	float S_hist = (float)cone.S_pondera/100;
+	float S_regular = 1-S_hist;
+	add(S_regular*channels[1], S_hist*canais[1], channels[1]);	
+	equalizeHist(channels[2], canais[2]);
+	float V_hist = (float)cone.V_pondera/100;
+	float V_regular = 1-V_hist;
+	add(V_regular*channels[2], V_hist*canais[2], channels[2]);
+    
+	merge(channels, matriz_ponderada);
+
+
+	/*
     Mat img_hist_equalized;
     cvtColor(temp, img_hist_equalized, CV_BGR2YCrCb); //change the color image from BGR to YCrCb format
     split(img_hist_equalized,channels); //split the image into channels
@@ -152,8 +177,20 @@ void sonda(Mat img){
 	float V = 0;
 	float cinza = 0;
 	int aux;
+
+
+	*/
+
+	float H = 0;
+	float S = 0;
+	float V = 0;
+	int aux;
+
+
+
 	for(int i = min_x; i<= max_x; i++){
 		for(int j = min_y; j<= max_y; j++){
+			/*
 			aux = temp.at<Vec3b>(Point(i, j))[0];
 			azul += aux;
 			aux = temp.at<Vec3b>(Point(i, j))[1];
@@ -193,21 +230,36 @@ void sonda(Mat img){
 			aux = hsv2.at<Vec3b>(Point(i, j))[2];
 			V2 += aux;
 
-
+			
 			aux = gray.at<uchar>(Point(i, j));
 			cinza += aux;
+			*/
+			aux = hsv.at<Vec3b>(Point(i, j))[0];
+			H += aux;
+			aux = hsv.at<Vec3b>(Point(i, j))[1];
+			S += aux;
+			aux = hsv.at<Vec3b>(Point(i, j))[2];
+			V += aux;
+
 		}
 		cout<<endl;
-	}
-	int comprimento = max_x-min_x+1;
-	int altura =  max_y - min_y + 1; 
 
+	}
+	float comprimento = max_x-min_x+1;
+	float altura =  max_y - min_y + 1; 
+
+	H = H/(comprimento*altura);
+	S = S/(comprimento*altura);
+	V = V/(comprimento*altura);
+	cout<<"Media HSV = ("<<H<<","<<S<<","<<V<<")"<<endl;
+
+	/*
 	H2 = H2/(comprimento*altura);
 	S2 = S2/(comprimento*altura);
 	V2 = V2/(comprimento*altura);
 	cout<<"Media HSV = ("<<H2<<","<<S2<<","<<V2<<")"<<endl;
 	//imshow("HSV EQUALIZADA", hsv2);
-
+	*/
 
 
 	//quadrado ao redor da área análisada
@@ -231,22 +283,6 @@ bool p6 = false;
 bool p7 = false;
 
 
-void Painel2(){
-	namedWindow( "PAINEL 2", WINDOW_NORMAL );
-	resizeWindow("PAINEL 2", 250, 1);
-
-
-	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
-	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
-	createTrackbar( "Janela 1", "PAINEL 2", &cone.tamanho_mat, 1000);
-	createTrackbar( "Minimo pontos", "PAINEL 2", &cone.min_pontos, 1000);
-	createTrackbar( "Percentual pontos", "PAINEL 2", &cone.perc_pontosi, 1000);
-
-	createTrackbar( "Aceita Range", "PAINEL 2", &cone.min_aceita, 256);
-
-
-
-}
 
 
 #ifndef Rastreia9
@@ -271,6 +307,23 @@ void Painel1(){
 	 
 
 	  
+}
+
+void Painel2(){
+	namedWindow( "PAINEL 2", WINDOW_NORMAL );
+	resizeWindow("PAINEL 2", 250, 1);
+
+
+	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
+	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
+	createTrackbar( "Janela 1", "PAINEL 2", &cone.tamanho_mat, 1000);
+	createTrackbar( "Minimo pontos", "PAINEL 2", &cone.min_pontos, 1000);
+	createTrackbar( "Percentual pontos", "PAINEL 2", &cone.perc_pontosi, 1000);
+
+	createTrackbar( "Aceita Range", "PAINEL 2", &cone.min_aceita, 256);
+
+
+
 }
 
 
@@ -399,17 +452,26 @@ void Painel1(){
 	createTrackbar( "H2 topo", "H", &cone.altoH2, 256);
 	createTrackbar( "H2 descida", "H", &cone.descidaH2, 256);
 	createTrackbar( "H2 degrau descida", "H", &cone.step2_H2, 100);
-	createTrackbar( "H2 baixo", "H", &cone.baixoH2, 256);
+	createTrackbar( "H2 baixo", "H", &cone.baixoH2, 256);	
+}
+
+void Painel2(){
+	namedWindow( "PAINEL 2", WINDOW_NORMAL );
+	resizeWindow("PAINEL 2", 250, 1);
+
+
+	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
+	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
+	createTrackbar( "Janela 1", "PAINEL 2", &cone.tamanho_mat, 1000);
+	createTrackbar( "Minimo pontos", "PAINEL 2", &cone.min_pontos, 1000);
+	createTrackbar( "Percentual pontos", "PAINEL 2", &cone.perc_pontosi, 1000);
 
 
 
 
-	
 }
 
 void Painel3(){
-
-
 	namedWindow( "SV", WINDOW_NORMAL );
 	resizeWindow("SV", 250, 1);
 	
@@ -425,13 +487,100 @@ void Painel3(){
 	createTrackbar( "V topo", "SV", &cone.altoV, 256);
 	createTrackbar( "V descida", "SV", &cone.descidaV, 256);
 	createTrackbar( "V degrau descida", "SV", &cone.step2_V, 100);
-	createTrackbar( "V baixo", "SV", &cone.baixoV, 256);
+	createTrackbar( "V baixo", "SV", &cone.baixoV, 256);	
+}
 
-
+void Painel4(){
+	namedWindow( "Auxiliar", WINDOW_NORMAL );
+	resizeWindow("Auxiliar", 250, 1);
 	
+
+	//createTrackbar( "H hist ponderado", "PAINEL 2", &cone.H_pondera, 100);
+	createTrackbar( "S hist ponderado", "Auxiliar", &cone.S_pondera, 100);
+	createTrackbar( "V hist ponderado", "Auxiliar", &cone.V_pondera, 100);
+
+	//createTrackbar( "Peso Original", "PAINEL 2", &cone.Peso_original, 100);
+	createTrackbar( "Aceita Longe", "Auxiliar", &cone.min_aceita, 256);
+	createTrackbar( "Blur Interesse Longe", "Auxiliar", &cone.size_blur, 100);
+	createTrackbar( "Aceita blur Longe", "Auxiliar", &cone.aceita_blur, 256);
+	createTrackbar( "Aceita2 Longe", "Auxiliar", &cone.aceita_final, 256);
+
+
+	createTrackbar( "Aceita Perto", "Auxiliar", &cone.min_aceitaz, 256);
+	//createTrackbar( "H hist ponderado", "PAINEL 2", &cone.H_pondera, 100);
+	//createTrackbar( "S hist ponderado", "PAINEL 2", &cone.S_pondera, 100);
+	//createTrackbar( "V hist ponderado", "PAINEL 2", &cone.V_pondera, 100);
+
+	//createTrackbar( "Peso Original", "PAINEL 2", &cone.Peso_original, 100);
+	createTrackbar( "Blur Interesse Perto", "Auxiliar", &cone.size_blurz, 100);
+	createTrackbar( "Aceita blur Perto", "Auxiliar", &cone.aceita_blurz, 256);
+	createTrackbar( "Aceita2 Perto", "Auxiliar", &cone.aceita_finalz, 256);
+
+	createTrackbar( "Pot H", "Auxiliar", &cone.potH, 10);
+	createTrackbar( "Pot S", "Auxiliar", &cone.potS, 10);
+	createTrackbar( "Pot V", "Auxiliar", &cone.potV, 10);
+
+
 }
 
 
+void Painel5(){
+	namedWindow( "SVZoom", WINDOW_NORMAL );
+	resizeWindow("SVZoom", 250, 1);
+	
+	createTrackbar( "S subida Perto", "SVZoom", &cone.subidaSz, 256);
+	createTrackbar( "S degrau subida Perto", "SVZoom", &cone.step1_Sz, 100);
+	createTrackbar( "S topo Perto", "SVZoom", &cone.altoSz, 256);
+	createTrackbar( "S descida Perto", "SVZoom", &cone.descidaSz, 256);
+	createTrackbar( "S degrau descida Perto", "SVZoom", &cone.step2_Sz, 100);
+	createTrackbar( "S baixo Perto", "SVZoom", &cone.baixoSz, 256);
+
+	createTrackbar( "V subida Perto", "SVZoom", &cone.subidaVz, 256);
+	createTrackbar( "V degrau subida Perto", "SVZoom", &cone.step1_Vz, 100);
+	createTrackbar( "V topo Perto", "SVZoom", &cone.altoVz, 256);
+	createTrackbar( "V descida Perto", "SVZoom", &cone.descidaVz, 256);
+	createTrackbar( "V degrau descida Perto", "SVZoom", &cone.step2_Vz, 100);
+	createTrackbar( "V baixo Perto", "SVZoom", &cone.baixoVz, 256);	
+}
+
+void Painel6(){
+	namedWindow( "HZoom", WINDOW_NORMAL );
+	resizeWindow("HZoom", 250, 1);
+	createTrackbar( "H1 subida Perto", "HZoom", &cone.subidaH1z, 256);
+	createTrackbar( "H1 degrau subida Perto", "HZoom", &cone.step1_H1z, 100);
+	createTrackbar( "H1 topo Perto", "HZoom", &cone.altoH1z, 256);
+	createTrackbar( "H1 descida Perto", "HZoom", &cone.descidaH1z, 256);
+	createTrackbar( "H1 degrau descida Perto", "HZoom", &cone.step2_H1z, 100);
+	createTrackbar( "H1 baixo Perto", "HZoom", &cone.baixoH1z, 256);
+
+	createTrackbar( "H2 subida Perto", "HZoom", &cone.subidaH2z, 256);
+	createTrackbar( "H2 degrau subida Perto", "HZoom", &cone.step1_H2z, 100);
+	createTrackbar( "H2 topo Perto", "HZoom", &cone.altoH2z, 256);
+	createTrackbar( "H2 descida Perto", "HZoom", &cone.descidaH2z, 256);
+	createTrackbar( "H2 degrau descida Perto", "HZoom", &cone.step2_H2z, 100);
+	createTrackbar( "H2 baixo Perto", "HZoom", &cone.baixoH2z, 256);	
+}
+
+
+#endif
+
+#ifdef encontrar_arvore
+
+	void Painel7(){
+		namedWindow( "ARVORE", WINDOW_NORMAL );
+		resizeWindow("ARVORE", 250, 1);
+		createTrackbar( "verde baixo", "ARVORE", &detector_de_arvore.verde_baixo, 256);
+		createTrackbar( "verde alto", "ARVORE", &detector_de_arvore.verde_alto, 256);	
+		createTrackbar( "sat baixo", "ARVORE", &detector_de_arvore.saturacao_baixa, 256);
+		createTrackbar( "sat alto", "ARVORE", &detector_de_arvore.saturacao_alta, 256);
+		createTrackbar( "value baixo", "ARVORE", &detector_de_arvore.value_baixo, 256);
+		createTrackbar( "value alto", "ARVORE", &detector_de_arvore.value_alto, 256);
+		createTrackbar( "size blur", "ARVORE", &detector_de_arvore.blur_size, 100);
+		createTrackbar( "passa blur", "ARVORE", &detector_de_arvore.min_blur, 100);
+
+
+
+	}
 
 #endif
 
@@ -502,6 +651,36 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 					p3 = true;
 				}
 				break;
+			case(52):
+				if(p4){
+					p4 = false;
+					destroyWindow("Auxiliar");
+				}
+				else{
+					Painel4();
+					p4 = true;
+				}
+				break;
+			case(53):
+				if(p5){
+					p5 = false;
+					destroyWindow("SVZoom");
+				}
+				else{
+					Painel5();
+					p5 = true;
+				}
+				break;
+			case(54):
+				if(p6){
+					p6 = false;
+					destroyWindow("HZoom");
+				}
+				else{
+					Painel6();
+					p6 = true;
+				}
+				break;			
 			case(97):
 				if(cone.filtro){
 					cone.filtro = false;
@@ -510,7 +689,20 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 					cone.filtro = true;
 				}
 				break;	
-		#endif				
+		#endif	
+		#ifdef encontrar_arvore
+			case(55):
+				if(p7){
+					p7 = false;
+					destroyWindow("ARVORE");
+				}
+				else{
+					Painel7();
+					p7 = true;
+				}
+				break;
+		#endif		
+
 
 		#ifndef Rastreia9 		
 			case(49):
@@ -623,7 +815,7 @@ int main(int argc, char **argv){
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
 	bool aberta;
-	if(!cap.open(1))
+	if(!cap.open(0))
         aberta = false;
     else 
     	aberta = true;
@@ -660,6 +852,9 @@ int main(int argc, char **argv){
 
 			//imshow("SOURCE", img);
 			cone.rastreia(img);
+			#ifdef encontrar_arvore
+				detector_de_arvore.detecta_arvore(img);
+			#endif
 
 			if(cone.encontrou_cone){
 				msg.y = cone.pub_angulo;

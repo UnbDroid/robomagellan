@@ -5,7 +5,7 @@
 
 #define PI 3.14159265f
 
-#define DEBUG 1
+//#define DEBUG 1
 //#define ARQ_DEBUG 1
 
 #define DISTANCIA_MAXIMA 3.0f

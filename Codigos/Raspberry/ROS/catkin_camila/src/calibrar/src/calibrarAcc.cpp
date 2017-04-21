@@ -160,7 +160,7 @@ theta.col(0) << 0.0,
 		1.0; 
 
 G.setOnes(nMedidas,1);
-G = G*9.7808439;
+G = G*9.79997;
 
 J = jacobiana(fMedido, theta.col(0));
 

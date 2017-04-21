@@ -40,7 +40,7 @@ bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /home/pi/Docu
 bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/wall_timer_options.h
 bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcDecl.h
 bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcValue.h
-bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/RastreiaCone5.hpp
+bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/RastreiaCone12.hpp
 bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_Bauchspiess/src/bruce_vision/src/visao_usuario.cpp
 bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /opt/ros/indigo/include/ros/builtin_message_traits.h
 bruce_vision/CMakeFiles/visao_usuario.dir/src/visao_usuario.cpp.o: /opt/ros/indigo/include/ros/datatypes.h

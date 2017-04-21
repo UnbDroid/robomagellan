@@ -175,6 +175,7 @@ void stampedInt64Callback(const arduino_msgs::StampedInt64::ConstPtr& msg){
 }
 
 void stampedFloat64Callback(const arduino_msgs::StampedFloat64::ConstPtr& msg){
+  gpsData.updated = false;
   if(msg->id == VEL_ATUAL_DIR){
     velocidadeAtualDir = msg->data;
   }else if(msg->id == VEL_ATUAL_ESQ){
