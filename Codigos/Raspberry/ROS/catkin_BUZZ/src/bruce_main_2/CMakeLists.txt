@@ -214,7 +214,8 @@ set(${PROJECT_NAME}_ACTIONS
 	src/actions/print
       src/actions/print_bool
       src/actions/print_int
-      src/actions/print_float)
+      src/actions/print_float
+      src/actions/set_correcao)
   
 set(${PROJECT_NAME}_CONDITIONS
 	src/conditions/conditions 

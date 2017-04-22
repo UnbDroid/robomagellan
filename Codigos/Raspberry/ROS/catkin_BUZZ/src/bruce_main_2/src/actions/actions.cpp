@@ -86,6 +86,10 @@ void startActionsParser(std::vector<ActionParser> & actions){
 	ActionParser requisitar_uma_paradinha_action = {"","requisitar_uma_paradinha",requisitar_uma_paradinha};
 	requisitar_uma_paradinha_action.action_param_names.push_back("value");
 	actions.push_back(requisitar_uma_paradinha_action);
+	/* set_correcao action */
+	ActionParser set_correcao_action = {"","set_correcao",set_correcao};
+	set_correcao_action.action_param_names.push_back("value");
+	actions.push_back(set_correcao_action);
 }
 
 bool getActionByFunctionName(ActionParser & action, std::string funcName, std::vector<ActionParser> & actions){
