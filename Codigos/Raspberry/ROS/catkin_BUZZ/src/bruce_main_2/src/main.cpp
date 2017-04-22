@@ -15,6 +15,7 @@ void CameraPositionCallback(const geometry_msgs::Point32::ConstPtr& msg);
 void SensorToqueCallback(const std_msgs::Bool::ConstPtr& msg);
 void BotaoPretoCallback(const std_msgs::Bool::ConstPtr& msg);
 void BotaoVerdeCallback(const std_msgs::Bool::ConstPtr& msg);
+void CorrecaoCallback(const std_msgs::Bool::ConstPtr& msg);
 
 void startInfo(robot_information & info);
 
@@ -62,6 +63,7 @@ int main(int argc, char **argv){
       ros::Subscriber subSensorToque = n.subscribe("sensor_toque", 1000, SensorToqueCallback);
       ros::Subscriber subBotaoPreto = n.subscribe("botao_preto", 1000, BotaoPretoCallback);
       ros::Subscriber subBotaoVerde = n.subscribe("botao_verde", 1000, BotaoVerdeCallback);
+      ros::Subscriber subCorrecao = n.subscribe("correcao", 1000, CorrecaoCallback);
       tf::TransformListener tfListener;      
 
 
@@ -131,6 +133,7 @@ void startInfo(robot_information & info){
   info.calculating_route = false;
   info.sensor_toque = false;
   info.origin_received = false;
+  info.correcao = false;
   info.pose = geometry_msgs::Pose();
   info.origin.lat = 0;
   info.origin.lng = 0;
@@ -240,4 +243,8 @@ void BotaoPretoCallback(const std_msgs::Bool::ConstPtr& msg){
 }
 void BotaoVerdeCallback(const std_msgs::Bool::ConstPtr& msg){
   info.botao_verde = msg->data;
+}
+
+void CorrecaoCallback(const std_msgs::Bool::ConstPtr& msg){
+  info.correcao = msg->data;
 }
