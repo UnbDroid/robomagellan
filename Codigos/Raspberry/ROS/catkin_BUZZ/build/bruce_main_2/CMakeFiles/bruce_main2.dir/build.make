@@ -585,9 +585,33 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cp
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o.provides.build: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o
 
 
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/requisitar_uma_paradinha.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o"
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/requisitar_uma_paradinha.cpp
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.i"
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/requisitar_uma_paradinha.cpp > CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.i
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.s"
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/requisitar_uma_paradinha.cpp -o CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.s
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.requires:
+
+.PHONY : bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.requires
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.provides: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.requires
+	$(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.provides.build
+.PHONY : bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.provides
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.provides.build: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o
+
+
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.i: cmake_force
@@ -611,7 +635,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o.provides.build: 
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print_bool.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print_bool.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.i: cmake_force
@@ -635,7 +659,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o.provides.bu
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print_int.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print_int.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.i: cmake_force
@@ -659,7 +683,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o.provides.bui
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print_float.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/print_float.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.i: cmake_force
@@ -681,9 +705,33 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o.provides: 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o.provides.build: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o
 
 
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/set_correcao.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o"
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/set_correcao.cpp
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.i"
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/set_correcao.cpp > CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.i
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.s"
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/set_correcao.cpp -o CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.s
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.requires:
+
+.PHONY : bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.requires
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.provides: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.requires
+	$(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.provides.build
+.PHONY : bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.provides
+
+bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.provides.build: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o
+
+
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/conditions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/conditions.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.i: cmake_force
@@ -707,7 +755,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o.provides
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/is_bigger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/is_bigger.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.i: cmake_force
@@ -731,7 +779,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o.provides.
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/odom_ok.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/odom_ok.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.i: cmake_force
@@ -755,7 +803,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o.provides.bu
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/route_calculated.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/route_calculated.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/route_calculated.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/route_calculated.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/route_calculated.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/route_calculated.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/route_calculated.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/route_calculated.cpp.i: cmake_force
@@ -779,7 +827,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/route_calculated.cpp.o.pr
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/distant_from_route.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/distant_from_route.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/distant_from_route.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/distant_from_route.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/distant_from_route.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/distant_from_route.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/distant_from_route.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/distant_from_route.cpp.i: cmake_force
@@ -803,7 +851,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/distant_from_route.cpp.o.
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/cone_found.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/cone_found.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/cone_found.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/cone_found.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/cone_found.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/cone_found.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/cone_found.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/cone_found.cpp.i: cmake_force
@@ -827,7 +875,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/cone_found.cpp.o.provides
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_timer.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_timer.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_timer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_timer.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/check_timer.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_timer.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_timer.cpp.i: cmake_force
@@ -851,7 +899,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_timer.cpp.o.provide
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/us_reading_smaller.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/us_reading_smaller.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/us_reading_smaller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/us_reading_smaller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/us_reading_smaller.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/us_reading_smaller.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/us_reading_smaller.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/us_reading_smaller.cpp.i: cmake_force
@@ -875,7 +923,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/us_reading_smaller.cpp.o.
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_touch_sensor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_touch_sensor.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.i: cmake_force
@@ -899,7 +947,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_touch_sensor.cpp.o.
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_smaller.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_smaller.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_counter_smaller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_smaller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_smaller.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/check_counter_smaller.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_counter_smaller.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_smaller.cpp.i: cmake_force
@@ -923,7 +971,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_smaller.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_bigger.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_bigger.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_counter_bigger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_bigger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_bigger.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/check_counter_bigger.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_counter_bigger.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_bigger.cpp.i: cmake_force
@@ -947,7 +995,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_counter_bigger.cpp.
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_green_button.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_green_button.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.i: cmake_force
@@ -971,7 +1019,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_green_button.cpp.o.
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_black_button.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_black_button.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.i: cmake_force
@@ -995,7 +1043,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_black_button.cpp.o.
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_origin_received.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/check_origin_received.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp.i: cmake_force
@@ -1019,7 +1067,7 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/check_origin_received.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.o: bruce_main_2/CMakeFiles/bruce_main2.dir/flags.make
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/compare.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.o"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.o -c /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/conditions/compare.cpp
 
 bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/compare.cpp.i: cmake_force
@@ -1065,10 +1113,12 @@ bruce_main2_OBJECTS = \
 "CMakeFiles/bruce_main2.dir/src/actions/request_set_origin.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/actions/set_velocity.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o" \
+"CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o" \
+"CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o" \
 "CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o" \
@@ -1110,10 +1160,12 @@ bruce_main2_EXTERNAL_OBJECTS =
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/request_set_origin.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_velocity.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o
@@ -1155,7 +1207,7 @@ bruce_main2_EXTERNAL_OBJECTS =
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: /usr/lib/arm-linux-gnueabihf/libpthread.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: /usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2: bruce_main_2/CMakeFiles/bruce_main2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Linking CXX executable /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Linking CXX executable /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/lib/bruce_main_2/bruce_main2"
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/bruce_main_2 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bruce_main2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -1185,10 +1237,12 @@ bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/request_set_origin.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_velocity.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/send_enable_follow_camera.cpp.o.requires
+bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_bool.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_int.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/print_float.cpp.o.requires
+bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/conditions.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/is_bigger.cpp.o.requires
 bruce_main_2/CMakeFiles/bruce_main2.dir/requires: bruce_main_2/CMakeFiles/bruce_main2.dir/src/conditions/odom_ok.cpp.o.requires

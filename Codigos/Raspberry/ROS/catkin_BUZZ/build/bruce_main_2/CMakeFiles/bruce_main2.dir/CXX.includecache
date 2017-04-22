@@ -1466,6 +1466,16 @@ ros/ros.h
 fsm.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/fsm.h
 
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/requisitar_uma_paradinha.cpp
+actions/actions.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/actions/actions.h
+ros/ros.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/ros/ros.h
+fsm.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/fsm.h
+parser/base_functions.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/parser/base_functions.h
+
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/reset_counter.cpp
 actions/actions.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/actions/actions.h
@@ -1507,6 +1517,16 @@ parser/base_functions.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/parser/base_functions.h
 
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/set_calculating_route.cpp
+actions/actions.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/actions/actions.h
+ros/ros.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/ros/ros.h
+fsm.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/fsm.h
+parser/base_functions.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/parser/base_functions.h
+
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/set_correcao.cpp
 actions/actions.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/bruce_main_2/src/actions/actions/actions.h
 ros/ros.h

@@ -113,7 +113,7 @@ int main(int argc, char **argv)
     else {
       velocidadeRobo.x = 0;
       velocidadeRobo.z = 0;
-      pubVelocidade.publish(velocidadeRobo);
+      //pubVelocidade.publish(velocidadeRobo);
     }
 
     loop_rate.sleep();

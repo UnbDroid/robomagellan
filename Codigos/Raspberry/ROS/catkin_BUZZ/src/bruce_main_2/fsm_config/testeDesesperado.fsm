@@ -33,6 +33,7 @@
 + botao_verde: check_green_button
 + botao_preto: check_black_button
 + origem_recebida: check_origin_received
++ compare: compare
 
 @States
 + setup
@@ -52,7 +53,7 @@
 	adicionar_contador(name: parar)
 	odom_ok() >> change(next_state: calcular_rota_primeiro_cone)
 + calcular_rota_primeiro_cone
-	definir_alvo_gps(latitude: 37.660016, longitude: -121.886947)
+	definir_alvo_gps(latitude: 37.659741, longitude: -121.886834)
 	calcular_rota()
 	calculando_rota(value: true)
 	rota_calculada() >> calculando_rota(value: false) & change(next_state: aproximar_cruzeiro) && resetar_timer(name: hora_final)

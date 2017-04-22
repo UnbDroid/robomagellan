@@ -21,7 +21,8 @@
 //#define BY -0.0261594
 //#define BZ -0.571556
 //#define SX 1.02559
-//#define SY 0.987607 #define foreach BOOST_FOREACH
+//#define SY 0.987607
+ #define foreach BOOST_FOREACH
 //#define SZ 0.97193
 
 rosbag::Bag bag;
