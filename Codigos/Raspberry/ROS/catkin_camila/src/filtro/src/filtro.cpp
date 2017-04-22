@@ -493,7 +493,7 @@ MatrixXf jacobianaPredicao(MatrixXf anterior){
 	W = -W*tAmostragem;
 	orient = W.exp()/orient.norm();
 
-	//acc << accData.x, accData.y, accData.z;	
+	acc << accData.x, accData.y, accData.z;	
 	
 
 	A(0,0) = orient(0,0);
@@ -515,66 +515,66 @@ MatrixXf jacobianaPredicao(MatrixXf anterior){
 
 	A.topRightCorner(4,6).setZero();
 
-	//A(4,0) = (2*anterior(0,0)*acc(0,0) + 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
-	//A(4,1) = (2*anterior(1,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;	 
-	//A(4,2) = (-2*anterior(2,0)*acc(0,0) + 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
-	//A(4,3) = (-2*anterior(3,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;
+	A(4,0) = (2*anterior(0,0)*acc(0,0) + 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
+	A(4,1) = (2*anterior(1,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;	 
+	A(4,2) = (-2*anterior(2,0)*acc(0,0) + 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
+	A(4,3) = (-2*anterior(3,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;
 	
-	A(4,0) = -r/2*sin(quaternion2euler_yaw(q_anterior))*2*q_anterior(3,0)*(1 - 2*q_anterior(3,0)*q_anterior(3,0))/((1 - 2*q_anterior(3,0)*q_anterior(3,0)) *(1 - 2*q_anterior(3,0)*q_anterior(3,0)) + (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)));
-	A(4,1) = 0; 
-	A(4,2) = 0;
-	A(4,3) = -r/2*sin(quaternion2euler_yaw(q_anterior))*2*q_anterior(0,0)*(2*q_anterior(3,0)*q_anterior(3,0) + 1)/((1 - 2*q_anterior(3,0)*q_anterior(3,0))*(1 - 2*q_anterior(3,0)*q_anterior(3,0)) - (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)));
+	//A(4,0) = -r/2*sin(quaternion2euler_yaw(q_anterior))*2*q_anterior(3,0)*(1 - 2*q_anterior(3,0)*q_anterior(3,0))/((1 - 2*q_anterior(3,0)*q_anterior(3,0)) *(1 - 2*q_anterior(3,0)*q_anterior(3,0)) + (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)));
+	//A(4,1) = 0; 
+	//A(4,2) = 0;
+	//A(4,3) = -r/2*sin(quaternion2euler_yaw(q_anterior))*2*q_anterior(0,0)*(2*q_anterior(3,0)*q_anterior(3,0) + 1)/((1 - 2*q_anterior(3,0)*q_anterior(3,0))*(1 - 2*q_anterior(3,0)*q_anterior(3,0)) - (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)));
 
-	A(4,4) = 0;
+	A(4,4) = 1;
 	A(4,5) = 0;
 	A(4,6) = 0;
-	A(4,7) = 0;
+	A(4,7) = 1;
 	A(4,8) = 0;
 	A(4,9) = 0;
 	
-	//A(5,0) = (-2*acc(0,0) + 2*anterior(0,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
-	//A(5,1) = (2*acc(0,0) - 2*anterior(1,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
-	//A(5,2) = (2*acc(0,0) + 2*anterior(2,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
-	//A(5,3) = (-2*acc(0,0) - 2*anterior(3,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
+	A(5,0) = (-2*acc(0,0) + 2*anterior(0,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
+	A(5,1) = (2*acc(0,0) - 2*anterior(1,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
+	A(5,2) = (2*acc(0,0) + 2*anterior(2,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
+	A(5,3) = (-2*acc(0,0) - 2*anterior(3,0)*acc(1,0) + 2*acc(2,0))*tAmostragem;
 	
-	A(5,0) =  r/2*cos(quaternion2euler_yaw(q_anterior))*2*q_anterior(3,0)*(1 - 2*q_anterior(3,0)*q_anterior(3,0))/((1 - 2*q_anterior(3,0)*q_anterior(3,0)) *(1 - 2*q_anterior(3,0)*q_anterior(3,0)) + (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)));
-	A(5,1) = 0;
-	A(5,2) = 0;
-	A(5,3) = r/2*cos(quaternion2euler_yaw(q_anterior))*2*q_anterior(0,0)*(2*q_anterior(3,0)*q_anterior(3,0) + 1)/((1 - 2*q_anterior(3,0)*q_anterior(3,0))*(1 - 2*q_anterior(3,0)*q_anterior(3,0)) - (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)) );
+	//A(5,0) =  r/2*cos(quaternion2euler_yaw(q_anterior))*2*q_anterior(3,0)*(1 - 2*q_anterior(3,0)*q_anterior(3,0))/((1 - 2*q_anterior(3,0)*q_anterior(3,0)) *(1 - 2*q_anterior(3,0)*q_anterior(3,0)) + (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)));
+	//A(5,1) = 0;
+	//A(5,2) = 0;
+	//A(5,3) = r/2*cos(quaternion2euler_yaw(q_anterior))*2*q_anterior(0,0)*(2*q_anterior(3,0)*q_anterior(3,0) + 1)/((1 - 2*q_anterior(3,0)*q_anterior(3,0))*(1 - 2*q_anterior(3,0)*q_anterior(3,0)) - (2*q_anterior(0,0)*q_anterior(3,0)*2*q_anterior(0,0)*q_anterior(3,0)) );
 	
 	A(5,4) = 0;
-	A(5,5) = 0;
+	A(5,5) = 1;
 	A(5,6) = 0;
 	A(5,7) = 0;
-	A(5,8) = 0;
+	A(5,8) = 1;
 	A(5,9) = 0;
 
-	//A(6,0) = (2*anterior(0,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;
-	//A(6,1) = (2*anterior(1,0)*acc(0,0) - 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
-	//A(6,2) = (2*anterior(2,0)*acc(0,0) - 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
-	//A(6,3) = (2*anterior(3,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;
+	A(6,0) = (2*anterior(0,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;
+	A(6,1) = (2*anterior(1,0)*acc(0,0) - 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
+	A(6,2) = (2*anterior(2,0)*acc(0,0) - 2*acc(1,0) - 2*acc(2,0))*tAmostragem;
+	A(6,3) = (2*anterior(3,0)*acc(0,0) + 2*acc(1,0) + 2*acc(2,0))*tAmostragem;
 	
-	A(6,0) = 0;
-	A(6,1) = 0;
-	A(6,2) = 0;
-	A(6,3) = 0;
+	//A(6,0) = 0;
+	//A(6,1) = 0;
+	//A(6,2) = 0;
+	//A(6,3) = 0;
 	
 	A(6,4) = 0;
 	A(6,5) = 0;
-	A(6,6) = 0;
+	A(6,6) = 1;
 	A(6,7) = 0;
 	A(6,8) = 0;
-	A(6,9) = 0;
+	A(6,9) = 1;
 
-	//A(7,0) = (2*acc(0,0) + 2*anterior(0,0)*acc(1,0) - 2*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(7,1) = (2*acc(0,0) + 2*anterior(1,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(7,2) = (-2*acc(0,0) + 2*anterior(2,0)*acc(1,0) - 2*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(7,3) = (-2*acc(0,0) + 2*anterior(3,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(7,0) = (2*acc(0,0) + 2*anterior(0,0)*acc(1,0) - 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(7,1) = (2*acc(0,0) + 2*anterior(1,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(7,2) = (-2*acc(0,0) + 2*anterior(2,0)*acc(1,0) - 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(7,3) = (-2*acc(0,0) + 2*anterior(3,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
 	
-	A(7,0) = 0;
-	A(7,1) = 0;
-	A(7,2) = 0;
-	A(7,3) = 0;
+	//A(7,0) = 0;
+	//A(7,1) = 0;
+	//A(7,2) = 0;
+	//A(7,3) = 0;
 
 
 	A(7,4) = tAmostragem;
@@ -584,15 +584,15 @@ MatrixXf jacobianaPredicao(MatrixXf anterior){
 	A(7,8) = 0;
 	A(7,9) = 0; 
 
-	//A(8,0) = (-2*acc(0,0) + 2*anterior(0,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(8,1) = (2*acc(0,0) - 2*anterior(1,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(8,2) = (2*acc(0,0) + 2*anterior(2,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(8,3) = (-2*acc(0,0) - 2*anterior(3,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(8,0) = (-2*acc(0,0) + 2*anterior(0,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(8,1) = (2*acc(0,0) - 2*anterior(1,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(8,2) = (2*acc(0,0) + 2*anterior(2,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(8,3) = (-2*acc(0,0) - 2*anterior(3,0)*acc(1,0) + 2*acc(2,0))*tAmostragem*tAmostragem/2;
 	
-	A(8,0) = 0;
-	A(8,1) = 0;
-	A(8,2) = 0;
-	A(8,3) = 0;
+	//A(8,0) = 0;
+	//A(8,1) = 0;
+	//A(8,2) = 0;
+	//A(8,3) = 0;
 		
 	A(8,4) = 0;
 	A(8,5) = tAmostragem; 
@@ -601,15 +601,15 @@ MatrixXf jacobianaPredicao(MatrixXf anterior){
 	A(8,8) = 1;
 	A(8,9) = 0;
 
-	//A(9,0) = (2*acc(0,0) + 2*acc(1,0) + 2*anterior(0,0)*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(9,1) = (2*acc(0,0) - 2*acc(1,0) - 2*anterior(1,0)*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(9,2) = (2*acc(0,0) - 2*acc(1,0) - 2*anterior(2,0)*acc(2,0))*tAmostragem*tAmostragem/2;
-	//A(9,3) = (2*acc(0,0) + 2*acc(1,0) + 2*anterior(3,0)*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(9,0) = (2*acc(0,0) + 2*acc(1,0) + 2*anterior(0,0)*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(9,1) = (2*acc(0,0) - 2*acc(1,0) - 2*anterior(1,0)*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(9,2) = (2*acc(0,0) - 2*acc(1,0) - 2*anterior(2,0)*acc(2,0))*tAmostragem*tAmostragem/2;
+	A(9,3) = (2*acc(0,0) + 2*acc(1,0) + 2*anterior(3,0)*acc(2,0))*tAmostragem*tAmostragem/2;
 	
-	A(9,0) = 0;
-	A(9,1) = 0;
-	A(9,2) = 0;
-	A(9,3) = 0;
+	//A(9,0) = 0;
+	//A(9,1) = 0;
+	//A(9,2) = 0;
+	//A(9,3) = 0;
 
 	A(9,4) = 0;
 	A(9,5) = 0; 
@@ -709,7 +709,7 @@ int main(int argc, char **argv){
 	//q_anterior << 1,0,0,0;
 	P_posteriori = I10*0.0001;
 	//estimacao
-	Q  = I10*0.000001;
+	Q  = I10*0.0001;
 	//correcao 
 	R = I10*0.01;
 	
@@ -789,12 +789,12 @@ int main(int argc, char **argv){
 			// Correção
 			KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
 			M = medicao(ref, q_anterior);
-			if(!gpsData.updated){
+			//if(!gpsData.updated){
 		    	        KG = Z10*KG;
-			//	M = Z10*M;
+				M = Z10*M;
 				//std::cout <<  KG << std::endl;
 				//odomOK.data = false;
-			}
+			//}
 			
 			#ifdef debug_ganho
 			std::cout << KG << std::endl;

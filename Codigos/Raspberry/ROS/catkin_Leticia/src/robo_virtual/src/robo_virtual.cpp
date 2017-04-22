@@ -16,7 +16,7 @@
 
 #define PI 3.14159265f
 
-//#define ARQ_DEBUG 1
+#define ARQ_DEBUG 1
 //#define DEBUG 1
 //#define GAZEBO 1
 #define ARDUINO 1

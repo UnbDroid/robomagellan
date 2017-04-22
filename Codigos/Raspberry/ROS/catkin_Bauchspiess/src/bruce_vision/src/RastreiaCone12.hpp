@@ -1,4 +1,4 @@
-#define usuario 
+//#define usuario 
 //#define filmar
 
 //#define mostra_partes
@@ -263,7 +263,7 @@ public:
 void RastreiaCone::PreencheTabela(){
 
 	#ifdef ve_tempo9	
-		gettimeofday(&tempo1, NULL);
+	//gettimeofday(&tempo1, NULL);
 	#endif
 		
 	int i, j, k;
@@ -643,9 +643,9 @@ void RastreiaCone::PreencheTabela(){
 	
 	*/
 	#ifdef ve_tempo9
-		gettimeofday(&tempo2, NULL);
-		tempo = (int) (1000000 * (tempo2.tv_sec - tempo1.tv_sec) + (tempo2.tv_usec - tempo1.tv_usec));
-			cout<<"Preenche: "<<tempo<<endl;
+		//gettimeofday(&tempo2, NULL);
+		//tempo = (int) (1000000 * (tempo2.tv_sec - tempo1.tv_sec) + (tempo2.tv_usec - tempo1.tv_usec));
+		//	cout<<"Preenche: "<<tempo<<endl;
 	#endif	
 }
 
@@ -986,13 +986,13 @@ void RastreiaCone::Laranja(Mat source, Mat* dest, int vez){
 		    	#ifdef ponderado
 			    	cvtColor(partes_mostra6, mostra_imagem, CV_GRAY2BGR);
 			    	putText(mostra_imagem, ("H"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-			    	imshow("Hdepois3", mostra_imagem);
+			    	//imshow("Hdepois3", mostra_imagem);
 			    	cvtColor(partes_mostra7, mostra_imagem, CV_GRAY2BGR);
 			    	putText(mostra_imagem, ("S"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-			    	imshow("Sdepois3", mostra_imagem);
+			    	//imshow("Sdepois3", mostra_imagem);
 			    	cvtColor(partes_mostra8, mostra_imagem, CV_GRAY2BGR);
 			    	putText(mostra_imagem, ("V"), Point(0,20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255,0,0), 1, 8, false );
-			    	imshow("Vdepois3", mostra_imagem);
+			    	//imshow("Vdepois3", mostra_imagem);
 			    #endif	
 		    
 		    }
@@ -1015,7 +1015,7 @@ void RastreiaCone::Laranja(Mat source, Mat* dest, int vez){
 		        }
 		    }
 		    #ifdef mostra_partes
-		    	imshow("combinacao",(*dest));
+		    	//imshow("combinacao",(*dest));
 		    #endif
 		#endif    
 	}	    	
@@ -1148,11 +1148,11 @@ void RastreiaCone::Laranja(Mat source, Mat* dest, int vez){
     //final.copyTo(*dest);
 	
     #ifdef ve_tempo
-	    gettimeofday(&tempo2, NULL);
-		tempo = (int) (1000000 * (tempo2.tv_sec - tempo1.tv_sec) + (tempo2.tv_usec - tempo1.tv_usec));
-		if(atualiza){
+	    //gettimeofday(&tempo2, NULL);
+	//	tempo = (int) (1000000 * (tempo2.tv_sec - tempo1.tv_sec) + (tempo2.tv_usec - tempo1.tv_usec));
+	//	if(atualiza){
 					//cout<<"Laranja: "<<tempo<<endl;
-		}
+	//	}
 	#endif
 
 
@@ -1179,7 +1179,7 @@ int RastreiaCone::varredura0(Mat* source){
 	
 	#ifdef usuario
 		#ifdef mostra_range
-			imshow("Laranja", (*source) );
+	//		imshow("Laranja", (*source) );
 		#endif
 	#endif
 	
@@ -1662,7 +1662,7 @@ bool RastreiaCone::dados_mancha(Mat mancha, int partes){
 
 	for(i = 1; i<partes; i++){
 		#ifdef usuario
-		if(atualiza)
+		//if(atualiza)
 			//cout<<dados[i-1]<<"   "<<dados[i]<<"   "<<endl;
 		#endif
 		for(j = 0; j<i; j++){
@@ -1857,7 +1857,9 @@ bool RastreiaCone::identifica(Mat* source, int num_area, Mat* temp){
 		#endif
 
 	}
-	imshow("SOURCE", (*temp));
+	#ifdef usuario
+	//imshow("SOURCE", (*temp));
+	#endif
 
 	return achou;
 
