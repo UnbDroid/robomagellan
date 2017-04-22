@@ -16,7 +16,7 @@
 
 #define PI 3.14159265f
 
-#define ARQ_DEBUG 1
+//#define ARQ_DEBUG 1
 //#define DEBUG 1
 //#define GAZEBO 1
 #define ARDUINO 1
@@ -28,6 +28,7 @@
 #define SEGUIR_TRAJETORIA 1
 #define APROXIMAR_CONE 2
 #define SEGUIR_VELOCIDADE 3
+#define SEGUIR_VEL 4 
 
 #define TEMPO_AMOSTRAGEM 0.1f
 
@@ -180,14 +181,14 @@ void enablePathCallback(const std_msgs::Int16::ConstPtr& msg)
     vel_max = VELOCIDADE_MAXIMA;
     vel_max_arduino = VELOCIDADE_MAX_ARDUINO;
   }
-  else if((enable == APROXIMAR_CONE) || (enable == SEGUIR_VELOCIDADE)){
+  else if((enable == APROXIMAR_CONE) || (enable == SEGUIR_VELOCIDADE) || (enable == 4)){
     vel_max = VELOCIDADE_MAXIMA_APROX;
     vel_max_arduino = VELOCIDADE_MAX_ARDUINO_APROX;
   }
   else if (enable == PARA){
     parar = true;
   }
-  if (enable == SEGUIR_VELOCIDADE){
+  if (enable == SEGUIR_VELOCIDADE || enable == SEGUIR_VEL){
    ROS_INFO("ativou camera");
   }
 #if defined(DEBUG)
@@ -274,12 +275,23 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
 }
 
 void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg){
+  if (enable == 3){
+   VelocidadeRecebida.x = msg->x;
+   VelocidadeRecebida.y = msg->y;
+   VelocidadeRecebida.z = msg->z;
+ }
+}
 
-  VelocidadeRecebida.x = msg->x;
-  VelocidadeRecebida.y = msg->y;
-  VelocidadeRecebida.z = msg->z;
+void velocidade2Callback(const geometry_msgs::Point32::ConstPtr& msg){
+
+  if (enable == 4) {
+   VelocidadeRecebida.x = msg->x;
+   VelocidadeRecebida.y = msg->y;
+   VelocidadeRecebida.z = msg->z;
+  }
 
 }
+
 
 /**Funcao que atualiza o segmento atual a ser realizado*/
 void calculaSegmento (void) {
@@ -1068,6 +1080,7 @@ int main(int argc, char **argv)
   ros::Subscriber subAtual = n.subscribe("odom", 1000, posicaoAtualCallback);
   ros::Subscriber subTrajeto = n.subscribe("path_planned", 1000, trajetoCallback);
   ros::Subscriber subVelocidade = n.subscribe("velocity", 1000, velocidadeCallback);
+  ros::Subscriber subVelocidade2 = n.subscribe("velocity2", 1000, velocidade2Callback);
 
   ros::Subscriber subUS1 = n.subscribe("ultrasound1",1000,UltrassomCallback);
   ros::Subscriber subUS2 = n.subscribe("ultrasound2",1000,UltrassomCallback);
@@ -1080,6 +1093,7 @@ int main(int argc, char **argv)
   ros::Subscriber subUS9 = n.subscribe("ultrasound9",1000,UltrassomCallback);
   ros::Subscriber subUS10 = n.subscribe("ultrasound10",1000,UltrassomCallback);
   ros::Subscriber subUS11 = n.subscribe("ultrasound11",1000,UltrassomCallback);
+  
 
   tf::TransformListener tfListener;
 
@@ -1126,14 +1140,14 @@ int main(int argc, char **argv)
       controladorTrajetoria();
       verificaObstaculosZVD(tfListener);  
     }
-    else if (enable == SEGUIR_VELOCIDADE){
+    else if (enable == SEGUIR_VELOCIDADE || enable == 4){
       controladorVelocidade();
     }
     else if (enable == APROXIMAR_CONE){
       controladorTrajetoria();
     }
-    else if (enable == PARA && !testando_us) {
-     // parar = true;
+    else if (enable == PARA /*&& !testando_us*/) {
+      parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
 #if defined(ARDUINO)

@@ -63,7 +63,7 @@ int main(int argc, char **argv){
       ros::Subscriber subSensorToque = n.subscribe("sensor_toque", 1000, SensorToqueCallback);
       ros::Subscriber subBotaoPreto = n.subscribe("botao_preto", 1000, BotaoPretoCallback);
       ros::Subscriber subBotaoVerde = n.subscribe("botao_verde", 1000, BotaoVerdeCallback);
-      ros::Subscriber subCorrecao = n.subscribe("correcao", 1000, CorrecaoCallback);
+      ros::Subscriber subCorrecao = n.subscribe("correcao", 10, CorrecaoCallback);
       tf::TransformListener tfListener;      
 
 
@@ -74,7 +74,7 @@ int main(int argc, char **argv){
       ros::Publisher pubMapBLCoordinate = n.advertise<geometry_msgs::Point32>("map_bl_coord",1000,true); 
       ros::Publisher pubObstacles = n.advertise<geometry_msgs::PoseArray>("new_obstacles",1000);
       ros::Publisher pubOriginRequest = n.advertise<std_msgs::Bool>("request_origin",1000);
-      ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity",1000);
+      ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity2",1000);
       ros::Publisher pubFollowCamera = n.advertise<std_msgs::Bool>("follow_camera",1000);
       ros::Publisher pubParadinha = n.advertise<std_msgs::Bool>("parada",1000);
 

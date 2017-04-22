@@ -35,19 +35,27 @@
 + origem_recebida: check_origin_received
 
 @States
++ passo0
 + passo1
-+ calcular_rota_primeiro_cone
-+ calcular_rota_segundo_cone
-+ aproximar_cruzeiro
-+ recalcular_rota
-+ calcular_desvio_obstaculo_movel
-+ aproximar_fino
++ fim
++ aproximar_fino1
++ dar_re1
 
 @FSM
++ passo0
+	adicionar_timer(name: passo1)
+	adicionar_timer(name: dar_re_1)
+	botao_verde() >> change(next_state: passo1) && resetar_timer(name: passo1)
 + passo1
-	habilitar_seguir_rota(value: 3)
-	definir_velocidade(linear: 3, angular: 0)
-	cone_encontrado() >> change(next_state: aproximar_fino)
-+ aproximar_fino
+	verificar_timer(name: passo1, time: 5) >> habilitar_seguir_rota(value: 0) && change(next_state: aproximar_fino1)
+	habilitar_seguir_rota(value: 4)
+	definir_velocidade(linear: 1.5, angular:0)
++ aproximar_fino1
 	habilitar_seguir_camera(value: true)
-	encostou_algo(min_times: 3) >> print(message: eu enconstei em algo) & habilitar_seguir_camera(value: false) & change(next_state: terminar)
+	encostou_algo(min_times: 3) >> habilitar_seguir_camera(value: false) & change(next_state: fim) && resetar_timer(name: dar_re_1)
++ dar_re1
+	verificar_timer(name: dar_re_1,time: 1) >> change(next_state: fim)
+	habilitar_seguir_rota(value: 4)
+	definir_velocidade(linear: -1, angular: 0)
++ fim
+	habilitar_seguir_rota(value: 0)

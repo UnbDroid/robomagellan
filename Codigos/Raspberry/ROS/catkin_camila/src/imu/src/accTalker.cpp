@@ -17,13 +17,13 @@
 #define g 9.80665
 
  //bias e fator dse escala de cada eixo do sensor
-//#define BX -0.0618718
-//#define BY -0.0261594
-//#define BZ -0.571556
-//#define SX 1.02559
-//#define SY 0.987607
+#define BX -0.0618718
+#define BY -0.0261594
+#define BZ -0.571556
+#define SX 1.02559
+#define SY 0.987607
  #define foreach BOOST_FOREACH
-//#define SZ 0.97193
+#define SZ 0.97193
 
 rosbag::Bag bag;
 ros::Time tempo;
@@ -103,11 +103,11 @@ int main(int argc, char **argv){
 		acc_z = read_word(fd,Register_ZH,Register_ZL);
 		
 		
-		msg.a_x = (acc_x*SCALE*g - bx)/sx;
+		msg.a_x = (acc_x*SCALE*g - BX)/SX;
 		msg.a_x = abs(msg.a_x) > 1 ? msg.a_x:0;
-        	msg.a_y = (acc_y*SCALE*g - by)/sy;
+        	msg.a_y = (acc_y*SCALE*g - BY)/SY;
 		msg.a_y = abs(msg.a_y) > 1 ? msg.a_y:0;
-        	msg.a_z = (acc_z*SCALE*g - bz)/sz;
+        	msg.a_z = (acc_z*SCALE*g - BZ)/SZ;
 		tempo = ros::Time::now();
 		msg.time = tempo.toNSec() * 1e-6;
 		

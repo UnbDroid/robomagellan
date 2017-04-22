@@ -16,7 +16,7 @@
 
 //#define debug_posteriori
 //#define debug_priori
-#define debug_ganho
+//#define debug_ganho
 //#define debug_covarPriori
 //#define debug_covarPosteriori
 
@@ -253,17 +253,17 @@ MatrixXf predicao(MatrixXf anterior){
 
 	//Predicao atitude
 	MatrixXf W(4,4), orient(4,1);
+	W << 0, gyroData.x, gyroData.y, gyroData.z,
+	     -gyroData.x, 0, -gyroData.z, gyroData.y,
+	     -gyroData.y, gyroData.z, 0, -gyroData.x,
+	     -gyroData.z, -gyroData.y, gyroData.x, 0;
 
-//	W << 0, gyroData.x, gyroData.y, gyroData.z,
-//	     -gyroData.x, 0, -gyroData.z, gyroData.y,
-//	     -gyroData.y, gyroData.z, 0, -gyroData.x,
-//	     -gyroData.z, -gyroData.y, gyroData.x, 0;
-
-//	W = -W*tAmostragem;
-//	orient = W.exp()*q_anterior;
-	//orient(1,0) = 0;
-	//orient(2,0) = 0;
+	W = -W*tAmostragem;
+	orient = W.exp()*q_anterior;
+	orient(1,0) = 0;
+	orient(2,0) = 0;
 	
+	orient = orient/orient.norm();
 
 	//Predicao posicao acc
 //	MatrixXf C(3,3), vel(3,1), pos(3,1), acc(3,1);
@@ -292,20 +292,20 @@ MatrixXf predicao(MatrixXf anterior){
 	t << r/2*cos(quaternion2euler_yaw(q_anterior)), r/2*cos(quaternion2euler_yaw(q_anterior)),
 	     r/2*sin(quaternion2euler_yaw(q_anterior)), r/2*sin(quaternion2euler_yaw(q_anterior));
 
-	t_angular <<  r/B, -r/B;
+	//t_angular <<  r/B, -r/B;
 
 	rot << velData.dir, velData.esq;
-	v_angular = t_angular*rot;
+	//v_angular = -t_angular*rot;
 	vel = t*rot;
 	pos = v_anterior*tAmostragem + r_anterior;
 	
-	float yaw = quaternion2euler_yaw(q_anterior) + v_angular*tAmostragem;
+	float yaw = quaternion2euler_yaw(q_anterior) - v_angular(0,0)*tAmostragem;
 
 	float ta = cos(yaw/2);
 	float tb = sin(yaw/2);
 
-	orient << ta, 0, 0, tb;
-	orient = orient.norm();
+	//orient << ta, 0, 0, tb;
+	//orient = orient/ orient.norm();
 
 	MatrixXf est(10,1);
 
@@ -728,7 +728,7 @@ int main(int argc, char **argv){
 	Z10.topLeftCorner(4,4).setIdentity();
 
 	x_estPosteriori << 1, 0, 0, 0, 0, 0, 0, 0, 0, 0;
-	//q_anterior << 1,0,0,0;
+	//q_anterior << 0,0,0,1;
 	P_posteriori = I10*0.0001;
 	//estimacao
 	Q  = I10*0.0001;
@@ -795,8 +795,8 @@ int main(int argc, char **argv){
 
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
-			F = jacobianaPredicao(x_estPosteriori);
-			P_priori = F + P_posteriori*F.transpose() + Q;
+			//F = jacobianaPredicao(x_estPosteriori);
+			//P_priori = F + P_posteriori*F.transpose() + Q;
 			
 			#ifdef debug_priori
 			std::cout << x_estPriori << std::endl;
@@ -833,7 +833,7 @@ int main(int argc, char **argv){
 			std::cout << KG << std::endl;
 			std:: cout << "\n";
 			#endif
-		//	x_estPosteriori = x_estPriori;
+			//x_estPosteriori = x_estPriori;
 		//	x_estPosteriori = M;	
 			x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	

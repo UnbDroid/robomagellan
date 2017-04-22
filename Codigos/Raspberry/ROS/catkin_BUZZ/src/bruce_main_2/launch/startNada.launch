@@ -2,6 +2,7 @@
 	<node name="serial_node" type="serial_node.py" pkg="rosserial_python" args="/dev/ttyACM0"/>	
 	<node name="bruce_tf" type="bruce_tf" pkg="bruce_path_planner"/>
 	<node name="arduino_handler" type="arduino_handler" pkg="arduino_handler"/>
-	<node name="bruce_main2" pkg="bruce_main_2" type="bruce_main2" args=" $(find bruce_main_2)/fsm_config/testeDesesperado.fsm" />
+	<node name="bruce_main2" pkg="bruce_main_2" type="bruce_main2" args=" $(find bruce_main_2)/fsm_config/testeVaiSemNada.fsm" />
 	<node name="robo_virtual" type="robo_virtual" pkg="robo_virtual"/>
+	<node name="visao_usuario" pkg="bruce_vision" type="visao_usuario" />
 </launch>
