@@ -263,7 +263,7 @@ MatrixXf predicao(MatrixXf anterior){
 //	orient = W.exp()*q_anterior;
 	//orient(1,0) = 0;
 	//orient(2,0) = 0;
-	orient = orient/orient.norm();
+	
 
 	//Predicao posicao acc
 //	MatrixXf C(3,3), vel(3,1), pos(3,1), acc(3,1);
@@ -298,7 +298,15 @@ MatrixXf predicao(MatrixXf anterior){
 	v_angular = t_angular*rot;
 	vel = t*rot;
 	pos = v_anterior*tAmostragem + r_anterior;
-	orient = 
+	
+	float yaw = quaternion2euler_yaw(q_anterior) + v_angular*tAmostragem;
+
+	float ta = cos(yaw/2);
+	float tb = sin(yaw/2);
+
+	orient << ta, 0, 0, tb;
+	orient = orient.norm();
+
 	MatrixXf est(10,1);
 
 	est << orient, vel,0, pos;
