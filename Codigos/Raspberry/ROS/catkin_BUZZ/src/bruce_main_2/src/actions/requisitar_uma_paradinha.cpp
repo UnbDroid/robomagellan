@@ -1,6 +1,8 @@
 #include "actions/actions.h"
 #include "ros/ros.h"
 #include "fsm.h"
+#include "parser/base_functions.h"
+
 
 void requisitar_uma_paradinha(Fsm *fsm, std::vector<std::string> args){
 	std_msgs::Bool msg;
