@@ -90,6 +90,7 @@ struct robot_information{
 	ros::Publisher * pubOriginRequest;
 	ros::Publisher * pubVelocity;
 	ros::Publisher * pubFollowCamera;
+      ros::Publisher * pubParadinha;
 	tf::TransformListener * tfListener;
 	GPSCoord origin;
 	GPSCoord bottomLeft;

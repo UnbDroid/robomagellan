@@ -210,6 +210,7 @@ set(${PROJECT_NAME}_ACTIONS
       src/actions/request_set_origin
       src/actions/set_velocity
       src/actions/send_enable_follow_camera
+      src/actions/requisitar_uma_paradinha
 	src/actions/print
       src/actions/print_bool
       src/actions/print_int

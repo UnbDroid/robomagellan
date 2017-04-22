@@ -82,6 +82,10 @@ void startActionsParser(std::vector<ActionParser> & actions){
 	ActionParser send_enable_follow_camera_action = {"","send_enable_follow_camera",send_enable_follow_camera};
 	send_enable_follow_camera_action.action_param_names.push_back("value");
 	actions.push_back(send_enable_follow_camera_action);
+	/* requisitar_uma_paradinha action */
+	ActionParser requisitar_uma_paradinha_action = {"","requisitar_uma_paradinha",requisitar_uma_paradinha};
+	requisitar_uma_paradinha_action.action_param_names.push_back("value");
+	actions.push_back(requisitar_uma_paradinha_action);
 }
 
 bool getActionByFunctionName(ActionParser & action, std::string funcName, std::vector<ActionParser> & actions){

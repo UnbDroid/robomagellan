@@ -74,6 +74,7 @@ int main(int argc, char **argv){
       ros::Publisher pubOriginRequest = n.advertise<std_msgs::Bool>("request_origin",1000);
       ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity",1000);
       ros::Publisher pubFollowCamera = n.advertise<std_msgs::Bool>("follow_camera",1000);
+      ros::Publisher pubParadinha = n.advertise<std_msgs::Bool>("parada",1000);
 
       info.n = &n;
       info.pubRequestPath = & pubRequestPath;
