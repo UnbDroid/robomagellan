@@ -196,6 +196,5 @@ add_executable(gpsTalker src/gpsTalker.cpp src/gps.cpp)
 target_link_libraries(gpsTalker ${catkin_LIBRARIES} libwiringPi.so)
 add_dependencies(gpsTalker gps_generate_messages_cpp)
 
-add_executable(gpsUBXTalker src/gpsUBXTalker.cpp)
-#target_link_libraries(gpsTalker ${catkin_LIBRARIES} libwiringPi.so)
-add_dependencies(gpsUBXTalker gps_generate_messages_cpp)
+add_executable(gpsUBX src/gpsUBX.cpp)
+add_dependencies(gpsUBX gps_generate_messages_cpp)
