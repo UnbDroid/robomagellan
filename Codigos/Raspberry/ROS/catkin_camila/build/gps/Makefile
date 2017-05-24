@@ -100,16 +100,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -132,6 +122,16 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -164,6 +164,21 @@ preinstall/fast:
 depend:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+gps/CMakeFiles/gpsUBX.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 gps/CMakeFiles/gpsUBX.dir/rule
+.PHONY : gps/CMakeFiles/gpsUBX.dir/rule
+
+# Convenience name for target.
+gpsUBX: gps/CMakeFiles/gpsUBX.dir/rule
+
+.PHONY : gpsUBX
+
+# fast build rule for target.
+gpsUBX/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/build
+.PHONY : gpsUBX/fast
 
 # Convenience name for target.
 gps/CMakeFiles/gpsTalker.dir/rule:
@@ -234,6 +249,33 @@ src/gpsTalker.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/src/gpsTalker.cpp.s
 .PHONY : src/gpsTalker.cpp.s
 
+src/gpsUBX.o: src/gpsUBX.cpp.o
+
+.PHONY : src/gpsUBX.o
+
+# target to build an object file
+src/gpsUBX.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/src/gpsUBX.cpp.o
+.PHONY : src/gpsUBX.cpp.o
+
+src/gpsUBX.i: src/gpsUBX.cpp.i
+
+.PHONY : src/gpsUBX.i
+
+# target to preprocess a source file
+src/gpsUBX.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/src/gpsUBX.cpp.i
+.PHONY : src/gpsUBX.cpp.i
+
+src/gpsUBX.s: src/gpsUBX.cpp.s
+
+.PHONY : src/gpsUBX.s
+
+# target to generate assembly for a file
+src/gpsUBX.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/src/gpsUBX.cpp.s
+.PHONY : src/gpsUBX.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -244,9 +286,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... install/local"
+	@echo "... list_install_components"
+	@echo "... gpsUBX"
 	@echo "... gpsTalker"
 	@echo "... src/gps.o"
 	@echo "... src/gps.i"
@@ -254,6 +297,9 @@ help:
 	@echo "... src/gpsTalker.o"
 	@echo "... src/gpsTalker.i"
 	@echo "... src/gpsTalker.s"
+	@echo "... src/gpsUBX.o"
+	@echo "... src/gpsUBX.i"
+	@echo "... src/gpsUBX.s"
 .PHONY : help
 
 

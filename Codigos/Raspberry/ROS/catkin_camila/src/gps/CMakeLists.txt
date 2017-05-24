@@ -195,3 +195,6 @@ include_directories(include ${catkin_INCLUDE_DIRS} /usr/local/lib)
 add_executable(gpsTalker src/gpsTalker.cpp src/gps.cpp)
 target_link_libraries(gpsTalker ${catkin_LIBRARIES} libwiringPi.so)
 add_dependencies(gpsTalker gps_generate_messages_cpp)
+
+add_executable(gpsUBX src/gpsUBX.cpp)
+add_dependencies(gpsUBX gps_generate_messages_cpp)

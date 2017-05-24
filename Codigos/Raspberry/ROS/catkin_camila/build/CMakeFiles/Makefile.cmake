@@ -220,6 +220,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/DependInfo.cmake"
   "filtro/CMakeFiles/filtroAtitude.dir/DependInfo.cmake"
   "filtro/CMakeFiles/filtro.dir/DependInfo.cmake"
+  "gps/CMakeFiles/gpsUBX.dir/DependInfo.cmake"
   "gps/CMakeFiles/gpsTalker.dir/DependInfo.cmake"
   "imu/CMakeFiles/gyroTalker.dir/DependInfo.cmake"
   "imu/CMakeFiles/gyroOffset.dir/DependInfo.cmake"

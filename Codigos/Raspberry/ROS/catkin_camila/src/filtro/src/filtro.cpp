@@ -259,11 +259,11 @@ MatrixXf predicao(MatrixXf anterior){
 	     -gyroData.z, -gyroData.y, gyroData.x, 0;
 
 	W = -W*tAmostragem;
-	orient = W.exp()*q_anterior;
-	orient(1,0) = 0;
-	orient(2,0) = 0;
+	//orient = W.exp()*q_anterior;
+	//orient(1,0) = 0;
+	//orient(2,0) = 0;
 	
-	orient = orient/orient.norm();
+	//orient = orient/orient.norm();
 
 	//Predicao posicao acc
 //	MatrixXf C(3,3), vel(3,1), pos(3,1), acc(3,1);
@@ -304,8 +304,8 @@ MatrixXf predicao(MatrixXf anterior){
 	float ta = cos(yaw/2);
 	float tb = sin(yaw/2);
 
-	//orient << ta, 0, 0, tb;
-	//orient = orient/ orient.norm();
+	orient << ta, 0, 0, tb;
+	orient = orient/ orient.norm();
 
 	MatrixXf est(10,1);
 
@@ -735,7 +735,7 @@ int main(int argc, char **argv){
 	//correcao 
 	R = I10*0.01;
 	
-	int flagSetup = 1;
+	int flagSetup = 0;
 	ros::Time tInicial = ros::Time::now();
 	int count = 0, countParada = 0;		
 
@@ -793,6 +793,8 @@ int main(int argc, char **argv){
 		//Filtro	
 		}else{
 
+			x_estPosteriori << 0,0,0,0,0,0,0,0,0,0;
+
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
 			//F = jacobianaPredicao(x_estPosteriori);
@@ -833,7 +835,7 @@ int main(int argc, char **argv){
 			std::cout << KG << std::endl;
 			std:: cout << "\n";
 			#endif
-			//x_estPosteriori = x_estPriori;
+			x_estPosteriori = x_estPriori;
 		//	x_estPosteriori = M;	
 			x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	

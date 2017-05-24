@@ -504,6 +504,19 @@ filtro/fast:
 .PHONY : filtro/fast
 
 #=============================================================================
+# Target rules for targets named gpsUBX
+
+# Build rule for target.
+gpsUBX: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gpsUBX
+.PHONY : gpsUBX
+
+# fast build rule for target.
+gpsUBX/fast:
+	$(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/build
+.PHONY : gpsUBX/fast
+
+#=============================================================================
 # Target rules for targets named gpsTalker
 
 # Build rule for target.
@@ -607,6 +620,7 @@ help:
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... filtroAtitude"
 	@echo "... filtro"
+	@echo "... gpsUBX"
 	@echo "... gpsTalker"
 	@echo "... gyroTalker"
 	@echo "... gyroOffset"
