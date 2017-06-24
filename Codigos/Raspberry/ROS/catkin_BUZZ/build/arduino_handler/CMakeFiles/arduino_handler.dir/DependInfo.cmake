@@ -30,6 +30,10 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/pi/Documents/desenvolvimentoRos/src/actionlib/include"
   "/home/pi/Documents/desenvolvimentoRos/src/tf2/include"
   "/home/pi/Documents/desenvolvimentoRos/src/tf2_msgs/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/roslz4/include"
+  "/home/pi/Documents/desenvolvimentoRos/src/ros_comm/topic_tools/include"
   "/opt/ros/indigo/include"
   )
 

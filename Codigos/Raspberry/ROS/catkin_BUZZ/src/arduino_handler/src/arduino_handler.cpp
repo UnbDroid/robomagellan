@@ -8,6 +8,8 @@
 #include "std_msgs/Bool.h"
 #include <string>
 #include <sstream>
+#include "rosbag/bag.h"
+#include <rosbag/view.h>
 
 #define VEL_REF_DIR 10
 #define VEL_REF_ESQ 11
@@ -52,6 +54,7 @@ Quicksort
 #define MEDIAN_VALUE 2
 
 ros::Publisher velocity_pub;
+rosbag::Bag bag;
 
 template<typename ItemType>
 unsigned Partition(ItemType* array, unsigned f, unsigned l, ItemType pivot)
@@ -270,6 +273,8 @@ int main(int argc, char **argv)
   std_msgs::Bool botao_verde_msg;
   geometry_msgs::Point32 velocidade_atualMsg;
   raspberry_msgs::GPS gps_msg;
+  
+  	bag.open("odom.bag", rosbag::bagmode::Write);
 
   while (ros::ok()){
     processRangeMsgs();
@@ -278,6 +283,12 @@ int main(int argc, char **argv)
     botao_preto_msg.data = botao_preto;
     velocidade_atualMsg.x = velocidadeAtualDir;
     velocidade_atualMsg.y = velocidadeAtualEsq;
+    
+    ros::Time tempo;
+    tempo = ros::Time::now();
+	gps_msg.tempo = tempo.toNSec() * 1e-6;		
+   	bag.write("odom_data",ros::Time::now(), gps_msg);
+    bag.write("odom_data",ros::Time::now(), velocidade_atualMsg);
     /*gps_msg.valid = gpsData.valid;
     gps_msg.lat = gpsData.lat;
     gps_msg.lng = gpsData.lng;
@@ -293,11 +304,12 @@ int main(int argc, char **argv)
     botao_verde_pub.publish(botao_verde_msg);
     botao_preto_pub.publish(botao_preto_msg);
     velocidade_atual_pub.publish(velocidade_atualMsg);
-    gps_pub.publish(gps_msg);
+    //gps_pub.publish(gps_msg);
 
     loop_rate.sleep();
     ros::spinOnce();
   }
 
+	bag.close();
   return 0;
 }

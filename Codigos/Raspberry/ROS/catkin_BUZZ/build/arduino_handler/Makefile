@@ -166,6 +166,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_py: arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+
+.PHONY : topic_tools_generate_messages_py
+
+# fast build rule for target.
+topic_tools_generate_messages_py/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build
+.PHONY : topic_tools_generate_messages_py/fast
+
+# Convenience name for target.
 arduino_handler/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
 .PHONY : arduino_handler/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
@@ -224,6 +239,21 @@ sensor_msgs_generate_messages_cpp: arduino_handler/CMakeFiles/sensor_msgs_genera
 sensor_msgs_generate_messages_cpp/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f arduino_handler/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
 .PHONY : sensor_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_cpp: arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+
+.PHONY : topic_tools_generate_messages_cpp
+
+# fast build rule for target.
+topic_tools_generate_messages_cpp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
+.PHONY : topic_tools_generate_messages_cpp/fast
 
 # Convenience name for target.
 arduino_handler/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
@@ -406,6 +436,21 @@ actionlib_generate_messages_cpp/fast:
 .PHONY : actionlib_generate_messages_cpp/fast
 
 # Convenience name for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_lisp: arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+
+.PHONY : topic_tools_generate_messages_lisp
+
+# fast build rule for target.
+topic_tools_generate_messages_lisp/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build
+.PHONY : topic_tools_generate_messages_lisp/fast
+
+# Convenience name for target.
 arduino_handler/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
 .PHONY : arduino_handler/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
@@ -578,10 +623,12 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... install/local"
+	@echo "... topic_tools_generate_messages_py"
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... arduino_handler"
 	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... topic_tools_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
@@ -595,6 +642,7 @@ help:
 	@echo "... tf_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_cpp"
+	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_lisp"

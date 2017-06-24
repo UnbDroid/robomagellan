@@ -5,6 +5,17 @@ arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o
  /home/pi/Documents/desenvolvimentoRos/devel/include/geometry_msgs/Point32.h
  /home/pi/Documents/desenvolvimentoRos/devel/include/ros/common.h
  /home/pi/Documents/desenvolvimentoRos/devel/include/sensor_msgs/Range.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/bag.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/buffer.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/chunked_file.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/constants.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/exceptions.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/macros.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/message_instance.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/query.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/stream.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/structures.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/view.h
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosconsole/include/ros/assert.h
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosconsole/include/ros/console.h
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosconsole/include/ros/console_backend.h
@@ -40,6 +51,7 @@ arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/transport_hints.h
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/wall_timer.h
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/wall_timer_options.h
+ /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roslz4/include/roslz4/lz4s.h
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcDecl.h
  /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcValue.h
  /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedFloat64.h
@@ -48,9 +60,11 @@ arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o
  /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedFloat32.h
  /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/arduino_handler.cpp
  /opt/ros/indigo/include/ros/builtin_message_traits.h
+ /opt/ros/indigo/include/ros/cpp_common_decl.h
  /opt/ros/indigo/include/ros/datatypes.h
  /opt/ros/indigo/include/ros/duration.h
  /opt/ros/indigo/include/ros/exception.h
+ /opt/ros/indigo/include/ros/header.h
  /opt/ros/indigo/include/ros/macros.h
  /opt/ros/indigo/include/ros/message_event.h
  /opt/ros/indigo/include/ros/message_forward.h

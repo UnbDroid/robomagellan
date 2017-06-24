@@ -17,7 +17,7 @@
 #define g 9.80665
 
 rosbag::Bag bag;
-//ros::Time tempo;
+ros::Time tempo;
 
 short read_word(int fd, int adr_h,int adr_l){
 
@@ -98,6 +98,9 @@ int main(int argc, char **argv){
 		msg.a_x = (acc_x*SCALE*g - bx)/sx;
 		msg.a_y = (acc_y*SCALE*g - by)/sy;
 		msg.a_z = (acc_z*SCALE*g - bz)/sz;
+		
+		tempo = ros::Time::now();
+		msg.time = tempo.toNSec() * 1e-6;	
 		
 		#ifdef DEBUG
 		ROS_INFO("x: %f", msg.a_x);
