@@ -107,17 +107,17 @@ Vector3f m_unitario_n;
 
 void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
 
-	if(!msg->valid){
-		gpsData.valid = msg->valid;
-		ROS_INFO("GPS sem sinal");	
-	}
-	else{
-		gpsData.valid = msg->valid;
-		gpsData.updated = msg->updated;
+	//if(!msg->valid){
+		//gpsData.valid = msg->valid;
+		//ROS_INFO("GPS sem sinal");	
+//	}
+	//else{
+		//gpsData.valid = msg->valid;
+		//gpsData.updated = msg->updated;
 		gpsData.lat = msg->lat;
 		gpsData.lng = msg->lng;
 		//gpsData.alt = msg->alt;
-		gpsData.speed = msg->speed;
+		//gpsData.speed = msg->speed;
 		//gpsData.course = msg->course;
 		//gpsData.hdop = msg->hdop;
 		//gpsData.vdop = msg->vdop;
@@ -132,7 +132,7 @@ void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
 		//ROS_INFO("vdop: %f", gpsData.vdop);
 		//ROS_INFO("pdop: %f", gpsData.pdop);
 	
-	}
+//	}
 
 
 }
@@ -793,7 +793,7 @@ int main(int argc, char **argv){
 		//Filtro	
 		}else{
 
-			x_estPosteriori << 0,0,0,0,0,0,0,0,0,0;
+			x_estPosteriori << 1,0,0,0,0,0,0,0,0,0;
 
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
@@ -812,11 +812,11 @@ int main(int argc, char **argv){
 			#endif
 
 			// Correcao 
-			KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
+			//KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
 			//M = medicao(ref, q_anterior);
 	    	        //if (!parar){
-				KG = Z10*KG;
-				M = Z10*M;
+				//KG = Z10*KG;
+				//M = Z10*M;
 		//	}else{
 
 		//		while(countParada < 10){

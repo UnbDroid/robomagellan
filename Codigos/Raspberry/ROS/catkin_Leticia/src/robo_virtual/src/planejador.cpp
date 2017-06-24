@@ -44,14 +44,114 @@ int main(int argc, char **argv)
     auxPosition.pose.position.y = 0;
     auxPosition.pose.position.z = contador;
     trajeto.poses.push_back(auxPosition);*/
+   /* auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
 
-     auxPosition.header.seq = (int)contador;
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 9;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = -9;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 9;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
     auxPosition.pose.position.x = 9;
     auxPosition.pose.position.y = 9;
     auxPosition.pose.position.z = contador;
     trajeto.poses.push_back(auxPosition);
 
     auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+*/
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 9;
+    auxPosition.pose.position.y = 9;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    auxPosition.pose.orientation.w = 0.707;
+    auxPosition.pose.orientation.y = 0;
+    auxPosition.pose.orientation.x = 0;
+    auxPosition.pose.orientation.z = -0.707;
+    trajeto.poses.push_back(auxPosition);
+
+
+/*
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 9;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 9;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+
+    auxPosition.header.seq = (int)contador;
+    auxPosition.pose.position.x = 0;
+    auxPosition.pose.position.y = 0;
+    auxPosition.pose.position.z = contador;
+    trajeto.poses.push_back(auxPosition);
+  */  /*auxPosition.header.seq = (int)contador;
     auxPosition.pose.position.x = 0;
     auxPosition.pose.position.y = 9;
     auxPosition.pose.position.z = contador;
@@ -81,7 +181,7 @@ int main(int argc, char **argv)
     auxPosition.pose.position.y = 0;
     auxPosition.pose.position.z = contador;
     trajeto.poses.push_back(auxPosition);
-
+*/
  /*   auxPosition.header.seq = (int)contador;
     auxPosition.pose.position.x = 0;
     auxPosition.pose.position.y = 9;

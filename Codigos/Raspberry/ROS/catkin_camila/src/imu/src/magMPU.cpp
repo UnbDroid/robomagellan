@@ -130,9 +130,9 @@ rosbag::Bag bagParam;
 		mag_y = read_word(fd,Register_YH,Register_YL);
 		mag_z = read_word(fd,Register_ZH,Register_ZL);
 		
-		msg.m_x = (mag_x*SCALE)-bx;
-       	msg.m_y = (mag_y*SCALE)-by;
-       	msg.m_z = (mag_z*SCALE)-bz;
+		msg.m_x = (mag_x*SCALE);
+       	msg.m_y = (mag_y*SCALE);
+       	msg.m_z = (mag_z*SCALE);
 		tempo = ros::Time::now();
 		msg.tempo = tempo.toNSec() * 1e-6;
 		

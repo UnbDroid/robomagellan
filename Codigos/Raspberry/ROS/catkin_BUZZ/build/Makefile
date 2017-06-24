@@ -868,6 +868,19 @@ raspberry_msgs_generate_messages_cpp/fast:
 .PHONY : raspberry_msgs_generate_messages_cpp/fast
 
 #=============================================================================
+# Target rules for targets named topic_tools_generate_messages_py
+
+# Build rule for target.
+topic_tools_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_py
+.PHONY : topic_tools_generate_messages_py
+
+# fast build rule for target.
+topic_tools_generate_messages_py/fast:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build
+.PHONY : topic_tools_generate_messages_py/fast
+
+#=============================================================================
 # Target rules for targets named tf2_msgs_generate_messages_lisp
 
 # Build rule for target.
@@ -918,6 +931,19 @@ sensor_msgs_generate_messages_cpp: cmake_check_build_system
 sensor_msgs_generate_messages_cpp/fast:
 	$(MAKE) -f arduino_handler/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
 .PHONY : sensor_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named topic_tools_generate_messages_cpp
+
+# Build rule for target.
+topic_tools_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_cpp
+.PHONY : topic_tools_generate_messages_cpp
+
+# fast build rule for target.
+topic_tools_generate_messages_cpp/fast:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
+.PHONY : topic_tools_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_lisp
@@ -1074,6 +1100,19 @@ actionlib_generate_messages_cpp: cmake_check_build_system
 actionlib_generate_messages_cpp/fast:
 	$(MAKE) -f arduino_handler/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/actionlib_generate_messages_cpp.dir/build
 .PHONY : actionlib_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named topic_tools_generate_messages_lisp
+
+# Build rule for target.
+topic_tools_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 topic_tools_generate_messages_lisp
+.PHONY : topic_tools_generate_messages_lisp
+
+# fast build rule for target.
+topic_tools_generate_messages_lisp/fast:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build
+.PHONY : topic_tools_generate_messages_lisp/fast
 
 #=============================================================================
 # Target rules for targets named tf2_msgs_generate_messages_cpp
@@ -1363,10 +1402,12 @@ help:
 	@echo "... _raspberry_msgs_generate_messages_check_deps_Mag"
 	@echo "... _raspberry_msgs_generate_messages_check_deps_StampedUint8"
 	@echo "... raspberry_msgs_generate_messages_cpp"
+	@echo "... topic_tools_generate_messages_py"
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... arduino_handler"
 	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... topic_tools_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
@@ -1379,6 +1420,7 @@ help:
 	@echo "... tf_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_cpp"
+	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_lisp"
