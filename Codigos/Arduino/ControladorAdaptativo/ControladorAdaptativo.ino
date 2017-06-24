@@ -432,7 +432,7 @@ void setup(){
   }
   Serial.println("Start");
  
-  start_SD();
+  //start_SD();
 }
 
 void loop(){

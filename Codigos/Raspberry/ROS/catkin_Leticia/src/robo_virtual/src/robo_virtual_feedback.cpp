@@ -16,12 +16,12 @@
 
 #define PI 3.14159265f
 
-#define ARQ_DEBUG 1
+//#define ARQ_DEBUG 1
 #define DEBUG 1
-//#define GAZEBO 1
+#define GAZEBO 1
 #define ARDUINO 1
 #define CONVERTER_COORD 1
-//#define TESTE_US 1
+#define TESTE_US 1
 
 // Modos de operacao
 #define PARA 0
@@ -42,7 +42,7 @@
 #define vel_min_arduino 1.5f
 #endif
 
-#if defined(ARDUINO)
+/*#if defined(ARDUINO)
 #define VELOCIDADE_MAXIMA 5.5f
 #define VELOCIDADE_MAXIMA_APROX 3.0f
 #define VELOCIDADE_MINIMA 1.0f
@@ -52,13 +52,11 @@
 #define VELOCIDADE_MAX_ARDUINO_APROX 3.0f
 #define vel_min_arduino 1.5f
 #endif
-
+*/
 #define DISTANCIA_MAXIMA 1.0f
 #define DISTANCIA_MINIMA 0.002f
 #define NUM_US 11
-#define DISTANCIA_CENTRO 0.05f
-
-#define DISTANCIA_INTERMEDIARIA 1.0f
+#define DISTANCIA_CENTRO 0.1f
 
 //Variaveis Globais-------------------------------------------------------------------------------------------------------
 
@@ -74,7 +72,6 @@ struct ultrassons {
 
 std::vector<geometry_msgs::PoseStamped> pose;
 geometry_msgs::PoseStamped auxPose;
-//geometry_msgs::PoseStamped trajetoRecebido;
 geometry_msgs::Point32 VelocidadeRecebida;
 
 #if defined(GAZEBO)
@@ -94,9 +91,6 @@ bool parar = true;
 bool novoSegmento = false;
 bool obstaculo = false;
 bool desviou = false;
-bool testando_us = false;
-
-//static float trajetoria_id = -100, trajetoria_id_anterior = -200;
 
 static float velocidadeLinear = 0, velocidadeAngular = 0;
 
@@ -117,8 +111,6 @@ static bool inicio = false;
 /*Flag que permite receber nova trajetoria, novas velocidades a serem seguidas*/
 static int16_t enable = 0;
 
-static int16_t trajetoria_intermediaria = 0;
-
 static float vel_max = 0, vel_max_arduino = 0;
 
 float DIST_MAX[NUM_US] = {0.5,0.5,0.5,1,1,1,1,1,0.5,0.5,0.5};
@@ -138,7 +130,7 @@ sin(-34.8*PI/180)*DIST_MAX[7],sin(-52.5*PI/180)*DIST_MAX[8],sin(-69.6*PI/180)*DI
 
 #if defined(ARQ_DEBUG)
   #warning Atencao! ARQ_DEBUG esta definido
-  FILE *arq, *arq2, *arqVelAtual, *arqZVD, *arqUS;
+  FILE *arq, *arq2;
 #endif
 
 //Funcoes ---------------------------------------------------------------------------------------------------------------
@@ -147,8 +139,6 @@ void trajetoCallback(const nav_msgs::Path::ConstPtr& msg);
 void enablePathCallback(const std_msgs::Int16::ConstPtr& msg);
 void posicaoAtualCallback(const nav_msgs::Odometry::ConstPtr& msg);
 void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg);
-void velocidade_atualCallback(const geometry_msgs::Point32::ConstPtr& msg);
-void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg);
 void calculaSegmento (void);
 void RoboReferencia(const ros::TimerEvent&);
 void controladorTrajetoria(void);
@@ -161,16 +151,8 @@ void verificaObstaculos (tf::TransformListener &tfListener);
 void trajetoCallback(const nav_msgs::Path::ConstPtr& msg)
 {
  // if((enable != PARA) && (enable != SEGUIR_VELOCIDADE)){
-
-    //trajetoRecebido = msg->poses.front();
-    //trajetoria_id = trajetoRecebido.pose.position.z;
-    
-    //if (trajetoria_id != trajetoria_id_anterior) {
-      //trajetoria_id_anterior = trajetoria_id;
-      pose = msg->poses;
-      trajetoriaAtual = 0; 
-      ROS_INFO("Posicao recebida");
-    //}
+    pose = msg->poses;
+    trajetoriaAtual = 0;
 
 #if defined(DEBUG)
     ROS_INFO("Posicao recebida");
@@ -249,20 +231,7 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
   std::string usNames[] = {"/ultrasound1","/ultrasound2","/ultrasound3","/ultrasound4","/ultrasound5",
                                         "/ultrasound6","/ultrasound7","/ultrasound8","/ultrasound9","/ultrasound10",
                                         "/ultrasound11"};
-
-#if defined(TESTE_US)
-
-  for(int i=0; i<NUM_US;i++){
-      if(usNames[i] == msg->header.frame_id){
-        US[i] = msg->range;
-
-#if defined(DEBUG)
-        ROS_INFO("ultrassom %d leitura %f", i, US[i]);
-#endif
-      }
-  }
-
-#else  
+  
   if (enable == SEGUIR_TRAJETORIA){
     for(int i=0; i<NUM_US;i++){
       if(usNames[i] == msg->header.frame_id){
@@ -274,7 +243,6 @@ void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg){
       }
     }  
   }
-#endif
 }
 
 void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg){
@@ -282,14 +250,6 @@ void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg){
   VelocidadeRecebida.x = msg->x;
   VelocidadeRecebida.y = msg->y;
   VelocidadeRecebida.z = msg->z;
-
-}
-// Pega a velocidade atual do robo para feedback
-void velocidade_atualCallback(const geometry_msgs::Point32::ConstPtr& msg){
-
-#if defined(ARQ_DEBUG)
-  fprintf(arqVelAtual,"%f %f",msg->x, msg->y);
-#endif
 
 }
 
@@ -302,16 +262,19 @@ void calculaSegmento (void) {
   //Indica que ele passou da regiao do seguimeto atual e ira prossegir para o proximo segmento ou que irá comecar o primeiro segmento  
 #if defined(TESTE_US)
   if (enable == PARA){
+    parar = false;
+    inicio = false;
+    erro1 = 0, erro2 = 0, erro3 = 0;
     return;
   }
-#endif
-
+#else
   if (enable == PARA){
     parar = true;
     inicio = false;
     erro1 = 0, erro2 = 0, erro3 = 0;
     return;
   }
+#endif
   if (enable == SEGUIR_VELOCIDADE){
     parar = false;
     inicio  = false;
@@ -320,66 +283,19 @@ void calculaSegmento (void) {
   if ((((cos(gama)*(roboAtual.x - roboDestino.x))+(sin(gama)*(roboAtual.y - roboDestino.y))) > 0) || (trajetoriaAtual == 0)){
    
     if (!pose.empty()){
+      auxPose = pose.front();
+      pose.erase(pose.begin());
 
-      if ((pose.size() == 1) && (trajetoria_intermediaria == 0)) {
-
-        trajetoria_intermediaria = 1;
-        auxPose = pose.front();
-
-        aux_x = roboDestino.x;
-        aux_y = roboDestino.y;
-
-        geometry_msgs::Quaternion orientacao;
-
-        double roll, pitch, yaw;
-  
-        tf::Quaternion quat;
-
-        orientacao = auxPose.pose.orientation;  
-  
-        //Tranforma a orientacao dada em quaternions para radianos 
-        tf::quaternionMsgToTF(orientacao, quat);
-        tf::Matrix3x3(quat).getRPY(roll, pitch, yaw);
+      aux_x = roboDestino.x;
+      aux_y = roboDestino.y;
 
 #if defined(CONVERTER_COORD)
-        roboDestino.x = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);
-        roboDestino.y = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
+      roboDestino.x = auxPose.pose.position.y;
+      roboDestino.y = auxPose.pose.position.x;
 #else        
-        roboDestino.x = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
-        roboDestino.y = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);
-#endif  
-
-      }
-      else {
-        trajetoria_intermediaria = 0;
-        auxPose = pose.front();
-        pose.erase(pose.begin());
-
-        // Nao apaga o primeiro destino
-        /*if (trajetoriaAtual == 0) {
-          if (!pose.empty()){
-            auxPose = pose.front();
-            pose.erase(pose.begin());
-          }
-          else {
-            parar = true;
-            inicio = false;
-
-            return;
-          }
-        }*/
-
-        aux_x = roboDestino.x;
-        aux_y = roboDestino.y;
-
-#if defined(CONVERTER_COORD)
-        roboDestino.x = auxPose.pose.position.y;
-        roboDestino.y = auxPose.pose.position.x;
-#else        
-        roboDestino.x = auxPose.pose.position.x;
-        roboDestino.y = auxPose.pose.position.y;
-#endif  
-      }
+      roboDestino.x = auxPose.pose.position.x;
+      roboDestino.y = auxPose.pose.position.y;
+#endif
       
       if (trajetoriaAtual == 0){
         gama = atan2((roboDestino.y - roboAtual.y),(roboDestino.x - roboAtual.x));  
@@ -398,15 +314,14 @@ void calculaSegmento (void) {
       inicio = true;
 
 #if defined(DEBUG)
-      ROS_INFO("Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.x,auxPose.pose.position.y);
+      ROS_INFO("Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.y,auxPose.pose.position.x);
 #endif
 #if defined(ARQ_DEBUG)
-      fprintf(arq,"Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.x,auxPose.pose.position.y);
+      fprintf(arq,"Segmento atual %d:  x:%f y:%f",trajetoriaAtual, auxPose.pose.position.y,auxPose.pose.position.x);
 #endif
 
     }
     else{
-      fprintf(arq,"PAREI CHEGUEI");
       parar = true;
       inicio = false;
     }
@@ -423,7 +338,7 @@ void RoboReferencia(const ros::TimerEvent&){
   float anguloReta = 0;
   static float x,y,theta;
   static int flag = 0;
-  const float Kr = 1.2, Kt = -1.2;//Kr = 3, Kt = -3;
+  const float Kr = 3, Kt = -3;
 
   if ((inicio || desviou) && !parar) {
 
@@ -432,22 +347,7 @@ void RoboReferencia(const ros::TimerEvent&){
     x = roboDestino.x - roboInicial.x;
     y = roboDestino.y - roboInicial.y;
     
-    if (((x < 0.01) && (x > -0.01)) && (y > 0)) {
-      anguloReta = PI/2;
-    }
-    else if (((x < 0.01) && (x > -0.01)) && (y < 0)){
-      anguloReta = -PI/2;
-    }
-    if ((x > 0) && ((y < 0.01) && (y > -0.01))){
-      anguloReta = 0;
-    }
-    else if ((x < 0) && ((y < 0.01) && (y > -0.01))){
-      anguloReta = PI;
-    }
-    else {
-      anguloReta = atan2(y,x);  
-    }
-    
+    anguloReta = atan2(y,x);
 
     theta = anguloReta - roboReferencia.theta;
 
@@ -467,7 +367,6 @@ void RoboReferencia(const ros::TimerEvent&){
       else if (abs_theta > PI){
         if (theta > 0) {
           theta = 2*PI - theta;
-
         }
         else if (theta < 0) {
           theta = 2*PI + theta;
@@ -523,7 +422,7 @@ void RoboReferencia(const ros::TimerEvent&){
     ROS_INFO("periodo: %f amostras: %f t = %f", periodo, amostras, t);
 #endif
 #if defined(ARQ_DEBUG)
-    fprintf(arq,"x: %f y: %f theta = %f angulo reta: %f angulo inicial: %f\n", x, y, theta, anguloReta,roboReferencia.theta);
+    fprintf(arq,"x: %f y: %f t = %f \n", x, y, theta);
     fprintf(arq,"periodo: %f amostras: %f incremento = %f\n", periodo, amostras, incremento);
     fprintf(arq,"velocidades: x: %f y :%f theta: %f \n", vx, vy, w);
 #endif
@@ -558,9 +457,9 @@ void RoboReferencia(const ros::TimerEvent&){
     velocidadeAngular = w;  
   }
   else {
-    velocidadeLinear = velocidadeLinear - abs(Kt*(fk)*cos(thetak));/*cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy*/
+    velocidadeLinear = /*cos(roboReferencia.theta)*vx + sin(roboReferencia.theta)*vy*/ velocidadeLinear - abs(Kt*(fk)*cos(thetak));
     velocidadeAngular = velocidadeAngular + Kr*(fk)*sin(thetak);
-
+    
     roboReferencia.x = roboReferencia.x + (velocidadeLinear)*cos(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
     roboReferencia.y = roboReferencia.y + (velocidadeLinear)*sin(roboReferencia.theta)*TEMPO_AMOSTRAGEM;
     roboReferencia.theta = roboReferencia.theta + velocidadeAngular*TEMPO_AMOSTRAGEM;
@@ -600,12 +499,13 @@ void RoboReferencia(const ros::TimerEvent&){
   }
 
 #if defined(TESTE_US)
-  if (!obstaculo) {
+  if (parar && !obstaculo) {
     velocidadeLinear = 0;
     velocidadeAngular = 0;
     vx = 0;
     vy = 0;
   }
+
 #else
   if (parar) {
     velocidadeLinear = 0;
@@ -631,18 +531,14 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   //velocidades dadas às rodas do robo real
   static float velocidadeEsquerda = 0, velocidadeDireita = 0; 
   
+  
   erro1 = cos(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + sin(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
   erro2 = -sin(roboAtual.theta)*(roboReferencia.x - roboAtual.x) + cos(roboAtual.theta)*(roboReferencia.y - roboAtual.y);
   erro3 = roboReferencia.theta - roboAtual.theta;
-
-#if defined(TESTE_US)
-  vf = velocidadeLinear;
-  wf = velocidadeAngular;
-
-#else  
+ 
   vf = (velocidadeLinear * cos(erro3)) + (k1 *erro1);
   wf = velocidadeAngular + (velocidadeLinear * k2 * erro2) + (k3 * sin(erro3));
-#endif
+
   //Calculo direto da velocidade
   
   velocidadeDireita = (b1*vf + b2*wf)/(2*PI);
@@ -680,12 +576,6 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   else if (wf < -vel_max){
     wf = -vel_max;
   }
-  /*if ((vf < VELOCIDADE_MINIMA) && (vf > 0)){
-    vf = VELOCIDADE_MINIMA;
-  }
-  else if ((vf > VELOCIDADE_MINIMA) && (vf < 0)){
-    vf = -VELOCIDADE_MINIMA;
-  }*/
 #endif
 
 #if defined(ARDUINO)
@@ -806,8 +696,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 
 #endif
 
-  // INCLUIR obstaculo para testar ZVD - MUDAR!!
-  if (!parar || testando_us) {  
+  if (!parar /*|| obstaculo*/) {  // INCLUIR obstaculo para testar ZVD
 
     /*if ((!pose.empty()) && abs(velocidadeAngular) < 0.2){
 
@@ -830,11 +719,11 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
     velocidadeRobo.linear.x = vf;
     velocidadeRobo.angular.z = wf;
 #endif
+
 #if defined(ARDUINO) 
     velocidadeArduinoEsquerda.data = velocidadeEsquerda;
     velocidadeArduinoDireita.data = velocidadeDireita;
 #endif
-
   }
   else {
     vf = 0;
@@ -860,7 +749,6 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
 #endif
 
 }
-
 void controladorVelocidade(void){
 
   const float b1 = 1/(0.06), b2 = 0.075/0.06;
@@ -1074,11 +962,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
       US_aux.erase(US_aux.begin());  
     
       us1.x = us1.x + DISTANCIA_CENTRO;
-
-#if defined(ARQ_DEBUG)
-      fprintf(arqUS, "%f  %f ", us1.x,us1.y);
-#endif
-
+            
       if (US[i] > DIST_MAX[i]){
         delta_atual[i] = 0;
       }
@@ -1086,8 +970,8 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
         delta_atual[i] = DIST_MAX[i] - US[i];
       }
     
-      if ((delta_atual[i] - delta [i]) <= 0){ //(delta_atual[i] == 0) {
-        f_aux += 0; 
+      if (delta_atual[i] == 0) {//(delta_atual[i] - delta [i]) <= 0){
+        f_aux += 0;
       }
       else {
         f_aux += delta_atual[i] - delta[i];
@@ -1098,10 +982,6 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
       delta[i] = delta_atual[i];
     }
   }
-
-#if defined(ARQ_DEBUG)
-  fprintf(arqUS, "\n");
-#endif
 
   if (f_aux > 0) {
     obstaculo = true;
@@ -1126,10 +1006,6 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
 #if defined(DEBUG)
   ROS_INFO("fk: %f thetak: %f aux_x: %f aux_y: %f", fk, thetak,aux_x,aux_y);
 #endif
-
-#if defined(ARQ_DEBUG)
-  fprintf(arqZVD, "%f  %f \n", fk, thetak);
-#endif
   
 }
 
@@ -1137,19 +1013,9 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
 int main(int argc, char **argv)
 {
 
-#if (defined(ARQ_DEBUG) && defined(GAZEBO))
-  arq = fopen("feedbackpose.txt", "w");
-  arq2 = fopen("feedbackvel.txt", "w");
-  arqVelAtual = fopen("velocidade_atual.txt", "w");
-  arqZVD = fopen("feedbackZVD.txt", "w");
-  arqUS = fopen("feedbackUS.txt", "w");
-#endif
-#if (defined(ARQ_DEBUG) && defined(GAZEBO))
-  arq = fopen("/home/pi/Documents/feedbackpose.txt", "w");
+#if defined(ARQ_DEBUG)
+  arq = fopen("/home/pi/Documents/feedback.txt", "w");
   arq2 = fopen("/home/pi/Documents/feedbackvel.txt", "w");
-  arqVelAtual = fopen("/home/pi/Documents/velocidade_atual.txt", "w");
-  arqZVD = fopen("/home/pi/Documents/feedbackZVD.txt", "w");
-  arqUS = fopen("/home/pi/Documents/feedbackUS.txt", "w");
 #endif
 
   ros::init(argc, argv, "robo_virtual");
@@ -1160,8 +1026,6 @@ int main(int argc, char **argv)
   ros::Subscriber subAtual = n.subscribe("odom", 1000, posicaoAtualCallback);
   ros::Subscriber subTrajeto = n.subscribe("path_planned", 1000, trajetoCallback);
   ros::Subscriber subVelocidade = n.subscribe("velocity", 1000, velocidadeCallback);
-
-  ros::Subscriber pegaVelocidade = n.subscribe("velocidade_atual", 1000, velocidade_atualCallback);
 
   ros::Subscriber subUS1 = n.subscribe("ultrasound1",1000,UltrassomCallback);
   ros::Subscriber subUS2 = n.subscribe("ultrasound2",1000,UltrassomCallback);
@@ -1201,20 +1065,9 @@ int main(int argc, char **argv)
     calculaSegmento();
 
 #if defined(TESTE_US)
-    #warning Atencao! TESTE_US esta definido!
-    vel_max_arduino = 3.0;
-
-    verificaObstaculosZVD(tfListener);
-    controladorTrajetoria(); 
-    if (obstaculo){
-      testando_us = true;
-    }
-    else {
-      testando_us = false;
-    }
-
+    controladorTrajetoria();
+    verificaObstaculosZVD(tfListener); 
 #endif
-
     //Se estiver no modo seguir trajetoria
     if (enable == SEGUIR_TRAJETORIA){
       controladorTrajetoria();
@@ -1226,8 +1079,9 @@ int main(int argc, char **argv)
     else if (enable == APROXIMAR_CONE){
       controladorTrajetoria();
     }
-    else if (enable == PARA && !testando_us) {
-     // parar = true;
+#if defined (TESTE_US)
+    else if (enable == PARA && !obstaculo) {
+      parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
 #if defined(ARDUINO)
@@ -1240,20 +1094,21 @@ int main(int argc, char **argv)
 #endif
     }
 
-/*    else if (enable == PARA) {
-      //parar = true;
+#else 
+    else if (enable == PARA && !obstaculo) {
+      parar = true;
       inicio = false;
       erro1 = 0, erro2 = 0, erro3 = 0;
 #if defined(ARDUINO)
-      //velocidadeArduinoEsquerda.data = 0;
-      //velocidadeArduinoDireita.data = 0;
+      velocidadeArduinoEsquerda.data = 0;
+      velocidadeArduinoDireita.data = 0;
 #endif
 #if defined(GAZEBO)
       velocidadeRobo.linear.x = 0;
       velocidadeRobo.angular.z = 0;
 #endif
     }
-*/
+#endif
 
 
 #if defined(GAZEBO)
@@ -1278,10 +1133,6 @@ int main(int argc, char **argv)
   }
 #if defined(ARQ_DEBUG)
   fclose(arq);
-  fclose(arq2);
-  fclose(arqVelAtual);
-  fclose(arqZVD);
-  fclose(arqUS);
 #endif
   return 0;
 }

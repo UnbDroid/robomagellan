@@ -18,9 +18,9 @@
 
 #define ARQ_DEBUG 1
 #define DEBUG 1
-//#define GAZEBO 1
-#define ARDUINO 1
-#define CONVERTER_COORD 1
+#define GAZEBO 1
+//#define ARDUINO 1
+//#define CONVERTER_COORD 1
 //#define TESTE_US 1
 
 // Modos de operacao
@@ -138,7 +138,7 @@ sin(-34.8*PI/180)*DIST_MAX[7],sin(-52.5*PI/180)*DIST_MAX[8],sin(-69.6*PI/180)*DI
 
 #if defined(ARQ_DEBUG)
   #warning Atencao! ARQ_DEBUG esta definido
-  FILE *arq, *arq2, *arqVelAtual, *arqZVD, *arqUS;
+  FILE *arq, *arq2;
 #endif
 
 //Funcoes ---------------------------------------------------------------------------------------------------------------
@@ -147,8 +147,6 @@ void trajetoCallback(const nav_msgs::Path::ConstPtr& msg);
 void enablePathCallback(const std_msgs::Int16::ConstPtr& msg);
 void posicaoAtualCallback(const nav_msgs::Odometry::ConstPtr& msg);
 void UltrassomCallback(const sensor_msgs::Range::ConstPtr& msg);
-void velocidade_atualCallback(const geometry_msgs::Point32::ConstPtr& msg);
-void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg);
 void calculaSegmento (void);
 void RoboReferencia(const ros::TimerEvent&);
 void controladorTrajetoria(void);
@@ -284,14 +282,6 @@ void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg){
   VelocidadeRecebida.z = msg->z;
 
 }
-// Pega a velocidade atual do robo para feedback
-void velocidade_atualCallback(const geometry_msgs::Point32::ConstPtr& msg){
-
-#if defined(ARQ_DEBUG)
-  fprintf(arqVelAtual,"%f %f",msg->x, msg->y);
-#endif
-
-}
 
 /**Funcao que atualiza o segmento atual a ser realizado*/
 void calculaSegmento (void) {
@@ -342,8 +332,8 @@ void calculaSegmento (void) {
         tf::Matrix3x3(quat).getRPY(roll, pitch, yaw);
 
 #if defined(CONVERTER_COORD)
-        roboDestino.x = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);
-        roboDestino.y = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
+        roboDestino.x = auxPose.pose.position.y;
+        roboDestino.y = auxPose.pose.position.x;
 #else        
         roboDestino.x = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
         roboDestino.y = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);
@@ -423,7 +413,7 @@ void RoboReferencia(const ros::TimerEvent&){
   float anguloReta = 0;
   static float x,y,theta;
   static int flag = 0;
-  const float Kr = 1.2, Kt = -1.2;//Kr = 3, Kt = -3;
+  const float Kr = 3, Kt = -3;
 
   if ((inicio || desviou) && !parar) {
 
@@ -1074,11 +1064,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
       US_aux.erase(US_aux.begin());  
     
       us1.x = us1.x + DISTANCIA_CENTRO;
-
-#if defined(ARQ_DEBUG)
-      fprintf(arqUS, "%f  %f ", us1.x,us1.y);
-#endif
-
+            
       if (US[i] > DIST_MAX[i]){
         delta_atual[i] = 0;
       }
@@ -1086,7 +1072,7 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
         delta_atual[i] = DIST_MAX[i] - US[i];
       }
     
-      if ((delta_atual[i] - delta [i]) <= 0){ //(delta_atual[i] == 0) {
+      if (delta_atual[i] == 0) {//(delta_atual[i] - delta [i]) <= 0){
         f_aux += 0; 
       }
       else {
@@ -1098,10 +1084,6 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
       delta[i] = delta_atual[i];
     }
   }
-
-#if defined(ARQ_DEBUG)
-  fprintf(arqUS, "\n");
-#endif
 
   if (f_aux > 0) {
     obstaculo = true;
@@ -1126,10 +1108,6 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
 #if defined(DEBUG)
   ROS_INFO("fk: %f thetak: %f aux_x: %f aux_y: %f", fk, thetak,aux_x,aux_y);
 #endif
-
-#if defined(ARQ_DEBUG)
-  fprintf(arqZVD, "%f  %f \n", fk, thetak);
-#endif
   
 }
 
@@ -1137,19 +1115,9 @@ void verificaObstaculosZVD (tf::TransformListener &tfListener) {
 int main(int argc, char **argv)
 {
 
-#if (defined(ARQ_DEBUG) && defined(GAZEBO))
-  arq = fopen("feedbackpose.txt", "w");
+#if defined(ARQ_DEBUG)
+  arq = fopen("feedback.txt", "w");
   arq2 = fopen("feedbackvel.txt", "w");
-  arqVelAtual = fopen("velocidade_atual.txt", "w");
-  arqZVD = fopen("feedbackZVD.txt", "w");
-  arqUS = fopen("feedbackUS.txt", "w");
-#endif
-#if (defined(ARQ_DEBUG) && defined(GAZEBO))
-  arq = fopen("/home/pi/Documents/feedbackpose.txt", "w");
-  arq2 = fopen("/home/pi/Documents/feedbackvel.txt", "w");
-  arqVelAtual = fopen("/home/pi/Documents/velocidade_atual.txt", "w");
-  arqZVD = fopen("/home/pi/Documents/feedbackZVD.txt", "w");
-  arqUS = fopen("/home/pi/Documents/feedbackUS.txt", "w");
 #endif
 
   ros::init(argc, argv, "robo_virtual");
@@ -1160,8 +1128,6 @@ int main(int argc, char **argv)
   ros::Subscriber subAtual = n.subscribe("odom", 1000, posicaoAtualCallback);
   ros::Subscriber subTrajeto = n.subscribe("path_planned", 1000, trajetoCallback);
   ros::Subscriber subVelocidade = n.subscribe("velocity", 1000, velocidadeCallback);
-
-  ros::Subscriber pegaVelocidade = n.subscribe("velocidade_atual", 1000, velocidade_atualCallback);
 
   ros::Subscriber subUS1 = n.subscribe("ultrasound1",1000,UltrassomCallback);
   ros::Subscriber subUS2 = n.subscribe("ultrasound2",1000,UltrassomCallback);
@@ -1278,10 +1244,6 @@ int main(int argc, char **argv)
   }
 #if defined(ARQ_DEBUG)
   fclose(arq);
-  fclose(arq2);
-  fclose(arqVelAtual);
-  fclose(arqZVD);
-  fclose(arqUS);
 #endif
   return 0;
 }

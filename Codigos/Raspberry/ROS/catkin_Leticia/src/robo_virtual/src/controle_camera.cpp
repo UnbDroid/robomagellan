@@ -5,8 +5,8 @@
 
 #define PI 3.14159265f
 
-//#define DEBUG 1
-//#define ARQ_DEBUG 1
+#define DEBUG 1
+#define ARQ_DEBUG 1
 
 #define DISTANCIA_MAXIMA 3.0f
 #define DISTANCIA_MINIMA 1.0f
@@ -23,7 +23,7 @@ geometry_msgs::Point32 velocidadeRobo;
 static bool enable = false;
 
 #if defined(ARQ_DEBUG)
-  FILE *arq;
+  FILE *arqCONE;
 #endif
 
 //Funcoes ---------------------------------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ void calculaVelocidades2 (void) {
   }
 
 #if defined(ARQ_DEBUG)
-  fprintf(arq,"%f %f \n",velocidadeRobo.x,velocidadeRobo.z);
+  fprintf(arqCONE,"%f %f %f %f\n",velocidadeRobo.x,velocidadeRobo.z, DistanciaCamera.x, DistanciaCamera.y);
 #endif
 
 #if defined(DEBUG)
@@ -88,7 +88,8 @@ int main(int argc, char **argv)
 
 #if defined(ARQ_DEBUG)
   #warning Atencao! ARQ_DEBUG esta definido
-  arq = fopen("feedback_controle_camera.txt", "w");
+  arqCONE = fopen("feedbackCONE.txt", "w");
+  //fopen("/home/pi/Documents/feedbackCONE.txt", "w");
 #endif
 
   ros::init(argc, argv, "controle_camera");
@@ -113,7 +114,7 @@ int main(int argc, char **argv)
     else {
       velocidadeRobo.x = 0;
       velocidadeRobo.z = 0;
-      //pubVelocidade.publish(velocidadeRobo);
+      pubVelocidade.publish(velocidadeRobo);
     }
 
     loop_rate.sleep();
@@ -121,7 +122,7 @@ int main(int argc, char **argv)
   
   }
 #if defined(ARQ_DEBUG)
-  fclose(arq);
+  fclose(arqCONE);
 #endif
   return 0;
 }
