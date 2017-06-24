@@ -50,6 +50,7 @@ ros::Subscriber<raspberry_msgs::StampedFloat32> subFloat32("raspberry_float32", 
 ros::Subscriber<raspberry_msgs::StampedFloat64> subFloat64("raspberry_float64", &messageFloat64Cb );
 
 void initializeRosCom(){
+  nh.getHardware()->setBaud(115200);
   nh.initNode();
   
   nh.advertise(int64_p);
