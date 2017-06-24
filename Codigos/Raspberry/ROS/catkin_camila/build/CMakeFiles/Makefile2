@@ -245,7 +245,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=18,19 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=22,23 "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -277,7 +277,7 @@ clean: gtest/CMakeFiles/gtest_main.dir/clean
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=16,17 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=20,21 "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -344,7 +344,7 @@ calibrar/preinstall:
 calibrar/CMakeFiles/calibrarMag.dir/all:
 	$(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/depend
 	$(MAKE) -f calibrar/CMakeFiles/calibrarMag.dir/build.make calibrar/CMakeFiles/calibrarMag.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=5,6 "Built target calibrarMag"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=7,8 "Built target calibrarMag"
 .PHONY : calibrar/CMakeFiles/calibrarMag.dir/all
 
 # Include target in all.
@@ -829,7 +829,7 @@ clean: calibrar/CMakeFiles/topic_tools_generate_messages_lisp.dir/clean
 calibrar/CMakeFiles/calibrarAcc.dir/all:
 	$(MAKE) -f calibrar/CMakeFiles/calibrarAcc.dir/build.make calibrar/CMakeFiles/calibrarAcc.dir/depend
 	$(MAKE) -f calibrar/CMakeFiles/calibrarAcc.dir/build.make calibrar/CMakeFiles/calibrarAcc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=3,4 "Built target calibrarAcc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=5,6 "Built target calibrarAcc"
 .PHONY : calibrar/CMakeFiles/calibrarAcc.dir/all
 
 # Include target in all.
@@ -895,12 +895,14 @@ clean: calibrar/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 # Directory level rules for directory filtro
 
 # Convenience name for "all" pass in the directory.
+filtro/all: filtro/CMakeFiles/filtroUKF.dir/all
 filtro/all: filtro/CMakeFiles/filtroAtitude.dir/all
 filtro/all: filtro/CMakeFiles/filtro.dir/all
 
 .PHONY : filtro/all
 
 # Convenience name for "clean" pass in the directory.
+filtro/clean: filtro/CMakeFiles/filtroUKF.dir/clean
 filtro/clean: filtro/CMakeFiles/filtroAtitude.dir/clean
 filtro/clean: filtro/CMakeFiles/filtro.dir/clean
 
@@ -912,13 +914,50 @@ filtro/preinstall:
 .PHONY : filtro/preinstall
 
 #=============================================================================
+# Target rules for target filtro/CMakeFiles/filtroUKF.dir
+
+# All Build rule for target.
+filtro/CMakeFiles/filtroUKF.dir/all:
+	$(MAKE) -f filtro/CMakeFiles/filtroUKF.dir/build.make filtro/CMakeFiles/filtroUKF.dir/depend
+	$(MAKE) -f filtro/CMakeFiles/filtroUKF.dir/build.make filtro/CMakeFiles/filtroUKF.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=13,14 "Built target filtroUKF"
+.PHONY : filtro/CMakeFiles/filtroUKF.dir/all
+
+# Include target in all.
+all: filtro/CMakeFiles/filtroUKF.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+filtro/CMakeFiles/filtroUKF.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 filtro/CMakeFiles/filtroUKF.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : filtro/CMakeFiles/filtroUKF.dir/rule
+
+# Convenience name for target.
+filtroUKF: filtro/CMakeFiles/filtroUKF.dir/rule
+
+.PHONY : filtroUKF
+
+# clean rule for target.
+filtro/CMakeFiles/filtroUKF.dir/clean:
+	$(MAKE) -f filtro/CMakeFiles/filtroUKF.dir/build.make filtro/CMakeFiles/filtroUKF.dir/clean
+.PHONY : filtro/CMakeFiles/filtroUKF.dir/clean
+
+# clean rule for target.
+clean: filtro/CMakeFiles/filtroUKF.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target filtro/CMakeFiles/filtroAtitude.dir
 
 # All Build rule for target.
 filtro/CMakeFiles/filtroAtitude.dir/all:
 	$(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/depend
 	$(MAKE) -f filtro/CMakeFiles/filtroAtitude.dir/build.make filtro/CMakeFiles/filtroAtitude.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=9,10 "Built target filtroAtitude"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=11,12 "Built target filtroAtitude"
 .PHONY : filtro/CMakeFiles/filtroAtitude.dir/all
 
 # Include target in all.
@@ -955,7 +994,7 @@ clean: filtro/CMakeFiles/filtroAtitude.dir/clean
 filtro/CMakeFiles/filtro.dir/all:
 	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/depend
 	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=7,8 "Built target filtro"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=9,10 "Built target filtro"
 .PHONY : filtro/CMakeFiles/filtro.dir/all
 
 # Include target in all.
@@ -1012,7 +1051,7 @@ gps/preinstall:
 gps/CMakeFiles/gpsUBX.dir/all:
 	$(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/depend
 	$(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=14,15 "Built target gpsUBX"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=18,19 "Built target gpsUBX"
 .PHONY : gps/CMakeFiles/gpsUBX.dir/all
 
 # Include target in all.
@@ -1049,7 +1088,7 @@ clean: gps/CMakeFiles/gpsUBX.dir/clean
 gps/CMakeFiles/gpsTalker.dir/all:
 	$(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/depend
 	$(MAKE) -f gps/CMakeFiles/gpsTalker.dir/build.make gps/CMakeFiles/gpsTalker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=11,12,13 "Built target gpsTalker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=15,16,17 "Built target gpsTalker"
 .PHONY : gps/CMakeFiles/gpsTalker.dir/all
 
 # Include target in all.
@@ -1087,6 +1126,9 @@ imu/all: imu/CMakeFiles/gyroTalker.dir/all
 imu/all: imu/CMakeFiles/gyroOffset.dir/all
 imu/all: imu/CMakeFiles/accTalker.dir/all
 imu/all: imu/CMakeFiles/magTalker.dir/all
+imu/all: imu/CMakeFiles/accMPU.dir/all
+imu/all: imu/CMakeFiles/gyroMPU.dir/all
+imu/all: imu/CMakeFiles/magMPU.dir/all
 
 .PHONY : imu/all
 
@@ -1095,6 +1137,9 @@ imu/clean: imu/CMakeFiles/gyroTalker.dir/clean
 imu/clean: imu/CMakeFiles/gyroOffset.dir/clean
 imu/clean: imu/CMakeFiles/accTalker.dir/clean
 imu/clean: imu/CMakeFiles/magTalker.dir/clean
+imu/clean: imu/CMakeFiles/accMPU.dir/clean
+imu/clean: imu/CMakeFiles/gyroMPU.dir/clean
+imu/clean: imu/CMakeFiles/magMPU.dir/clean
 
 .PHONY : imu/clean
 
@@ -1110,7 +1155,7 @@ imu/preinstall:
 imu/CMakeFiles/gyroTalker.dir/all:
 	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/depend
 	$(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=22,23 "Built target gyroTalker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=28,29 "Built target gyroTalker"
 .PHONY : imu/CMakeFiles/gyroTalker.dir/all
 
 # Include target in all.
@@ -1147,7 +1192,7 @@ clean: imu/CMakeFiles/gyroTalker.dir/clean
 imu/CMakeFiles/gyroOffset.dir/all:
 	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/depend
 	$(MAKE) -f imu/CMakeFiles/gyroOffset.dir/build.make imu/CMakeFiles/gyroOffset.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=20,21 "Built target gyroOffset"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=26,27 "Built target gyroOffset"
 .PHONY : imu/CMakeFiles/gyroOffset.dir/all
 
 # Include target in all.
@@ -1184,7 +1229,7 @@ clean: imu/CMakeFiles/gyroOffset.dir/clean
 imu/CMakeFiles/accTalker.dir/all:
 	$(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/depend
 	$(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=1,2 "Built target accTalker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=3,4 "Built target accTalker"
 .PHONY : imu/CMakeFiles/accTalker.dir/all
 
 # Include target in all.
@@ -1221,7 +1266,7 @@ clean: imu/CMakeFiles/accTalker.dir/clean
 imu/CMakeFiles/magTalker.dir/all:
 	$(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/depend
 	$(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=24,25 "Built target magTalker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=32,33 "Built target magTalker"
 .PHONY : imu/CMakeFiles/magTalker.dir/all
 
 # Include target in all.
@@ -1248,6 +1293,117 @@ imu/CMakeFiles/magTalker.dir/clean:
 
 # clean rule for target.
 clean: imu/CMakeFiles/magTalker.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target imu/CMakeFiles/accMPU.dir
+
+# All Build rule for target.
+imu/CMakeFiles/accMPU.dir/all:
+	$(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/depend
+	$(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=1,2 "Built target accMPU"
+.PHONY : imu/CMakeFiles/accMPU.dir/all
+
+# Include target in all.
+all: imu/CMakeFiles/accMPU.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+imu/CMakeFiles/accMPU.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/accMPU.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : imu/CMakeFiles/accMPU.dir/rule
+
+# Convenience name for target.
+accMPU: imu/CMakeFiles/accMPU.dir/rule
+
+.PHONY : accMPU
+
+# clean rule for target.
+imu/CMakeFiles/accMPU.dir/clean:
+	$(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/clean
+.PHONY : imu/CMakeFiles/accMPU.dir/clean
+
+# clean rule for target.
+clean: imu/CMakeFiles/accMPU.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target imu/CMakeFiles/gyroMPU.dir
+
+# All Build rule for target.
+imu/CMakeFiles/gyroMPU.dir/all:
+	$(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/depend
+	$(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=24,25 "Built target gyroMPU"
+.PHONY : imu/CMakeFiles/gyroMPU.dir/all
+
+# Include target in all.
+all: imu/CMakeFiles/gyroMPU.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+imu/CMakeFiles/gyroMPU.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroMPU.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : imu/CMakeFiles/gyroMPU.dir/rule
+
+# Convenience name for target.
+gyroMPU: imu/CMakeFiles/gyroMPU.dir/rule
+
+.PHONY : gyroMPU
+
+# clean rule for target.
+imu/CMakeFiles/gyroMPU.dir/clean:
+	$(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/clean
+.PHONY : imu/CMakeFiles/gyroMPU.dir/clean
+
+# clean rule for target.
+clean: imu/CMakeFiles/gyroMPU.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target imu/CMakeFiles/magMPU.dir
+
+# All Build rule for target.
+imu/CMakeFiles/magMPU.dir/all:
+	$(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/depend
+	$(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles --progress-num=30,31 "Built target magMPU"
+.PHONY : imu/CMakeFiles/magMPU.dir/all
+
+# Include target in all.
+all: imu/CMakeFiles/magMPU.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+imu/CMakeFiles/magMPU.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/magMPU.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build/CMakeFiles 0
+.PHONY : imu/CMakeFiles/magMPU.dir/rule
+
+# Convenience name for target.
+magMPU: imu/CMakeFiles/magMPU.dir/rule
+
+.PHONY : magMPU
+
+# clean rule for target.
+imu/CMakeFiles/magMPU.dir/clean:
+	$(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/clean
+.PHONY : imu/CMakeFiles/magMPU.dir/clean
+
+# clean rule for target.
+clean: imu/CMakeFiles/magMPU.dir/clean
 
 .PHONY : clean
 

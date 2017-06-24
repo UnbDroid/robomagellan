@@ -25,7 +25,7 @@ def read_word_2c(adrH,adrL):
         return val
 
 bus = smbus.SMBus(1)
-address = 0x53
+address = 0x68
 
 def accTalker():
     
@@ -35,15 +35,23 @@ def accTalker():
     rospy.init_node('accInfo', anonymous=True)
     rate = rospy.Rate(10) # 10hz
 
-    Register_2D = 0x2D
-    Register_XL = 0x32
-    Register_XH = 0x33
-    Register_YL = 0x34
-    Register_YH = 0x35
-    Register_ZL = 0x36
-    Register_ZH = 0x37
+    #Register_2D = 0x2D
+    #Register_XL = 0x32
+    #Register_XH = 0x33
+    #Register_YL = 0x34
+    #Register_YH = 0x35
+    #Register_ZL = 0x36
+    #Register_ZH = 0x37
 
-    bus.write_byte_data(address, Register_2D,0b00001000)
+    Register_XL = 60;
+    Register_XH = 59;
+    Register_YL = 62;
+    Register_YH = 61;
+    Register_ZL = 64;
+    Register_ZH = 63;
+    Register_Scale = 28;
+
+    bus.write_byte_data(address, Register_Scale,0x18)
 
     msg = Acc()
     
@@ -59,7 +67,7 @@ def accTalker():
         
         rospy.loginfo(msg)
         pub.publish(msg)
-        bag.write('acc_data', msg);
+        #bag.write('acc_data', msg);
     
         rate.sleep()
 

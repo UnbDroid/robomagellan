@@ -278,13 +278,13 @@ int main(int argc, char **argv)
     botao_preto_msg.data = botao_preto;
     velocidade_atualMsg.x = velocidadeAtualDir;
     velocidade_atualMsg.y = velocidadeAtualEsq;
-    gps_msg.valid = gpsData.valid;
+    /*gps_msg.valid = gpsData.valid;
     gps_msg.lat = gpsData.lat;
     gps_msg.lng = gpsData.lng;
     gps_msg.hdop = gpsData.hdop;
     gps_msg.speed = gpsData.speed;
     gps_msg.course = gpsData.course;
-    gps_msg.updated = gpsData.updated;
+    gps_msg.updated = gpsData.updated;*/
 
     for(int i=0;i<NUM_US;i++){
       ultrasound_pub[i].publish(range_msgs[i]);

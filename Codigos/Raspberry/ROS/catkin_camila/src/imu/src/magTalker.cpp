@@ -43,7 +43,7 @@ int main(int argc, char **argv){
 
 	float bx = 5,by = -1,bz = -10,sx = 1,sy = 1,sz = 1;
 
-int Register_A = 0x00;
+    int Register_A = 0x00;
 	int Register_B = 0x01;
 	int Register_Mode = 0x02;
    	int Register_XL = 0x04;

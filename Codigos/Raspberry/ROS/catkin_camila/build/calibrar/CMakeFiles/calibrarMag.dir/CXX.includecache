@@ -1099,6 +1099,16 @@ rosbag/bag.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/calibrar/src/rosbag/bag.h
 raspberry_msgs/ParamMag.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/calibrar/src/raspberry_msgs/ParamMag.h
+wiringPiI2C.h
+-
+ros/ros.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/calibrar/src/ros/ros.h
+rosbag/bag.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/calibrar/src/rosbag/bag.h
+raspberry_msgs/ParamMag.h
+/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/calibrar/src/raspberry_msgs/ParamMag.h
+time.h
+-
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h

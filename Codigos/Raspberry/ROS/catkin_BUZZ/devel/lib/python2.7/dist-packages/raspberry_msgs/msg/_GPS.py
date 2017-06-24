@@ -7,22 +7,37 @@ import struct
 
 
 class GPS(genpy.Message):
-  _md5sum = "af03eea1fc21cc32275a1d14bd4d469e"
+  _md5sum = "8b9f4eeedb6faf46bf7d5ca6925c091f"
   _type = "raspberry_msgs/GPS"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """bool valid
+  _full_text = """bool gpsFixOk
+int64 gpsFix
+
+float64 iTow
+float64 ecefX
+float64 ecefY
+float64 ecefZ
+float64 pAcc
+
 float64 lat
 float64 lng
-float64 alt
-float64 speed
-float64 course
-bool updated
-float32 hdop
-float32 pdop
-int64 time
+float64 hAcc
+float64 height
+float64 vAcc
+
+float64 velN
+float64 velE
+float64 velD
+float64 speed3D
+float64 speed2D
+float64 heading
+float64 cAcc
+float64 sAcc
+
+int64 tempo
 """
-  __slots__ = ['valid','lat','lng','alt','speed','course','updated','hdop','pdop','time']
-  _slot_types = ['bool','float64','float64','float64','float64','float64','bool','float32','float32','int64']
+  __slots__ = ['gpsFixOk','gpsFix','iTow','ecefX','ecefY','ecefZ','pAcc','lat','lng','hAcc','height','vAcc','velN','velE','velD','speed3D','speed2D','heading','cAcc','sAcc','tempo']
+  _slot_types = ['bool','int64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -32,7 +47,7 @@ int64 time
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       valid,lat,lng,alt,speed,course,updated,hdop,pdop,time
+       gpsFixOk,gpsFix,iTow,ecefX,ecefY,ecefZ,pAcc,lat,lng,hAcc,height,vAcc,velN,velE,velD,speed3D,speed2D,heading,cAcc,sAcc,tempo
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -41,37 +56,70 @@ int64 time
     if args or kwds:
       super(GPS, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
-      if self.valid is None:
-        self.valid = False
+      if self.gpsFixOk is None:
+        self.gpsFixOk = False
+      if self.gpsFix is None:
+        self.gpsFix = 0
+      if self.iTow is None:
+        self.iTow = 0.
+      if self.ecefX is None:
+        self.ecefX = 0.
+      if self.ecefY is None:
+        self.ecefY = 0.
+      if self.ecefZ is None:
+        self.ecefZ = 0.
+      if self.pAcc is None:
+        self.pAcc = 0.
       if self.lat is None:
         self.lat = 0.
       if self.lng is None:
         self.lng = 0.
-      if self.alt is None:
-        self.alt = 0.
-      if self.speed is None:
-        self.speed = 0.
-      if self.course is None:
-        self.course = 0.
-      if self.updated is None:
-        self.updated = False
-      if self.hdop is None:
-        self.hdop = 0.
-      if self.pdop is None:
-        self.pdop = 0.
-      if self.time is None:
-        self.time = 0
+      if self.hAcc is None:
+        self.hAcc = 0.
+      if self.height is None:
+        self.height = 0.
+      if self.vAcc is None:
+        self.vAcc = 0.
+      if self.velN is None:
+        self.velN = 0.
+      if self.velE is None:
+        self.velE = 0.
+      if self.velD is None:
+        self.velD = 0.
+      if self.speed3D is None:
+        self.speed3D = 0.
+      if self.speed2D is None:
+        self.speed2D = 0.
+      if self.heading is None:
+        self.heading = 0.
+      if self.cAcc is None:
+        self.cAcc = 0.
+      if self.sAcc is None:
+        self.sAcc = 0.
+      if self.tempo is None:
+        self.tempo = 0
     else:
-      self.valid = False
+      self.gpsFixOk = False
+      self.gpsFix = 0
+      self.iTow = 0.
+      self.ecefX = 0.
+      self.ecefY = 0.
+      self.ecefZ = 0.
+      self.pAcc = 0.
       self.lat = 0.
       self.lng = 0.
-      self.alt = 0.
-      self.speed = 0.
-      self.course = 0.
-      self.updated = False
-      self.hdop = 0.
-      self.pdop = 0.
-      self.time = 0
+      self.hAcc = 0.
+      self.height = 0.
+      self.vAcc = 0.
+      self.velN = 0.
+      self.velE = 0.
+      self.velD = 0.
+      self.speed3D = 0.
+      self.speed2D = 0.
+      self.heading = 0.
+      self.cAcc = 0.
+      self.sAcc = 0.
+      self.tempo = 0
 
   def _get_types(self):
     """
@@ -86,7 +134,7 @@ int64 time
     """
     try:
       _x = self
-      buff.write(_struct_B5dB2fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time))
+      buff.write(_struct_Bq18dq.pack(_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -99,10 +147,9 @@ int64 time
       end = 0
       _x = self
       start = end
-      end += 58
-      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time,) = _struct_B5dB2fq.unpack(str[start:end])
-      self.valid = bool(self.valid)
-      self.updated = bool(self.updated)
+      end += 161
+      (_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo,) = _struct_Bq18dq.unpack(str[start:end])
+      self.gpsFixOk = bool(self.gpsFixOk)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -116,7 +163,7 @@ int64 time
     """
     try:
       _x = self
-      buff.write(_struct_B5dB2fq.pack(_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time))
+      buff.write(_struct_Bq18dq.pack(_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -130,13 +177,12 @@ int64 time
       end = 0
       _x = self
       start = end
-      end += 58
-      (_x.valid, _x.lat, _x.lng, _x.alt, _x.speed, _x.course, _x.updated, _x.hdop, _x.pdop, _x.time,) = _struct_B5dB2fq.unpack(str[start:end])
-      self.valid = bool(self.valid)
-      self.updated = bool(self.updated)
+      end += 161
+      (_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo,) = _struct_Bq18dq.unpack(str[start:end])
+      self.gpsFixOk = bool(self.gpsFixOk)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_B5dB2fq = struct.Struct("<B5dB2fq")
+_struct_Bq18dq = struct.Struct("<Bq18dq")
