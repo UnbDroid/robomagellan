@@ -34,5 +34,7 @@
 #define VEL_ATUAL_DIR 798
 #define VEL_ATUAL_ESQ 799
 
+#define SINAL_LUMINOSO 900
+
 
 #endif
