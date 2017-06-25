@@ -45,7 +45,7 @@ struct GPSData{
 	float hdop;
 	bool updated;
 	float pdop;
-	
+	bool fixOk;
 
 };
 
@@ -116,6 +116,7 @@ void GPSCallback(const raspberry_msgs::GPS::ConstPtr& msg){
 		//gpsData.updated = msg->updated;
 		gpsData.lat = msg->lat;
 		gpsData.lng = msg->lng;
+		gpsData.fixOk = msg->gpsFixOk;
 		//gpsData.alt = msg->alt;
 		//gpsData.speed = msg->speed;
 		//gpsData.course = msg->course;
@@ -287,19 +288,20 @@ MatrixXf predicao(MatrixXf anterior){
 	//Predicao posicao odometria
 
 	// velocidade em x e y, matriz de rotacao, velocidades de rotacao das rodas
-	MatrixXf vel(2,1), t(2,2), rot(2,1), pos(3,1), t_angular(1,2),v_angular(1,1); 
+	MatrixXf vel(2,1), t(2,2), rot(2,1),rot_angular(2,1), pos(3,1), t_angular(1,2),v_angular(1,1); 
 	
 	t << r/2*cos(quaternion2euler_yaw(q_anterior)), r/2*cos(quaternion2euler_yaw(q_anterior)),
 	     r/2*sin(quaternion2euler_yaw(q_anterior)), r/2*sin(quaternion2euler_yaw(q_anterior));
 
-	//t_angular <<  r/B, -r/B;
+	t_angular <<  r/B, -r/B;
 
+	rot_angular << velData.dir/10, velData.esq/10;
 	rot << velData.dir, velData.esq;
-	//v_angular = -t_angular*rot;
+	v_angular = -t_angular*rot_angular;
 	vel = t*rot;
 	pos = v_anterior*tAmostragem + r_anterior;
 	
-	float yaw = quaternion2euler_yaw(q_anterior) - v_angular(0,0)*tAmostragem;
+	float yaw = quaternion2euler_yaw(q_anterior) + v_angular(0,0)*tAmostragem;
 
 	float ta = cos(yaw/2);
 	float tb = sin(yaw/2);
@@ -735,7 +737,7 @@ int main(int argc, char **argv){
 	//correcao 
 	R = I10*0.01;
 	
-	int flagSetup = 0;
+	int flagSetup = 1;
 	ros::Time tInicial = ros::Time::now();
 	int count = 0, countParada = 0;		
 
@@ -745,36 +747,40 @@ int main(int argc, char **argv){
 		//Setup para pegar posição inicial
 		if (flagSetup){	
 	       
-			if(gpsData.valid){
+		//	if(gpsData.fixOk){
 			
 	        	std::cout << "setup" << std::endl;
-	            odomOK.data = true;
+	            	odomOK.data = true;
 
-				ref.lat += gpsData.lat;
-				ref.lng += gpsData.lng;
-				ref.alt += gpsData.alt;
-				q_anterior = TRIAD(q_anterior);
-				count++;
+				//ref.lat += gpsData.lat;
+				//ref.lng += gpsData.lng;
+				//ref.alt += gpsData.alt;
+				//q_anterior = TRIAD(q_anterior);
+				//count++;
 
 
 
-			}else{
-	            		odomOK.data = false;
-	         		ref.lat = 0; ref.lng = 0; ref.alt = 0; courseInicial = 0;
-			}
+		//	}
+			//else{
+	            	//	odomOK.data = false;
+	         	//	ref.lat = 0; ref.lng = 0; ref.alt = 0; courseInicial = 0;
+			//}
 
-			if(ros::Time::now().toSec() - tInicial.toSec() > 30){
+			if(ros::Time::now().toSec() - tInicial.toSec() > 7){
 				
-				ref.lat = ref.lat/count;
-                                ref.lng = ref.lng/count;
+				//ref.lat = ref.lat/count;
+                                //ref.lng = ref.lng/count;
 
-				if((ref.lat != ref.lat || ref.lng !=ref.lng) || ref.lat > LAT + L_ERRO || ref.lat < LAT - L_ERRO || ref.lng < LNG - L_ERRO || ref.lng > LNG + L_ERRO ){
-					flagSetup = 1;
-					count = 0;
-					ref.lat = 0;
-					ref.lng = 0;
-					tInicial = ros::Time::now();
-				}else{
+				//if((ref.lat != ref.lat || ref.lng !=ref.lng) || ref.lat > LAT + L_ERRO || ref.lat < LAT - L_ERRO || ref.lng < LNG - L_ERRO || ref.lng > LNG + L_ERRO ){
+				//	flagSetup = 1;
+				//	count = 0;
+				//	ref.lat = 0;
+				//	ref.lng = 0;
+				//	tInicial = ros::Time::now();
+				//}else{
+					ref.lat = -15.818505;//-15.818511;//gpsData.lat;
+                               		ref.lng = -47.906461;//gpsData.lng;
+
 					ref.alt = 0; 
 					flagSetup = 0;
 					std::cout << q_anterior << std::endl;
@@ -785,15 +791,24 @@ int main(int argc, char **argv){
 					origin.x = ref.lat;
                     			origin.y = ref.lng;
                     			origin_pub.publish(origin);
+					x_estPosteriori << 1,0,0,0,0,0,0,0,0,0;
 				}
 				
 	     
-			}
+			//}
 
 		//Filtro	
 		}else{
 
-			x_estPosteriori << 1,0,0,0,0,0,0,0,0,0;
+			//ref.lat = gpsData.lat;
+                          //      ref.lng = gpsData.lng;
+                           //     ref.alt = 0;
+		//	origin.x = ref.lat;
+                    //                    origin.y = ref.lng;
+                  //                      origin_pub.publish(origin);
+
+
+		//	x_estPosteriori << 1,0,0,0,0,0,0,0,0,0;
 
 			// Estimação
 			x_estPriori = predicao(x_estPosteriori);
@@ -837,7 +852,7 @@ int main(int argc, char **argv){
 			#endif
 			x_estPosteriori = x_estPriori;
 		//	x_estPosteriori = M;	
-			x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
+		//	x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	
 			//P_posteriori = (I10 - KG*H)*P_priori;
 

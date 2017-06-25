@@ -387,7 +387,7 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "gpsUBX");
 	ros::NodeHandle n;
 	ros::Rate loop_rate(10);
-	
+	ros::Publisher pub = n.advertise<raspberry_msgs::GPS>("gpsInfo",1000);
 	rosbag::Bag gpsUBX;
 	
 	gpsUBX.open("gpsUBX.bag", rosbag::bagmode::Write);	
@@ -421,7 +421,7 @@ int main(int argc, char **argv){
     msg.ecefX = ubxMessage.navPosEcef.ecefX/100.0;
     msg.ecefY = ubxMessage.navPosEcef.ecefY/100.0;
     msg.ecefZ = ubxMessage.navPosEcef.ecefZ/100.0;
-    msg.pAcc = ubxMessage.navPosEcef.pAcc/100.0;
+    msg.pAcc = ubxMessage.navPosEcef.pAcc/100.0; 
     
     
   }
@@ -478,9 +478,10 @@ int main(int argc, char **argv){
     msg.height = ubxMessage.navPosllh.height/1000.0;
     msg.vAcc = ubxMessage.navPosllh.vAcc/1000.0;
     
-      tIndividual = ros::Time::now();
-    msg.tempo = tIndividual.toNSec() * 1e-6;
+      	tIndividual = ros::Time::now();
+    	msg.tempo = tIndividual.toNSec() * 1e-6;
 	gpsUBX.write("gps_data",ros::Time::now(),msg);
+	pub.publish(msg);
     
   }
   

@@ -43,12 +43,12 @@
 #endif
 
 #if defined(ARDUINO)
-#define VELOCIDADE_MAXIMA 5.5f
+#define VELOCIDADE_MAXIMA 2.5f
 #define VELOCIDADE_MAXIMA_APROX 3.0f
 #define VELOCIDADE_MINIMA 1.0f
 #define VELOCIDADE_MINIMA_ANGULAR 1.0f
 #define VEL_VIRTUAL 2.0f
-#define VELOCIDADE_MAX_ARDUINO 5.5f
+#define VELOCIDADE_MAX_ARDUINO 4.0f
 #define VELOCIDADE_MAX_ARDUINO_APROX 3.0f
 #define vel_min_arduino 1.5f
 #endif
@@ -235,6 +235,28 @@ void posicaoAtualCallback(const nav_msgs::Odometry::ConstPtr& msg)
   roboAtual.x = msg->pose.pose.position.y;
   roboAtual.y = msg->pose.pose.position.x;
   roboAtual.theta = PI/2 - yaw;
+
+  float abs_thetaRobo = abs(roboAtual.theta);
+
+  while (abs_thetaRobo > PI){
+    abs_thetaRobo = abs(roboAtual.theta);
+    if (abs_thetaRobo > 2*PI) {
+      if (roboAtual.theta > 0) {
+        roboAtual.theta -= 2*PI;
+      }
+      else if (roboAtual.theta < 0) {
+        roboAtual.theta += 2*PI;
+      }
+    }
+    else if (abs_thetaRobo > PI){
+      if (roboAtual.theta > 0) {
+        roboAtual.theta = 2*PI - roboAtual.theta;
+      }
+      else if (roboAtual.theta < 0) {
+        roboAtual.theta = 2*PI + roboAtual.theta;
+      } 
+    }
+  }
 #else
   roboAtual.x = msg->pose.pose.position.x;
   roboAtual.y = msg->pose.pose.position.y;
@@ -288,7 +310,7 @@ void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg){
 void velocidade_atualCallback(const geometry_msgs::Point32::ConstPtr& msg){
 
 #if defined(ARQ_DEBUG)
-  fprintf(arqVelAtual,"%f %f",msg->x, msg->y);
+  fprintf(arqVelAtual,"%f %f \n",msg->x, msg->y);
 #endif
 
 }
@@ -1144,7 +1166,7 @@ int main(int argc, char **argv)
   arqZVD = fopen("feedbackZVD.txt", "w");
   arqUS = fopen("feedbackUS.txt", "w");
 #endif
-#if (defined(ARQ_DEBUG) && defined(GAZEBO))
+#if (defined(ARQ_DEBUG) && defined(ARDUINO))
   arq = fopen("/home/pi/Documents/feedbackpose.txt", "w");
   arq2 = fopen("/home/pi/Documents/feedbackvel.txt", "w");
   arqVelAtual = fopen("/home/pi/Documents/velocidade_atual.txt", "w");

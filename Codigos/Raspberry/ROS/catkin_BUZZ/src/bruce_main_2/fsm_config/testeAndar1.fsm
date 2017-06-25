@@ -48,7 +48,7 @@
 	adicionar_timer(name: aproximar_fino_timer)
 	odom_ok() >> change(next_state: calcular_rota_primeiro_cone)
 + calcular_rota_primeiro_cone
-	definir_alvo_gps(latitude: 37.660016, longitude: -121.886947)
+	definir_alvo_gps(latitude: -15.818401, longitude: -47.906397)
 	calcular_rota()
 	calculando_rota(value: true)
 	rota_calculada() >> calculando_rota(value: false) & change(next_state: aproximar_cruzeiro)
