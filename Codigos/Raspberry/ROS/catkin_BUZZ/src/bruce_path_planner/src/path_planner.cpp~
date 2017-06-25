@@ -78,9 +78,9 @@ int main(int argc, char **argv){
         RRT::BiRRT<Coordinates> biRRT(_stateSpace);
         biRRT.setStartState(start);
         biRRT.setGoalState(goal);
-        biRRT.setStepSize(0.5);
-        biRRT.setGoalBias(0.1);
-        biRRT.setMaxIterations(100000);
+        biRRT.setStepSize(1);
+        biRRT.setGoalBias(0.4);
+        biRRT.setMaxIterations(10000);
 
        
 
