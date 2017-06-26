@@ -88,7 +88,8 @@ int main(int argc, char **argv)
 
 #if defined(ARQ_DEBUG)
   #warning Atencao! ARQ_DEBUG esta definido
-  arqCONE = fopen("/home/pi/Documents/feedbackCONE.txt", "w");
+  arqCONE = fopen("feedbackCONE.txt", "w");
+  //fopen("/home/pi/Documents/feedbackCONE.txt", "w");
 #endif
 
   ros::init(argc, argv, "controle_camera");

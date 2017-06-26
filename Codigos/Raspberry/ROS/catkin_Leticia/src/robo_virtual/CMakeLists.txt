@@ -202,3 +202,7 @@ add_dependencies(planejador beginner_tutorials_generate_messages_cpp)
 add_executable(controle_camera src/controle_camera.cpp)
 target_link_libraries(controle_camera ${catkin_LIBRARIES})
 add_dependencies(controle_camera beginner_tutorials_generate_messages_cpp)
+
+add_executable(posicao src/posicao.cpp)
+target_link_libraries(posicao ${catkin_LIBRARIES})
+add_dependencies(posicao beginner_tutorials_generate_messages_cpp)
