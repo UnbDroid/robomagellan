@@ -18,9 +18,9 @@
 
 #define ARQ_DEBUG 1
 #define DEBUG 1
-//#define GAZEBO 1
-#define ARDUINO 1
-#define CONVERTER_COORD 1
+#define GAZEBO 1
+//#define ARDUINO 1
+//#define CONVERTER_COORD 1
 //#define TESTE_US 1
 
 // Modos de operacao
@@ -43,12 +43,12 @@
 #endif
 
 #if defined(ARDUINO)
-#define VELOCIDADE_MAXIMA 2.5f
+#define VELOCIDADE_MAXIMA 5.5f
 #define VELOCIDADE_MAXIMA_APROX 3.0f
 #define VELOCIDADE_MINIMA 1.0f
 #define VELOCIDADE_MINIMA_ANGULAR 1.0f
 #define VEL_VIRTUAL 2.0f
-#define VELOCIDADE_MAX_ARDUINO 4.0f
+#define VELOCIDADE_MAX_ARDUINO 5.5f
 #define VELOCIDADE_MAX_ARDUINO_APROX 3.0f
 #define vel_min_arduino 1.5f
 #endif
@@ -318,7 +318,7 @@ void velocidade_atualCallback(const geometry_msgs::Point32::ConstPtr& msg){
   velDireita = msg->x;
   velEsquerda = msg->y;
 #if defined(ARQ_DEBUG)
-  fprintf(arqVelAtual,"%f %f \n",msg->x, msg->y);
+  fprintf(arqVelAtual,"%f %f",msg->x, msg->y);
 #endif
 
 }
@@ -374,19 +374,26 @@ void calculaSegmento (void) {
 #if defined(CONVERTER_COORD)
         roboDestino.x = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);
         roboDestino.y = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
-#else        
-        roboDestino.x = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
-        roboDestino.y = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);
+#else   
+        //Trocando eixos para teste
+        roboDestino.y = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
+        roboDestino.x = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);     
+        //roboDestino.x = (auxPose.pose.position.x) - DISTANCIA_INTERMEDIARIA*cos(yaw);
+        //roboDestino.y = (auxPose.pose.position.y) - DISTANCIA_INTERMEDIARIA*sin(yaw);
 #endif  
 
       }
       else {*/
+<<<<<<< HEAD
         //trajetoria_intermediaria = 0;
+=======
+        trajetoria_intermediaria = 0;
+>>>>>>> d0bb667928b907e243230bca59f72c292f8a1ded
         auxPose = pose.front();
         pose.erase(pose.begin());
 
         // Nao apaga o primeiro destino
-        /*if (trajetoriaAtual == 0) {
+        if (trajetoriaAtual == 0) {
           if (!pose.empty()){
             auxPose = pose.front();
             pose.erase(pose.begin());
@@ -397,7 +404,7 @@ void calculaSegmento (void) {
 
             return;
           }
-        }*/
+        }
 
         aux_x = roboDestino.x;
         aux_y = roboDestino.y;
@@ -405,9 +412,11 @@ void calculaSegmento (void) {
 #if defined(CONVERTER_COORD)
         roboDestino.x = auxPose.pose.position.y;
         roboDestino.y = auxPose.pose.position.x;
-#else        
+#else   
+        roboDestino.y = auxPose.pose.position.x;
+        roboDestino.x = auxPose.pose.position.y;/*     
         roboDestino.x = auxPose.pose.position.x;
-        roboDestino.y = auxPose.pose.position.y;
+        roboDestino.y = auxPose.pose.position.y;*/
 #endif  
       //}
       
@@ -436,7 +445,9 @@ void calculaSegmento (void) {
 
     }
     else{
+#if defined(ARQ_DEBUG)
       fprintf(arq,"PAREI CHEGUEI");
+#endif
       parar = true;
       inicio = false;
     }
