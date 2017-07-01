@@ -72,7 +72,7 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "gyroTalker");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<raspberry_msgs::Gyro>("gyroInfo", 1000);
-	ros::Rate loop_rate(25);
+	ros::Rate loop_rate(100);
 
 //Leitura parametros
 //-------------------------------------------------------------------
@@ -97,7 +97,7 @@ int main(int argc, char **argv){
 	bagParam.close();
 //-------------------------------------------------------------------
 	
-	bag.open("gyro.bag", rosbag::bagmode::Write);
+	bag.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/scripts/gyro5.bag", rosbag::bagmode::Write);
 
 	raspberry_msgs::Gyro msg;
 

@@ -75,16 +75,16 @@ int main(int argc, char **argv){
 	int fd = wiringPiI2CSetup(0x0C);
 	//std::cout << "fd: " << fd << std::endl;
 
-	wiringPiI2CWriteReg8 (fd, Register_Control,  0x16);
+	wiringPiI2CWriteReg8 (fd, Register_Control,  22);
 	
 	ros::init(argc, argv, "mag");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<raspberry_msgs::Mag>("magInfo", 1000);
-	ros::Rate loop_rate(25);
+	ros::Rate loop_rate(100);
 
 // Leitura parametros
 //------------------------------------------------------------------
-rosbag::Bag bagParam;
+/*rosbag::Bag bagParam;
         bagParam.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/parametrosMag.bag", rosbag::bagmode::Read);
 
  	std::vector<std::string> topics;
@@ -105,10 +105,10 @@ rosbag::Bag bagParam;
 		}
 	}
 
-	bagParam.close(); 
+	bagParam.close(); */ 
 //-------------------------------------------------------------------
 
-	bag.open("mag.bag", rosbag::bagmode::Write);
+	bag.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/scripts/mag5.bag", rosbag::bagmode::Write);
 	
 	raspberry_msgs::Mag msg;
 
@@ -129,10 +129,11 @@ rosbag::Bag bagParam;
 		mag_x = read_word(fd,Register_XH,Register_XL);
 		mag_y = read_word(fd,Register_YH,Register_YL);
 		mag_z = read_word(fd,Register_ZH,Register_ZL);
-		
-		msg.m_x = (mag_x*SCALE);
-       	msg.m_y = (mag_y*SCALE);
-       	msg.m_z = (mag_z*SCALE);
+
+
+		msg.m_x = (mag_y*SCALE) - 12;
+       		msg.m_y = (mag_x*SCALE) - 4;
+       		msg.m_z = -(mag_z*SCALE) -43;
 		tempo = ros::Time::now();
 		msg.tempo = tempo.toNSec() * 1e-6;
 		

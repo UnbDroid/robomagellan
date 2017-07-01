@@ -7,7 +7,7 @@ import struct
 
 
 class GPS(genpy.Message):
-  _md5sum = "8b9f4eeedb6faf46bf7d5ca6925c091f"
+  _md5sum = "ce40b63f049129349999b8d09618a193"
   _type = "raspberry_msgs/GPS"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """bool gpsFixOk
@@ -35,9 +35,9 @@ float64 cAcc
 float64 sAcc
 
 int64 tempo
-"""
-  __slots__ = ['gpsFixOk','gpsFix','iTow','ecefX','ecefY','ecefZ','pAcc','lat','lng','hAcc','height','vAcc','velN','velE','velD','speed3D','speed2D','heading','cAcc','sAcc','tempo']
-  _slot_types = ['bool','int64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','int64']
+bool newPos"""
+  __slots__ = ['gpsFixOk','gpsFix','iTow','ecefX','ecefY','ecefZ','pAcc','lat','lng','hAcc','height','vAcc','velN','velE','velD','speed3D','speed2D','heading','cAcc','sAcc','tempo','newPos']
+  _slot_types = ['bool','int64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','int64','bool']
 
   def __init__(self, *args, **kwds):
     """
@@ -47,7 +47,7 @@ int64 tempo
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       gpsFixOk,gpsFix,iTow,ecefX,ecefY,ecefZ,pAcc,lat,lng,hAcc,height,vAcc,velN,velE,velD,speed3D,speed2D,heading,cAcc,sAcc,tempo
+       gpsFixOk,gpsFix,iTow,ecefX,ecefY,ecefZ,pAcc,lat,lng,hAcc,height,vAcc,velN,velE,velD,speed3D,speed2D,heading,cAcc,sAcc,tempo,newPos
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -98,6 +98,8 @@ int64 tempo
         self.sAcc = 0.
       if self.tempo is None:
         self.tempo = 0
+      if self.newPos is None:
+        self.newPos = False
     else:
       self.gpsFixOk = False
       self.gpsFix = 0
@@ -120,6 +122,7 @@ int64 tempo
       self.cAcc = 0.
       self.sAcc = 0.
       self.tempo = 0
+      self.newPos = False
 
   def _get_types(self):
     """
@@ -134,7 +137,7 @@ int64 tempo
     """
     try:
       _x = self
-      buff.write(_struct_Bq18dq.pack(_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo))
+      buff.write(_struct_Bq18dqB.pack(_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo, _x.newPos))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -147,9 +150,10 @@ int64 tempo
       end = 0
       _x = self
       start = end
-      end += 161
-      (_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo,) = _struct_Bq18dq.unpack(str[start:end])
+      end += 162
+      (_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo, _x.newPos,) = _struct_Bq18dqB.unpack(str[start:end])
       self.gpsFixOk = bool(self.gpsFixOk)
+      self.newPos = bool(self.newPos)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -163,7 +167,7 @@ int64 tempo
     """
     try:
       _x = self
-      buff.write(_struct_Bq18dq.pack(_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo))
+      buff.write(_struct_Bq18dqB.pack(_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo, _x.newPos))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -177,12 +181,13 @@ int64 tempo
       end = 0
       _x = self
       start = end
-      end += 161
-      (_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo,) = _struct_Bq18dq.unpack(str[start:end])
+      end += 162
+      (_x.gpsFixOk, _x.gpsFix, _x.iTow, _x.ecefX, _x.ecefY, _x.ecefZ, _x.pAcc, _x.lat, _x.lng, _x.hAcc, _x.height, _x.vAcc, _x.velN, _x.velE, _x.velD, _x.speed3D, _x.speed2D, _x.heading, _x.cAcc, _x.sAcc, _x.tempo, _x.newPos,) = _struct_Bq18dqB.unpack(str[start:end])
       self.gpsFixOk = bool(self.gpsFixOk)
+      self.newPos = bool(self.newPos)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_Bq18dq = struct.Struct("<Bq18dq")
+_struct_Bq18dqB = struct.Struct("<Bq18dqB")

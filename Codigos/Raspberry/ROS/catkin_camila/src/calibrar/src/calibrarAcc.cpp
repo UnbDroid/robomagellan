@@ -17,8 +17,8 @@ e apertar q
 #include "raspberry_msgs/ParamAcc.h"
 
 #define SCALE 0.00048828125 //0.00393
-#define g 9.80665
-#define iTotal 5
+#define g 9.806
+#define iTotal 50
 #define nMedidas 7
 
 using namespace Eigen;

@@ -175,6 +175,10 @@ void trajetoCallback(const nav_msgs::Path::ConstPtr& msg)
 #if defined(DEBUG)
     ROS_INFO("Posicao recebida");
 #endif
+#if defined(ARQ_DEBUG)
+      fprintf(arq,"NOVA TRAJETORIA");
+#endif
+
  // }
 }
 
@@ -307,8 +311,12 @@ void velocidadeCallback(const geometry_msgs::Point32::ConstPtr& msg){
 
 }
 // Pega a velocidade atual do robo para feedback
+float velDireita, velEsquerda;
+
 void velocidade_atualCallback(const geometry_msgs::Point32::ConstPtr& msg){
 
+  velDireita = msg->x;
+  velEsquerda = msg->y;
 #if defined(ARQ_DEBUG)
   fprintf(arqVelAtual,"%f %f \n",msg->x, msg->y);
 #endif
@@ -343,7 +351,7 @@ void calculaSegmento (void) {
    
     if (!pose.empty()){
 
-      if ((pose.size() == 1) && (trajetoria_intermediaria == 0)) {
+      /*if ((pose.size() == 1) && (trajetoria_intermediaria == 0)) {
 
         trajetoria_intermediaria = 1;
         auxPose = pose.front();
@@ -372,8 +380,8 @@ void calculaSegmento (void) {
 #endif  
 
       }
-      else {
-        trajetoria_intermediaria = 0;
+      else {*/
+        //trajetoria_intermediaria = 0;
         auxPose = pose.front();
         pose.erase(pose.begin());
 
@@ -401,7 +409,7 @@ void calculaSegmento (void) {
         roboDestino.x = auxPose.pose.position.x;
         roboDestino.y = auxPose.pose.position.y;
 #endif  
-      }
+      //}
       
       if (trajetoriaAtual == 0){
         gama = atan2((roboDestino.y - roboAtual.y),(roboDestino.x - roboAtual.x));  
@@ -878,7 +886,7 @@ void controladorTrajetoria(void /*const ros::TimerEvent&*/) {
   }
 
 #if defined(ARQ_DEBUG)
-  fprintf(arq2, "%f  %f %f %f \n", vf,wf, velocidadeEsquerda, velocidadeDireita);
+  fprintf(arq2, "%f  %f %f %f %f %f\n", vf,wf, velocidadeEsquerda, velocidadeDireita,velDireita, velEsquerda);
 #endif
 
 }
@@ -1035,7 +1043,7 @@ void controladorVelocidade(void){
   fprintf(arq2, "%f  %f \n", velocidadeEsquerda,velocidadeDireita);
 #endif
 #if defined(DEBUG)
-  ROS_INFO("%f  %f \n", velocidadeEsquerda,velocidadeDireita);
+  ROS_INFO("%f  %f %f %f\n", velocidadeEsquerda,velocidadeDireita, velDireita, velEsquerda);
 #endif
 
 }

@@ -71,6 +71,8 @@ rosbag/bag.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/gps/src/rosbag/bag.h
 raspberry_msgs/GPS.h
 /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/gps/src/raspberry_msgs/GPS.h
+wiringSerial.h
+-
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h

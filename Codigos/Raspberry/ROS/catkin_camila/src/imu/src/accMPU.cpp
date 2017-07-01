@@ -55,9 +55,9 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "acc");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<raspberry_msgs::Acc>("accInfo", 1000);
-	ros::Rate loop_rate(25);
+	ros::Rate loop_rate(100);
 
-///*  Leitura parametros
+//  Leitura parametros
 //------------------------------------------------------------------
 	rosbag::Bag bagParam;
         bagParam.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/parametrosAcc.bag", rosbag::bagmode::Read);
@@ -80,10 +80,10 @@ int main(int argc, char **argv){
 		}
 	}
 
-	bagParam.close();// */
+	bagParam.close();// 
 //-------------------------------------------------------------------
 
-	bag.open("acc.bag", rosbag::bagmode::Write);
+	bag.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/scripts/acc5.bag", rosbag::bagmode::Write);
 	
 	raspberry_msgs::Acc msg;
 

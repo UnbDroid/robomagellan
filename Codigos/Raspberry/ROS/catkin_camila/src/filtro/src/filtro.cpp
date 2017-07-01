@@ -23,7 +23,7 @@
 #define PI 3.14159265
 #define tAmostragem 0.05
 #define g -9.79997
-#define m 48.3346
+#define m 23.4517
 #define tSetup 30
 #define ERRO 0.3
 #define B 0.075 //comprimento do robo
@@ -400,7 +400,9 @@ MatrixXf TRIAD(MatrixXf anterior){
 	MatrixXf orient(4,1);
 	orient << q0, q1, q2, q3;	
 	
-	float declination = toRadian(13.4593);
+	float declination = toRadian(21.5);
+	float yaw = quaternion2euler_yaw(orient);
+	float angulo = yaw; //- declination;
 	MatrixXf q_declination(4,1);
 
 	float ta = cos(declination/2);
@@ -409,9 +411,9 @@ MatrixXf TRIAD(MatrixXf anterior){
         q_declination << ta, 0, 0, tb;
 	//std::cout << q_declination << std::endl;
 	Quaternionf q_orient;
-	q_orient = quatMult(Quaternionf(orient(0,0), orient(1,0), orient(2,0), orient(3,0)), Quaternionf(q_declination(0,0),q_declination(1,0), q_declination(2,0), q_declination(3,0)));
-	orient  << q_orient.w(), q_orient.x(), q_orient.y(), q_orient.z();
-	
+	orient << cos(angulo/2), 0, 0, sin(angulo/2);//quatMult(Quaternionf(orient(0,0), orient(1,0), orient(2,0), orient(3,0)), Quaternionf(q_declination(0,0),q_declination(1,0), q_declination(2,0), q_declination(3,0)));
+	//orient  << q_orient;//q_orient.w(), q_orient.x(), q_orient.y(), q_orient.z();
+	orient = orient/orient.norm();	
 	
 
 	return orient;
@@ -718,8 +720,8 @@ int main(int argc, char **argv){
 	G << 0,0,g;
 
 	//Variaveis TRIAD
-	g_unitario_n << 0, 0, 1;
-	m_unitario_n << 22.6254, 5.4149, -42.3674;
+	g_unitario_n << 0, 0, -1;
+	m_unitario_n << 19.4347, -7.6585, -10.6594;
 	m_unitario_n = m_unitario_n/m;
 
 	H = jacobianaCorrecao();
@@ -730,14 +732,14 @@ int main(int argc, char **argv){
 	Z10.topLeftCorner(4,4).setIdentity();
 
 	x_estPosteriori << 1, 0, 0, 0, 0, 0, 0, 0, 0, 0;
-	//q_anterior << 0,0,0,1;
+	q_anterior << 1,0,0,0;
 	P_posteriori = I10*0.0001;
 	//estimacao
 	Q  = I10*0.0001;
 	//correcao 
 	R = I10*0.01;
 	
-	int flagSetup = 1;
+	int flagSetup = 0;
 	ros::Time tInicial = ros::Time::now();
 	int count = 0, countParada = 0;		
 
@@ -811,7 +813,7 @@ int main(int argc, char **argv){
 		//	x_estPosteriori << 1,0,0,0,0,0,0,0,0,0;
 
 			// Estimação
-			x_estPriori = predicao(x_estPosteriori);
+			//x_estPriori = predicao(x_estPosteriori);
 			//F = jacobianaPredicao(x_estPosteriori);
 			//P_priori = F + P_posteriori*F.transpose() + Q;
 			
@@ -828,7 +830,7 @@ int main(int argc, char **argv){
 
 			// Correcao 
 			//KG = P_priori*H.transpose()*(H*P_priori*H.transpose() + R).inverse();
-			//M = medicao(ref, q_anterior);
+			M = medicao(ref, q_anterior);
 	    	        //if (!parar){
 				//KG = Z10*KG;
 				//M = Z10*M;
@@ -850,8 +852,8 @@ int main(int argc, char **argv){
 			std::cout << KG << std::endl;
 			std:: cout << "\n";
 			#endif
-			x_estPosteriori = x_estPriori;
-		//	x_estPosteriori = M;	
+			//x_estPosteriori = x_estPriori;
+		x_estPosteriori = M;	
 		//	x_estPosteriori = x_estPriori + KG*(M - x_estPriori);
 		//	std::cout << "oi" << std::endl;	
 			//P_posteriori = (I10 - KG*H)*P_priori;

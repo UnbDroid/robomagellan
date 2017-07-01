@@ -44,7 +44,8 @@ struct GPS_
     , heading(0.0)
     , cAcc(0.0)
     , sAcc(0.0)
-    , tempo(0)  {
+    , tempo(0)
+    , newPos(false)  {
     }
   GPS_(const ContainerAllocator& _alloc)
     : gpsFixOk(false)
@@ -67,7 +68,8 @@ struct GPS_
     , heading(0.0)
     , cAcc(0.0)
     , sAcc(0.0)
-    , tempo(0)  {
+    , tempo(0)
+    , newPos(false)  {
   (void)_alloc;
     }
 
@@ -135,6 +137,9 @@ struct GPS_
 
    typedef int64_t _tempo_type;
   _tempo_type tempo;
+
+   typedef uint8_t _newPos_type;
+  _newPos_type newPos;
 
 
 
@@ -213,12 +218,12 @@ struct MD5Sum< ::raspberry_msgs::GPS_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "8b9f4eeedb6faf46bf7d5ca6925c091f";
+    return "ce40b63f049129349999b8d09618a193";
   }
 
   static const char* value(const ::raspberry_msgs::GPS_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x8b9f4eeedb6faf46ULL;
-  static const uint64_t static_value2 = 0xbf7d5ca6925c091fULL;
+  static const uint64_t static_value1 = 0xce40b63f04912934ULL;
+  static const uint64_t static_value2 = 0x9999b8d09618a193ULL;
 };
 
 template<class ContainerAllocator>
@@ -262,6 +267,7 @@ float64 cAcc\n\
 float64 sAcc\n\
 \n\
 int64 tempo\n\
+bool newPos\n\
 ";
   }
 
@@ -301,6 +307,7 @@ namespace serialization
       stream.next(m.cAcc);
       stream.next(m.sAcc);
       stream.next(m.tempo);
+      stream.next(m.newPos);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -361,6 +368,8 @@ struct Printer< ::raspberry_msgs::GPS_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.sAcc);
     s << indent << "tempo: ";
     Printer<int64_t>::stream(s, indent + "  ", v.tempo);
+    s << indent << "newPos: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.newPos);
   }
 };
 

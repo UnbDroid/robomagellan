@@ -111,7 +111,12 @@
     :reader tempo
     :initarg :tempo
     :type cl:integer
-    :initform 0))
+    :initform 0)
+   (newPos
+    :reader newPos
+    :initarg :newPos
+    :type cl:boolean
+    :initform cl:nil))
 )
 
 (cl:defclass GPS (<GPS>)
@@ -226,6 +231,11 @@
 (cl:defmethod tempo-val ((m <GPS>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader raspberry_msgs-msg:tempo-val is deprecated.  Use raspberry_msgs-msg:tempo instead.")
   (tempo m))
+
+(cl:ensure-generic-function 'newPos-val :lambda-list '(m))
+(cl:defmethod newPos-val ((m <GPS>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader raspberry_msgs-msg:newPos-val is deprecated.  Use raspberry_msgs-msg:newPos instead.")
+  (newPos m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <GPS>) ostream)
   "Serializes a message object of type '<GPS>"
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'gpsFixOk) 1 0)) ostream)
@@ -411,6 +421,7 @@
     (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
     )
+  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'newPos) 1 0)) ostream)
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <GPS>) istream)
   "Deserializes a message object of type '<GPS>"
@@ -615,6 +626,7 @@
       (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
       (cl:setf (cl:slot-value msg 'tempo) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
+    (cl:setf (cl:slot-value msg 'newPos) (cl:not (cl:zerop (cl:read-byte istream))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<GPS>)))
@@ -625,16 +637,16 @@
   "raspberry_msgs/GPS")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<GPS>)))
   "Returns md5sum for a message object of type '<GPS>"
-  "8b9f4eeedb6faf46bf7d5ca6925c091f")
+  "ce40b63f049129349999b8d09618a193")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'GPS)))
   "Returns md5sum for a message object of type 'GPS"
-  "8b9f4eeedb6faf46bf7d5ca6925c091f")
+  "ce40b63f049129349999b8d09618a193")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<GPS>)))
   "Returns full string definition for message of type '<GPS>"
-  (cl:format cl:nil "bool gpsFixOk~%int64 gpsFix~%~%float64 iTow~%float64 ecefX~%float64 ecefY~%float64 ecefZ~%float64 pAcc~%~%float64 lat~%float64 lng~%float64 hAcc~%float64 height~%float64 vAcc~%~%float64 velN~%float64 velE~%float64 velD~%float64 speed3D~%float64 speed2D~%float64 heading~%float64 cAcc~%float64 sAcc~%~%int64 tempo~%~%~%"))
+  (cl:format cl:nil "bool gpsFixOk~%int64 gpsFix~%~%float64 iTow~%float64 ecefX~%float64 ecefY~%float64 ecefZ~%float64 pAcc~%~%float64 lat~%float64 lng~%float64 hAcc~%float64 height~%float64 vAcc~%~%float64 velN~%float64 velE~%float64 velD~%float64 speed3D~%float64 speed2D~%float64 heading~%float64 cAcc~%float64 sAcc~%~%int64 tempo~%bool newPos~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'GPS)))
   "Returns full string definition for message of type 'GPS"
-  (cl:format cl:nil "bool gpsFixOk~%int64 gpsFix~%~%float64 iTow~%float64 ecefX~%float64 ecefY~%float64 ecefZ~%float64 pAcc~%~%float64 lat~%float64 lng~%float64 hAcc~%float64 height~%float64 vAcc~%~%float64 velN~%float64 velE~%float64 velD~%float64 speed3D~%float64 speed2D~%float64 heading~%float64 cAcc~%float64 sAcc~%~%int64 tempo~%~%~%"))
+  (cl:format cl:nil "bool gpsFixOk~%int64 gpsFix~%~%float64 iTow~%float64 ecefX~%float64 ecefY~%float64 ecefZ~%float64 pAcc~%~%float64 lat~%float64 lng~%float64 hAcc~%float64 height~%float64 vAcc~%~%float64 velN~%float64 velE~%float64 velD~%float64 speed3D~%float64 speed2D~%float64 heading~%float64 cAcc~%float64 sAcc~%~%int64 tempo~%bool newPos~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <GPS>))
   (cl:+ 0
      1
@@ -658,6 +670,7 @@
      8
      8
      8
+     1
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <GPS>))
   "Converts a ROS message object to a list"
@@ -683,4 +696,5 @@
     (cl:cons ':cAcc (cAcc msg))
     (cl:cons ':sAcc (sAcc msg))
     (cl:cons ':tempo (tempo msg))
+    (cl:cons ':newPos (newPos msg))
 ))

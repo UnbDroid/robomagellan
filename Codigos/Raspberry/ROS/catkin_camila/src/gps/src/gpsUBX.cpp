@@ -12,6 +12,7 @@
 #include "ros/ros.h"
 #include "rosbag/bag.h"
 #include "raspberry_msgs/GPS.h"
+#include <wiringSerial.h>
 
 const unsigned char UBX_HEADER[]         = { 0xB5, 0x62 };
 const unsigned char NAV_POSECEF_HEADER[] = { 0x01, 0x01 };
@@ -286,22 +287,22 @@ int processGPS(int fd) {
 			if ( compareMsgHeader(NAV_POSECEF_HEADER) ) {
           		currentMsgType = MT_NAV_POSECEF;
           		payloadSize = sizeof(NAV_POSECEF);
-          		//std::cout << "ecef" << std::endl;
+          		std::cout << "ecef" << std::endl;
         	}
         else if ( compareMsgHeader(NAV_STATUS_HEADER) ) {
         	currentMsgType = MT_NAV_STATUS;
         	payloadSize = sizeof(NAV_STATUS);
-        	//std::cout << "status" << std::endl;
+        	std::cout << "status" << std::endl;
         }
         else if ( compareMsgHeader(NAV_VELNED_HEADER) ) {
         	currentMsgType = MT_NAV_VELNED;
         	payloadSize = sizeof(NAV_VELNED);
-        	//std::cout << "velned" << std::endl;
+        	std::cout << "velned" << std::endl;
         }
         else if ( compareMsgHeader(NAV_POSLLH_HEADER) ) {
         	currentMsgType = MT_NAV_POSLLH;
             payloadSize = sizeof(NAV_POSLLH);
-            //std::cout << "psllh" << std::endl;
+            std::cout << "psllh" << std::endl;
         }
         else {
         	// unknown message type, bail
@@ -322,17 +323,19 @@ int processGPS(int fd) {
         //std::cout<< "cs 1" << std::endl;
         if ( buf[0] != checksum[0] ) {
           // Checksum doesn't match, reset to beginning state and try again.
-          fpos = 0; 
+          fpos = 0;
+	 std::cout<< "cs 1 fail" << std::endl;
+	  
         }
       }
       else if ( fpos == (payloadSize+4) ) {
         // Second byte after the payload, ie. second byte of the checksum.
         // Does it match the second byte of the checksum we calculated?
         fpos = 0; // We will reset the state regardless of whether the checksum matches.
-        //std::cout<< "cs 2" << std::endl;
+       // std::cout<< "cs 2" << std::endl;
         if ( buf[0] == checksum[1] ) {
           // Checksum matches, we have a valid message.
-          //std::cout<< "cs 2 ok" << std::endl;
+          std::cout<< "cs 2 ok" << std::endl;
           return currentMsgType; 
         }
       }
@@ -386,11 +389,11 @@ int main(int argc, char **argv){
 	
 	ros::init(argc, argv, "gpsUBX");
 	ros::NodeHandle n;
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(5);
 	ros::Publisher pub = n.advertise<raspberry_msgs::GPS>("gpsInfo",1000);
 	rosbag::Bag gpsUBX;
 	
-	gpsUBX.open("gpsUBX.bag", rosbag::bagmode::Write);	
+	gpsUBX.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/scripts/gpsUBX5.bag", rosbag::bagmode::Write);	
 	
 	ros::Time tIndividual;
 
@@ -403,11 +406,11 @@ int main(int argc, char **argv){
 	//i = read(fd,buf,1);
 	//buf[i] = 0;
 	//ROS_INFO("%c",buf[0]);
-	//std::cout << buf;
+	//std::cout << buf[0];
 	
 		
  int msgType = processGPS(fd);
- //std::cout<< "type: " << msgType << std::endl;
+// std::cout<< "type: " << msgType << std::endl;
   
   if ( msgType == MT_NAV_POSECEF ) {
     std::cout<<"iTOW:";      std::cout<<ubxMessage.navPosEcef.iTOW<<std::endl;
@@ -423,6 +426,7 @@ int main(int argc, char **argv){
     msg.ecefZ = ubxMessage.navPosEcef.ecefZ/100.0;
     msg.pAcc = ubxMessage.navPosEcef.pAcc/100.0; 
     
+    msg.newPos = true;
     
   }
   else if ( msgType == MT_NAV_STATUS ) {
@@ -437,6 +441,8 @@ int main(int argc, char **argv){
     
     msg.gpsFix = (int)ubxMessage.navStatus.gpsFix;
     msg.gpsFixOk = fixOk;
+    
+    msg.newPos = false;
     
   }
   else if ( msgType == MT_NAV_VELNED ) {
@@ -460,13 +466,15 @@ int main(int argc, char **argv){
 	msg.heading = ubxMessage.navVelNed.heading/100000.0;
 	msg.cAcc = ubxMessage.navVelNed.cAcc/100000.0;
 	msg.sAcc = 	ubxMessage.navVelNed.sAcc/100.0;
+	
+	msg.newPos = false;
 	 
   }
 
   else   if ( msgType == MT_NAV_POSLLH ) {
   std::cout.precision(9);
    std::cout<<"iTOW:";      std::cout<<ubxMessage.navPosllh.iTOW<<std::endl;
-   std::cout<<" lat/lon: "; std::cout<<std::fixed<<ubxMessage.navPosllh.lat/10000000.0;  std::cout<< "   "; std::cout<<std::fixed<<ubxMessage.navPosllh.lon/10000000.0<<std::endl;
+   std::cout<<" lat/lon: "; std::cout<<std::fixed<<ubxMessage.navPosllh.lat/10000000.0;  std::cout<< "   "; 				std::cout<<std::fixed<<ubxMessage.navPosllh.lon/10000000.0<<std::endl;
     std::cout<<" hAcc: ";    std::cout<<ubxMessage.navPosllh.hAcc/1000.0<<std::endl;
     std::cout<<std::endl;
     //ROS_INFO("");
@@ -478,13 +486,20 @@ int main(int argc, char **argv){
     msg.height = ubxMessage.navPosllh.height/1000.0;
     msg.vAcc = ubxMessage.navPosllh.vAcc/1000.0;
     
-      	tIndividual = ros::Time::now();
-    	msg.tempo = tIndividual.toNSec() * 1e-6;
-	gpsUBX.write("gps_data",ros::Time::now(),msg);
-	pub.publish(msg);
-    
+    msg.newPos = true;
+  }
+  else{
+  	msg.newPos = false;  
   }
   
+  if(msg.newPos ){
+  	 tIndividual = ros::Time::now();
+   	msg.tempo = tIndividual.toNSec() * 1e-6;
+	gpsUBX.write("gps_data",ros::Time::now(),msg);
+	pub.publish(msg);
+	//std::cout << "oi";
+  
+  }
 
 	
 	ros::spinOnce();

@@ -41,4 +41,6 @@
           SACC
           TEMPO-VAL
           TEMPO
+          NEWPOS-VAL
+          NEWPOS
 ))

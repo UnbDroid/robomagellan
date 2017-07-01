@@ -23,3 +23,4 @@ float64 cAcc
 float64 sAcc
 
 int64 tempo
+bool newPos

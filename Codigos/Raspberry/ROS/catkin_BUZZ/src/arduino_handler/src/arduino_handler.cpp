@@ -274,7 +274,7 @@ int main(int argc, char **argv)
   geometry_msgs::Point32 velocidade_atualMsg;
   raspberry_msgs::GPS gps_msg;
   
-  	bag.open("odom.bag", rosbag::bagmode::Write);
+  	bag.open("/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/src/imu/scripts/odom5.bag", rosbag::bagmode::Write);
 
   while (ros::ok()){
     processRangeMsgs();
@@ -284,10 +284,6 @@ int main(int argc, char **argv)
     velocidade_atualMsg.x = velocidadeAtualDir;
     velocidade_atualMsg.y = velocidadeAtualEsq;
     
-    ros::Time tempo;
-    tempo = ros::Time::now();
-	gps_msg.tempo = tempo.toNSec() * 1e-6;		
-   	bag.write("odom_data",ros::Time::now(), gps_msg);
     bag.write("odom_data",ros::Time::now(), velocidade_atualMsg);
     /*gps_msg.valid = gpsData.valid;
     gps_msg.lat = gpsData.lat;
