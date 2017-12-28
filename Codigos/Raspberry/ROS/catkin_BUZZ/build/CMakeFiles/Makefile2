@@ -245,12 +245,12 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=58,59 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=59 "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
 gtest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest_main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : gtest/CMakeFiles/gtest_main.dir/rule
@@ -277,7 +277,7 @@ clean: gtest/CMakeFiles/gtest_main.dir/clean
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=57 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=58 "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1222,7 +1222,7 @@ raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/all: raspberry_msgs/CMakeFil
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_gencpp.dir/rule
@@ -1453,7 +1453,7 @@ all: raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 40
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 39
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages.dir/rule
@@ -1966,12 +1966,12 @@ raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberr
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all: raspberry_msgs/CMakeFiles/_raspberry_msgs_generate_messages_check_deps_StampedUint8.dir/all
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/depend
 	$(MAKE) -f raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build.make raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=61,62,63,64,65,66,67,68,69,70,71,72,73 "Built target raspberry_msgs_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=62,63,64,65,66,67,68,69,70,71,72,73 "Built target raspberry_msgs_generate_messages_cpp"
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : raspberry_msgs/CMakeFiles/raspberry_msgs_generate_messages_cpp.dir/rule
@@ -2000,10 +2000,12 @@ arduino_handler/all: arduino_handler/CMakeFiles/arduino_handler.dir/all
 .PHONY : arduino_handler/all
 
 # Convenience name for "clean" pass in the directory.
+arduino_handler/clean: arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/arduino_handler.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+arduino_handler/clean: arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
@@ -2016,6 +2018,7 @@ arduino_handler/clean: arduino_handler/CMakeFiles/tf2_msgs_generate_messages_py.
 arduino_handler/clean: arduino_handler/CMakeFiles/tf_generate_messages_lisp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/actionlib_generate_messages_cpp.dir/clean
+arduino_handler/clean: arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/tf_generate_messages_cpp.dir/clean
 arduino_handler/clean: arduino_handler/CMakeFiles/actionlib_generate_messages_lisp.dir/clean
@@ -2032,6 +2035,38 @@ arduino_handler/clean: arduino_handler/CMakeFiles/actionlib_msgs_generate_messag
 arduino_handler/preinstall:
 
 .PHONY : arduino_handler/preinstall
+
+#=============================================================================
+# Target rules for target arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir
+
+# All Build rule for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/all:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/depend
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num= "Built target topic_tools_generate_messages_py"
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_py: arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+
+.PHONY : topic_tools_generate_messages_py
+
+# clean rule for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/clean:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/clean
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: arduino_handler/CMakeFiles/topic_tools_generate_messages_py.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Target rules for target arduino_handler/CMakeFiles/tf2_msgs_generate_messages_lisp.dir
@@ -2163,6 +2198,38 @@ arduino_handler/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean:
 
 # clean rule for target.
 clean: arduino_handler/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir
+
+# All Build rule for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/all:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/depend
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num= "Built target topic_tools_generate_messages_cpp"
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_cpp: arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+
+.PHONY : topic_tools_generate_messages_cpp
+
+# clean rule for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/clean:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/clean
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: arduino_handler/CMakeFiles/topic_tools_generate_messages_cpp.dir/clean
 
 .PHONY : clean
 
@@ -2547,6 +2614,38 @@ arduino_handler/CMakeFiles/actionlib_generate_messages_cpp.dir/clean:
 
 # clean rule for target.
 clean: arduino_handler/CMakeFiles/actionlib_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir
+
+# All Build rule for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/all:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/depend
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num= "Built target topic_tools_generate_messages_lisp"
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_lisp: arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+
+.PHONY : topic_tools_generate_messages_lisp
+
+# clean rule for target.
+arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/clean:
+	$(MAKE) -f arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/clean
+.PHONY : arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: arduino_handler/CMakeFiles/topic_tools_generate_messages_lisp.dir/clean
 
 .PHONY : clean
 
@@ -3054,7 +3153,7 @@ bruce_path_planner/preinstall:
 bruce_path_planner/CMakeFiles/odometry_test.dir/all:
 	$(MAKE) -f bruce_path_planner/CMakeFiles/odometry_test.dir/build.make bruce_path_planner/CMakeFiles/odometry_test.dir/depend
 	$(MAKE) -f bruce_path_planner/CMakeFiles/odometry_test.dir/build.make bruce_path_planner/CMakeFiles/odometry_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=60 "Built target odometry_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=60,61 "Built target odometry_test"
 .PHONY : bruce_path_planner/CMakeFiles/odometry_test.dir/all
 
 # Include target in all.
@@ -3064,7 +3163,7 @@ all: bruce_path_planner/CMakeFiles/odometry_test.dir/all
 
 # Build rule for subdir invocation for target.
 bruce_path_planner/CMakeFiles/odometry_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 bruce_path_planner/CMakeFiles/odometry_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : bruce_path_planner/CMakeFiles/odometry_test.dir/rule
@@ -3091,7 +3190,7 @@ clean: bruce_path_planner/CMakeFiles/odometry_test.dir/clean
 bruce_path_planner/CMakeFiles/bruce_tf.dir/all:
 	$(MAKE) -f bruce_path_planner/CMakeFiles/bruce_tf.dir/build.make bruce_path_planner/CMakeFiles/bruce_tf.dir/depend
 	$(MAKE) -f bruce_path_planner/CMakeFiles/bruce_tf.dir/build.make bruce_path_planner/CMakeFiles/bruce_tf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=56 "Built target bruce_tf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles --progress-num=56,57 "Built target bruce_tf"
 .PHONY : bruce_path_planner/CMakeFiles/bruce_tf.dir/all
 
 # Include target in all.
@@ -3101,7 +3200,7 @@ all: bruce_path_planner/CMakeFiles/bruce_tf.dir/all
 
 # Build rule for subdir invocation for target.
 bruce_path_planner/CMakeFiles/bruce_tf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 bruce_path_planner/CMakeFiles/bruce_tf.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build/CMakeFiles 0
 .PHONY : bruce_path_planner/CMakeFiles/bruce_tf.dir/rule

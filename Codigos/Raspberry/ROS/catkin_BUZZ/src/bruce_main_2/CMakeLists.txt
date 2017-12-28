@@ -210,10 +210,12 @@ set(${PROJECT_NAME}_ACTIONS
       src/actions/request_set_origin
       src/actions/set_velocity
       src/actions/send_enable_follow_camera
+      src/actions/requisitar_uma_paradinha
 	src/actions/print
       src/actions/print_bool
       src/actions/print_int
-      src/actions/print_float)
+      src/actions/print_float
+      src/actions/set_correcao)
   
 set(${PROJECT_NAME}_CONDITIONS
 	src/conditions/conditions 

@@ -15,6 +15,7 @@ void CameraPositionCallback(const geometry_msgs::Point32::ConstPtr& msg);
 void SensorToqueCallback(const std_msgs::Bool::ConstPtr& msg);
 void BotaoPretoCallback(const std_msgs::Bool::ConstPtr& msg);
 void BotaoVerdeCallback(const std_msgs::Bool::ConstPtr& msg);
+void CorrecaoCallback(const std_msgs::Bool::ConstPtr& msg);
 
 void startInfo(robot_information & info);
 
@@ -62,6 +63,7 @@ int main(int argc, char **argv){
       ros::Subscriber subSensorToque = n.subscribe("sensor_toque", 1000, SensorToqueCallback);
       ros::Subscriber subBotaoPreto = n.subscribe("botao_preto", 1000, BotaoPretoCallback);
       ros::Subscriber subBotaoVerde = n.subscribe("botao_verde", 1000, BotaoVerdeCallback);
+      ros::Subscriber subCorrecao = n.subscribe("correcao", 10, CorrecaoCallback);
       tf::TransformListener tfListener;      
 
 
@@ -72,8 +74,9 @@ int main(int argc, char **argv){
       ros::Publisher pubMapBLCoordinate = n.advertise<geometry_msgs::Point32>("map_bl_coord",1000,true); 
       ros::Publisher pubObstacles = n.advertise<geometry_msgs::PoseArray>("new_obstacles",1000);
       ros::Publisher pubOriginRequest = n.advertise<std_msgs::Bool>("request_origin",1000);
-      ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity",1000);
+      ros::Publisher pubVelocity = n.advertise<geometry_msgs::Point32>("velocity2",1000);
       ros::Publisher pubFollowCamera = n.advertise<std_msgs::Bool>("follow_camera",1000);
+      ros::Publisher pubParadinha = n.advertise<std_msgs::Bool>("parada",1000);
 
       info.n = &n;
       info.pubRequestPath = & pubRequestPath;
@@ -130,6 +133,7 @@ void startInfo(robot_information & info){
   info.calculating_route = false;
   info.sensor_toque = false;
   info.origin_received = false;
+  info.correcao = false;
   info.pose = geometry_msgs::Pose();
   info.origin.lat = 0;
   info.origin.lng = 0;
@@ -239,4 +243,8 @@ void BotaoPretoCallback(const std_msgs::Bool::ConstPtr& msg){
 }
 void BotaoVerdeCallback(const std_msgs::Bool::ConstPtr& msg){
   info.botao_verde = msg->data;
+}
+
+void CorrecaoCallback(const std_msgs::Bool::ConstPtr& msg){
+  info.correcao = msg->data;
 }

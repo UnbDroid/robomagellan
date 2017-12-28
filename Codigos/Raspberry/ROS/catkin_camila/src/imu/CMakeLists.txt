@@ -192,6 +192,8 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS} /usr/local/lib)
 
+############# gy-80
+
 add_executable(gyroTalker src/gyroTalker.cpp)
 target_link_libraries(gyroTalker ${catkin_LIBRARIES} libwiringPi.so)
 add_dependencies(gyroTalker imu_generate_messages_cpp)
@@ -207,3 +209,18 @@ add_dependencies(gyroOffset imu_generate_messages_cpp)
 add_executable(magTalker src/magTalker.cpp)
 target_link_libraries(magTalker ${catkin_LIBRARIES} libwiringPi.so)
 add_dependencies(magTalker imu_generate_messages_cpp)
+
+################# mpu9250
+
+add_executable(gyroMPU src/gyroMPU.cpp)
+target_link_libraries(gyroMPU ${catkin_LIBRARIES} libwiringPi.so)
+add_dependencies(gyroMPU imu_generate_messages_cpp)
+
+add_executable(accMPU src/accMPU.cpp)
+target_link_libraries(accMPU ${catkin_LIBRARIES} libwiringPi.so)
+add_dependencies(accMPU imu_generate_messages_cpp)
+
+add_executable(magMPU src/magMPU.cpp)
+target_link_libraries(magMPU ${catkin_LIBRARIES} libwiringPi.so)
+add_dependencies(magMPU imu_generate_messages_cpp)
+

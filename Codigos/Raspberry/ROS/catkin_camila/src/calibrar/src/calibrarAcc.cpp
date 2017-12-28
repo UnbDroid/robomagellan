@@ -16,9 +16,9 @@ e apertar q
 #include "rosbag/bag.h"
 #include "raspberry_msgs/ParamAcc.h"
 
-#define SCALE 0.0039
-#define g 9.80665
-#define iTotal 5
+#define SCALE 0.00048828125 //0.00393
+#define g 9.806
+#define iTotal 50
 #define nMedidas 7
 
 using namespace Eigen;
@@ -76,13 +76,22 @@ MatrixXf jacobiana(MatrixXf medidas, VectorXf param){
 
 int main(int argc, char **argv){
 
-int Register_2D = 0x2D;
+/*int Register_2D = 0x2D;
 int Register_XL = 0x32;
 int Register_XH = 0x33;
 int Register_YL = 0x34;
 int Register_YH = 0x35;
 int Register_ZL = 0x36;
-int Register_ZH = 0x37;
+int Register_ZH = 0x37; */
+
+	int Register_PM = 108; // power management
+   	int Register_XL = 60;
+   	int Register_XH = 59;
+   	int Register_YL = 62;
+   	int Register_YH = 61;
+   	int Register_ZL = 64;
+   	int Register_ZH = 63;
+   	int Register_Scale = 28;
 
 short acc_x = 0;
 short acc_y = 0;
@@ -92,8 +101,8 @@ float a_x = 0;
 float a_y = 0;
 float a_z = 0;
 
-int fd = wiringPiI2CSetup(0x53);
-wiringPiI2CWriteReg8 (fd, Register_2D, 8);
+int fd = wiringPiI2CSetup(0x68);
+wiringPiI2CWriteReg8 (fd, Register_Scale, 0x18);
 
 rosbag::Bag bag;
 bag.open("parametrosAcc.bag", rosbag::bagmode::Write);

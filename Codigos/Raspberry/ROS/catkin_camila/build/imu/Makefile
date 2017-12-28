@@ -56,6 +56,51 @@ CMAKE_BINARY_DIR = /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -87,51 +132,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -225,6 +225,78 @@ magTalker/fast:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/build
 .PHONY : magTalker/fast
 
+# Convenience name for target.
+imu/CMakeFiles/accMPU.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/accMPU.dir/rule
+.PHONY : imu/CMakeFiles/accMPU.dir/rule
+
+# Convenience name for target.
+accMPU: imu/CMakeFiles/accMPU.dir/rule
+
+.PHONY : accMPU
+
+# fast build rule for target.
+accMPU/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/build
+.PHONY : accMPU/fast
+
+# Convenience name for target.
+imu/CMakeFiles/gyroMPU.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/gyroMPU.dir/rule
+.PHONY : imu/CMakeFiles/gyroMPU.dir/rule
+
+# Convenience name for target.
+gyroMPU: imu/CMakeFiles/gyroMPU.dir/rule
+
+.PHONY : gyroMPU
+
+# fast build rule for target.
+gyroMPU/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/build
+.PHONY : gyroMPU/fast
+
+# Convenience name for target.
+imu/CMakeFiles/magMPU.dir/rule:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/magMPU.dir/rule
+.PHONY : imu/CMakeFiles/magMPU.dir/rule
+
+# Convenience name for target.
+magMPU: imu/CMakeFiles/magMPU.dir/rule
+
+.PHONY : magMPU
+
+# fast build rule for target.
+magMPU/fast:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/build
+.PHONY : magMPU/fast
+
+src/accMPU.o: src/accMPU.cpp.o
+
+.PHONY : src/accMPU.o
+
+# target to build an object file
+src/accMPU.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/src/accMPU.cpp.o
+.PHONY : src/accMPU.cpp.o
+
+src/accMPU.i: src/accMPU.cpp.i
+
+.PHONY : src/accMPU.i
+
+# target to preprocess a source file
+src/accMPU.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/src/accMPU.cpp.i
+.PHONY : src/accMPU.cpp.i
+
+src/accMPU.s: src/accMPU.cpp.s
+
+.PHONY : src/accMPU.s
+
+# target to generate assembly for a file
+src/accMPU.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/src/accMPU.cpp.s
+.PHONY : src/accMPU.cpp.s
+
 src/accTalker.o: src/accTalker.cpp.o
 
 .PHONY : src/accTalker.o
@@ -251,6 +323,33 @@ src/accTalker.s: src/accTalker.cpp.s
 src/accTalker.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/accTalker.dir/build.make imu/CMakeFiles/accTalker.dir/src/accTalker.cpp.s
 .PHONY : src/accTalker.cpp.s
+
+src/gyroMPU.o: src/gyroMPU.cpp.o
+
+.PHONY : src/gyroMPU.o
+
+# target to build an object file
+src/gyroMPU.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/src/gyroMPU.cpp.o
+.PHONY : src/gyroMPU.cpp.o
+
+src/gyroMPU.i: src/gyroMPU.cpp.i
+
+.PHONY : src/gyroMPU.i
+
+# target to preprocess a source file
+src/gyroMPU.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/src/gyroMPU.cpp.i
+.PHONY : src/gyroMPU.cpp.i
+
+src/gyroMPU.s: src/gyroMPU.cpp.s
+
+.PHONY : src/gyroMPU.s
+
+# target to generate assembly for a file
+src/gyroMPU.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/src/gyroMPU.cpp.s
+.PHONY : src/gyroMPU.cpp.s
 
 src/gyroOffset.o: src/gyroOffset.cpp.o
 
@@ -306,6 +405,33 @@ src/gyroTalker.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/gyroTalker.dir/build.make imu/CMakeFiles/gyroTalker.dir/src/gyroTalker.cpp.s
 .PHONY : src/gyroTalker.cpp.s
 
+src/magMPU.o: src/magMPU.cpp.o
+
+.PHONY : src/magMPU.o
+
+# target to build an object file
+src/magMPU.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/src/magMPU.cpp.o
+.PHONY : src/magMPU.cpp.o
+
+src/magMPU.i: src/magMPU.cpp.i
+
+.PHONY : src/magMPU.i
+
+# target to preprocess a source file
+src/magMPU.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/src/magMPU.cpp.i
+.PHONY : src/magMPU.cpp.i
+
+src/magMPU.s: src/magMPU.cpp.s
+
+.PHONY : src/magMPU.s
+
+# target to generate assembly for a file
+src/magMPU.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_camila/build && $(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/src/magMPU.cpp.s
+.PHONY : src/magMPU.cpp.s
+
 src/magTalker.o: src/magTalker.cpp.o
 
 .PHONY : src/magTalker.o
@@ -339,26 +465,38 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... test"
+	@echo "... rebuild_cache"
 	@echo "... gyroTalker"
 	@echo "... gyroOffset"
 	@echo "... accTalker"
+	@echo "... edit_cache"
+	@echo "... magTalker"
+	@echo "... accMPU"
+	@echo "... gyroMPU"
+	@echo "... install/strip"
+	@echo "... install"
+	@echo "... test"
+	@echo "... magMPU"
 	@echo "... install/local"
 	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... install"
-	@echo "... install/strip"
-	@echo "... magTalker"
-	@echo "... edit_cache"
+	@echo "... src/accMPU.o"
+	@echo "... src/accMPU.i"
+	@echo "... src/accMPU.s"
 	@echo "... src/accTalker.o"
 	@echo "... src/accTalker.i"
 	@echo "... src/accTalker.s"
+	@echo "... src/gyroMPU.o"
+	@echo "... src/gyroMPU.i"
+	@echo "... src/gyroMPU.s"
 	@echo "... src/gyroOffset.o"
 	@echo "... src/gyroOffset.i"
 	@echo "... src/gyroOffset.s"
 	@echo "... src/gyroTalker.o"
 	@echo "... src/gyroTalker.i"
 	@echo "... src/gyroTalker.s"
+	@echo "... src/magMPU.o"
+	@echo "... src/magMPU.i"
+	@echo "... src/magMPU.s"
 	@echo "... src/magTalker.o"
 	@echo "... src/magTalker.i"
 	@echo "... src/magTalker.s"

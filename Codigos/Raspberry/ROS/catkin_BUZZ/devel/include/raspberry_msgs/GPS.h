@@ -24,35 +24,77 @@ struct GPS_
   typedef GPS_<ContainerAllocator> Type;
 
   GPS_()
-    : valid(false)
+    : gpsFixOk(false)
+    , gpsFix(0)
+    , iTow(0.0)
+    , ecefX(0.0)
+    , ecefY(0.0)
+    , ecefZ(0.0)
+    , pAcc(0.0)
     , lat(0.0)
     , lng(0.0)
-    , alt(0.0)
-    , speed(0.0)
-    , course(0.0)
-    , updated(false)
-    , hdop(0.0)
-    , pdop(0.0)
-    , time(0)  {
+    , hAcc(0.0)
+    , height(0.0)
+    , vAcc(0.0)
+    , velN(0.0)
+    , velE(0.0)
+    , velD(0.0)
+    , speed3D(0.0)
+    , speed2D(0.0)
+    , heading(0.0)
+    , cAcc(0.0)
+    , sAcc(0.0)
+    , tempo(0)
+    , newPos(false)  {
     }
   GPS_(const ContainerAllocator& _alloc)
-    : valid(false)
+    : gpsFixOk(false)
+    , gpsFix(0)
+    , iTow(0.0)
+    , ecefX(0.0)
+    , ecefY(0.0)
+    , ecefZ(0.0)
+    , pAcc(0.0)
     , lat(0.0)
     , lng(0.0)
-    , alt(0.0)
-    , speed(0.0)
-    , course(0.0)
-    , updated(false)
-    , hdop(0.0)
-    , pdop(0.0)
-    , time(0)  {
+    , hAcc(0.0)
+    , height(0.0)
+    , vAcc(0.0)
+    , velN(0.0)
+    , velE(0.0)
+    , velD(0.0)
+    , speed3D(0.0)
+    , speed2D(0.0)
+    , heading(0.0)
+    , cAcc(0.0)
+    , sAcc(0.0)
+    , tempo(0)
+    , newPos(false)  {
   (void)_alloc;
     }
 
 
 
-   typedef uint8_t _valid_type;
-  _valid_type valid;
+   typedef uint8_t _gpsFixOk_type;
+  _gpsFixOk_type gpsFixOk;
+
+   typedef int64_t _gpsFix_type;
+  _gpsFix_type gpsFix;
+
+   typedef double _iTow_type;
+  _iTow_type iTow;
+
+   typedef double _ecefX_type;
+  _ecefX_type ecefX;
+
+   typedef double _ecefY_type;
+  _ecefY_type ecefY;
+
+   typedef double _ecefZ_type;
+  _ecefZ_type ecefZ;
+
+   typedef double _pAcc_type;
+  _pAcc_type pAcc;
 
    typedef double _lat_type;
   _lat_type lat;
@@ -60,26 +102,44 @@ struct GPS_
    typedef double _lng_type;
   _lng_type lng;
 
-   typedef double _alt_type;
-  _alt_type alt;
+   typedef double _hAcc_type;
+  _hAcc_type hAcc;
 
-   typedef double _speed_type;
-  _speed_type speed;
+   typedef double _height_type;
+  _height_type height;
 
-   typedef double _course_type;
-  _course_type course;
+   typedef double _vAcc_type;
+  _vAcc_type vAcc;
 
-   typedef uint8_t _updated_type;
-  _updated_type updated;
+   typedef double _velN_type;
+  _velN_type velN;
 
-   typedef float _hdop_type;
-  _hdop_type hdop;
+   typedef double _velE_type;
+  _velE_type velE;
 
-   typedef float _pdop_type;
-  _pdop_type pdop;
+   typedef double _velD_type;
+  _velD_type velD;
 
-   typedef int64_t _time_type;
-  _time_type time;
+   typedef double _speed3D_type;
+  _speed3D_type speed3D;
+
+   typedef double _speed2D_type;
+  _speed2D_type speed2D;
+
+   typedef double _heading_type;
+  _heading_type heading;
+
+   typedef double _cAcc_type;
+  _cAcc_type cAcc;
+
+   typedef double _sAcc_type;
+  _sAcc_type sAcc;
+
+   typedef int64_t _tempo_type;
+  _tempo_type tempo;
+
+   typedef uint8_t _newPos_type;
+  _newPos_type newPos;
 
 
 
@@ -158,12 +218,12 @@ struct MD5Sum< ::raspberry_msgs::GPS_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "af03eea1fc21cc32275a1d14bd4d469e";
+    return "ce40b63f049129349999b8d09618a193";
   }
 
   static const char* value(const ::raspberry_msgs::GPS_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xaf03eea1fc21cc32ULL;
-  static const uint64_t static_value2 = 0x275a1d14bd4d469eULL;
+  static const uint64_t static_value1 = 0xce40b63f04912934ULL;
+  static const uint64_t static_value2 = 0x9999b8d09618a193ULL;
 };
 
 template<class ContainerAllocator>
@@ -182,16 +242,32 @@ struct Definition< ::raspberry_msgs::GPS_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "bool valid\n\
+    return "bool gpsFixOk\n\
+int64 gpsFix\n\
+\n\
+float64 iTow\n\
+float64 ecefX\n\
+float64 ecefY\n\
+float64 ecefZ\n\
+float64 pAcc\n\
+\n\
 float64 lat\n\
 float64 lng\n\
-float64 alt\n\
-float64 speed\n\
-float64 course\n\
-bool updated\n\
-float32 hdop\n\
-float32 pdop\n\
-int64 time\n\
+float64 hAcc\n\
+float64 height\n\
+float64 vAcc\n\
+\n\
+float64 velN\n\
+float64 velE\n\
+float64 velD\n\
+float64 speed3D\n\
+float64 speed2D\n\
+float64 heading\n\
+float64 cAcc\n\
+float64 sAcc\n\
+\n\
+int64 tempo\n\
+bool newPos\n\
 ";
   }
 
@@ -210,16 +286,28 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.valid);
+      stream.next(m.gpsFixOk);
+      stream.next(m.gpsFix);
+      stream.next(m.iTow);
+      stream.next(m.ecefX);
+      stream.next(m.ecefY);
+      stream.next(m.ecefZ);
+      stream.next(m.pAcc);
       stream.next(m.lat);
       stream.next(m.lng);
-      stream.next(m.alt);
-      stream.next(m.speed);
-      stream.next(m.course);
-      stream.next(m.updated);
-      stream.next(m.hdop);
-      stream.next(m.pdop);
-      stream.next(m.time);
+      stream.next(m.hAcc);
+      stream.next(m.height);
+      stream.next(m.vAcc);
+      stream.next(m.velN);
+      stream.next(m.velE);
+      stream.next(m.velD);
+      stream.next(m.speed3D);
+      stream.next(m.speed2D);
+      stream.next(m.heading);
+      stream.next(m.cAcc);
+      stream.next(m.sAcc);
+      stream.next(m.tempo);
+      stream.next(m.newPos);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -238,26 +326,50 @@ struct Printer< ::raspberry_msgs::GPS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::raspberry_msgs::GPS_<ContainerAllocator>& v)
   {
-    s << indent << "valid: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.valid);
+    s << indent << "gpsFixOk: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.gpsFixOk);
+    s << indent << "gpsFix: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.gpsFix);
+    s << indent << "iTow: ";
+    Printer<double>::stream(s, indent + "  ", v.iTow);
+    s << indent << "ecefX: ";
+    Printer<double>::stream(s, indent + "  ", v.ecefX);
+    s << indent << "ecefY: ";
+    Printer<double>::stream(s, indent + "  ", v.ecefY);
+    s << indent << "ecefZ: ";
+    Printer<double>::stream(s, indent + "  ", v.ecefZ);
+    s << indent << "pAcc: ";
+    Printer<double>::stream(s, indent + "  ", v.pAcc);
     s << indent << "lat: ";
     Printer<double>::stream(s, indent + "  ", v.lat);
     s << indent << "lng: ";
     Printer<double>::stream(s, indent + "  ", v.lng);
-    s << indent << "alt: ";
-    Printer<double>::stream(s, indent + "  ", v.alt);
-    s << indent << "speed: ";
-    Printer<double>::stream(s, indent + "  ", v.speed);
-    s << indent << "course: ";
-    Printer<double>::stream(s, indent + "  ", v.course);
-    s << indent << "updated: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.updated);
-    s << indent << "hdop: ";
-    Printer<float>::stream(s, indent + "  ", v.hdop);
-    s << indent << "pdop: ";
-    Printer<float>::stream(s, indent + "  ", v.pdop);
-    s << indent << "time: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.time);
+    s << indent << "hAcc: ";
+    Printer<double>::stream(s, indent + "  ", v.hAcc);
+    s << indent << "height: ";
+    Printer<double>::stream(s, indent + "  ", v.height);
+    s << indent << "vAcc: ";
+    Printer<double>::stream(s, indent + "  ", v.vAcc);
+    s << indent << "velN: ";
+    Printer<double>::stream(s, indent + "  ", v.velN);
+    s << indent << "velE: ";
+    Printer<double>::stream(s, indent + "  ", v.velE);
+    s << indent << "velD: ";
+    Printer<double>::stream(s, indent + "  ", v.velD);
+    s << indent << "speed3D: ";
+    Printer<double>::stream(s, indent + "  ", v.speed3D);
+    s << indent << "speed2D: ";
+    Printer<double>::stream(s, indent + "  ", v.speed2D);
+    s << indent << "heading: ";
+    Printer<double>::stream(s, indent + "  ", v.heading);
+    s << indent << "cAcc: ";
+    Printer<double>::stream(s, indent + "  ", v.cAcc);
+    s << indent << "sAcc: ";
+    Printer<double>::stream(s, indent + "  ", v.sAcc);
+    s << indent << "tempo: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.tempo);
+    s << indent << "newPos: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.newPos);
   }
 };
 

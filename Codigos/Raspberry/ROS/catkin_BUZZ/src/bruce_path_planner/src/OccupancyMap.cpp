@@ -72,7 +72,7 @@ bool OccupancyMap::stateValid(const Coordinates& pt)const{
     bool inbounds = PlaneStateSpace::stateValid(pt);
     float distToObs = nearestObstacleDist(pt,1);
     signed char mapPoint = (*this)[pt];
-    bool nearObstacle = distToObs < 1;
+    bool nearObstacle = distToObs < 0.3;
     bool notObstable = (mapPoint == 0) ;
 
     for (int i = 0; i < newObstacles.size(); ++i){

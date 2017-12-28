@@ -197,4 +197,8 @@ add_executable(filtroAtitude src/filtroAtitude.cpp)
 target_link_libraries(filtroAtitude ${catkin_LIBRARIES})
 add_dependencies(filtroAtitude filtro_generate_messages_cpp)
 
+add_executable(filtroUKF src/filtroUKF.cpp)
+target_link_libraries(filtroUKF ${catkin_LIBRARIES})
+add_dependencies(filtroUKF filtro_generate_messages_cpp)
+
 

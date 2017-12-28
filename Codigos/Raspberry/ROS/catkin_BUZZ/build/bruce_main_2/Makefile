@@ -618,6 +618,33 @@ src/actions/request_set_origin.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/request_set_origin.cpp.s
 .PHONY : src/actions/request_set_origin.cpp.s
 
+src/actions/requisitar_uma_paradinha.o: src/actions/requisitar_uma_paradinha.cpp.o
+
+.PHONY : src/actions/requisitar_uma_paradinha.o
+
+# target to build an object file
+src/actions/requisitar_uma_paradinha.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.o
+.PHONY : src/actions/requisitar_uma_paradinha.cpp.o
+
+src/actions/requisitar_uma_paradinha.i: src/actions/requisitar_uma_paradinha.cpp.i
+
+.PHONY : src/actions/requisitar_uma_paradinha.i
+
+# target to preprocess a source file
+src/actions/requisitar_uma_paradinha.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.i
+.PHONY : src/actions/requisitar_uma_paradinha.cpp.i
+
+src/actions/requisitar_uma_paradinha.s: src/actions/requisitar_uma_paradinha.cpp.s
+
+.PHONY : src/actions/requisitar_uma_paradinha.s
+
+# target to generate assembly for a file
+src/actions/requisitar_uma_paradinha.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/requisitar_uma_paradinha.cpp.s
+.PHONY : src/actions/requisitar_uma_paradinha.cpp.s
+
 src/actions/reset_counter.o: src/actions/reset_counter.cpp.o
 
 .PHONY : src/actions/reset_counter.o
@@ -752,6 +779,33 @@ src/actions/set_calculating_route.s: src/actions/set_calculating_route.cpp.s
 src/actions/set_calculating_route.cpp.s:
 	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_calculating_route.cpp.s
 .PHONY : src/actions/set_calculating_route.cpp.s
+
+src/actions/set_correcao.o: src/actions/set_correcao.cpp.o
+
+.PHONY : src/actions/set_correcao.o
+
+# target to build an object file
+src/actions/set_correcao.cpp.o:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.o
+.PHONY : src/actions/set_correcao.cpp.o
+
+src/actions/set_correcao.i: src/actions/set_correcao.cpp.i
+
+.PHONY : src/actions/set_correcao.i
+
+# target to preprocess a source file
+src/actions/set_correcao.cpp.i:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.i
+.PHONY : src/actions/set_correcao.cpp.i
+
+src/actions/set_correcao.s: src/actions/set_correcao.cpp.s
+
+.PHONY : src/actions/set_correcao.s
+
+# target to generate assembly for a file
+src/actions/set_correcao.cpp.s:
+	cd /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/build && $(MAKE) -f bruce_main_2/CMakeFiles/bruce_main2.dir/build.make bruce_main_2/CMakeFiles/bruce_main2.dir/src/actions/set_correcao.cpp.s
+.PHONY : src/actions/set_correcao.cpp.s
 
 src/actions/set_map_path_goal_gps.o: src/actions/set_map_path_goal_gps.cpp.o
 
@@ -1407,6 +1461,9 @@ help:
 	@echo "... src/actions/request_set_origin.o"
 	@echo "... src/actions/request_set_origin.i"
 	@echo "... src/actions/request_set_origin.s"
+	@echo "... src/actions/requisitar_uma_paradinha.o"
+	@echo "... src/actions/requisitar_uma_paradinha.i"
+	@echo "... src/actions/requisitar_uma_paradinha.s"
 	@echo "... src/actions/reset_counter.o"
 	@echo "... src/actions/reset_counter.i"
 	@echo "... src/actions/reset_counter.s"
@@ -1422,6 +1479,9 @@ help:
 	@echo "... src/actions/set_calculating_route.o"
 	@echo "... src/actions/set_calculating_route.i"
 	@echo "... src/actions/set_calculating_route.s"
+	@echo "... src/actions/set_correcao.o"
+	@echo "... src/actions/set_correcao.i"
+	@echo "... src/actions/set_correcao.s"
 	@echo "... src/actions/set_map_path_goal_gps.o"
 	@echo "... src/actions/set_map_path_goal_gps.i"
 	@echo "... src/actions/set_map_path_goal_gps.s"

@@ -1,5 +1,5 @@
 <launch>
-	<node name="serial_node" type="serial_node.py" pkg="rosserial_python" args="/dev/ttyACM0"/>	
+	<node name="serial_node" type="serial_node.py" pkg="rosserial_python" args="/dev/ttyACM0 _baud:=115200"/>	
 	<node name="arduino_handler" type="arduino_handler" pkg="arduino_handler"/>
 	<node name="robo_virtual" type="robo_virtual" pkg="robo_virtual"/>
 	<node name="bruce_main2" pkg="bruce_main_2" type="bruce_main2" args=" $(find bruce_main_2)/fsm_config/testeCone.fsm" />

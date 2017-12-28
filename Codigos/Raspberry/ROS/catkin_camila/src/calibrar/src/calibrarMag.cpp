@@ -8,6 +8,8 @@ e apertar q
 
 */
 
+/*
+
 #include "ros/ros.h"
 #include <wiringPiI2C.h>
 #include <iostream>
@@ -212,4 +214,120 @@ bag.close();
 
 return 0;
 
+}*/
+
+#include <wiringPiI2C.h>
+#include "ros/ros.h"
+#include "rosbag/bag.h"
+#include "raspberry_msgs/ParamMag.h"
+#include <time.h>
+
+ros::Time tempo;
+
+#define SCALE 0.15
+
+short read_word(int fd, int adr_h,int adr_l){
+
+	char high = wiringPiI2CReadReg8 (fd,adr_h);
+//	ROS_INFO("High %d",high);
+	char st2h = wiringPiI2CReadReg8 (fd,0x09);
+	char low = wiringPiI2CReadReg8 (fd,adr_l);
+	char st2l = wiringPiI2CReadReg8 (fd,0x09);
+//	ROS_INFO("Low %d",low);
+	
+	short val = 0;
+
+	if(!(st2h&0x08) && !(st2l&0x08))
+		val = ((high << 8) + low);
+//	ROS_INFO("Val %d", val);
+	return val;
+
 }
+
+
+int main(int argc, char **argv){
+ 
+    int Register_BypassEn = 0x37;
+	
+	int Register_Control = 0x0A;
+   	int Register_XL = 0x03;
+   	int Register_XH = 0x04;
+   	int Register_YL = 0x05;
+   	int Register_YH = 0x06;
+   	int Register_ZL = 0x07;
+   	int Register_ZH = 0x08;
+   	int Register_ST1 = 0x02;
+   	int Register_ST2 = 0x09;
+
+	short mag_x = 0;
+	short mag_y = 0;
+	short mag_z = 0;
+	short mag_st2;
+	
+	float m_x = 0;
+	float m_y = 0;
+	float m_z = 0;
+
+	//mpu adress
+	int fd_mpu = wiringPiI2CSetup(0x68);
+	
+	// enable bypass mode (pra ler o mag)
+	wiringPiI2CWriteReg8 (fd_mpu, Register_BypassEn,  0x02);  // 
+
+	// mag adress
+	int fd = wiringPiI2CSetup(0x0C);
+	//std::cout << "fd: " << fd << std::endl;
+
+	wiringPiI2CWriteReg8 (fd, Register_Control,  0x16);
+	
+	ros::init(argc, argv, "mag");
+	ros::NodeHandle n;
+	ros::Rate loop_rate(100);
+
+	rosbag::Bag bag;
+	bag.open("parametrosMag.bag", rosbag::bagmode::Write);
+
+	raspberry_msgs::ParamMag msg;
+
+	int count = 0;
+
+	ros::Time tInicial = ros::Time::now();
+	while ((ros::Time::now().toSec() - tInicial.toSec()) < 30){
+
+		mag_x = read_word(fd,Register_XH,Register_XL);
+		mag_y = read_word(fd,Register_YH,Register_YL);
+		mag_z = read_word(fd,Register_ZH,Register_ZL);
+		
+		m_x += (mag_x*SCALE);
+       	m_y += (mag_y*SCALE);
+       	m_z += (mag_z*SCALE);
+
+		ROS_INFO("%d", mag_x);
+		ROS_INFO("%d", mag_y);
+		ROS_INFO("%d", mag_z);
+
+		ros::spinOnce();
+	
+	    	loop_rate.sleep();
+	    	++count;
+	}
+	
+	msg.bx = (m_x/count) - 19.452;
+	msg.by = (m_y/count) + 7.668;
+	msg.bz = (m_z/count) + 10.640;
+
+	bag.write("param_mag",ros::Time::now(),msg);
+	
+	ROS_INFO("\n\n");
+
+	ROS_INFO("x: %f", msg.bx);
+	ROS_INFO("y: %f", msg.by);
+	ROS_INFO("z: %f", msg.bz);
+
+	bag.close();
+
+ return 0;
+}
+
+
+

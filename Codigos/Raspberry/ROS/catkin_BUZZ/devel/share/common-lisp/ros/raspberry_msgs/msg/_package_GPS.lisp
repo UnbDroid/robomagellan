@@ -1,22 +1,46 @@
 (cl:in-package raspberry_msgs-msg)
-(cl:export '(VALID-VAL
-          VALID
+(cl:export '(GPSFIXOK-VAL
+          GPSFIXOK
+          GPSFIX-VAL
+          GPSFIX
+          ITOW-VAL
+          ITOW
+          ECEFX-VAL
+          ECEFX
+          ECEFY-VAL
+          ECEFY
+          ECEFZ-VAL
+          ECEFZ
+          PACC-VAL
+          PACC
           LAT-VAL
           LAT
           LNG-VAL
           LNG
-          ALT-VAL
-          ALT
-          SPEED-VAL
-          SPEED
-          COURSE-VAL
-          COURSE
-          UPDATED-VAL
-          UPDATED
-          HDOP-VAL
-          HDOP
-          PDOP-VAL
-          PDOP
-          TIME-VAL
-          TIME
+          HACC-VAL
+          HACC
+          HEIGHT-VAL
+          HEIGHT
+          VACC-VAL
+          VACC
+          VELN-VAL
+          VELN
+          VELE-VAL
+          VELE
+          VELD-VAL
+          VELD
+          SPEED3D-VAL
+          SPEED3D
+          SPEED2D-VAL
+          SPEED2D
+          HEADING-VAL
+          HEADING
+          CACC-VAL
+          CACC
+          SACC-VAL
+          SACC
+          TEMPO-VAL
+          TEMPO
+          NEWPOS-VAL
+          NEWPOS
 ))

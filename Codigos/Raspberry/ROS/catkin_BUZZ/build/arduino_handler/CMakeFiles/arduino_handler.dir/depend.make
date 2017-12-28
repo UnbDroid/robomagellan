@@ -4,6 +4,17 @@
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/devel/include/geometry_msgs/Point32.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/devel/include/ros/common.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/devel/include/sensor_msgs/Range.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/bag.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/buffer.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/chunked_file.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/constants.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/exceptions.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/macros.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/message_instance.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/query.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/stream.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/structures.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosbag_storage/include/rosbag/view.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosconsole/include/ros/assert.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosconsole/include/ros/console.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/rosconsole/include/ros/console_backend.h
@@ -39,6 +50,7 @@ arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/transport_hints.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/wall_timer.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roscpp/include/ros/wall_timer_options.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/roslz4/include/roslz4/lz4s.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcDecl.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/desenvolvimentoRos/src/ros_comm/xmlrpcpp/include/XmlRpcValue.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/arduino_msgs/StampedFloat64.h
@@ -47,9 +59,11 @@ arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/devel/include/raspberry_msgs/StampedFloat32.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /home/pi/Documents/robomagellan/Codigos/Raspberry/ROS/catkin_BUZZ/src/arduino_handler/src/arduino_handler.cpp
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/builtin_message_traits.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/cpp_common_decl.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/datatypes.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/duration.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/exception.h
+arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/header.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/macros.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/message_event.h
 arduino_handler/CMakeFiles/arduino_handler.dir/src/arduino_handler.cpp.o: /opt/ros/indigo/include/ros/message_forward.h

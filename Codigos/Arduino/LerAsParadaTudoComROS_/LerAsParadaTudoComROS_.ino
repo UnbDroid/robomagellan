@@ -9,12 +9,19 @@
 #include "sensortoque.h"
 #include "botaoStart.h"
 #include "tasksdeclarations.h"
+#include "sinalLuminoso.h"
 
 
 // Aqui chegam as mensagens vindas do ROS -------------------
 
 void messageInt64Cb( const raspberry_msgs::StampedInt64& r_int64_msg){
-
+  if(r_int64_msg.id == SINAL_LUMINOSO){
+    if(r_int64_msg.data == 0){
+      apagarSinalLuminoso();
+    }else if(r_int64_msg.data == 1){
+      acenderSinalLuminoso();
+    }
+  }
 }
 
 void messageFloat32Cb( const raspberry_msgs::StampedFloat32& r_float32_msg){
@@ -271,6 +278,11 @@ void setup() {
   startBotoes();
 
   start_GPS();
+
+  startSINALLUMINOSO();
+  /*acenderSinalLuminoso();
+  delay(10000);
+  apagarSinalLuminoso();*/  
 
   //start_SD();
   

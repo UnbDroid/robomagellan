@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 #define USEBAG
 #define usuario
+=======
+//#define usuario
+>>>>>>> f85d0bdf74051f405c913fc86e4afdff896a5ea9
 //#define ve_tempo
 //#define novo_codigo
 //#define codigo_continuo
@@ -1015,7 +1019,7 @@ int main(int argc, char **argv){
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
 	bool aberta;
-	if(!cap.open(1))
+	if(!cap.open(0))
         aberta = false;
     else 
     	aberta = true;

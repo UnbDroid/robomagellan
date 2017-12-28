@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   tf
+  rosbag
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,7 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES arduino_handler
-#  CATKIN_DEPENDS arduino_msgs roscpp std_msgs
+#  CATKIN_DEPENDS arduino_msgs roscpp std_msgs rosbag
 #  DEPENDS system_lib
 )
 

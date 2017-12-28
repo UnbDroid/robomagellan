@@ -1,0 +1,61 @@
+@Actions
++ change : change_state
++ publicar_origem_mapa: publish_map_bottom_left_corner
++ print: print
++ calcular_rota: request_route_calculation
++ habilitar_seguir_rota: send_enable_path_follow
++ calculando_rota: set_calculating_route
++ definir_alvo_gps: set_map_path_goal_gps
++ adicionar_timer: add_timer
++ resetar_timer: reset_timer
++ inserir_obstaculos_moveis: insert_us_obstacles_in_map
++ adicionar_posicao_cone: insert_camera_readings_in_map
++ adicionar_contador: add_counter
++ incrementar_contador: increment_counter
++ resetar_contador: reset_counter
++ requisitar_origem: request_set_origin
++ definir_velocidade: set_velocity
++ habilitar_seguir_camera: send_enable_follow_camera
++ requisitar_uma_paradinha: requisitar_uma_paradinha
++ setar_correcao: set_correcao
+
+@Conditions
++ bigger: is_bigger
++ odom_ok: odom_ok
++ rota_calculada: route_calculated
++ distante_da_rota: distant_from_route
++ cone_encontrado: cone_found
++ distancia_us_menor: us_reading_smaller 
++ verificar_timer: check_timer
++ encostou_algo: check_touch_sensor
++ contador_maior: check_counter_bigger
++ contador_menor: check_counter_smaller
++ botao_verde: check_green_button
++ botao_preto: check_black_button
++ origem_recebida: check_origin_received
+
+@States
++ passo0
++ passo1
++ fim
++ aproximar_fino1
++ dar_re1
+
+@FSM
++ passo0
+	adicionar_timer(name: passo1)
+	adicionar_timer(name: dar_re_1)
+	botao_verde() >> change(next_state: passo1) && resetar_timer(name: passo1)
++ passo1
+	verificar_timer(name: passo1, time: 5) >> habilitar_seguir_rota(value: 0) && change(next_state: aproximar_fino1)
+	habilitar_seguir_rota(value: 4)
+	definir_velocidade(linear: 1.5, angular:0)
++ aproximar_fino1
+	habilitar_seguir_camera(value: true)
+	encostou_algo(min_times: 3) >> habilitar_seguir_camera(value: false) & change(next_state: fim) && resetar_timer(name: dar_re_1)
++ dar_re1
+	verificar_timer(name: dar_re_1,time: 1) >> change(next_state: fim)
+	habilitar_seguir_rota(value: 4)
+	definir_velocidade(linear: -1, angular: 0)
++ fim
+	habilitar_seguir_rota(value: 0)

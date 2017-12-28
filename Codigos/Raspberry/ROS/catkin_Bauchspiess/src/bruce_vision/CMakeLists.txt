@@ -103,7 +103,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
+#  INCLUDE_DIRS include
   LIBRARIES bruce_vision
   CATKIN_DEPENDS roscpp rospy std_msgs
   CATKIN_DEPENDS message_runtime
@@ -236,6 +236,4 @@ add_dependencies(visao_usuario bruce_vision_generate_messages_cpp)
 add_executable(Rastreia src/Rastreia src/Kalman src/Segmento src/RastreiaCone src/gdatalogger src/gqueue src/gmatlabdatafile)
 target_link_libraries(Rastreia ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${iostream_LIBRARIES} rt)
 add_dependencies(Rastreia bruce_vision_generate_messages_cpp)
-
-
 

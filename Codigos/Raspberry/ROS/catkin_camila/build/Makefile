@@ -478,6 +478,19 @@ std_msgs_generate_messages_py/fast:
 .PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named filtroUKF
+
+# Build rule for target.
+filtroUKF: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 filtroUKF
+.PHONY : filtroUKF
+
+# fast build rule for target.
+filtroUKF/fast:
+	$(MAKE) -f filtro/CMakeFiles/filtroUKF.dir/build.make filtro/CMakeFiles/filtroUKF.dir/build
+.PHONY : filtroUKF/fast
+
+#=============================================================================
 # Target rules for targets named filtroAtitude
 
 # Build rule for target.
@@ -502,6 +515,19 @@ filtro: cmake_check_build_system
 filtro/fast:
 	$(MAKE) -f filtro/CMakeFiles/filtro.dir/build.make filtro/CMakeFiles/filtro.dir/build
 .PHONY : filtro/fast
+
+#=============================================================================
+# Target rules for targets named gpsUBX
+
+# Build rule for target.
+gpsUBX: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gpsUBX
+.PHONY : gpsUBX
+
+# fast build rule for target.
+gpsUBX/fast:
+	$(MAKE) -f gps/CMakeFiles/gpsUBX.dir/build.make gps/CMakeFiles/gpsUBX.dir/build
+.PHONY : gpsUBX/fast
 
 #=============================================================================
 # Target rules for targets named gpsTalker
@@ -568,6 +594,45 @@ magTalker/fast:
 	$(MAKE) -f imu/CMakeFiles/magTalker.dir/build.make imu/CMakeFiles/magTalker.dir/build
 .PHONY : magTalker/fast
 
+#=============================================================================
+# Target rules for targets named accMPU
+
+# Build rule for target.
+accMPU: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 accMPU
+.PHONY : accMPU
+
+# fast build rule for target.
+accMPU/fast:
+	$(MAKE) -f imu/CMakeFiles/accMPU.dir/build.make imu/CMakeFiles/accMPU.dir/build
+.PHONY : accMPU/fast
+
+#=============================================================================
+# Target rules for targets named gyroMPU
+
+# Build rule for target.
+gyroMPU: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gyroMPU
+.PHONY : gyroMPU
+
+# fast build rule for target.
+gyroMPU/fast:
+	$(MAKE) -f imu/CMakeFiles/gyroMPU.dir/build.make imu/CMakeFiles/gyroMPU.dir/build
+.PHONY : gyroMPU/fast
+
+#=============================================================================
+# Target rules for targets named magMPU
+
+# Build rule for target.
+magMPU: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magMPU
+.PHONY : magMPU
+
+# fast build rule for target.
+magMPU/fast:
+	$(MAKE) -f imu/CMakeFiles/magMPU.dir/build.make imu/CMakeFiles/magMPU.dir/build
+.PHONY : magMPU/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -605,13 +670,18 @@ help:
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... calibrarAcc"
 	@echo "... std_msgs_generate_messages_py"
+	@echo "... filtroUKF"
 	@echo "... filtroAtitude"
 	@echo "... filtro"
+	@echo "... gpsUBX"
 	@echo "... gpsTalker"
 	@echo "... gyroTalker"
 	@echo "... gyroOffset"
 	@echo "... accTalker"
 	@echo "... magTalker"
+	@echo "... accMPU"
+	@echo "... gyroMPU"
+	@echo "... magMPU"
 .PHONY : help
 
 

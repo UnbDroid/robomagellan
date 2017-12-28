@@ -8,7 +8,7 @@
 
 //#define DEBUG
 
-GPS gps;
+/*GPS gps;
 raspberry_msgs::GPS msg;
 rosbag::Bag bag;
 ros::Time tempo;
@@ -65,13 +65,12 @@ void leituras(){
 		#endif
 	}
 
-}
-
+}*/
 int main(int argc, char **argv){
 
 	char c;
 
-	int fd = serialOpen("/dev/ttyS0",4800);
+	int fd = serialOpen("/dev/ttyS0",9600);
 	
 	if(fd < 0){
 	
@@ -82,16 +81,16 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "gpsTalker");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<raspberry_msgs::GPS>("gpsInfo", 1000);
-	ros::Rate loop_rate(100);
+	ros::Rate loop_rate(500);
 
-	bag.open("gps.bag", rosbag::bagmode::Write);	
+	//bag.open("gps.bag", rosbag::bagmode::Write);	
 
 	while (ros::ok()){
 
 		c = serialGetchar(fd);
-		//std::cout << c;		
+		std::cout << c;		
 		//std::cout << "while" << std::endl;
-		if(gps.encode(c)){
+		/*if(gps.encode(c)){
 			
 			leituras();
 
@@ -99,13 +98,13 @@ int main(int argc, char **argv){
 	}	
 		chatter_pub.publish(msg);
 
-	    	
+*/	    	
 		ros::spinOnce();
 	   	loop_rate.sleep();
 	
 	}
 	
-	bag.close();
+	//bag.close();
 	
 	return 0;
 
