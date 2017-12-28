@@ -10,6 +10,7 @@ project(bruce_vision)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  rosbag
   std_msgs
   message_generation
 )
@@ -200,19 +201,41 @@ include_directories(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(visao_usuario src/visao_usuario.cpp)
-target_link_libraries(visao_usuario ${catkin_LIBRARIES})
+
+find_package(OpenCV 2)
+   include_directories(${OpenCV_INCLUDE_DIRS})
+
+find_package(iostream)
+   include_directories(${iostream_INCLUDE_DIRS})
+
+#add_executable(visao_usuario src/visao_usuario src/RastreiaCone src/Kalman)
+add_executable(visao_usuario src/visao_usuario  src/Segmento src/RastreiaCone)
+#add_executable(visao_usuario src/visao_usuario)
+target_link_libraries(visao_usuario ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${iostream_LIBRARIES})
 add_dependencies(visao_usuario bruce_vision_generate_messages_cpp)
 
-add_executable(receiver src/receiver.cpp)
-target_link_libraries(receiver ${catkin_LIBRARIES})
-add_dependencies(receiver bruce_vision_generate_messages_cpp)
+
+#add_executable(testes src/Testes.cpp  src/Segmento src/RastreiaCone)
+#target_link_libraries(testes ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${iostream_LIBRARIES})
+#add_dependencies(testes bruce_vision_generate_messages_cpp)
 
 
- find_package(OpenCV 2)
-   include_directories(${OpenCV_INCLUDE_DIRS})
-   target_link_libraries(visao_usuario ${OpenCV_LIBRARIES})
+#add_executable(receiver src/receiver3 src/Kalman src/gdatalogger.c src/gqueue.c src/gmatlabdatafile.c)
+#target_link_libraries(receiver ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${iostream_LIBRARIES} rt)
+#add_dependencies(receiver bruce_vision_generate_messages_cpp)
 
-   find_package(iostream)
-   include_directories(${iostream_INCLUDE_DIRS})
-   target_link_libraries(visao_usuario ${iostream_LIBRARIES})
+#add_executable(bagpublisher src/bagpublisher)
+#target_link_libraries(bagpublisher ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${iostream_LIBRARIES})
+#add_dependencies(bagpublisher bruce_vision_generate_messages_cpp)
+
+#add_executable(odompublisher src/odompublisher)
+#target_link_libraries(odompublisher ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${iostream_LIBRARIES})
+#add_dependencies(odompublisher bruce_vision_generate_messages_cpp)
+
+
+add_executable(Rastreia src/Rastreia src/Kalman src/Segmento src/RastreiaCone src/gdatalogger src/gqueue src/gmatlabdatafile)
+target_link_libraries(Rastreia ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${iostream_LIBRARIES} rt)
+add_dependencies(Rastreia bruce_vision_generate_messages_cpp)
+
+
+

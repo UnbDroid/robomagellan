@@ -1,13 +1,13 @@
+#define USEBAG
 #define usuario
 //#define ve_tempo
 //#define novo_codigo
 //#define codigo_continuo
 #define Rastreia9
-//#define encontrar_arvore
 
-#include "RastreiaCone12.hpp"
+#include "RastreiaCone.hpp"
+#include "Kalman.hpp"
 
-//#include "arvores.hpp"
 
 #include <sys/time.h>
 #include "ros/ros.h"
@@ -22,6 +22,8 @@
 #include "ros/message_operations.h"
 #include "ros/message.h"
 #include "ros/time.h"
+#include <rosbag/bag.h>
+#include <rosbag/view.h>
 
 #include <geometry_msgs/Point32.h>
 
@@ -128,6 +130,7 @@ void sonda(Mat img){
 	vector<Mat> channels; 
 	vector<Mat> canais(3);
 
+	/*
 	split(hsv, channels);
 	equalizeHist(channels[1], canais[1]);
 	float S_hist = (float)cone.S_pondera/100;
@@ -139,7 +142,7 @@ void sonda(Mat img){
 	add(V_regular*channels[2], V_hist*canais[2], channels[2]);
     
 	merge(channels, matriz_ponderada);
-
+	*/
 
 	/*
     Mat img_hist_equalized;
@@ -283,7 +286,7 @@ bool p6 = false;
 bool p7 = false;
 
 
-
+#ifndef segmentacao
 
 #ifndef Rastreia9
 
@@ -584,6 +587,138 @@ void Painel6(){
 
 #endif
 
+#else
+
+void Painel2(){
+	namedWindow( "PAINEL 2", WINDOW_NORMAL );
+	resizeWindow("PAINEL 2", 250, 1);
+	createTrackbar( "minL", "PAINEL 2", &cone.minL, 256);
+	createTrackbar( "maxL", "PAINEL 2", &cone.maxL, 256);
+	createTrackbar( "minB", "PAINEL 2", &cone.minB, 256);
+	createTrackbar( "maxB", "PAINEL 2", &cone.maxB, 256);
+	createTrackbar( "minG", "PAINEL 2", &cone.minG, 256);
+	createTrackbar( "maxG", "PAINEL 2", &cone.maxG, 256);
+	createTrackbar( "minR", "PAINEL 2", &cone.minR, 256);
+	createTrackbar( "maxR", "PAINEL 2", &cone.maxR, 256);
+	createTrackbar( "minaceita", "PAINEL 2", &cone.min_aceita, 256);
+	createTrackbar( "aceitafinal", "PAINEL 2", &cone.aceita_final, 256);
+
+	/*
+	createTrackbar( "sizeCanny", "PAINEL 2", &cone.sizeCanny, 5);
+
+	createTrackbar( "minCanny", "PAINEL 2", &cone.minCanny, 1000);
+	createTrackbar( "maxCanny", "PAINEL 2", &cone.maxCanny, 1000);
+	*/
+	//createTrackbar( "difpixel", "PAINEL 2", &cone.dif_pixel, 256);
+	//createTrackbar( "difcentroide", "PAINEL 2", &cone.dif_centroide, 256);
+
+
+	/*
+	namedWindow( "PAINEL 2", WINDOW_NORMAL );
+	resizeWindow("PAINEL 2", 250, 1);
+	createTrackbar( "L subida", "PAINEL 2", &cone.subidaL, 256);
+	createTrackbar( "L degrau subida", "PAINEL 2", &cone.step1_L, 100);
+	createTrackbar( "L topo", "PAINEL 2", &cone.altoL, 256);
+	createTrackbar( "L descida", "PAINEL 2", &cone.descidaL, 256);
+	createTrackbar( "L degrau descida", "PAINEL 2", &cone.step2_L, 100);
+	createTrackbar( "L baixo", "PAINEL 2", &cone.baixoL, 256);
+
+	createTrackbar( "Janela final", "PAINEL 2", &cone.tamanho_final, 1000);
+	createTrackbar( "Janela 0", "PAINEL 2", &cone.tamanho0, 1000);
+	//createTrackbar( "Janela 1", "PAINEL 2", &cone.tamanho_mat, 1000);
+	*/
+
+}
+
+void Painel3(){
+
+
+	namedWindow( "PAINEL 3", WINDOW_NORMAL );
+	resizeWindow("PAINEL 3", 250, 1);
+	createTrackbar( "minLo", "PAINEL 3", &cone.minLo, 256);
+	createTrackbar( "maxLo", "PAINEL 3", &cone.maxLo, 256);
+	createTrackbar( "minBo", "PAINEL 3", &cone.minBo, 256);
+	createTrackbar( "maxBo", "PAINEL 3", &cone.maxBo, 256);
+	createTrackbar( "minGo", "PAINEL 3", &cone.minGo, 256);
+	createTrackbar( "maxGo", "PAINEL 3", &cone.maxGo, 256);
+	createTrackbar( "minRo", "PAINEL 3", &cone.minRo, 256);
+	createTrackbar( "maxRo", "PAINEL 3", &cone.maxRo, 256);
+
+	/*
+	namedWindow( "ab", WINDOW_NORMAL );
+	resizeWindow("ab", 250, 1);
+	
+	createTrackbar( "a subida", "ab", &cone.subidaA, 256);
+	createTrackbar( "a degrau subida", "ab", &cone.step1_A, 100);
+	createTrackbar( "a topo", "ab", &cone.altoA, 256);
+	createTrackbar( "a descida", "ab", &cone.descidaA, 256);
+	createTrackbar( "a degrau descida", "ab", &cone.step2_A, 100);
+	createTrackbar( "a baixo", "ab", &cone.baixoA, 256);
+
+	createTrackbar( "b subida", "ab", &cone.subidaB, 256);
+	createTrackbar( "b degrau subida", "ab", &cone.step1_B, 100);
+	createTrackbar( "b topo", "ab", &cone.altoB, 256);
+	createTrackbar( "b descida", "ab", &cone.descidaB, 256);
+	createTrackbar( "b degrau descida", "ab", &cone.step2_B, 100);
+	createTrackbar( "b baixo", "ab", &cone.baixoB, 256);	
+	*/
+}
+
+void Painel4(){
+
+
+	namedWindow( "PAINEL 4", WINDOW_NORMAL );
+	resizeWindow("PAINEL 4", 250, 1);
+	createTrackbar( "difLo", "PAINEL 4", &cone.difLo, 50);
+	createTrackbar( "difLb", "PAINEL 4", &cone.difLb, 50);
+	createTrackbar( "difAo", "PAINEL 4", &cone.difAo, 50);
+	createTrackbar( "difAb", "PAINEL 4", &cone.difAb, 50);
+	createTrackbar( "difBo", "PAINEL 4", &cone.difBo, 50);
+	createTrackbar( "difBb", "PAINEL 4", &cone.difBb, 50);
+	createTrackbar( "maxdif", "PAINEL 4", &cone.max_dif, 100);
+	createTrackbar( "min_seg", "PAINEL 4", &cone.min_segment_size, 100);
+
+}
+
+
+void Painel5(){
+
+
+	namedWindow( "PAINEL 5", WINDOW_NORMAL );
+	resizeWindow("PAINEL 5", 250, 1);
+	createTrackbar( "minLB", "PAINEL 5", &cone.minLB, 255);
+	createTrackbar( "maxLB", "PAINEL 5", &cone.maxLB, 255);
+	createTrackbar( "minAB", "PAINEL 5", &cone.minAB, 255);
+	createTrackbar( "maxAB", "PAINEL 5", &cone.maxAB, 255);
+	createTrackbar( "minBB", "PAINEL 5", &cone.minBB, 255);
+	createTrackbar( "maxBB", "PAINEL 5", &cone.maxBB, 255);
+
+
+}
+
+
+/*
+void Painel4(){
+
+
+	namedWindow( "PAINEL 4", WINDOW_NORMAL );
+	resizeWindow("PAINEL 4", 250, 1);
+
+	createTrackbar( "difpixel", "PAINEL 4", &cone.dif_pixel, 750);
+	createTrackbar( "maxdifpixel", "PAINEL 4", &cone.max_dif_pixel, 256);
+	createTrackbar( "difcentroide", "PAINEL 4", &cone.dif_centroide, 750);
+	createTrackbar( "maxdifcentroide", "PAINEL 4", &cone.max_dif_centroide, 256);
+	createTrackbar( "maxdifpixelL", "PAINEL 4", &cone.max_dif_pixelL, 256);
+	createTrackbar( "maxdifcentroideL", "PAINEL 4", &cone.max_dif_centroideL, 256);
+	createTrackbar( "minSegmentSize", "PAINEL 4", &cone.min_segment_size, 1000);
+
+	createTrackbar( "minCanny", "PAINEL 4", &cone.minCanny, 2000);
+	createTrackbar( "maxCanny", "PAINEL 4", &cone.maxCanny, 2000);
+	createTrackbar( "CannySize", "PAINEL 4", &cone.sizeCanny, 3);
+}
+*/
+
+#endif
 
 
 bool Comando(Mat source, VideoCapture* cap, bool aberta){
@@ -630,6 +765,45 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 					p2 = true;
 				}
 				break;
+			case(51):
+				if(p3){
+					p3 = false;
+					destroyWindow("PAINEL 3");
+				}
+				else{
+					Painel3();
+					p3 = true;
+				}
+				break;
+			case(52):
+				if(p4){
+					p4 = false;
+					destroyWindow("PAINEL 4");
+				}
+				else{
+					Painel4();
+					p4 = true;
+				}
+				break;
+			case(53):
+				if(p5){
+					p5 = false;
+					destroyWindow("PAINEL 5");
+				}
+				else{
+					Painel5();
+					p5 = true;
+				}
+				break;		
+			case(97):
+				if(cone.filtro){
+					cone.filtro = false;
+				}
+				else{
+					cone.filtro = true;
+				}
+				break;		
+		#ifndef segmentacao		
 		#ifdef Rastreia9
 			case(49):
 				if(p1){
@@ -783,7 +957,10 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 					p5 = true;
 				}
 				break;		
-			#endif	
+			#endif
+		#endif	
+
+		#else
 
 		#endif		
 			
@@ -800,17 +977,40 @@ bool Comando(Mat source, VideoCapture* cap, bool aberta){
 #endif
 
 
+
+
+
+/*
+void int_to_string(int valor, string* numeral){
+  int inteiro = valor;
+  int resto = valor;
+  do{
+    resto = inteiro%10;
+    inteiro = inteiro/10;
+    (*numeral).push_back( (char)(resto + 48) );
+  }while(inteiro > 0);
+  reverse((*numeral).begin(),(*numeral).end()); 
+}
+*/
+
+
+
 int main(int argc, char **argv){
 
+	
+	//-----ROS---------------
 	ros::init(argc, argv, "vision");
 	ros::NodeHandle n;
 	ros::Publisher chatter_pub = n.advertise<geometry_msgs::Point32>("cone_position", 1000);
-	ros::Rate loop_rate(100);
+	ros::Rate loop_rate(10);
 	geometry_msgs::Point32 msg;
 
-	struct timeval novo, velho;
+	struct timeval novo, velho, T;
 
-	int tempo;
+
+	struct timeval t1, t2, t3, t4;
+
+	int tempo,t,dt;
 
 	Mat img;//imagem da câmera
 	VideoCapture cap; //Captura da câmera
@@ -821,11 +1021,19 @@ int main(int argc, char **argv){
     	aberta = true;
 
 
+    gettimeofday(&t1,NULL);
+
+
+    #ifdef USEBAG
+    rosbag::Bag bag;
+    bag.open("cam.bag", rosbag::bagmode::Write);
+    #endif
+    
 
 	while( (aberta == true)&&(ros::ok() ) ){
 
 
-
+			gettimeofday(&t3,NULL);	
 			#ifdef ve_tempo
 			gettimeofday(&tempo1, NULL);
 			#endif
@@ -850,26 +1058,41 @@ int main(int argc, char **argv){
 			gettimeofday(&velho, NULL);
 			#endif
 
-			//imshow("SOURCE", img);
-			cone.rastreia(img);
-			#ifdef encontrar_arvore
-				detector_de_arvore.detecta_arvore(img);
-			#endif
+			gettimeofday(&t4,NULL);
+			tempo = (int) (1000000 * (t4.tv_sec - t3.tv_sec) + (t4.tv_usec - t3.tv_usec));
+			//cout<<"camera:  "<<tempo<<endl;
 
-			if(cone.encontrou_cone){
-				msg.y = cone.pub_angulo;
-				msg.x = cone.pub_distancia;
-				msg.z = 1;
+
+			//imshow("SOURCE", img);
+			
+			gettimeofday(&t3,NULL);	
+			cone.rastreia(img,false,0,0,0,0,0);
+			gettimeofday(&t4,NULL);
+			tempo = (int) (1000000 * (t4.tv_sec - t3.tv_sec) + (t4.tv_usec - t3.tv_usec));
+			//cout<<"rastreia:  "<<tempo<<endl;
+		
+
+
+		    if(cone.encontrou_cone){
+		    	msg.x = cone.pubx;
+		    	msg.y = cone.puby;
+				msg.z = 1; 
 			}
-			else{
+			else
+			{
+				msg.x = 0;
+		    	msg.y = 0;
 				msg.z = 0;
 			}
+		  	
+			//cout<<msg.x<<"   "<<msg.y<<endl;
 
 			chatter_pub.publish(msg);
+			#ifdef USEBAG
+			bag.write("Camera", ros::Time::now(), msg);
+			#endif
 
-
-
-
+			
 				#ifdef ve_tempo				
 				gettimeofday(&novo, NULL);
 				tempo = (int) (1000000 * (novo.tv_sec - velho.tv_sec) + (novo.tv_usec - velho.tv_usec));
@@ -885,16 +1108,25 @@ int main(int argc, char **argv){
 				#ifdef usuario
 				aberta = Comando(img, &cap, aberta);
 				#endif
-
+			
 
 		loop_rate.sleep();
+
+
+		gettimeofday(&t2,NULL);
+		tempo = (int) (1000000 * (t2.tv_sec - t1.tv_sec) + (t2.tv_usec - t1.tv_usec));
+		//cout<<tempo<<endl;
+		gettimeofday(&t1,NULL);
 		
 	}
 
-	msg.x = -999;
-	msg.y = -999;
-	msg.z = 1;
+	msg.x = 0;
+	msg.y = 0;
+	msg.z = 0;
 	chatter_pub.publish(msg);
+	#ifdef USEBAG
+	bag.close();
+	#endif
 
 	return 0;	
 }
